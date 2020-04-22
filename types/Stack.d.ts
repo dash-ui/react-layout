@@ -2,7 +2,8 @@ import React from 'react'
 import type {DefaultVars} from '@-ui/react'
 import type {FrameProps} from './Frame'
 /**
- * A component that distributes its items in a row or column like so:
+ * A component that distributes its items in a row or column without
+ * wrapping by default like so:
  *
  * ☐ ☐ ☐ ☐ ☐
  *
@@ -12,8 +13,6 @@ import type {FrameProps} from './Frame'
  * ☐
  * ☐
  * ☐
- *
- * Some use cases include input chips and tags.
  */
 export declare const Stack: React.ForwardRefExoticComponent<
   StackProps & React.RefAttributes<any>

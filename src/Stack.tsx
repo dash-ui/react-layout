@@ -8,7 +8,8 @@ import type {DefaultVars} from '@-ui/react'
 import type {FrameProps} from './Frame'
 
 /**
- * A component that distributes its items in a row or column like so:
+ * A component that distributes its items in a row or column without
+ * wrapping by default like so:
  *
  * ☐ ☐ ☐ ☐ ☐
  *
@@ -18,8 +19,6 @@ import type {FrameProps} from './Frame'
  * ☐
  * ☐
  * ☐
- *
- * Some use cases include input chips and tags.
  */
 export const Stack = React.forwardRef<any, StackProps>(
   (
@@ -55,7 +54,6 @@ export const Stack = React.forwardRef<any, StackProps>(
               //@ts-ignore
               ({gap}) => css`
                 display: flex;
-                margin-${marginDirection}: calc(-1 * ${gap[gapProp]});
                 
                 & > * + * {
                   margin-${marginDirection}: ${gap[gapProp]};

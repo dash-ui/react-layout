@@ -1,62 +1,10 @@
 /* jest */
 import * as React from 'react'
-import {render, cleanup} from '@testing-library/react'
-import styles from '@-ui/react'
+import {render} from '@testing-library/react'
 import {Frame} from './Frame'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import {renderLayout} from 'test-utils'
 
-afterEach(() => {
-  styles.dash.sheet.flush()
-})
-
-const theme = {
-  gap: {
-    auto: 'auto',
-    0: 0,
-    1: '0.25rem',
-    2: '0.5rem',
-    3: '1rem',
-    4: '2rem',
-    5: '4rem',
-  },
-  pad: {
-    auto: 'auto',
-    0: 0,
-    1: '0.125rem',
-    2: '0.25rem',
-    3: '0.5rem',
-    4: '1rem',
-    5: '2rem',
-    6: '4rem',
-  },
-  color: {
-    blue: 'blue',
-    green: 'green',
-  },
-  elevation: {
-    low: 'low',
-    high: 'high',
-  },
-}
-
-type Theme = typeof theme
-styles.variables(theme)
-
-declare module '@-ui/react' {
-  interface DefaultVars extends Theme {}
-}
-
-declare module './MediaQueries' {
-  interface MediaQueries {
-    phone: 'only screen and (min-width: 0em)'
-    tablet: 'only screen and (min-width: 35em)'
-    desktop: 'only screen and (min-width: 80em)'
-  }
-}
-
-describe('<Frame>', () => {
-  afterEach(cleanup)
-
+describe('<Frame> without media queries', () => {
   it('applies the "display" prop', () => {
     const {getByTestId} = render(<Frame display="block" data-testid="frame" />)
     expect(getByTestId('frame')).toHaveStyleRule('display', 'block')

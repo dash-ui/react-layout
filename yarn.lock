@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@-ui/jest@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@-ui/jest/-/jest-1.0.1.tgz#2e883e31fcccf1ea34e131b4fecbdd01658515fc"
-  integrity sha512-+x/MX0qGID07OPCcPuCU+96X7FxIIkXUMulKDbKbdxkf9CeXg7iHc+gIQdWqTZlHg9YCI5zrAeKgirQAAsh66g==
+"@-ui/jest@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@-ui/jest/-/jest-1.1.1.tgz#d0c866e2ff9db2ff9c0035d3197163e7b897b902"
+  integrity sha512-4n7hJlXzbjMcIOzyBtups8YQpyGLHHENsmr9XgaQ5oLeSg2pu7Bg4y4w/hn9XXEQKoyDsuuw1BHP5XVRKNyHKg==
   dependencies:
     chalk "^3.0.0"
     css "^2.2.4"

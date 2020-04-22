@@ -38,8 +38,8 @@
     "build": "npm run build-main && npm run build-module && npm run build-types",
     "build-main": "npm run compile -- -d dist/main --env-name main",
     "build-module": "npm run compile -- -d dist/module --env-name module",
-    "build-types": "tsc -p tsconfig.json -d --outDir types --emitDeclarationOnly",
-    "check-types": "tsc --noEmit -p tsconfig.json",
+    "build-types": "tsc -p tsconfig.dist.json -d --outDir types --emitDeclarationOnly",
+    "check-types": "tsc --noEmit -p tsconfig.dist.json",
     "compile": "babel src -x .ts,.tsx --ignore \"**/*.test.ts\",\"**/test.ts\",\"**/*.test.tsx\",\"**/test.tsx\" --delete-dir-on-start",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,yml,json,eslintrc,prettierrc}\"",
     "lint": "eslint . --ext .ts,.tsx",
@@ -62,7 +62,7 @@
     ]
   },
   "devDependencies": {
-    "@-ui/jest": "^1.0.1",
+    "@-ui/jest": "^1.1.1",
     "@-ui/react": "^1.2.2",
     "@babel/preset-react": "latest",
     "@lunde/babel-preset-es": "latest",

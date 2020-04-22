@@ -3,9 +3,10 @@ import {useDash} from '@-ui/react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
 import {Frame} from './Frame'
+import {useLayout} from './Layout'
 import type {DefaultVars} from '@-ui/react'
 import type {FrameProps} from './Frame'
-import type {MediaQueryProp} from './MediaQueries'
+import type {MediaQueryProp} from './Layout'
 
 /**
  * A component that distributes its items in a row without wrapping like so:
@@ -19,12 +20,14 @@ export const Row = React.forwardRef<any, RowProps>(
     ref
   ) => {
     const styles = useDash()
+    const {mq} = useLayout()
     const marginDirection = reverse ? 'right' : 'left'
 
     return (
       <Frame
         className={clsx(
           className,
+          align && mq.prop(alignItems, align),
           marginDirection &&
             styles.one(
               //@ts-ignore
@@ -43,6 +46,48 @@ export const Row = React.forwardRef<any, RowProps>(
     )
   }
 )
+
+const alignItems = {
+  start: css`
+    align-items: flex-start;
+  `,
+  center: css`
+    align-items: center;
+  `,
+  end: css`
+    align-items: flex-end;
+  `,
+  baseline: css`
+    align-items: baseline;
+  `,
+  stretch: css`
+    align-items: stretch;
+  `,
+}
+
+const justify = {
+  start: css`
+    justify-content: flex-start;
+  `,
+  center: css`
+    justify-content: center;
+  `,
+  end: css`
+    justify-content: flex-end;
+  `,
+  around: css`
+    justify-content: space-around;
+  `,
+  between: css`
+    justify-content: space-between;
+  `,
+  evenly: css`
+    justify-content: space-evenly;
+  `,
+  stretch: css`
+    justify-content: stretch;
+  `,
+}
 
 export interface RowProps extends FrameProps {
   readonly display?: never

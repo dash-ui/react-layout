@@ -1,8 +1,9 @@
 {
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src"],
+  "exclude": ["**/*.test.tsx", "**/*.test.ts"],
   "compilerOptions": {
     "target": "es5",
-    "lib": ["esnext", "dom", "dom.iterable"],
+    "lib": ["esnext", "dom"],
     "jsx": "react",
     "moduleResolution": "node",
     "strictNullChecks": true,
@@ -12,10 +13,8 @@
     "noImplicitReturns": false,
     "noUnusedLocals": true,
     "noFallthroughCasesInSwitch": true,
+    "downlevelIteration": true,
     "noEmitOnError": true,
-    "baseUrl": "src",
-    "paths": {
-      "test-utils": ["./test/test-utils.tsx"]
-    }
+    "skipLibCheck": true
   }
 }

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Frame> applies several props 1`] = `
+<DocumentFragment>
+  .-ui-0 {
+  display: block;
+  position: absolute;
+}
+
+.-ui-1 {
+  width: 200px;
+  height: 200px;
+}
+
+.-ui-2 {
+  padding: var(--pad-3);
+}
+
+.-ui-3 {
+  background: var(--color-blue);
+}
+
+.-ui-4 {
+  box-shadow: var(--elevation-high);
+}
+
+<div
+    class="-ui-0 -ui-1 -ui-2 -ui-3 -ui-4"
+    data-testid="frame"
+  />
+</DocumentFragment>
+`;

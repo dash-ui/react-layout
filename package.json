@@ -1,15 +1,30 @@
 {
   "name": "@-ui/react-layout",
   "version": "1.0.0",
-  "homepage": "https://github.com/dash-ui/-ui#readme",
-  "repository": "github:dash-ui/-ui",
-  "bugs": "https://github.com/dash-ui/-ui/issues",
+  "homepage": "https://github.com/dash-ui/react-layout#readme",
+  "repository": "github:dash-ui/react-layout",
+  "bugs": "https://github.com/dash-ui/react-layout/issues",
   "license": "MIT",
   "description": "",
   "keywords": [
     "react",
     "react component",
-    "react layout"
+    "react layout",
+    "layout components",
+    "dash layout components",
+    "-ui layout components",
+    "react layout components",
+    "stack component",
+    "grid component",
+    "cluster component",
+    "layer component",
+    "react stack component",
+    "react grid component",
+    "react cluster component",
+    "react layer component",
+    "spacing component",
+    "spacer component",
+    "react spacing component"
   ],
   "main": "dist/main/index.js",
   "module": "dist/module/index.js",
@@ -47,6 +62,8 @@
     ]
   },
   "devDependencies": {
+    "@-ui/jest": "^1.0.1",
+    "@-ui/react": "^1.2.2",
     "@babel/preset-react": "latest",
     "@lunde/babel-preset-es": "latest",
     "@testing-library/jest-dom": "latest",
@@ -66,16 +83,22 @@
     "eslint-plugin-react-hooks": "latest",
     "husky": "latest",
     "jest": "latest",
+    "jest-styled-components": "^7.0.2",
     "lint-staged": "latest",
+    "minify-css.macro": "^1.0.6",
     "prettier": "latest",
+    "pretty-format": "^25.4.0",
     "react": "latest",
     "react-dom": "latest",
     "react-test-renderer": "latest",
     "ts-jest": "latest",
     "typescript": "latest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "clsx": "^1.1.0"
+  },
   "peerDependencies": {
+    "@-ui/react": "^1.2.0",
     "prop-types": ">=15.6",
     "react": ">=16.8",
     "react-dom": ">=16.8"

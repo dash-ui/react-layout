@@ -1,4 +1,4 @@
-module.exports = api => {
+module.exports = (api) => {
   const module = api.env('module')
   const presetEnv = [
     '@lunde/es',
@@ -10,11 +10,12 @@ module.exports = api => {
               browsers: '> 2%',
             }
           : {
-              node: '8',
+              node: '10',
             },
       },
       devExpression: false,
       objectAssign: false,
+      restSpread: false,
     },
   ]
 

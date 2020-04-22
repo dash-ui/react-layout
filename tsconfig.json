@@ -1,5 +1,5 @@
 {
-  "include": ["src"],
+  "include": ["src", "test/extend-expect.d.ts"],
   "exclude": [
     "src/**/*.test.ts",
     "src/**/test.ts",

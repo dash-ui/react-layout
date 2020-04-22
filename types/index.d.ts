@@ -1,2 +1,1 @@
-declare const Component: () => string
-export default Component
+export * from './Frame'

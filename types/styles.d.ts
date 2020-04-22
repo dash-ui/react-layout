@@ -7,9 +7,9 @@ export declare const gapClass: (
 export declare const flexClass: (
   styles: Styles<import('@-ui/styles').DefaultVars, never>,
   flexProps: {
-    direction: 'column' | 'row' | 'reversedRow' | 'reversedColumn'
-    alignment: LineAlignSetting
-    distribution: 'stretch' | 'around' | 'between' | 'even'
-    wrap: boolean | 'reverse' | 'wrap'
+    direction?: 'column' | 'row' | 'reversedRow' | 'reversedColumn' | undefined
+    alignment?: 'center' | 'end' | 'start' | undefined
+    distribution?: 'stretch' | 'around' | 'between' | 'even' | undefined
+    wrap?: boolean | 'reverse' | 'wrap' | undefined
   }
 ) => string

@@ -26,10 +26,10 @@ export const gapClass = (
 export const flexClass = (
   styles: Styles,
   flexProps: {
-    direction: 'row' | 'column' | 'reversedRow' | 'reversedColumn'
-    alignment: 'start' | 'center' | 'end'
-    distribution: 'around' | 'between' | 'even' | 'stretch'
-    wrap: 'wrap' | 'reverse' | boolean
+    direction?: 'row' | 'column' | 'reversedRow' | 'reversedColumn'
+    alignment?: 'start' | 'center' | 'end'
+    distribution?: 'around' | 'between' | 'even' | 'stretch'
+    wrap?: 'wrap' | 'reverse' | boolean
   }
 ) => {
   const {direction = 'row'} = flexProps

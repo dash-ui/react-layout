@@ -19,3 +19,12 @@ export interface ClusterProps extends FrameProps {
   readonly reverse?: boolean
   readonly gap?: DefaultVars['gap']
 }
+export declare const ClusterItem: React.ForwardRefExoticComponent<
+  ClusterItemProps & React.RefAttributes<any>
+>
+export interface ClusterItemProps extends FrameProps {
+  readonly basis?: number | string
+  readonly maxWidth?: number | string
+  readonly fill?: boolean | number
+  readonly shrink?: boolean | number
+}

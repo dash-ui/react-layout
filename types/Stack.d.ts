@@ -1,11 +1,38 @@
-import {FrameProps} from './Frame'
+import React from 'react'
+import type {DefaultVars} from '@-ui/react'
+import type {FrameProps} from './Frame'
+/**
+ * A component that distributes its items in a row or column like so:
+ *
+ * ☐ ☐ ☐ ☐ ☐
+ *
+ * or
+ *
+ * ☐
+ * ☐
+ * ☐
+ * ☐
+ *
+ * Some use cases include input chips and tags.
+ */
+export declare const Stack: React.ForwardRefExoticComponent<
+  StackProps & React.RefAttributes<any>
+>
 export interface StackProps extends FrameProps {
-  direction: 'row' | 'column' | 'reversedRow' | 'reversedColumn'
-  alignment: 'start' | 'center' | 'end'
-  distribution: 'around' | 'between' | 'even' | 'stretch'
-  wrap: boolean
+  readonly display?: never
+  readonly direction?: 'row' | 'column' | 'reversedRow' | 'reversedColumn'
+  readonly alignment?: 'start' | 'center' | 'end'
+  readonly distribution?: 'around' | 'between' | 'even' | 'stretch'
+  readonly wrap?: 'wrap' | 'reverse' | boolean
+  readonly gap?: DefaultVars['gap']
 }
-export interface StackItemProps {
-  fill: boolean | number
-  shrink: boolean | number
+export declare const StackItem: React.ForwardRefExoticComponent<
+  StackItemProps & React.RefAttributes<any>
+>
+export interface StackItemProps extends FrameProps {
+  readonly basis?: number | string
+  readonly maxWidth?: number | string
+  readonly maxHeight?: number | string
+  readonly fill?: boolean | number
+  readonly shrink?: boolean | number
 }

@@ -24,63 +24,67 @@ export const Frame = React.forwardRef<any, FrameProps>(
   ) => {
     const styles = useDash()
     const frame = styles(frameStyles)
-    className = clsx(
-      className,
-      frame({
-        [display || '']: true,
-        [position || '']: true,
-        hidden,
-      }),
-      // Size
-      styles.one(
-        size !== void 0
-          ? {
-              width: size,
-              height: size,
-            }
-          : width !== void 0 && height !== void 0
-          ? {width, height}
-          : width !== void 0
-          ? {width}
-          : height !== void 0
-          ? {height}
-          : ''
-      )(),
-      // Padding
-      padProp !== void 0 &&
-        padProp !== null &&
-        styles.one(
-          // @ts-ignore
-          ({pad}) => {
-            if (Array.isArray(padProp)) {
-              return {padding: padProp.map((k) => pad[k]).join(' ')}
-            }
-
-            return css`
-              padding: ${pad[padProp]};
-            `
-          }
-        )(),
-      // Background
-      bg &&
-        styles.one(
-          // @ts-ignore
-          ({color}) => css`
-            background: ${color[bg]};
-          `
-        )(),
-      // Elevation
-      elevationProp &&
-        styles.one(
-          // @ts-ignore
-          ({elevation}) => css`
-            box-shadow: ${elevation[elevationProp]};
-          `
-        )()
-    )
 
     return (
-      <As className={className} aria-hidden={hidden} {...props} ref={ref} />
+      <As
+        className={clsx(
+          className,
+          frame({
+            [display || '']: true,
+            [position || '']: true,
+            hidden,
+          }),
+          // Size
+          styles.one(
+            size !== void 0
+              ? {
+                  width: size,
+                  height: size,
+                }
+              : width !== void 0 && height !== void 0
+              ? {width, height}
+              : width !== void 0
+              ? {width}
+              : height !== void 0
+              ? {height}
+              : ''
+          )(),
+          // Padding
+          padProp !== void 0 &&
+            padProp !== null &&
+            styles.one(
+              // @ts-ignore
+              ({pad}) => {
+                if (Array.isArray(padProp)) {
+                  return {padding: padProp.map((k) => pad[k]).join(' ')}
+                }
+
+                return css`
+                  padding: ${pad[padProp]};
+                `
+              }
+            )(),
+          // Background
+          bg &&
+            styles.one(
+              // @ts-ignore
+              ({color}) => css`
+                background: ${color[bg]};
+              `
+            )(),
+          // Elevation
+          elevationProp &&
+            styles.one(
+              // @ts-ignore
+              ({elevation}) => css`
+                box-shadow: ${elevation[elevationProp]};
+              `
+            )()
+        )}
+        aria-hidden={hidden}
+        {...props}
+        ref={ref}
+      />
     )
   }
 )

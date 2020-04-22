@@ -81,6 +81,14 @@ describe('<Frame>', () => {
     expect(getByTestId('frame')).toHaveStyleRule('height', '100px')
   })
 
+  it('applies the "width" and "height" props together', () => {
+    const {getByTestId} = render(
+      <Frame width={200} height={100} data-testid="frame" />
+    )
+    expect(getByTestId('frame')).toHaveStyleRule('width', '200px')
+    expect(getByTestId('frame')).toHaveStyleRule('height', '100px')
+  })
+
   it('applies the "size" prop', () => {
     const {getByTestId} = render(<Frame size="100%" data-testid="frame" />)
     expect(getByTestId('frame')).toHaveStyleRule('width', '100%')

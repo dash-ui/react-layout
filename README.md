@@ -12,11 +12,11 @@
   <a aria-label="Types" href="https://www.npmjs.com/package/@-ui/react-layout">
     <img alt="Types" src="https://img.shields.io/npm/types/@-ui/react-layout?style=for-the-badge&labelColor=24292e">
   </a>
-  <a aria-label="Code coverage report" href="https://codecov.io/gh/dash-ui/-ui">
-    <img alt="Code coverage" src="https://img.shields.io/codecov/c/gh/dash-ui/-ui?style=for-the-badge&labelColor=24292e">
+  <a aria-label="Code coverage report" href="https://codecov.io/gh/dash-ui/react-layout">
+    <img alt="Code coverage" src="https://img.shields.io/codecov/c/gh/dash-ui/react-layout?style=for-the-badge&labelColor=24292e">
   </a>
-  <a aria-label="Build status" href="https://travis-ci.com/dash-ui/-ui">
-    <img alt="Build status" src="https://img.shields.io/travis/com/dash-ui/-ui?style=for-the-badge&labelColor=24292e">
+  <a aria-label="Build status" href="https://travis-ci.com/dash-ui/react-layout">
+    <img alt="Build status" src="https://img.shields.io/travis/com/dash-ui/react-layout?style=for-the-badge&labelColor=24292e">
   </a>
   <a aria-label="NPM version" href="https://www.npmjs.com/package/@-ui/react-layout">
     <img alt="NPM Version" src="https://img.shields.io/npm/v/@-ui/react-layout?style=for-the-badge&labelColor=24292e">
@@ -29,7 +29,7 @@
 <pre align="center">npm i @-ui/react-layout</pre>
 <hr>
 
-Layout primitives for React using @-ui/spacing
+Layout primitives for React and [dash-ui](https://github.com/dash-ui)
 
 ## Quick Start
 

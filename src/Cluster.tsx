@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import {useDash} from '@-ui/react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'

@@ -1,8 +1,9 @@
 /* jest */
-import React from 'react'
+import * as React from 'react'
 import {render, cleanup} from '@testing-library/react'
 import styles from '@-ui/react'
 import {Frame} from './Frame'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 afterEach(() => {
   styles.dash.sheet.flush()
@@ -39,12 +40,19 @@ const theme = {
 }
 
 type Theme = typeof theme
+styles.variables(theme)
 
 declare module '@-ui/react' {
   interface DefaultVars extends Theme {}
 }
 
-styles.variables(theme)
+declare module './MediaQueries' {
+  interface MediaQueries {
+    phone: 'only screen and (min-width: 0em)'
+    tablet: 'only screen and (min-width: 35em)'
+    desktop: 'only screen and (min-width: 80em)'
+  }
+}
 
 describe('<Frame>', () => {
   afterEach(cleanup)

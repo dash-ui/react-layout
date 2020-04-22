@@ -10,6 +10,11 @@
     chalk "^3.0.0"
     css "^2.2.4"
 
+"@-ui/mq@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@-ui/mq/-/mq-2.1.0.tgz#f22784047303a2b765dc86eb2cd23a4b6841c136"
+  integrity sha512-dCBL0a+L+c6D8zDBAWctXYCvIFaHIhEdqsFmjqcDaXgSZA9Mb4RpXEJYpfd1D7BAOVP+HEKRLa1gRfdylfdHkw==
+
 "@-ui/react@^1.2.2":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@-ui/react/-/react-1.2.2.tgz#96865e58bceafa274814dc2a8bade3c08549fee9"

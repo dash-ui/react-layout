@@ -66,15 +66,11 @@ export const ClusterItem = React.forwardRef<any, ClusterItemProps>(
           basis !== void 0 && styles.one({flexBasis: basis}),
           fill !== void 0 &&
             styles.one(css`
-              flex-grow: ${fill === true ? 1 : fill === false ? 0 : fill};
+              flex-grow: ${Number(fill)};
             `),
           shrink !== void 0 &&
             styles.one(css`
-              flex-shrink: ${shrink === true
-                ? 1
-                : shrink === false
-                ? 0
-                : shrink};
+              flex-shrink: ${Number(shrink)};
             `)
         )}
         {...props}

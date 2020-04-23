@@ -1,5 +1,5 @@
 {
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src"],
   "compilerOptions": {
     "target": "es5",
     "lib": ["esnext", "dom", "dom.iterable"],
@@ -15,7 +15,7 @@
     "noEmitOnError": true,
     "baseUrl": "src",
     "paths": {
-      "test-utils": ["./test/test-utils.tsx"]
+      "test-utils": ["../test/test-utils.tsx"]
     }
   }
 }

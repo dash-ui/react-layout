@@ -2,7 +2,7 @@ import * as React from 'react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
 import {useLayout} from './Layout'
-import type {DefaultVars, StyleObject} from '@-ui/react'
+import type {DefaultVars} from '@-ui/react'
 import type {MediaQueryProp} from './Layout'
 
 export const Frame = React.forwardRef<any, FrameProps>(
@@ -18,7 +18,7 @@ export const Frame = React.forwardRef<any, FrameProps>(
       pad,
       bg,
       elevation,
-      hidden,
+      radius,
       ...props
     },
     ref
@@ -27,24 +27,20 @@ export const Frame = React.forwardRef<any, FrameProps>(
 
     return (
       <As
+        ref={ref}
         className={clsx(
           className,
           mq.prop(frameStyle, display),
           mq.prop(frameStyle, position),
-          mq.prop(frameStyle, hidden && 'hidden'),
-          // Size
-          (size !== void 0 || width !== void 0 || height !== void 0) &&
-            mq.prop(sizeStyle, [size, width, height]),
-          // Padding
+          mq.prop(widthStyle, width),
+          mq.prop(heightStyle, height),
+          mq.prop(sizeStyle, size),
           mq.prop(padStyle, pad),
-          // Background
           mq.prop(bgStyle, bg),
-          // Elevation
-          mq.prop(elevationStyle, elevation)
+          mq.prop(elevationStyle, elevation),
+          mq.prop(radiusStyle, radius)
         )}
-        aria-hidden={hidden}
         {...props}
-        ref={ref}
       />
     )
   }
@@ -66,7 +62,7 @@ const frameStyle = {
   inline: css`
     display: inline;
   `,
-  hidden: css`
+  none: css`
     display: none;
   `,
   relative: css`
@@ -83,21 +79,12 @@ const frameStyle = {
   `,
 }
 
-const sizeStyle = ([size, width, height]: (number | string | undefined)[]):
-  | string
-  | StyleObject =>
-  size !== void 0
-    ? {
-        width: size,
-        height: size,
-      }
-    : width !== void 0 && height !== void 0
-    ? {width, height}
-    : width !== void 0
-    ? {width}
-    : height !== void 0
-    ? {height}
-    : ''
+const widthStyle = (width: number | string) => ({width})
+const heightStyle = (height: number | string) => ({height})
+const sizeStyle = (size: number | string) => ({
+  width: size,
+  height: size,
+})
 
 const padStyle = (
   // @ts-ignore
@@ -123,6 +110,16 @@ const elevationStyle = (elevationProp: keyof DefaultVars['elevation']) => ({
 }) => css`
   box-shadow: ${elevation[elevationProp]};
 `
+// @ts-ignore
+const radiusStyle = (radiusProp: keyof DefaultVars['radius']) => ({radius}) => {
+  if (Array.isArray(radiusProp)) {
+    return {borderRadius: radiusProp.map((k) => radius[k]).join(' ')}
+  }
+
+  return css`
+    border-radius: ${radius[radiusProp]};
+  `
+}
 
 export interface FrameProps {
   readonly as?: keyof JSX.IntrinsicElements | React.ComponentType<any>
@@ -144,5 +141,8 @@ export interface FrameProps {
   readonly bg?: MediaQueryProp<keyof DefaultVars['color']>
   // @ts-ignore
   readonly elevation?: MediaQueryProp<keyof DefaultVars['elevation']>
-  readonly hidden?: MediaQueryProp<boolean>
+  readonly radius?: MediaQueryProp<
+    // @ts-ignore
+    keyof DefaultVars['radius'] | (keyof DefaultVars['radius'])[]
+  >
 }

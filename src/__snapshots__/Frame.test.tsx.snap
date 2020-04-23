@@ -29,7 +29,9 @@ exports[`<Frame> without media queries applies several props 1`] = `
 
 <div
     class="-ui-0 -ui-1 -ui-2 -ui-3 -ui-4 -ui-5"
-    data-testid="frame"
+    data-testid="el"
   />
 </DocumentFragment>
 `;
+
+exports[`<Frame> without media queries should throw if media queries are used without <LayoutProvider> 1`] = `"@-ui/layout is attempting to use media queries without a <LayoutProvider> component. This is not allowed."`;

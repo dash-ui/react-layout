@@ -33,12 +33,16 @@ const theme = {
     low: 'low',
     high: 'high',
   },
+  radius: {
+    sm: '0.125rem',
+    md: '0.25rem',
+  },
 }
 
 type Theme = typeof theme
 styles.variables(theme)
 
-const mediaQueries = {
+export const mediaQueries = {
   phone: 'only screen and (min-width: 0em)',
   tablet: 'only screen and (min-width: 35em)',
   desktop: 'only screen and (min-width: 80em)',
@@ -54,7 +58,7 @@ declare module '../src/Layout' {
   interface MediaQueries extends ThemeMediaQueries {}
 }
 
-export const renderLayout = (
+export const renderMq = (
   ui: React.ReactElement,
   options?: Omit<RenderOptions, 'queries'> & {layoutProps: Record<string, any>}
 ): RenderResult => {
@@ -62,7 +66,13 @@ export const renderLayout = (
     ...options,
     // Allows wrapper in children to be applied in addition to our
     // theme wrapper
-    wrapper: (props) => <LayoutProvider {...options?.layoutProps} {...props} />,
+    wrapper: (props) => (
+      <LayoutProvider
+        mediaQueries={mediaQueries}
+        {...options?.layoutProps}
+        {...props}
+      />
+    ),
   })
 }
 

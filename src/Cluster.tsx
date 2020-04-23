@@ -1,10 +1,12 @@
 import * as React from 'react'
-import {useDash} from '@-ui/react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
 import {Frame} from './Frame'
+import {useLayout} from './Layout'
+import {justify, flex} from './styles'
 import type {DefaultVars} from '@-ui/react'
 import type {FrameProps} from './Frame'
+import type {MediaQueryProp, MediaQueries} from './Layout'
 
 /**
  * A row directional component that distributes its items in a cluster like so:
@@ -14,75 +16,63 @@ import type {FrameProps} from './Frame'
  * ☐☐☐☐☐
  * ☐☐☐
  *
+ * or
+ *
+ *  ☐☐☐☐☐
+ * ☐☐☐☐☐☐
+ *  ☐☐☐☐☐
+ *    ☐☐☐
+ *
  * Some use cases include input chips and tags.
  */
 export const Cluster = React.forwardRef<any, ClusterProps>(
-  ({className, reverse = false, gap: gapProp, ...props}, ref) => {
-    const styles = useDash()
-    const marginDirection = reverse ? 'right' : 'left'
+  ({className, gap, reverse = false, ...props}, ref) => {
+    const {styles, mq} = useLayout()
 
     return (
       <Frame
+        ref={ref}
         className={clsx(
           className,
-          styles.one(
-            //@ts-ignore
-            ({gap}) => css`
-              display: flex;
-              flex-direction: ${reverse ? 'row-reverse' : 'row'};
-              flex-wrap: wrap;
-              justify-content: flex-start;
-              margin-${marginDirection}: calc(-1 * ${gap[gapProp]});
-              
-              & > * {
-                margin-${marginDirection}: ${gap[gapProp]};
-              }
-            `
-          )
+          styles.one(css`
+            display: flex;
+            flex-wrap: wrap;
+          `)(),
+          mq.prop(reverseStyle, reverse),
+          mq.prop(gapStyle(reverse), gap)
         )}
         {...props}
-        ref={ref}
       />
     )
   }
 )
 
-export interface ClusterProps extends FrameProps {
-  readonly display?: never
-  readonly reverse?: boolean
+const reverseStyle = (reverse: boolean) =>
+  flex[reverse ? 'reversedRow' : 'row'] + justify[reverse ? 'end' : 'start']
+
+const gapStyle = (reverse: ClusterProps['reverse']) => (
   // @ts-ignore
-  readonly gap?: DefaultVars['gap']
+  gapProp: keyof DefaultVars['gap'],
+  queryName: keyof MediaQueries
+) => {
+  const reversed =
+    !reverse || typeof reverse === 'boolean' ? reverse : reverse[queryName]
+  const marginDirection = reversed ? 'right' : 'left'
+
+  return ({gap}) => css`
+    margin-top: calc(-1 * ${gap[gapProp]})!important;
+    margin-${marginDirection}: calc(-1 * ${gap[gapProp]})!important;
+
+    & > * {
+      margin-top: ${gap[gapProp]}!important;
+      margin-${marginDirection}: ${gap[gapProp]}!important;
+    }
+  `
 }
 
-export const ClusterItem = React.forwardRef<any, ClusterItemProps>(
-  ({className, basis, maxWidth, fill, shrink, ...props}, ref) => {
-    const styles = useDash()
-
-    return (
-      <Frame
-        className={clsx(
-          className,
-          maxWidth !== void 0 && styles.one({maxWidth}),
-          basis !== void 0 && styles.one({flexBasis: basis}),
-          fill !== void 0 &&
-            styles.one(css`
-              flex-grow: ${Number(fill)};
-            `),
-          shrink !== void 0 &&
-            styles.one(css`
-              flex-shrink: ${Number(shrink)};
-            `)
-        )}
-        {...props}
-        ref={ref}
-      />
-    )
-  }
-)
-
-export interface ClusterItemProps extends FrameProps {
-  readonly basis?: number | string
-  readonly maxWidth?: number | string
-  readonly fill?: boolean | number
-  readonly shrink?: boolean | number
+export interface ClusterProps extends FrameProps {
+  readonly display?: undefined
+  readonly reverse?: MediaQueryProp<boolean>
+  // @ts-ignore
+  readonly gap?: MediaQueryProp<keyof DefaultVars['gap']>
 }

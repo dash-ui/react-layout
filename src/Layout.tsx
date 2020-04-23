@@ -2,12 +2,18 @@ import * as React from 'react'
 import defaultStyles, {useDash} from '@-ui/react'
 import dashMq from '@-ui/mq'
 import type {MediaQueryCallback} from '@-ui/mq'
-import type {DefaultVars, StyleDefs, StyleObject, StyleGetter} from '@-ui/react'
+import type {
+  Styles,
+  DefaultVars,
+  StyleDefs,
+  StyleObject,
+  StyleGetter,
+} from '@-ui/react'
 
 const defaultMq = dashMq({}) as Mq
 defaultMq.prop = (styleGetter, value) => {
   if (value === void 0) return
-
+  /* istanbul ignore next */
   if (__DEV__) {
     if (typeof value === 'object' && !Array.isArray(value)) {
       throw new Error(
@@ -27,6 +33,7 @@ defaultMq.prop = (styleGetter, value) => {
 }
 
 const LayoutContext = React.createContext<LayoutContextType>({
+  styles: defaultStyles,
   mediaQueries: {},
   mq: defaultMq,
 })
@@ -44,7 +51,7 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
     <LayoutContext.Provider
       value={React.useMemo(() => {
         const mq = dashMq(mediaQueries) as Mq
-        mq.prop = (styleGetter, value) => {
+        mq.prop = (styleGetter, value, context) => {
           if (value === void 0) return
 
           if (typeof value === 'object' && !Array.isArray(value)) {
@@ -56,7 +63,7 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
                 if (value[queryName] !== void 0) {
                   stylesWithMq[queryName] =
                     typeof styleGetter === 'function'
-                      ? styleGetter(queryValue)
+                      ? styleGetter(queryValue, queryName, context)
                       : styleGetter[queryValue]
                 }
 
@@ -76,7 +83,7 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
           )()
         }
 
-        return {mediaQueries, mq}
+        return {styles, mediaQueries, mq}
       }, [styles, mediaQueries])}
       children={children}
     />
@@ -84,6 +91,7 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
 }
 
 export interface LayoutContextType {
+  styles: Styles
   mediaQueries: MediaQueries
   mq: Mq
 }
@@ -97,15 +105,20 @@ export type Mq = MediaQueryCallback<
 
 export interface MqProp<Names extends string = string> {
   (
-    styleGetter: (value: any) => string | StyleObject | StyleGetter,
-    value: undefined | MediaQueryProp<string | number | any[]>
+    styleGetter: (
+      value: any,
+      queryName: string
+    ) => string | StyleObject | StyleGetter,
+    value: undefined | MediaQueryProp<string | number | any[]>,
+    context?: any
   ): string | undefined
 }
 
 export interface MqProp<Names extends string = string> {
   (
     styleGetter: StyleDefs<Names>,
-    value: undefined | MediaQueryProp<string | number>
+    value: undefined | MediaQueryProp<string | number>,
+    context?: any
   ): string | undefined
 }
 

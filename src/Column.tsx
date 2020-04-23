@@ -9,12 +9,15 @@ import type {FrameProps} from './Frame'
 import type {MediaQueryProp, MediaQueries} from './Layout'
 
 /**
- * A component that distributes its items in a row without wrapping like so:
+ * A component that distributes its items in a column without wrapping like so:
  *
- * ☐ ☐ ☐ ☐ ☐ ☐ ☐
+ * ☐
+ * ☐
+ * ☐
+ * ☐
  *
  */
-export const Row = React.forwardRef<any, RowProps>(
+export const Column = React.forwardRef<any, ColumnProps>(
   ({className, align, distribute, gap, reverse = false, ...props}, ref) => {
     const {mq} = useLayout()
 
@@ -25,7 +28,7 @@ export const Row = React.forwardRef<any, RowProps>(
         className={clsx(
           className,
           mq.prop(alignItems, align),
-          mq.prop(justify, distribute),
+          mq.prop(alignItems, distribute),
           mq.prop(reverseStyle, reverse),
           mq.prop(gapStyle(reverse), gap)
         )}
@@ -36,17 +39,18 @@ export const Row = React.forwardRef<any, RowProps>(
 )
 
 const reverseStyle = (reverse: boolean) =>
-  flex[reverse ? 'reversedRow' : 'row'] + justify[reverse ? 'end' : 'start']
+  flex[reverse ? 'reversedColumn' : 'column'] +
+  justify[reverse ? 'end' : 'start']
 
 // @ts-ignore
-const gapStyle = (reverse: RowProps['reverse']) => (
+const gapStyle = (reverse: ColumnProps['reverse']) => (
   // @ts-ignore
   gapProp: keyof DefaultVars['gap'],
   queryName: keyof MediaQueries
 ) => {
   const reversed =
     !reverse || typeof reverse === 'boolean' ? reverse : reverse[queryName]
-  const marginDirection = reversed ? 'right' : 'left'
+  const marginDirection = reversed ? 'bottom' : 'top'
 
   return ({gap}) => css`
     & > * + * {
@@ -55,16 +59,16 @@ const gapStyle = (reverse: RowProps['reverse']) => (
   `
 }
 
-export interface RowProps extends FrameProps {
+export interface ColumnProps extends FrameProps {
   readonly display?: undefined
   /**
-   * Positional alignment for its child items on the y-axis using `align-items`
+   * Positional alignment for its child items on the x-axis using `align-items`
    */
   readonly align?: MediaQueryProp<
     'start' | 'center' | 'end' | 'baseline' | 'stretch'
   >
   /**
-   * Distributed alignment properties on the x-axis using `justify-content`
+   * Distributed alignment properties on the y-axis using `justify-content`
    */
   readonly distribute?: MediaQueryProp<
     'start' | 'center' | 'end' | 'around' | 'between' | 'evenly' | 'stretch'

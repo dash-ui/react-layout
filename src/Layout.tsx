@@ -10,6 +10,8 @@ import type {
   StyleGetter,
 } from '@-ui/react'
 
+declare const __DEV__: boolean
+
 const defaultMq = dashMq({}) as Mq
 defaultMq.prop = (styleGetter, value) => {
   if (value === void 0) return

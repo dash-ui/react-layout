@@ -9,7 +9,7 @@ export interface FlexItemProps extends FrameProps {
     'start' | 'end' | 'center' | 'baseline' | 'stretch'
   >
   readonly basis?: MediaQueryProp<number | string>
-  readonly fill?: MediaQueryProp<boolean | number>
+  readonly grow?: MediaQueryProp<boolean | number>
   readonly maxWidth?: MediaQueryProp<number | string>
   readonly maxHeight?: MediaQueryProp<number | string>
   readonly order?: MediaQueryProp<number>

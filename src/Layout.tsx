@@ -48,48 +48,43 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
   children,
 }) => {
   const styles = useDash()
+  const context = React.useMemo(() => {
+    const mq = dashMq(mediaQueries) as Mq
+    mq.prop = (styleGetter, value, context) => {
+      if (value === void 0) return
 
-  return (
-    <LayoutContext.Provider
-      value={React.useMemo(() => {
-        const mq = dashMq(mediaQueries) as Mq
-        mq.prop = (styleGetter, value, context) => {
-          if (value === void 0) return
+      if (typeof value === 'object' && !Array.isArray(value)) {
+        // Media queries
+        const mqObj = mq(
+          Object.keys(mediaQueries).reduce((stylesWithMq, queryName) => {
+            const queryValue = value[queryName]
 
-          if (typeof value === 'object' && !Array.isArray(value)) {
-            // Media queries
-            const mqObj = mq(
-              Object.keys(mediaQueries).reduce((stylesWithMq, queryName) => {
-                const queryValue = value[queryName]
+            if (value[queryName] !== void 0) {
+              stylesWithMq[queryName] =
+                typeof styleGetter === 'function'
+                  ? styleGetter(queryValue, queryName, context)
+                  : styleGetter[queryValue]
+            }
 
-                if (value[queryName] !== void 0) {
-                  stylesWithMq[queryName] =
-                    typeof styleGetter === 'function'
-                      ? styleGetter(queryValue, queryName, context)
-                      : styleGetter[queryValue]
-                }
+            return stylesWithMq
+          }, {})
+        )
 
-                return stylesWithMq
-              }, {})
-            )
+        return styles.one(mqObj)()
+      }
+      // Single style
+      return styles.one(
+        typeof styleGetter === 'function'
+          ? styleGetter(value)
+          : typeof value === 'string'
+          ? styleGetter[value]
+          : ''
+      )()
+    }
 
-            return styles.one(mqObj)()
-          }
-          // Single style
-          return styles.one(
-            typeof styleGetter === 'function'
-              ? styleGetter(value)
-              : typeof value === 'string'
-              ? styleGetter[value]
-              : ''
-          )()
-        }
-
-        return {styles, mediaQueries, mq}
-      }, [styles, mediaQueries])}
-      children={children}
-    />
-  )
+    return {styles, mediaQueries, mq}
+  }, [styles, mediaQueries])
+  return <LayoutContext.Provider value={context} children={children} />
 }
 
 export interface LayoutContextType {

@@ -27,7 +27,10 @@ import type {MediaQueryProp, MediaQueries} from './Layout'
  */
 export const Cluster = React.forwardRef<any, ClusterProps>(
   ({className, gap, reverse = false, ...props}, ref) => {
-    const {styles, mq} = useLayout()
+    const {
+      styles,
+      mq: {prop},
+    } = useLayout()
 
     return (
       <Frame
@@ -38,8 +41,8 @@ export const Cluster = React.forwardRef<any, ClusterProps>(
             display: flex;
             flex-wrap: wrap;
           `)(),
-          mq.prop(reverseStyle, reverse),
-          mq.prop(gapStyle(reverse), gap)
+          prop(reverseStyle, reverse),
+          prop(gapStyle(reverse), gap)
         )}
         {...props}
       />

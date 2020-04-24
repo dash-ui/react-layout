@@ -1,10 +1,11 @@
 import * as React from 'react'
 import type {DefaultVars} from '@-ui/react'
 import type {MediaQueryProp} from './Layout'
+import type {LayoutAttributes} from './types'
 export declare const Frame: React.ForwardRefExoticComponent<
   FrameProps & React.RefAttributes<any>
 >
-export interface FrameProps {
+export interface FrameProps extends LayoutAttributes {
   readonly as?: keyof JSX.IntrinsicElements | React.ComponentType<any>
   readonly className?: string | string[]
   readonly display?: MediaQueryProp<

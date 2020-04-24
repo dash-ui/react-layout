@@ -1,8 +1,8 @@
 import * as React from 'react'
-import {useDash} from '@-ui/react'
-import css from 'minify-css.macro'
 import clsx from 'clsx'
 import {Frame} from './Frame'
+import {useLayout} from './Layout'
+import {alignSelf} from './styles'
 import type {FrameProps} from './Frame'
 import type {MediaQueryProp} from './Layout'
 
@@ -15,37 +15,25 @@ export const FlexItem = React.forwardRef<any, FlexItemProps>(
       basis,
       maxWidth,
       maxHeight,
-      fill,
+      grow,
       shrink,
       ...props
     },
     ref
   ) => {
-    const styles = useDash()
+    const prop = useLayout().mq.prop
 
     return (
       <Frame
         className={clsx(
           className,
-          maxWidth !== void 0 && styles.one({maxWidth}),
-          maxHeight !== void 0 && styles.one({maxHeight}),
-          basis !== void 0 && styles.one({flexBasis: basis}),
-          align !== void 0 &&
-            styles.one(css`
-              align-self: ${align};
-            `),
-          order !== void 0 &&
-            styles.one(css`
-              order: ${order};
-            `),
-          fill !== void 0 &&
-            styles.one(css`
-              flex-grow: ${Number(fill)};
-            `),
-          shrink !== void 0 &&
-            styles.one(css`
-              flex-shrink: ${Number(shrink)};
-            `)
+          prop(maxWidthStyle, maxWidth),
+          prop(maxHeightStyle, maxHeight),
+          prop(basisStyle, basis),
+          prop(alignSelf, align),
+          prop(orderStyle, order),
+          prop(growStyle, grow),
+          prop(shrinkStyle, shrink)
         )}
         {...props}
         ref={ref}
@@ -54,12 +42,19 @@ export const FlexItem = React.forwardRef<any, FlexItemProps>(
   }
 )
 
+const maxWidthStyle = (maxWidth: number | string) => ({maxWidth})
+const maxHeightStyle = (maxHeight: number | string) => ({maxHeight})
+const basisStyle = (basis: number | string) => ({basis})
+const orderStyle = (order: number) => ({order})
+const growStyle = (grow: number) => ({grow})
+const shrinkStyle = (shrink: number) => ({shrink})
+
 export interface FlexItemProps extends FrameProps {
   readonly align?: MediaQueryProp<
     'start' | 'end' | 'center' | 'baseline' | 'stretch'
   >
   readonly basis?: MediaQueryProp<number | string>
-  readonly fill?: MediaQueryProp<boolean | number>
+  readonly grow?: MediaQueryProp<boolean | number>
   readonly maxWidth?: MediaQueryProp<number | string>
   readonly maxHeight?: MediaQueryProp<number | string>
   readonly order?: MediaQueryProp<number>

@@ -5,6 +5,7 @@ export declare const alignItems: {
   baseline: string
   stretch: string
 }
+export declare const alignSelf: {}
 export declare const justify: {
   start: string
   center: string

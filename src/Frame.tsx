@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import {useLayout} from './Layout'
 import type {DefaultVars} from '@-ui/react'
 import type {MediaQueryProp} from './Layout'
+import type {LayoutAttributes} from './types'
 
 export const Frame = React.forwardRef<any, FrameProps>(
   (
@@ -23,22 +24,22 @@ export const Frame = React.forwardRef<any, FrameProps>(
     },
     ref
   ) => {
-    const {mq} = useLayout()
+    const prop = useLayout().mq.prop
 
     return (
       <As
         ref={ref}
         className={clsx(
           className,
-          mq.prop(frameStyle, display),
-          mq.prop(frameStyle, position),
-          mq.prop(widthStyle, width),
-          mq.prop(heightStyle, height),
-          mq.prop(sizeStyle, size),
-          mq.prop(padStyle, pad),
-          mq.prop(bgStyle, bg),
-          mq.prop(elevationStyle, elevation),
-          mq.prop(radiusStyle, radius)
+          prop(frameStyle, display),
+          prop(frameStyle, position),
+          prop(widthStyle, width),
+          prop(heightStyle, height),
+          prop(sizeStyle, size),
+          prop(padStyle, pad),
+          prop(bgStyle, bg),
+          prop(elevationStyle, elevation),
+          prop(radiusStyle, radius)
         )}
         {...props}
       />
@@ -121,7 +122,7 @@ const radiusStyle = (radiusProp: keyof DefaultVars['radius']) => ({radius}) => {
   `
 }
 
-export interface FrameProps {
+export interface FrameProps extends LayoutAttributes {
   readonly as?: keyof JSX.IntrinsicElements | React.ComponentType<any>
   readonly className?: string | string[]
   readonly display?: MediaQueryProp<

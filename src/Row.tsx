@@ -16,7 +16,7 @@ import type {MediaQueryProp, MediaQueries} from './Layout'
  */
 export const Row = React.forwardRef<any, RowProps>(
   ({className, align, distribute, gap, reverse = false, ...props}, ref) => {
-    const {mq} = useLayout()
+    const prop = useLayout().mq.prop
 
     return (
       <Frame
@@ -24,10 +24,10 @@ export const Row = React.forwardRef<any, RowProps>(
         display="flex"
         className={clsx(
           className,
-          mq.prop(alignItems, align),
-          mq.prop(justify, distribute),
-          mq.prop(reverseStyle, reverse),
-          mq.prop(gapStyle(reverse), gap)
+          prop(alignItems, align),
+          prop(justify, distribute),
+          prop(reverseStyle, reverse),
+          prop(gapStyle(reverse), gap)
         )}
         {...props}
       />

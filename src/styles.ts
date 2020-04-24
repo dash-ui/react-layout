@@ -18,6 +18,14 @@ export const alignItems = {
   `,
 }
 
+export const alignSelf = Object.entries(alignItems).reduce(
+  (current, [key, value]) => {
+    current[key] = value.replace('items', 'self')
+    return current
+  },
+  {}
+)
+
 export const justify = {
   start: css`
     justify-content: flex-start;

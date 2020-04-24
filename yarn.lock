@@ -1651,6 +1651,11 @@ array-unique@^0.3.2:
   resolved "https://registry.yarnpkg.com/array-unique/-/array-unique-0.3.2.tgz#a894b75d4bc4f6cd679ef3244a9fd8f46ae2d428"
   integrity sha1-qJS3XUvE9s1nnvMkSp/Y9Gri1Cg=
 
+as-with@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/as-with/-/as-with-0.1.0.tgz#978e02570a3f69545c1e295052a8cc56a931cb1c"
+  integrity sha512-x5mn3W2kyBZPXjesPvdHZYbgWJY8NG9egHRjXkv7QFKkEjI0JvqDFo6uqPf2CbPi0Da8Z6FBWVFDEEEUB+u3tg==
+
 asn1@~0.2.3:
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/asn1/-/asn1-0.2.4.tgz#8d2475dfab553bb33e77b54e59e880bb8ce23136"

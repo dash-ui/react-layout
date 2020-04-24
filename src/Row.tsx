@@ -35,8 +35,7 @@ export const Row = React.forwardRef<any, RowProps>(
   }
 )
 
-const reverseStyle = (reverse: boolean) =>
-  flex[reverse ? 'reversedRow' : 'row'] + justify[reverse ? 'end' : 'start']
+const reverseStyle = (reverse: boolean) => flex[reverse ? 'reversedRow' : 'row']
 
 // @ts-ignore
 const gapStyle = (reverse: RowProps['reverse']) => (

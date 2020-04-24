@@ -28,7 +28,7 @@ export const Column = React.forwardRef<any, ColumnProps>(
         className={clsx(
           className,
           prop(alignItems, align),
-          prop(alignItems, distribute),
+          prop(justify, distribute),
           prop(reverseStyle, reverse),
           prop(gapStyle(reverse), gap)
         )}
@@ -39,8 +39,7 @@ export const Column = React.forwardRef<any, ColumnProps>(
 )
 
 const reverseStyle = (reverse: boolean) =>
-  flex[reverse ? 'reversedColumn' : 'column'] +
-  justify[reverse ? 'end' : 'start']
+  flex[reverse ? 'reversedColumn' : 'column'] + (reverse ? justify.end : '')
 
 // @ts-ignore
 const gapStyle = (reverse: ColumnProps['reverse']) => (

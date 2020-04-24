@@ -25,8 +25,9 @@ declare type Placements =
   | 'bottomRight'
   | 'bottomLeft'
 export interface LayerItemProps extends FrameProps {
+  position?: undefined
+  offset?: MediaQueryProp<number | string>
   placement: MediaQueryProp<Placements>
-  offset?: number | string
-  z?: number
+  z?: MediaQueryProp<number>
 }
 export {}

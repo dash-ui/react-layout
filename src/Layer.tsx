@@ -26,7 +26,7 @@ export const LayerItem = React.forwardRef<any, LayerItemProps>(
         position="absolute"
         className={clsx(
           className,
-          prop(placementStyle(offset, props), placement),
+          prop(placementStyle(offset), placement),
           prop(zStyle, z)
         )}
         {...props}
@@ -35,48 +35,12 @@ export const LayerItem = React.forwardRef<any, LayerItemProps>(
   }
 )
 
-const placementStyle = (
-  offsetProp: LayerItemProps['offset'] | undefined,
-  sizing: {
-    width?: FrameProps['width']
-    height?: FrameProps['height']
-    size?: FrameProps['size']
-  }
-) => (value: Placements, queryName: keyof MediaQueries) => {
+const placementStyle = (offsetProp: LayerItemProps['offset'] | undefined) => (
+  value: Placements,
+  queryName: keyof MediaQueries
+) => {
   if (value === 'center') {
-    if ((sizing.width && sizing.height) || sizing.size) {
-      return css`
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        margin: auto;
-      `
-    } else if (sizing.width) {
-      return css`
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 0;
-        right: 0;
-        margin-left: auto;
-        margin-right: auto;
-      `
-    } else if (sizing.height) {
-      return css`
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 0;
-        bottom: 0;
-        margin-top: auto;
-        margin-bottom: auto;
-      `
-    }
-
     return css`
-      position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -102,9 +66,7 @@ const placementStyle = (
       ? 'right'
       : void 0
 
-  const styles: Record<string, string | number> = {
-    position: 'absolute',
-  }
+  const styles: Record<string, string | number> = {}
 
   if (yProp) styles[yProp] = offset
   if (xProp) styles[xProp] = offset
@@ -136,7 +98,8 @@ type Placements =
   | 'bottomLeft'
 
 export interface LayerItemProps extends FrameProps {
+  position?: undefined
+  offset?: MediaQueryProp<number | string>
   placement: MediaQueryProp<Placements>
-  offset?: number | string
-  z?: number
+  z?: MediaQueryProp<number>
 }

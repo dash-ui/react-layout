@@ -46,8 +46,12 @@ const maxWidthStyle = (maxWidth: number | string) => ({maxWidth})
 const maxHeightStyle = (maxHeight: number | string) => ({maxHeight})
 const basisStyle = (basis: number | string) => ({basis})
 const orderStyle = (order: number) => ({order})
-const growStyle = (grow: number) => ({grow})
-const shrinkStyle = (shrink: number) => ({shrink})
+const growStyle = (grow: number | boolean) => ({
+  flexGrow: grow === true ? 1 : grow === false ? 0 : grow,
+})
+const shrinkStyle = (shrink: number | boolean) => ({
+  flexShrink: shrink === true ? 1 : shrink === false ? 0 : shrink,
+})
 
 export interface FlexItemProps extends FrameProps {
   readonly align?: MediaQueryProp<

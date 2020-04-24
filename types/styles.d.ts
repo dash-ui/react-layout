@@ -5,8 +5,11 @@ export declare const alignItems: {
   baseline: string
   stretch: string
 }
-export declare const alignSelf: {}
-export declare const justify: {
+declare type AlignItems = Record<keyof typeof alignItems, string>
+export declare const alignSelf: AlignItems
+export declare const justifySelf: AlignItems
+export declare const justifyItems: AlignItems
+export declare const justifyContent: {
   start: string
   center: string
   end: string
@@ -15,9 +18,12 @@ export declare const justify: {
   evenly: string
   stretch: string
 }
-export declare const flex: {
+declare type JustifyContent = Record<keyof typeof justifyContent, string>
+export declare const alignContent: JustifyContent
+export declare const flexDirection: {
   row: string
   column: string
   reversedRow: string
   reversedColumn: string
 }
+export {}

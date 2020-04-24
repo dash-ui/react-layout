@@ -3,7 +3,7 @@ import css from 'minify-css.macro'
 import clsx from 'clsx'
 import {Frame} from './Frame'
 import {useLayout} from './Layout'
-import {flex, alignItems, justify} from './styles'
+import {flexDirection, alignItems, justifyContent} from './styles'
 import type {DefaultVars} from '@-ui/react'
 import type {FrameProps} from './Frame'
 import type {MediaQueryProp, MediaQueries} from './Layout'
@@ -28,7 +28,7 @@ export const Column = React.forwardRef<any, ColumnProps>(
         className={clsx(
           className,
           prop(alignItems, align),
-          prop(justify, distribute),
+          prop(justifyContent, distribute),
           prop(reverseStyle, reverse),
           prop(gapStyle(reverse), gap)
         )}
@@ -39,7 +39,8 @@ export const Column = React.forwardRef<any, ColumnProps>(
 )
 
 const reverseStyle = (reverse: boolean) =>
-  flex[reverse ? 'reversedColumn' : 'column'] + (reverse ? justify.end : '')
+  flexDirection[reverse ? 'reversedColumn' : 'column'] +
+  (reverse ? justifyContent.end : '')
 
 // @ts-ignore
 const gapStyle = (reverse: ColumnProps['reverse']) => (

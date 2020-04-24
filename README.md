@@ -29,7 +29,7 @@
 <pre align="center">npm i @-ui/react-layout</pre>
 <hr>
 
-Layout primitives for React and [dash-ui](https://github.com/dash-ui)
+Awesome layout primitives for React and [dash-ui](https://github.com/dash-ui)
 
 ## Quick Start
 
@@ -39,11 +39,62 @@ import _ from '@-ui/react-layout'
 
 ## API
 
-### Props
+### Components
+
+| Component                         | Description                                                                                                                                                    |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [LayoutProvider](#layoutprovider) | A context provider which is only required if you intend on using media query props or a custom `styles` object created by `@-ui/react` using `styles.create()` |
+| [Cluster](#cluster)               |                                                                                                                                                                |
+| [Column](#column)                 |                                                                                                                                                                |
+| [FlexItem](#flexitem)             |                                                                                                                                                                |
+| [Frame](#frame)                   |                                                                                                                                                                |
+| [Grid](#grid)                     |                                                                                                                                                                |
+| [GridItem](#griditem)             |                                                                                                                                                                |
+| [Layer](#layer)                   |                                                                                                                                                                |
+| [LayerItem](#layeritem)           |                                                                                                                                                                |
+| [Row](#row)                       |                                                                                                                                                                |
+
+### Hooks
+
+| Component               | Description                                                 |
+| ----------------------- | ----------------------------------------------------------- |
+| [useLayout](#uselayout) | Consumes the context from [LayoutProvider](#layoutprovider) |
+
+### Styles
+
+These are useful objects for using quick flex styles in media query props
+
+| Component                         | Description |
+| --------------------------------- | ----------- |
+| [alignContent](#aligncontent)     |             |
+| [alignItems](#alignitems)         |             |
+| [alignSelf](#alignself)           |             |
+| [flexDirection](#flexdirection)   |             |
+| [justifyContent](#justifycontent) |             |
+| [justifyItems](#justifyitems)     |             |
+| [justifySelf](#justifyself)       |             |
+
+---
+
+## Components
+
+### &lt;LayoutProvider&gt;
 
 | Prop | Type | Default | Required? | Description |
 | ---- | ---- | ------- | --------- | ----------- |
 |      |      |         |           |             |
+
+## Hooks
+
+### useLayout()
+
+Consumes the context from [LayoutProvider](#layoutprovider)
+
+## Styles
+
+### alignItems
+
+An object containing a property map for `align-items` styles
 
 ## LICENSE
 

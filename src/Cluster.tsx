@@ -3,7 +3,7 @@ import css from 'minify-css.macro'
 import clsx from 'clsx'
 import {Frame} from './Frame'
 import {useLayout} from './Layout'
-import {justify, flex} from './styles'
+import {justifyContent, flexDirection} from './styles'
 import type {DefaultVars} from '@-ui/react'
 import type {FrameProps} from './Frame'
 import type {MediaQueryProp, MediaQueries} from './Layout'
@@ -51,7 +51,8 @@ export const Cluster = React.forwardRef<any, ClusterProps>(
 )
 
 const reverseStyle = (reverse: boolean) =>
-  flex[reverse ? 'reversedRow' : 'row'] + justify[reverse ? 'end' : 'start']
+  flexDirection[reverse ? 'reversedRow' : 'row'] +
+  justifyContent[reverse ? 'end' : 'start']
 
 const gapStyle = (reverse: ClusterProps['reverse']) => (
   // @ts-ignore

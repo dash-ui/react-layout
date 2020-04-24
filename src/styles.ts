@@ -18,15 +18,32 @@ export const alignItems = {
   `,
 }
 
-export const alignSelf = Object.entries(alignItems).reduce(
-  (current, [key, value]) => {
-    current[key] = value.replace('items', 'self')
-    return current
-  },
-  {}
+const aiEntries = Object.entries(alignItems)
+type AlignItems = Record<keyof typeof alignItems, string>
+
+const replaceReducer = <T>(from: string, to: string) => (
+  current: T,
+  [key, value]
+) => {
+  current[key] = value.replace(from, to)
+  return current
+}
+export const alignSelf: AlignItems = aiEntries.reduce(
+  replaceReducer<typeof alignItems>('items', 'self'),
+  {} as AlignItems
 )
 
-export const justify = {
+export const justifySelf: AlignItems = aiEntries.reduce(
+  replaceReducer<typeof alignItems>('align-items', 'justify-self'),
+  {} as AlignItems
+)
+
+export const justifyItems: AlignItems = aiEntries.reduce(
+  replaceReducer<typeof alignItems>('align', 'justify'),
+  {} as AlignItems
+)
+
+export const justifyContent = {
   start: css`
     justify-content: flex-start;
   `,
@@ -50,7 +67,16 @@ export const justify = {
   `,
 }
 
-export const flex = {
+type JustifyContent = Record<keyof typeof justifyContent, string>
+
+export const alignContent: JustifyContent = Object.entries(
+  justifyContent
+).reduce(
+  replaceReducer<typeof justifyContent>('justify', 'align'),
+  {} as JustifyContent
+)
+
+export const flexDirection = {
   row: css`
     flex-direction: row;
   `,

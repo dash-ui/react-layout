@@ -25,6 +25,7 @@ export const FlexItem = React.forwardRef<any, FlexItemProps>(
 
     return (
       <Frame
+        ref={ref}
         className={clsx(
           className,
           prop(maxWidthStyle, maxWidth),
@@ -36,7 +37,6 @@ export const FlexItem = React.forwardRef<any, FlexItemProps>(
           prop(shrinkStyle, shrink)
         )}
         {...props}
-        ref={ref}
       />
     )
   }

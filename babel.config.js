@@ -21,6 +21,6 @@ module.exports = (api) => {
 
   return {
     presets: [['@babel/preset-react', {useSpread: true}], presetEnv],
-    plugins: ['optimize-react'],
+    plugins: ['optimize-react', 'typescript-to-proptypes'],
   }
 }

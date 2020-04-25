@@ -6,7 +6,7 @@ import type {DefaultVars} from '@-ui/react'
 import type {MediaQueryProp} from './Layout'
 import type {LayoutAttributes} from './types'
 
-export const Frame = React.forwardRef<any, FrameProps>(
+export const Box = React.forwardRef<any, BoxProps>(
   (
     {
       as: As = 'div',
@@ -122,7 +122,7 @@ const radiusStyle = (radiusProp: keyof DefaultVars['radius']) => ({radius}) => {
   `
 }
 
-export interface FrameProps extends LayoutAttributes {
+export interface BoxProps extends LayoutAttributes {
   readonly as?: keyof JSX.IntrinsicElements | React.ComponentType<any>
   readonly className?: string | string[]
   readonly display?: MediaQueryProp<

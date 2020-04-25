@@ -1,6 +1,6 @@
 import * as React from 'react'
 import type {DefaultVars} from '@-ui/react'
-import type {FrameProps} from './Frame'
+import type {BoxProps} from './Box'
 import type {MediaQueryProp} from './Layout'
 /**
  * A row directional component that distributes its items in a cluster like so:
@@ -22,7 +22,7 @@ import type {MediaQueryProp} from './Layout'
 export declare const Cluster: React.ForwardRefExoticComponent<
   ClusterProps & React.RefAttributes<any>
 >
-export interface ClusterProps extends FrameProps {
+export interface ClusterProps extends BoxProps {
   readonly display?: undefined
   readonly reverse?: MediaQueryProp<boolean>
   readonly gap?: MediaQueryProp<keyof DefaultVars['gap']>

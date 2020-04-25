@@ -1,6 +1,6 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import {Frame} from './Frame'
+import {Box} from './Box'
 import {useLayout} from './Layout'
 import {
   alignSelf,
@@ -12,7 +12,7 @@ import {
 } from './styles'
 import {unit} from './utils'
 import type {DefaultVars} from '@-ui/react'
-import type {FrameProps} from './Frame'
+import type {BoxProps} from './Box'
 import type {MediaQueryProp} from './Layout'
 
 export const Grid = React.forwardRef<any, GridProps>(
@@ -34,7 +34,7 @@ export const Grid = React.forwardRef<any, GridProps>(
     const prop = useLayout().mq.prop
 
     return (
-      <Frame
+      <Box
         ref={ref}
         className={clsx(
           className,
@@ -61,7 +61,7 @@ export const GridItem = React.forwardRef<any, GridItemProps>(
     const prop = useLayout().mq.prop
 
     return (
-      <Frame
+      <Box
         ref={ref}
         className={clsx(
           className,
@@ -131,7 +131,7 @@ type GapProp =
   // @ts-ignore
   | [keyof DefaultVars['gap'], keyof DefaultVars['gap']]
 
-export interface GridProps extends FrameProps {
+export interface GridProps extends BoxProps {
   readonly display?: undefined
   /** justify-items */
   readonly alignX?: MediaQueryProp<'start' | 'center' | 'end' | 'stretch'>
@@ -155,7 +155,7 @@ export interface GridProps extends FrameProps {
   readonly rows?: MediaQueryProp<number | (number | string)[]>
 }
 
-export interface GridItemProps extends FrameProps {
+export interface GridItemProps extends BoxProps {
   /** justify-self */
   readonly alignX?: MediaQueryProp<'start' | 'center' | 'end' | 'stretch'>
   /** align-self */

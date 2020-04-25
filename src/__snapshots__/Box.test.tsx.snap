@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Frame> without media queries applies several props 1`] = `
+exports[`<Box> without media queries applies several props 1`] = `
 <DocumentFragment>
   .-ui-0 {
   display: block;
@@ -34,4 +34,4 @@ exports[`<Frame> without media queries applies several props 1`] = `
 </DocumentFragment>
 `;
 
-exports[`<Frame> without media queries should throw if media queries are used without <LayoutProvider> 1`] = `"@-ui/layout is attempting to use media queries without a <LayoutProvider> component. This is not allowed."`;
+exports[`<Box> without media queries should throw if media queries are used without <LayoutProvider> 1`] = `"@-ui/layout is attempting to use media queries without a <LayoutProvider> component. This is not allowed."`;

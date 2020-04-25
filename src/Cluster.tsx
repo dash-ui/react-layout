@@ -1,11 +1,11 @@
 import * as React from 'react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
-import {Frame} from './Frame'
+import {Box} from './Box'
 import {useLayout} from './Layout'
 import {justifyContent, flexDirection} from './styles'
 import type {DefaultVars} from '@-ui/react'
-import type {FrameProps} from './Frame'
+import type {BoxProps} from './Box'
 import type {MediaQueryProp, MediaQueries} from './Layout'
 
 /**
@@ -33,7 +33,7 @@ export const Cluster = React.forwardRef<any, ClusterProps>(
     } = useLayout()
 
     return (
-      <Frame
+      <Box
         ref={ref}
         className={clsx(
           className,
@@ -51,8 +51,7 @@ export const Cluster = React.forwardRef<any, ClusterProps>(
 )
 
 const reverseStyle = (reverse: boolean) =>
-  flexDirection[reverse ? 'reversedRow' : 'row'] +
-  justifyContent[reverse ? 'end' : 'start']
+  flexDirection[reverse ? 'reversedRow' : 'row'] + justifyContent.start
 
 const gapStyle = (reverse: ClusterProps['reverse']) => (
   // @ts-ignore
@@ -74,7 +73,7 @@ const gapStyle = (reverse: ClusterProps['reverse']) => (
   `
 }
 
-export interface ClusterProps extends FrameProps {
+export interface ClusterProps extends BoxProps {
   readonly display?: undefined
   readonly reverse?: MediaQueryProp<boolean>
   // @ts-ignore

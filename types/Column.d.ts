@@ -1,6 +1,6 @@
 import * as React from 'react'
 import type {DefaultVars} from '@-ui/react'
-import type {FrameProps} from './Frame'
+import type {BoxProps} from './Box'
 import type {MediaQueryProp} from './Layout'
 /**
  * A component that distributes its items in a column without wrapping like so:
@@ -14,7 +14,7 @@ import type {MediaQueryProp} from './Layout'
 export declare const Column: React.ForwardRefExoticComponent<
   ColumnProps & React.RefAttributes<any>
 >
-export interface ColumnProps extends FrameProps {
+export interface ColumnProps extends BoxProps {
   readonly display?: undefined
   /**
    * Positional alignment for its child items on the x-axis using `align-items`

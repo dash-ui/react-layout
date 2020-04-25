@@ -66,7 +66,6 @@ describe('<Cluster> without media queries', () => {
 
   it('applies the "reverse" prop', () => {
     const {getByTestId} = render(<Cluster reverse data-testid="el" />)
-    expect(getByTestId('el')).toHaveStyleRule('justify-content', 'flex-end')
     expect(getByTestId('el')).toHaveStyleRule('flex-direction', 'row-reverse')
   })
 })
@@ -128,7 +127,7 @@ describe('<Cluster> with media queries', () => {
     const {getByTestId} = renderMq(
       <Cluster reverse={{phone: true}} data-testid="el" />
     )
-    expect(getByTestId('el')).toHaveStyleRule('justify-content', 'flex-end', {
+    expect(getByTestId('el')).toHaveStyleRule('flex-direction', 'row-reverse', {
       media: mediaQueries.phone,
     })
   })

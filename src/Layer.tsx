@@ -1,9 +1,9 @@
 import * as React from 'react'
 import clsx from 'clsx'
 import css from 'minify-css.macro'
-import {Frame} from './Frame'
+import {Box} from './Box'
 import {useLayout} from './Layout'
-import type {FrameProps} from './Frame'
+import type {BoxProps} from './Box'
 import type {MediaQueryProp, MediaQueries} from './Layout'
 
 /**
@@ -13,7 +13,7 @@ import type {MediaQueryProp, MediaQueries} from './Layout'
  *   ‾‾‾
  */
 export const Layer = React.forwardRef<any, LayerProps>((props, ref) => (
-  <Frame ref={ref} position="relative" {...props} />
+  <Box ref={ref} position="relative" {...props} />
 ))
 
 export const LayerItem = React.forwardRef<any, LayerItemProps>(
@@ -21,7 +21,7 @@ export const LayerItem = React.forwardRef<any, LayerItemProps>(
     const prop = useLayout().mq.prop
 
     return (
-      <Frame
+      <Box
         ref={ref}
         position="absolute"
         className={clsx(
@@ -84,7 +84,7 @@ const placementStyle = (offsetProp: LayerItemProps['offset'] | undefined) => (
 
 const zStyle = (value: number) => ({zIndex: value})
 
-export interface LayerProps extends FrameProps {}
+export interface LayerProps extends BoxProps {}
 
 type Placements =
   | 'top'
@@ -97,7 +97,7 @@ type Placements =
   | 'bottomRight'
   | 'bottomLeft'
 
-export interface LayerItemProps extends FrameProps {
+export interface LayerItemProps extends BoxProps {
   position?: undefined
   offset?: MediaQueryProp<number | string>
   placement: MediaQueryProp<Placements>

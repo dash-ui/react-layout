@@ -1,10 +1,10 @@
 import * as React from 'react'
-import type {FrameProps} from './Frame'
+import type {BoxProps} from './Box'
 import type {MediaQueryProp} from './Layout'
 export declare const FlexItem: React.ForwardRefExoticComponent<
   FlexItemProps & React.RefAttributes<any>
 >
-export interface FlexItemProps extends FrameProps {
+export interface FlexItemProps extends BoxProps {
   readonly align?: MediaQueryProp<
     'start' | 'end' | 'center' | 'baseline' | 'stretch'
   >

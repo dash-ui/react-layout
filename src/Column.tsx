@@ -1,11 +1,11 @@
 import * as React from 'react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
-import {Frame} from './Frame'
+import {Box} from './Box'
 import {useLayout} from './Layout'
 import {flexDirection, alignItems, justifyContent} from './styles'
 import type {DefaultVars} from '@-ui/react'
-import type {FrameProps} from './Frame'
+import type {BoxProps} from './Box'
 import type {MediaQueryProp, MediaQueries} from './Layout'
 
 /**
@@ -22,7 +22,7 @@ export const Column = React.forwardRef<any, ColumnProps>(
     const prop = useLayout().mq.prop
 
     return (
-      <Frame
+      <Box
         ref={ref}
         display="flex"
         className={clsx(
@@ -59,7 +59,7 @@ const gapStyle = (reverse: ColumnProps['reverse']) => (
   `
 }
 
-export interface ColumnProps extends FrameProps {
+export interface ColumnProps extends BoxProps {
   readonly display?: undefined
   /**
    * Positional alignment for its child items on the x-axis using `align-items`

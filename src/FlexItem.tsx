@@ -1,9 +1,9 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import {Frame} from './Frame'
+import {Box} from './Box'
 import {useLayout} from './Layout'
 import {alignSelf} from './styles'
-import type {FrameProps} from './Frame'
+import type {BoxProps} from './Box'
 import type {MediaQueryProp} from './Layout'
 
 export const FlexItem = React.forwardRef<any, FlexItemProps>(
@@ -24,7 +24,7 @@ export const FlexItem = React.forwardRef<any, FlexItemProps>(
     const prop = useLayout().mq.prop
 
     return (
-      <Frame
+      <Box
         ref={ref}
         className={clsx(
           className,
@@ -53,7 +53,7 @@ const shrinkStyle = (shrink: number | boolean) => ({
   flexShrink: shrink === true ? 1 : shrink === false ? 0 : shrink,
 })
 
-export interface FlexItemProps extends FrameProps {
+export interface FlexItemProps extends BoxProps {
   readonly align?: MediaQueryProp<
     'start' | 'end' | 'center' | 'baseline' | 'stretch'
   >

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import type {FrameProps} from './Frame'
+import type {BoxProps} from './Box'
 import type {MediaQueryProp} from './Layout'
 /**
  * A component that makes its items layer on top of each other:
@@ -13,7 +13,7 @@ export declare const Layer: React.ForwardRefExoticComponent<
 export declare const LayerItem: React.ForwardRefExoticComponent<
   LayerItemProps & React.RefAttributes<any>
 >
-export interface LayerProps extends FrameProps {}
+export interface LayerProps extends BoxProps {}
 declare type Placements =
   | 'top'
   | 'right'
@@ -24,7 +24,7 @@ declare type Placements =
   | 'topRight'
   | 'bottomRight'
   | 'bottomLeft'
-export interface LayerItemProps extends FrameProps {
+export interface LayerItemProps extends BoxProps {
   position?: undefined
   offset?: MediaQueryProp<number | string>
   placement: MediaQueryProp<Placements>

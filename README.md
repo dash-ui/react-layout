@@ -47,7 +47,7 @@ import _ from '@-ui/react-layout'
 | [Cluster](#cluster)               |                                                                                                                                                                |
 | [Column](#column)                 |                                                                                                                                                                |
 | [FlexItem](#flexitem)             |                                                                                                                                                                |
-| [Frame](#frame)                   |                                                                                                                                                                |
+| [Box](#frame)                     |                                                                                                                                                                |
 | [Grid](#grid)                     |                                                                                                                                                                |
 | [GridItem](#griditem)             |                                                                                                                                                                |
 | [Layer](#layer)                   |                                                                                                                                                                |

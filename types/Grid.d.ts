@@ -1,6 +1,6 @@
 import * as React from 'react'
 import type {DefaultVars} from '@-ui/react'
-import type {FrameProps} from './Frame'
+import type {BoxProps} from './Box'
 import type {MediaQueryProp} from './Layout'
 export declare const Grid: React.ForwardRefExoticComponent<
   GridProps & React.RefAttributes<any>
@@ -11,7 +11,7 @@ export declare const GridItem: React.ForwardRefExoticComponent<
 declare type GapProp =
   | keyof DefaultVars['gap']
   | [keyof DefaultVars['gap'], keyof DefaultVars['gap']]
-export interface GridProps extends FrameProps {
+export interface GridProps extends BoxProps {
   readonly display?: undefined
   /** justify-items */
   readonly alignX?: MediaQueryProp<'start' | 'center' | 'end' | 'stretch'>
@@ -34,7 +34,7 @@ export interface GridProps extends FrameProps {
   /** grid-template-rows */
   readonly rows?: MediaQueryProp<number | (number | string)[]>
 }
-export interface GridItemProps extends FrameProps {
+export interface GridItemProps extends BoxProps {
   /** justify-self */
   readonly alignX?: MediaQueryProp<'start' | 'center' | 'end' | 'stretch'>
   /** align-self */

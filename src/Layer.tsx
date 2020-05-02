@@ -17,7 +17,7 @@ export const Layer = React.forwardRef<any, LayerProps>((props, ref) => (
 ))
 
 export const LayerItem = React.forwardRef<any, LayerItemProps>(
-  ({className, placement, offset, z, ...props}, ref) => {
+  ({className, offset, placement, z, ...props}, ref) => {
     const prop = useLayout().mq.prop
 
     return (

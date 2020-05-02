@@ -21,12 +21,12 @@ export const Grid = React.forwardRef<any, GridProps>(
       className,
       alignX,
       alignY,
-      cols,
       distributeX,
       distributeY,
-      gap,
-      inline,
+      cols,
       rows,
+      inline,
+      gap,
       ...props
     },
     ref
@@ -38,13 +38,13 @@ export const Grid = React.forwardRef<any, GridProps>(
         ref={ref}
         className={clsx(
           className,
-          prop(gridStyle, inline || false),
-          prop(colsStyle, cols),
-          prop(rowsStyle, rows),
           prop(justifyItems, alignX),
           prop(alignItems, alignY),
           prop(justifyContent, distributeX),
           prop(alignContent, distributeY),
+          prop(colsStyle, cols),
+          prop(rowsStyle, rows),
+          prop(gridStyle, inline || false),
           prop(gapStyle, gap)
         )}
         {...props}

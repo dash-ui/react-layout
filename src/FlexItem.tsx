@@ -10,13 +10,13 @@ export const FlexItem = React.forwardRef<any, FlexItemProps>(
   (
     {
       className,
-      align,
-      order,
-      basis,
       maxWidth,
       maxHeight,
+      basis,
+      order,
       grow,
       shrink,
+      align,
       ...props
     },
     ref
@@ -31,10 +31,10 @@ export const FlexItem = React.forwardRef<any, FlexItemProps>(
           prop(maxWidthStyle, maxWidth),
           prop(maxHeightStyle, maxHeight),
           prop(basisStyle, basis),
-          prop(alignSelf, align),
           prop(orderStyle, order),
           prop(growStyle, grow),
-          prop(shrinkStyle, shrink)
+          prop(shrinkStyle, shrink),
+          prop(alignSelf, align)
         )}
         {...props}
       />

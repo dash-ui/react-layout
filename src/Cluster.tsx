@@ -41,8 +41,8 @@ export const Cluster = React.forwardRef<any, ClusterProps>(
             display: flex;
             flex-wrap: wrap;
           `)(),
-          prop(reverseStyle, reverse),
-          prop(gapStyle(reverse), gap)
+          prop(gapStyle(reverse), gap),
+          prop(reverseStyle, reverse)
         )}
         {...props}
       />

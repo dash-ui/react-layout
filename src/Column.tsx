@@ -29,8 +29,8 @@ export const Column = React.forwardRef<any, ColumnProps>(
           className,
           prop(alignItems, align),
           prop(justifyContent, distribute),
-          prop(reverseStyle, reverse),
-          prop(gapStyle(reverse), gap)
+          prop(gapStyle(reverse), gap),
+          prop(reverseStyle, reverse)
         )}
         {...props}
       />

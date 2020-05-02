@@ -1,20 +1,21 @@
 import css from 'minify-css.macro'
 
+const ai = 'align-items'
 export const alignItems = {
   start: css`
-    align-items: flex-start;
+    ${ai}: flex-start;
   `,
   center: css`
-    align-items: center;
+    ${ai}: center;
   `,
   end: css`
-    align-items: flex-end;
+    ${ai}: flex-end;
   `,
   baseline: css`
-    align-items: baseline;
+    ${ai}: baseline;
   `,
   stretch: css`
-    align-items: stretch;
+    ${ai}: stretch;
   `,
 }
 
@@ -34,7 +35,7 @@ export const alignSelf: AlignItems = aiEntries.reduce(
 )
 
 export const justifySelf: AlignItems = aiEntries.reduce(
-  replaceReducer<typeof alignItems>('align-items', 'justify-self'),
+  replaceReducer<typeof alignItems>(ai, 'justify-self'),
   {} as AlignItems
 )
 
@@ -43,27 +44,28 @@ export const justifyItems: AlignItems = aiEntries.reduce(
   {} as AlignItems
 )
 
+const jc = 'justify-content'
 export const justifyContent = {
   start: css`
-    justify-content: flex-start;
+    ${jc}: flex-start;
   `,
   center: css`
-    justify-content: center;
+    ${jc}: center;
   `,
   end: css`
-    justify-content: flex-end;
+    ${jc}: flex-end;
   `,
   around: css`
-    justify-content: space-around;
+    ${jc}: space-around;
   `,
   between: css`
-    justify-content: space-between;
+    ${jc}: space-between;
   `,
   evenly: css`
-    justify-content: space-evenly;
+    ${jc}: space-evenly;
   `,
   stretch: css`
-    justify-content: stretch;
+    ${jc}: stretch;
   `,
 }
 
@@ -76,17 +78,18 @@ export const alignContent: JustifyContent = Object.entries(
   {} as JustifyContent
 )
 
+const fd = 'flex-direction'
 export const flexDirection = {
   row: css`
-    flex-direction: row;
-  `,
-  column: css`
-    flex-direction: column;
+    ${fd}: row;
   `,
   reversedRow: css`
-    flex-direction: row-reverse;
+    ${fd}: row-reverse;
+  `,
+  column: css`
+    ${fd}: column;
   `,
   reversedColumn: css`
-    flex-direction: column-reverse;
+    ${fd}: column-reverse;
   `,
 }

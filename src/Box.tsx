@@ -47,36 +47,38 @@ export const Box = React.forwardRef<any, BoxProps>(
   }
 )
 
+const d = 'display'
+const p = 'position'
 const frameStyle = {
   flex: css`
-    display: flex;
+    ${d}: flex;
   `,
   inlineFlex: css`
-    display: inline-flex;
+    ${d}: inline-flex;
   `,
   block: css`
     display: block;
   `,
   inlineBlock: css`
-    display: inline-block;
+    ${d}: inline-block;
   `,
   inline: css`
-    display: inline;
+    ${d}: inline;
   `,
   none: css`
-    display: none;
+    ${d}: none;
   `,
   relative: css`
-    position: relative;
+    ${p}: relative;
   `,
   absolute: css`
-    position: absolute;
+    ${p}: absolute;
   `,
   sticky: css`
-    position: sticky;
+    ${p}: sticky;
   `,
   fixed: css`
-    position: fixed;
+    ${p}: fixed;
   `,
 }
 
@@ -90,15 +92,12 @@ const sizeStyle = (size: number | string) => ({
 const padStyle = (
   // @ts-ignore
   padProp: keyof DefaultVars['pad'] | (keyof DefaultVars['pad'])[]
-) => ({pad}) => {
-  if (Array.isArray(padProp)) {
-    return {padding: padProp.map((k) => pad[k]).join(' ')}
-  }
-
-  return css`
-    padding: ${pad[padProp]};
-  `
-}
+) => ({pad}) =>
+  Array.isArray(padProp)
+    ? {padding: padProp.map((k) => pad[k]).join(' ')}
+    : css`
+        padding: ${pad[padProp]};
+      `
 
 // @ts-ignore
 const bgStyle = (bg: keyof DefaultVars['color']) => ({color}) => css`
@@ -112,15 +111,12 @@ const elevationStyle = (elevationProp: keyof DefaultVars['elevation']) => ({
   box-shadow: ${elevation[elevationProp]};
 `
 // @ts-ignore
-const radiusStyle = (radiusProp: keyof DefaultVars['radius']) => ({radius}) => {
-  if (Array.isArray(radiusProp)) {
-    return {borderRadius: radiusProp.map((k) => radius[k]).join(' ')}
-  }
-
-  return css`
-    border-radius: ${radius[radiusProp]};
-  `
-}
+const radiusStyle = (radiusProp: keyof DefaultVars['radius']) => ({radius}) =>
+  Array.isArray(radiusProp)
+    ? {borderRadius: radiusProp.map((k) => radius[k]).join(' ')}
+    : css`
+        border-radius: ${radius[radiusProp]};
+      `
 
 export interface BoxProps extends LayoutAttributes {
   readonly as?: keyof JSX.IntrinsicElements | React.ComponentType<any>

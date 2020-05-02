@@ -22,8 +22,8 @@ declare type JustifyContent = Record<keyof typeof justifyContent, string>
 export declare const alignContent: JustifyContent
 export declare const flexDirection: {
   row: string
-  column: string
   reversedRow: string
+  column: string
   reversedColumn: string
 }
 export {}

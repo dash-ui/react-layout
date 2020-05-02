@@ -1,6 +1,6 @@
 {
   "name": "@-ui/react-layout",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/dash-ui/react-layout#readme",
   "repository": "github:dash-ui/react-layout",
   "bugs": "https://github.com/dash-ui/react-layout/issues",
@@ -74,8 +74,8 @@
     "@types/react-dom": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
+    "babel-plugin-annotate-pure-calls": "^0.4.0",
     "babel-plugin-optimize-react": "latest",
-    "babel-plugin-typescript-to-proptypes": "^1.3.2",
     "eslint": "latest",
     "eslint-import-resolver-jest": "latest",
     "eslint-plugin-jest": "latest",

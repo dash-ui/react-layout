@@ -1,5 +1,5 @@
 import * as React from 'react'
-import type {DefaultVars} from '@-ui/react'
+import type {DefaultVars} from '@dash-ui/react'
 import type {BoxProps} from './Box'
 /**
  * A component that distributes its items in a row or column without

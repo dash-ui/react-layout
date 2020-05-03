@@ -1,14 +1,14 @@
 import * as React from 'react'
-import defaultStyles, {useDash} from '@-ui/react'
-import dashMq from '@-ui/mq'
-import type {MediaQueryCallback} from '@-ui/mq'
+import defaultStyles, {useDash} from '@dash-ui/react'
+import dashMq from '@dash-ui/mq'
+import type {MediaQueryCallback} from '@dash-ui/mq'
 import type {
   Styles,
   DefaultVars,
   StyleDefs,
   StyleObject,
   StyleGetter,
-} from '@-ui/react'
+} from '@dash-ui/react'
 
 declare const __DEV__: boolean
 
@@ -19,7 +19,7 @@ defaultMq.prop = (styleGetter, value) => {
   if (__DEV__) {
     if (typeof value === 'object' && !Array.isArray(value)) {
       throw new Error(
-        '@-ui/layout is attempting to use media queries without a <LayoutProvider> component. This is not allowed.'
+        '@dash-ui/layout is attempting to use media queries without a <LayoutProvider> component. This is not allowed.'
       )
     }
   }

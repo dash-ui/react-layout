@@ -34,4 +34,4 @@ exports[`<Box> without media queries applies several props 1`] = `
 </DocumentFragment>
 `;
 
-exports[`<Box> without media queries should throw if media queries are used without <LayoutProvider> 1`] = `"@-ui/layout is attempting to use media queries without a <LayoutProvider> component. This is not allowed."`;
+exports[`<Box> without media queries should throw if media queries are used without <LayoutProvider> 1`] = `"@dash-ui/layout is attempting to use media queries without a <LayoutProvider> component. This is not allowed."`;

@@ -11,7 +11,7 @@ import {
   alignContent,
 } from './styles'
 import {unit} from './utils'
-import type {DefaultVars} from '@-ui/react'
+import type {DefaultVars} from '@dash-ui/react'
 import type {BoxProps} from './Box'
 import type {MediaQueryProp} from './Layout'
 

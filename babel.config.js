@@ -1,16 +1,17 @@
 module.exports = (api) => {
+  const esm = api.env('esm')
   const module = api.env('module')
   const presetEnv = [
     '@lunde/es',
     {
       env: {
-        modules: module ? false : 'commonjs',
+        modules: esm || module ? false : 'commonjs',
         targets: module
           ? {
               browsers: '> 2%',
             }
           : {
-              node: '10',
+              node: esm ? '12' : '10',
             },
       },
       devExpression: false,

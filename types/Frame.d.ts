@@ -1,5 +1,5 @@
 import * as React from 'react'
-import type {DefaultVars} from '@-ui/react'
+import type {DefaultVars} from '@dash-ui/react'
 import type {MediaQueryProp} from './Layout'
 import type {LayoutAttributes} from './types'
 export declare const Box: React.ForwardRefExoticComponent<

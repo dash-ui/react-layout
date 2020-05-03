@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import {Box} from './Box'
 import {useLayout} from './Layout'
 import {justifyContent, flexDirection} from './styles'
-import type {DefaultVars} from '@-ui/react'
+import type {DefaultVars} from '@dash-ui/react'
 import type {BoxProps} from './Box'
 import type {MediaQueryProp, MediaQueries} from './Layout'
 

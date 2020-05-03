@@ -1,5 +1,5 @@
 import * as React from 'react'
-import type {DefaultVars} from '@-ui/react'
+import type {DefaultVars} from '@dash-ui/react'
 import type {BoxProps} from './Box'
 import type {MediaQueryProp} from './Layout'
 export declare const Grid: React.ForwardRefExoticComponent<

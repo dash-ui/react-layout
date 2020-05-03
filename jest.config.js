@@ -9,7 +9,7 @@ module.exports = {
   ],
   testMatch: ['<rootDir>/src/**/?(*.)test.{ts,tsx}'],
   collectCoverageFrom: ['**/src/**/*.{ts,tsx}'],
-  snapshotSerializers: ['@-ui/jest'],
+  snapshotSerializers: ['@dash-ui/jest'],
   setupFilesAfterEnv: [require.resolve('./test/setup.js')],
   snapshotResolver: require.resolve('./test/resolve-snapshot.js'),
   // coverageThreshold: {

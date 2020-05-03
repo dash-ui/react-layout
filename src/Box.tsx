@@ -2,7 +2,7 @@ import * as React from 'react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
 import {useLayout} from './Layout'
-import type {DefaultVars} from '@-ui/react'
+import type {DefaultVars} from '@dash-ui/react'
 import type {MediaQueryProp} from './Layout'
 import type {LayoutAttributes} from './types'
 

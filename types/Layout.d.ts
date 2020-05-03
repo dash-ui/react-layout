@@ -1,12 +1,12 @@
 import * as React from 'react'
-import type {MediaQueryCallback} from '@-ui/mq'
+import type {MediaQueryCallback} from '@dash-ui/mq'
 import type {
   Styles,
   DefaultVars,
   StyleDefs,
   StyleObject,
   StyleGetter,
-} from '@-ui/react'
+} from '@dash-ui/react'
 export declare const useLayout: () => LayoutContextType
 export declare const LayoutProvider: React.FC<LayoutProviderProps>
 export interface LayoutContextType {

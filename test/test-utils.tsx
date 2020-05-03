@@ -1,7 +1,7 @@
-import '@-ui/jest'
+import '@dash-ui/jest'
 import React from 'react'
 import {render as renderTest} from '@testing-library/react'
-import styles from '@-ui/react'
+import styles from '@dash-ui/react'
 import {LayoutProvider} from '../src/Layout'
 import type {RenderResult, RenderOptions} from '@testing-library/react'
 
@@ -50,7 +50,7 @@ export const mediaQueries = {
 
 type ThemeMediaQueries = typeof mediaQueries
 
-declare module '@-ui/react' {
+declare module '@dash-ui/react' {
   interface DefaultVars extends Theme {}
 }
 

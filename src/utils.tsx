@@ -1,4 +1,4 @@
-import unitless from '@emotion/unitless'
+import unitless from '@dash-ui/unitless'
 
 const isCustomProperty = (property: string) => property.charCodeAt(1) === 45
 export const unit = (key: string, value: any): string =>

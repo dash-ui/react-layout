@@ -1,6 +1,6 @@
 {
   "name": "@dash-ui/react-layout",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/dash-ui/react-layout#readme",
   "repository": "github:dash-ui/react-layout",
   "bugs": "https://github.com/dash-ui/react-layout/issues",
@@ -35,7 +35,10 @@
     ".": {
       "browser": "./dist/module/index.js",
       "import": "./dist/esm/index.mjs",
-      "require": "./dist/main/index.js"
+      "require": "./dist/main/index.js",
+      "default": "./dist/main/index.js",
+      "source": "./src/index.tsx",
+      "types": "./types/index.d.ts"
     },
     "./package.json": "./package.json",
     "./": "./"
@@ -76,8 +79,9 @@
   },
   "devDependencies": {
     "@babel/preset-react": "latest",
-    "@dash-ui/jest": "^1.0.0",
-    "@dash-ui/react": "^0.1.0",
+    "@dash-ui/jest": "^1.0.1",
+    "@dash-ui/react": "^0.1.4",
+    "@dash-ui/styles": "^0.2.2",
     "@lunde/babel-preset-es": "latest",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "^10.0.4",
@@ -108,13 +112,13 @@
     "typescript": "latest"
   },
   "dependencies": {
-    "@dash-ui/mq": "^0.1.0",
-    "@emotion/unitless": "^0.7.5",
+    "@dash-ui/mq": "^0.1.2",
+    "@dash-ui/unitless": "^1.0.1",
     "clsx": "^1.1.0"
   },
   "peerDependencies": {
-    "@dash-ui/react": ">=0.1.0",
-    "@dash-ui/styles": ">=0.1.2",
+    "@dash-ui/react": ">=0.1.4",
+    "@dash-ui/styles": ">=0.2.2",
     "prop-types": ">=15.6",
     "react": ">=16.8",
     "react-dom": ">=16.8"

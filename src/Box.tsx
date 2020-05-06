@@ -2,7 +2,7 @@ import * as React from 'react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
 import {useLayout} from './Layout'
-import type {DefaultVars} from '@dash-ui/react'
+import type {DashVariables} from '@dash-ui/react'
 import type {MediaQueryProp} from './Layout'
 import type {LayoutAttributes} from './types'
 
@@ -91,7 +91,7 @@ const sizeStyle = (size: number | string) => ({
 
 const padStyle = (
   // @ts-ignore
-  padProp: keyof DefaultVars['pad'] | (keyof DefaultVars['pad'])[]
+  padProp: keyof DashVariables['pad'] | (keyof DashVariables['pad'])[]
 ) => ({pad}) =>
   Array.isArray(padProp)
     ? {padding: padProp.map((k) => pad[k]).join(' ')}
@@ -100,18 +100,18 @@ const padStyle = (
       `
 
 // @ts-ignore
-const bgStyle = (bg: keyof DefaultVars['color']) => ({color}) => css`
+const bgStyle = (bg: keyof DashVariables['color']) => ({color}) => css`
   background: ${color[bg]};
 `
 
 // @ts-ignore
-const elevationStyle = (elevationProp: keyof DefaultVars['elevation']) => ({
+const elevationStyle = (elevationProp: keyof DashVariables['elevation']) => ({
   elevation,
 }) => css`
   box-shadow: ${elevation[elevationProp]};
 `
 // @ts-ignore
-const radiusStyle = (radiusProp: keyof DefaultVars['radius']) => ({radius}) =>
+const radiusStyle = (radiusProp: keyof DashVariables['radius']) => ({radius}) =>
   Array.isArray(radiusProp)
     ? {borderRadius: radiusProp.map((k) => radius[k]).join(' ')}
     : css`
@@ -132,14 +132,14 @@ export interface BoxProps extends LayoutAttributes {
   readonly size?: MediaQueryProp<number | string>
   readonly pad?: MediaQueryProp<
     // @ts-ignore
-    keyof DefaultVars['pad'] | (keyof DefaultVars['pad'])[]
+    keyof DashVariables['pad'] | (keyof DashVariables['pad'])[]
   >
   // @ts-ignore
-  readonly bg?: MediaQueryProp<keyof DefaultVars['color']>
+  readonly bg?: MediaQueryProp<keyof DashVariables['color']>
   // @ts-ignore
-  readonly elevation?: MediaQueryProp<keyof DefaultVars['elevation']>
+  readonly elevation?: MediaQueryProp<keyof DashVariables['elevation']>
   readonly radius?: MediaQueryProp<
     // @ts-ignore
-    keyof DefaultVars['radius'] | (keyof DefaultVars['radius'])[]
+    keyof DashVariables['radius'] | (keyof DashVariables['radius'])[]
   >
 }

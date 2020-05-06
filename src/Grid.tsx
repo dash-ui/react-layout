@@ -11,7 +11,7 @@ import {
   alignContent,
 } from './styles'
 import {unit} from './utils'
-import type {DefaultVars} from '@dash-ui/react'
+import type {DashVariables} from '@dash-ui/react'
 import type {BoxProps} from './Box'
 import type {MediaQueryProp} from './Layout'
 
@@ -127,9 +127,9 @@ const rowEndStyle = (gridRowEnd: number | string) => ({
 
 type GapProp =
   // @ts-ignore
-  | keyof DefaultVars['gap']
+  | keyof DashVariables['gap']
   // @ts-ignore
-  | [keyof DefaultVars['gap'], keyof DefaultVars['gap']]
+  | [keyof DashVariables['gap'], keyof DashVariables['gap']]
 
 export interface GridProps extends BoxProps {
   readonly display?: undefined

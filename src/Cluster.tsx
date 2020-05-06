@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import {Box} from './Box'
 import {useLayout} from './Layout'
 import {justifyContent, flexDirection} from './styles'
-import type {DefaultVars} from '@dash-ui/react'
+import type {DashVariables} from '@dash-ui/react'
 import type {BoxProps} from './Box'
 import type {MediaQueryProp, MediaQueries} from './Layout'
 
@@ -55,7 +55,7 @@ const reverseStyle = (reverse: boolean) =>
 
 const gapStyle = (reverse: ClusterProps['reverse']) => (
   // @ts-ignore
-  gapProp: keyof DefaultVars['gap'],
+  gapProp: keyof DashVariables['gap'],
   queryName: keyof MediaQueries
 ) => {
   const reversed =
@@ -77,5 +77,5 @@ export interface ClusterProps extends BoxProps {
   readonly display?: undefined
   readonly reverse?: MediaQueryProp<boolean>
   // @ts-ignore
-  readonly gap?: MediaQueryProp<keyof DefaultVars['gap']>
+  readonly gap?: MediaQueryProp<keyof DashVariables['gap']>
 }

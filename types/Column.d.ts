@@ -1,5 +1,5 @@
 import * as React from 'react'
-import type {DefaultVars} from '@dash-ui/react'
+import type {DashVariables} from '@dash-ui/react'
 import type {BoxProps} from './Box'
 import type {MediaQueryProp} from './Layout'
 /**
@@ -28,6 +28,6 @@ export interface ColumnProps extends BoxProps {
   readonly distribute?: MediaQueryProp<
     'start' | 'center' | 'end' | 'around' | 'between' | 'evenly' | 'stretch'
   >
-  readonly gap?: MediaQueryProp<keyof DefaultVars['gap']>
+  readonly gap?: MediaQueryProp<keyof DashVariables['gap']>
   readonly reverse?: MediaQueryProp<boolean>
 }

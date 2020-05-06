@@ -1,5 +1,5 @@
 import * as React from 'react'
-import type {DefaultVars} from '@dash-ui/react'
+import type {DashVariables} from '@dash-ui/react'
 import type {BoxProps} from './Box'
 import type {MediaQueryProp} from './Layout'
 export declare const Grid: React.ForwardRefExoticComponent<
@@ -9,8 +9,8 @@ export declare const GridItem: React.ForwardRefExoticComponent<
   GridItemProps & React.RefAttributes<any>
 >
 declare type GapProp =
-  | keyof DefaultVars['gap']
-  | [keyof DefaultVars['gap'], keyof DefaultVars['gap']]
+  | keyof DashVariables['gap']
+  | [keyof DashVariables['gap'], keyof DashVariables['gap']]
 export interface GridProps extends BoxProps {
   readonly display?: undefined
   /** justify-items */

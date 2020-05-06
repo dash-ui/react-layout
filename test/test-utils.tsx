@@ -51,7 +51,7 @@ export const mediaQueries = {
 type ThemeMediaQueries = typeof mediaQueries
 
 declare module '@dash-ui/react' {
-  interface DefaultVars extends Theme {}
+  interface DashVariables extends Theme {}
 }
 
 declare module '../src/Layout' {

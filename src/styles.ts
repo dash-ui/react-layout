@@ -22,25 +22,25 @@ export const alignItems = {
 const aiEntries = Object.entries(alignItems)
 type AlignItems = Record<keyof typeof alignItems, string>
 
-const replaceReducer = <T>(from: string, to: string) => (
-  current: T,
-  [key, value]
-) => {
+const replaceReducer = <Key extends string, Value extends string = string>(
+  from: string,
+  to: string
+) => (current: Record<Key, string>, [key, value]: [Key, Value]) => {
   current[key] = value.replace(from, to)
   return current
 }
-export const alignSelf: AlignItems = aiEntries.reduce(
-  replaceReducer<typeof alignItems>('items', 'self'),
+export const alignSelf: AlignItems = aiEntries.reduce<AlignItems>(
+  replaceReducer<string>('items', 'self'),
   {} as AlignItems
 )
 
-export const justifySelf: AlignItems = aiEntries.reduce(
-  replaceReducer<typeof alignItems>(ai, 'justify-self'),
+export const justifySelf: AlignItems = aiEntries.reduce<AlignItems>(
+  replaceReducer<string>(ai, 'justify-self'),
   {} as AlignItems
 )
 
-export const justifyItems: AlignItems = aiEntries.reduce(
-  replaceReducer<typeof alignItems>('align', 'justify'),
+export const justifyItems: AlignItems = aiEntries.reduce<AlignItems>(
+  replaceReducer<string>('align', 'justify'),
   {} as AlignItems
 )
 
@@ -73,8 +73,8 @@ type JustifyContent = Record<keyof typeof justifyContent, string>
 
 export const alignContent: JustifyContent = Object.entries(
   justifyContent
-).reduce(
-  replaceReducer<typeof justifyContent>('justify', 'align'),
+).reduce<JustifyContent>(
+  replaceReducer<string>('justify', 'align'),
   {} as JustifyContent
 )
 

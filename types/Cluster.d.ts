@@ -1,5 +1,5 @@
 import * as React from 'react'
-import type {DefaultVars} from '@dash-ui/react'
+import type {DashVariables} from '@dash-ui/react'
 import type {BoxProps} from './Box'
 import type {MediaQueryProp} from './Layout'
 /**
@@ -25,5 +25,5 @@ export declare const Cluster: React.ForwardRefExoticComponent<
 export interface ClusterProps extends BoxProps {
   readonly display?: undefined
   readonly reverse?: MediaQueryProp<boolean>
-  readonly gap?: MediaQueryProp<keyof DefaultVars['gap']>
+  readonly gap?: MediaQueryProp<keyof DashVariables['gap']>
 }

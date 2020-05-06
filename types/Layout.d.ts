@@ -2,10 +2,10 @@ import * as React from 'react'
 import type {MediaQueryCallback} from '@dash-ui/mq'
 import type {
   Styles,
-  DefaultVars,
-  StyleDefs,
+  DashVariables,
+  StyleMap,
   StyleObject,
-  StyleGetter,
+  StyleCallback,
 } from '@dash-ui/react'
 export declare const useLayout: () => LayoutContextType
 export declare const LayoutProvider: React.FC<LayoutProviderProps>
@@ -16,7 +16,7 @@ export interface LayoutContextType {
 }
 export declare type Mq = MediaQueryCallback<
   Extract<keyof MediaQueries, string>,
-  DefaultVars
+  DashVariables
 > & {
   prop: MqProp
 }
@@ -25,14 +25,14 @@ export interface MqProp<Names extends string = string> {
     styleGetter: (
       value: any,
       queryName: string
-    ) => string | StyleObject | StyleGetter,
+    ) => string | StyleObject | StyleCallback,
     value: undefined | MediaQueryProp<string | number | any[]>,
     context?: any
   ): string | undefined
 }
 export interface MqProp<Names extends string = string> {
   (
-    styleGetter: StyleDefs<Names>,
+    styleGetter: StyleMap<Names>,
     value: undefined | MediaQueryProp<string | number>,
     context?: any
   ): string | undefined

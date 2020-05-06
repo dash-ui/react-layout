@@ -1,19 +1,16 @@
 import * as React from 'react'
-import defaultStyles, {useDash} from '@dash-ui/react'
+import defaultStyles, {useDash, StyleCallback} from '@dash-ui/react'
 import dashMq from '@dash-ui/mq'
 import type {MediaQueryCallback} from '@dash-ui/mq'
-import type {
-  Styles,
-  DefaultVars,
-  StyleDefs,
-  StyleObject,
-  StyleGetter,
-} from '@dash-ui/react'
+import type {Styles, DashVariables, StyleMap, StyleObject} from '@dash-ui/react'
 
 declare const __DEV__: boolean
 
 const defaultMq = dashMq({}) as Mq
-defaultMq.prop = (styleGetter, value) => {
+defaultMq.prop = function <V = any, Names extends string = string>(
+  style: any,
+  value: any
+) {
   if (value === void 0) return
   /* istanbul ignore next */
   if (__DEV__) {
@@ -26,11 +23,11 @@ defaultMq.prop = (styleGetter, value) => {
 
   // Single style
   return defaultStyles.one(
-    typeof styleGetter === 'function'
-      ? styleGetter(value)
+    typeof style === 'function'
+      ? style(value as V)
       : typeof value === 'string'
-      ? styleGetter[value]
-      : ''
+      ? style[value as keyof typeof style]
+      : ('' as any)
   )()
 }
 
@@ -50,20 +47,30 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
   const styles = useDash()
   const context = React.useMemo(() => {
     const mq = dashMq(mediaQueries) as Mq
-    mq.prop = (styleGetter, value, context) => {
+    mq.prop = function <V = any, Names extends string = string>(
+      style: any,
+      value: any,
+      context: any
+    ) {
       if (value === void 0) return
 
       if (typeof value === 'object' && !Array.isArray(value)) {
         // Media queries
         const mqObj = mq(
-          Object.keys(mediaQueries).reduce((stylesWithMq, queryName) => {
-            const queryValue = value[queryName]
+          Object.keys(mediaQueries).reduce<
+            Record<keyof MediaQueries, string | StyleObject | StyleCallback>
+          >((stylesWithMq: any, queryName: any) => {
+            const queryValue = value[queryName as keyof MediaQueries]
 
-            if (value[queryName] !== void 0) {
+            if (value[queryName as keyof MediaQueries] !== void 0) {
               stylesWithMq[queryName] =
-                typeof styleGetter === 'function'
-                  ? styleGetter(queryValue, queryName, context)
-                  : styleGetter[queryValue]
+                typeof style === 'function'
+                  ? style(
+                      queryValue as V,
+                      queryName as keyof MediaQueries,
+                      context
+                    )
+                  : style[queryValue as Names]
             }
 
             return stylesWithMq
@@ -74,10 +81,10 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
       }
       // Single style
       return styles.one(
-        typeof styleGetter === 'function'
-          ? styleGetter(value)
+        typeof style === 'function'
+          ? style(value as any)
           : typeof value === 'string'
-          ? styleGetter[value]
+          ? style[value]
           : ''
       )()
     }
@@ -95,31 +102,18 @@ export interface LayoutContextType {
 
 export type Mq = MediaQueryCallback<
   Extract<keyof MediaQueries, string>,
-  DefaultVars
+  DashVariables
 > & {
   prop: MqProp
 }
 
-export interface MqProp<Names extends string = string> {
-  (
-    styleGetter: (
-      value: any,
-      queryName: string
-    ) => string | StyleObject | StyleGetter,
-    value: undefined | MediaQueryProp<string | number | any[]>,
-    context?: any
-  ): string | undefined
+export interface MqProp<V = any> {
+  (style: any, value: any, context?: any): string | undefined
 }
 
-export interface MqProp<Names extends string = string> {
-  (
-    styleGetter: StyleDefs<Names>,
-    value: undefined | MediaQueryProp<string | number>,
-    context?: any
-  ): string | undefined
+export interface MqProp<V = any, Names extends string = string> {
+  (style: StyleMap<Names>, value: any, context?: any): string | undefined
 }
-
-export interface MediaQueries {}
 
 export type MediaQueryProp<ValueType> =
   | ValueType
@@ -130,3 +124,5 @@ export type MediaQueryProp<ValueType> =
 export interface LayoutProviderProps {
   mediaQueries?: MediaQueries
 }
+
+export interface MediaQueries {}

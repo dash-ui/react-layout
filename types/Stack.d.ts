@@ -1,5 +1,5 @@
 import * as React from 'react'
-import type {DefaultVars} from '@dash-ui/react'
+import type {DashVariables} from '@dash-ui/react'
 import type {BoxProps} from './Box'
 /**
  * A component that distributes its items in a row or column without
@@ -23,7 +23,7 @@ export interface StackProps extends BoxProps {
   readonly alignment?: 'start' | 'center' | 'end'
   readonly distribution?: 'around' | 'between' | 'even' | 'stretch'
   readonly wrap?: 'wrap' | 'reverse' | boolean
-  readonly gap?: DefaultVars['gap']
+  readonly gap?: DashVariables['gap']
 }
 export declare const StackItem: React.ForwardRefExoticComponent<
   StackItemProps & React.RefAttributes<any>

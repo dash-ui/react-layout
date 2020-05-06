@@ -1,6 +1,6 @@
 {
   "name": "@dash-ui/react-layout",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/dash-ui/react-layout#readme",
   "repository": "github:dash-ui/react-layout",
   "bugs": "https://github.com/dash-ui/react-layout/issues",
@@ -80,8 +80,8 @@
   "devDependencies": {
     "@babel/preset-react": "latest",
     "@dash-ui/jest": "^1.0.1",
-    "@dash-ui/react": "^0.2.0",
-    "@dash-ui/styles": "^0.3.0",
+    "@dash-ui/react": "^0.3.0",
+    "@dash-ui/styles": "^0.3.1",
     "@lunde/babel-preset-es": "latest",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "^10.0.4",
@@ -112,11 +112,11 @@
     "typescript": "latest"
   },
   "dependencies": {
-    "@dash-ui/mq": "^0.1.2",
+    "@dash-ui/mq": "^0.1.4",
     "clsx": "^1.1.0"
   },
   "peerDependencies": {
-    "@dash-ui/react": ">=0.2.0",
+    "@dash-ui/react": ">=0.3.0",
     "@dash-ui/styles": ">=0.3.0",
     "react": ">=16.8"
   }

@@ -1,10 +1,12 @@
 import * as React from 'react'
 import clsx from 'clsx'
+import css from 'minify-css.macro'
 import {Box} from './Box'
 import {useLayout} from './Layout'
 import {alignSelf} from './styles'
+import {unit} from './utils'
 import type {BoxProps} from './Box'
-import type {MediaQueryProp} from './Layout'
+import type {MqProp} from './Layout'
 
 export const FlexItem = React.forwardRef<any, FlexItemProps>(
   (
@@ -42,25 +44,32 @@ export const FlexItem = React.forwardRef<any, FlexItemProps>(
   }
 )
 
-const maxWidthStyle = (maxWidth: number | string) => ({maxWidth})
-const maxHeightStyle = (maxHeight: number | string) => ({maxHeight})
-const basisStyle = (basis: number | string) => ({basis})
-const orderStyle = (order: number) => ({order})
-const growStyle = (grow: number | boolean) => ({
-  flexGrow: grow === true ? 1 : grow === false ? 0 : grow,
-})
-const shrinkStyle = (shrink: number | boolean) => ({
-  flexShrink: shrink === true ? 1 : shrink === false ? 0 : shrink,
-})
+const maxWidthStyle = (maxWidth: number | string) =>
+  css`
+    max-width: ${unit(maxWidth)};
+  `
+const maxHeightStyle = (maxHeight: number | string) => css`
+  max-height: ${unit(maxHeight)};
+`
+const basisStyle = (basis: number | string) => css`
+  flex-basis: ${unit(basis)};
+`
+const orderStyle = (order: number) => css`
+  order: ${order};
+`
+const growStyle = (grow: number | boolean) => css`
+  flex-grow: ${grow === true ? 1 : grow === false ? 0 : grow};
+`
+const shrinkStyle = (shrink: number | boolean) => css`
+  flex-shrink: ${shrink === true ? 1 : shrink === false ? 0 : shrink};
+`
 
 export interface FlexItemProps extends BoxProps {
-  readonly align?: MediaQueryProp<
-    'start' | 'end' | 'center' | 'baseline' | 'stretch'
-  >
-  readonly basis?: MediaQueryProp<number | string>
-  readonly grow?: MediaQueryProp<boolean | number>
-  readonly maxWidth?: MediaQueryProp<number | string>
-  readonly maxHeight?: MediaQueryProp<number | string>
-  readonly order?: MediaQueryProp<number>
-  readonly shrink?: MediaQueryProp<boolean | number>
+  readonly align?: MqProp<'start' | 'end' | 'center' | 'baseline' | 'stretch'>
+  readonly basis?: MqProp<number | string>
+  readonly grow?: MqProp<boolean | number>
+  readonly maxWidth?: MqProp<number | string>
+  readonly maxHeight?: MqProp<number | string>
+  readonly order?: MqProp<number>
+  readonly shrink?: MqProp<boolean | number>
 }

@@ -50,7 +50,7 @@ export const mediaQueries = {
 
 type ThemeMediaQueries = typeof mediaQueries
 
-declare module '@dash-ui/react' {
+declare module '@dash-ui/styles' {
   interface DashVariables extends Theme {}
 }
 

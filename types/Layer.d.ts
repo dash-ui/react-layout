@@ -1,6 +1,6 @@
 import * as React from 'react'
 import type {BoxProps} from './Box'
-import type {MediaQueryProp} from './Layout'
+import type {MqProp} from './Layout'
 /**
  * A component that makes its items layer on top of each other:
  *   ___
@@ -26,8 +26,8 @@ declare type Placements =
   | 'bottomLeft'
 export interface LayerItemProps extends BoxProps {
   position?: undefined
-  offset?: MediaQueryProp<number | string>
-  placement: MediaQueryProp<Placements>
-  z?: MediaQueryProp<number>
+  offset?: MqProp<number | string>
+  placement: MqProp<Placements>
+  z?: MqProp<number>
 }
 export {}

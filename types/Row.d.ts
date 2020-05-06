@@ -1,7 +1,7 @@
 import * as React from 'react'
-import type {DashVariables} from '@dash-ui/react'
+import type {DashVariables} from '@dash-ui/styles'
 import type {BoxProps} from './Box'
-import type {MediaQueryProp} from './Layout'
+import type {MqProp} from './Layout'
 /**
  * A component that distributes its items in a row without wrapping like so:
  *
@@ -16,15 +16,13 @@ export interface RowProps extends BoxProps {
   /**
    * Positional alignment for its child items on the y-axis using `align-items`
    */
-  readonly align?: MediaQueryProp<
-    'start' | 'center' | 'end' | 'baseline' | 'stretch'
-  >
+  readonly align?: MqProp<'start' | 'center' | 'end' | 'baseline' | 'stretch'>
   /**
    * Distributed alignment properties on the x-axis using `justify-content`
    */
-  readonly distribute?: MediaQueryProp<
+  readonly distribute?: MqProp<
     'start' | 'center' | 'end' | 'around' | 'between' | 'evenly' | 'stretch'
   >
-  readonly gap?: MediaQueryProp<keyof DashVariables['gap']>
-  readonly reverse?: MediaQueryProp<boolean>
+  readonly gap?: MqProp<keyof DashVariables['gap']>
+  readonly reverse?: MqProp<boolean>
 }

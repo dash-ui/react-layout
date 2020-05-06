@@ -3,8 +3,9 @@ import clsx from 'clsx'
 import css from 'minify-css.macro'
 import {Box} from './Box'
 import {useLayout} from './Layout'
+import {unit} from './utils'
 import type {BoxProps} from './Box'
-import type {MediaQueryProp, MediaQueries} from './Layout'
+import type {MqProp, MqPropCallback} from './Layout'
 
 /**
  * A component that makes its items layer on top of each other:
@@ -35,10 +36,9 @@ export const LayerItem = React.forwardRef<any, LayerItemProps>(
   }
 )
 
-const placementStyle = (offsetProp: LayerItemProps['offset'] | undefined) => (
-  value: Placements,
-  queryName: keyof MediaQueries
-) => {
+const placementStyle = (
+  offsetProp: LayerItemProps['offset'] | undefined
+): MqPropCallback<Placements> => (value, queryName): string => {
   if (value === 'center') {
     return css`
       top: 50%;
@@ -47,11 +47,13 @@ const placementStyle = (offsetProp: LayerItemProps['offset'] | undefined) => (
     `
   }
 
-  const offset = !offsetProp
-    ? 0
-    : typeof offsetProp === 'object'
-    ? offsetProp[queryName]
-    : offsetProp
+  const offset = unit(
+    !offsetProp
+      ? 0
+      : typeof offsetProp === 'object'
+      ? offsetProp[queryName]
+      : offsetProp
+  )
   const lValue = value.toLowerCase()
   const yProp =
     lValue.indexOf('top') > -1
@@ -66,23 +68,36 @@ const placementStyle = (offsetProp: LayerItemProps['offset'] | undefined) => (
       ? 'right'
       : void 0
 
-  const styles: Record<string, string | number> = {}
+  let styles = ''
 
-  if (yProp) styles[yProp] = offset
-  if (xProp) styles[xProp] = offset
-  if (value === 'left' || value === 'right') {
-    styles.top = '50%'
-    styles.transform = 'translateY(-50%)'
-  }
-  if (value === 'bottom' || value === 'top') {
-    styles.left = '50%'
-    styles.transform = 'translateX(-50%)'
-  }
+  if (yProp && offset !== void 0)
+    styles += css`
+      ${yProp}: ${offset};
+    `
+
+  if (xProp && offset !== void 0)
+    styles += css`
+      ${xProp}: ${offset};
+    `
+
+  if (value === 'left' || value === 'right')
+    styles += css`
+      top: 50%;
+      transform: translateY(-50%);
+    `
+
+  if (value === 'bottom' || value === 'top')
+    styles += css`
+      left: 50%;
+      transform: translateX(-50%);
+    `
 
   return styles
 }
 
-const zStyle = (value: number) => ({zIndex: value})
+const zStyle = (value: number) => css`
+  z-index: ${value};
+`
 
 export interface LayerProps extends BoxProps {}
 
@@ -99,7 +114,7 @@ type Placements =
 
 export interface LayerItemProps extends BoxProps {
   position?: undefined
-  offset?: MediaQueryProp<number | string>
-  placement: MediaQueryProp<Placements>
-  z?: MediaQueryProp<number>
+  offset?: MqProp<number | string>
+  placement: MqProp<Placements>
+  z?: MqProp<number>
 }

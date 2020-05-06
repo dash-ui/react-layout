@@ -993,22 +993,20 @@
     chalk "^4.0.0"
     css "^2.2.4"
 
-"@dash-ui/mq@^0.1.2":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@dash-ui/mq/-/mq-0.1.3.tgz#e6008739f850c7ade804d2d16dd4cf879f57442a"
-  integrity sha512-3Q2qK0FvdXZl+o9rkZ+RFL76LmQsxquK8e8uAqt5yGOVGqvfXjK/YhtNYCz1cb5hxgicZ06Dcv2+r0Rqvvh0bA==
+"@dash-ui/mq@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@dash-ui/mq/-/mq-0.1.4.tgz#d4bd25195e3b5bf140112d5fd82c9245381e7fbc"
+  integrity sha512-C0Zh/iwTsDaNWHfYHZmgMC8xAz5MUX6toEt40LDQR+x22e40y4BHzKlM0jdvwugK54Fvb5cq09Gl8qaYdy734g==
 
-"@dash-ui/react@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@dash-ui/react/-/react-0.2.0.tgz#535cf32246ae6c44ef6b6232b1b2a0d8df163950"
-  integrity sha512-nn+jq6sgXhPk30YCDmZsmZT/vJr2pIxSYbK1hq8cU445rNQduep+kLNJCR29SxjwFM8xkQXefFZAHQAEVc2f5A==
-  dependencies:
-    "@dash-ui/styles" "^0.3.0"
-
-"@dash-ui/styles@^0.3.0":
+"@dash-ui/react@^0.3.0":
   version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@dash-ui/styles/-/styles-0.3.0.tgz#bf9ee425a38a3eac8b68bdbaf2b4c2e12b03bd0b"
-  integrity sha512-8Cun4WMs62emzdEsiLtPUyb2jookHb2lYeOrNHVDZ05fNH9hPGB4/RH6r37KJ9t5jGnC9ONTn1ZSuIKQEhPALg==
+  resolved "https://registry.yarnpkg.com/@dash-ui/react/-/react-0.3.0.tgz#220a5b92de752a6594c14bcf9b77a068b2a0b6fa"
+  integrity sha512-YDS504IuWQjOxYu9WSLUXhc5waUcdZOeqT/TUX3AXfyVLG/DVPGuxPIQohkXjGHQrYTY8FH1GKamS0ruvAw16g==
+
+"@dash-ui/styles@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@dash-ui/styles/-/styles-0.3.1.tgz#7970684e0d8ce8e4947706291a89183727cf0fd6"
+  integrity sha512-e1+XGE26a63wTzKNd4EG/oPPEwz4BXwQY7oAqLour3gelOTWzz6CDp2f+yX6HLOj+otT974Xtdl9kddNYQhpSQ==
   dependencies:
     "@dash-ui/unitless" "^1.0.1"
     "@emotion/stylis" "^0.8.5"

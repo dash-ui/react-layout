@@ -22,7 +22,7 @@ describe('<FlexItem> without media queries', () => {
 
   it('applies the "basis" prop', () => {
     const {getByTestId} = render(<FlexItem basis={100} data-testid="el" />)
-    expect(getByTestId('el')).toHaveStyleRule('basis', '100px')
+    expect(getByTestId('el')).toHaveStyleRule('flex-basis', '100px')
   })
 
   it('applies the "grow" prop', () => {
@@ -79,7 +79,7 @@ describe('<FlexItem> with media queries', () => {
     const {getByTestId} = renderMq(
       <FlexItem basis={{phone: 100}} data-testid="el" />
     )
-    expect(getByTestId('el')).toHaveStyleRule('basis', '100px', mq)
+    expect(getByTestId('el')).toHaveStyleRule('flex-basis', '100px', mq)
   })
 
   it('applies the "grow" prop', () => {

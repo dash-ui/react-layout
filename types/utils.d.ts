@@ -1,1 +1,1 @@
-export declare const unit: (key: string, value: any) => string
+export declare const unit: (value: any) => string

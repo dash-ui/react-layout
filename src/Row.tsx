@@ -4,9 +4,9 @@ import clsx from 'clsx'
 import {Box} from './Box'
 import {useLayout} from './Layout'
 import {flexDirection, justifyContent, alignItems} from './styles'
-import type {DashVariables} from '@dash-ui/react'
+import type {DashVariables} from '@dash-ui/styles'
 import type {BoxProps} from './Box'
-import type {MediaQueryProp, MediaQueries} from './Layout'
+import type {MqProp, MqPropCallback} from './Layout'
 
 /**
  * A component that distributes its items in a row without wrapping like so:
@@ -38,16 +38,14 @@ export const Row = React.forwardRef<any, RowProps>(
 const reverseStyle = (reverse: boolean) =>
   flexDirection[reverse ? 'reversedRow' : 'row']
 
-// @ts-ignore
-const gapStyle = (reverse: RowProps['reverse']) => (
+const gapStyle = (
+  reverse: RowProps['reverse']
   // @ts-ignore
-  gapProp: keyof DashVariables['gap'],
-  queryName: keyof MediaQueries
-) => {
+): MqPropCallback<keyof DashVariables['gap']> => (gapProp, queryName) => {
   const reversed =
     !reverse || typeof reverse === 'boolean' ? reverse : reverse[queryName]
   const marginDirection = reversed ? 'right' : 'left'
-
+  // @ts-ignore
   return ({gap}) => css`
     & > * + * {
       margin-${marginDirection}: ${gap[gapProp]}!important;
@@ -60,16 +58,14 @@ export interface RowProps extends BoxProps {
   /**
    * Positional alignment for its child items on the y-axis using `align-items`
    */
-  readonly align?: MediaQueryProp<
-    'start' | 'center' | 'end' | 'baseline' | 'stretch'
-  >
+  readonly align?: MqProp<'start' | 'center' | 'end' | 'baseline' | 'stretch'>
   /**
    * Distributed alignment properties on the x-axis using `justify-content`
    */
-  readonly distribute?: MediaQueryProp<
+  readonly distribute?: MqProp<
     'start' | 'center' | 'end' | 'around' | 'between' | 'evenly' | 'stretch'
   >
   // @ts-ignore
-  readonly gap?: MediaQueryProp<keyof DashVariables['gap']>
-  readonly reverse?: MediaQueryProp<boolean>
+  readonly gap?: MqProp<keyof DashVariables['gap']>
+  readonly reverse?: MqProp<boolean>
 }

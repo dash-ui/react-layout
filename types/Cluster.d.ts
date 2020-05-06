@@ -1,7 +1,7 @@
 import * as React from 'react'
-import type {DashVariables} from '@dash-ui/react'
+import type {DashVariables} from '@dash-ui/styles'
 import type {BoxProps} from './Box'
-import type {MediaQueryProp} from './Layout'
+import type {MqProp} from './Layout'
 /**
  * A row directional component that distributes its items in a cluster like so:
  *
@@ -24,6 +24,6 @@ export declare const Cluster: React.ForwardRefExoticComponent<
 >
 export interface ClusterProps extends BoxProps {
   readonly display?: undefined
-  readonly reverse?: MediaQueryProp<boolean>
-  readonly gap?: MediaQueryProp<keyof DashVariables['gap']>
+  readonly reverse?: MqProp<boolean>
+  readonly gap?: MqProp<keyof DashVariables['gap']>
 }

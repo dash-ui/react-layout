@@ -1,5 +1,6 @@
 import * as React from 'react'
 import clsx from 'clsx'
+import css from 'minify-css.macro'
 import {Box} from './Box'
 import {useLayout} from './Layout'
 import {
@@ -11,9 +12,9 @@ import {
   alignContent,
 } from './styles'
 import {unit} from './utils'
-import type {DashVariables} from '@dash-ui/react'
+import type {DashVariables} from '@dash-ui/styles'
 import type {BoxProps} from './Box'
-import type {MediaQueryProp} from './Layout'
+import type {MqProp, MqPropCallback} from './Layout'
 
 export const Grid = React.forwardRef<any, GridProps>(
   (
@@ -87,11 +88,9 @@ const colsStyle = (cols: number | (number | string)[]) => {
   if (Array.isArray(cols)) value = cols
   // ie doesn't have repeat
   else value = new Array(cols).fill('1fr')
-  return {
-    gridTemplateColumns: value
-      .map((col) => unit('grid-template-columns', col))
-      .join(' '),
-  }
+  return css`
+    grid-template-columns: ${value.map((col) => unit(col)).join(' ')};
+  `
 }
 
 const rowsStyle = (rows: number | (number | string)[]) => {
@@ -99,31 +98,38 @@ const rowsStyle = (rows: number | (number | string)[]) => {
   if (Array.isArray(rows)) value = rows
   // ie doesn't have repeat
   else value = new Array(rows).fill('1fr')
-  return {
-    gridTemplateRows: value
-      .map((col) => unit('grid-template-rows', col))
-      .join(' '),
-  }
+  return css`
+    grid-template-rows: ${value.map((row) => unit(row)).join(' ')};
+  `
 }
 
-const gapStyle = (gapProp: GapProp) => ({gap}) => ({
-  gridGap: Array.isArray(gapProp)
+const gapStyle: MqPropCallback<
+  // @ts-ignore
+  | keyof DashVariables['gap']
+  // @ts-ignore
+  | [keyof DashVariables['gap'], keyof DashVariables['gap']]
+  // @ts-ignore
+> = (gapProp: GapProp) => ({gap}) => css`
+  grid-gap: ${Array.isArray(gapProp)
     ? gapProp.map((p) => gap[p]).join(' ')
-    : `${gap[gapProp]} ${gap[gapProp]}`,
-})
+    : gap[gapProp] + ' ' + gap[gapProp]};
+`
 
-const colStartStyle = (gridColumnStart: number | string) => ({
-  gridColumnStart,
-})
-const colEndStyle = (gridColumnEnd: number | string) => ({
-  gridColumnEnd,
-})
-const rowStartStyle = (gridRowStart: number | string) => ({
-  gridRowStart,
-})
-const rowEndStyle = (gridRowEnd: number | string) => ({
-  gridRowEnd,
-})
+const colStartStyle = (gridColumnStart: number | string) => css`
+  grid-column-start: ${gridColumnStart};
+`
+
+const colEndStyle = (gridColumnEnd: number | string) => css`
+  grid-column-end: ${gridColumnEnd};
+`
+
+const rowStartStyle = (gridRowStart: number | string) => css`
+  grid-row-start: ${gridRowStart};
+`
+
+const rowEndStyle = (gridRowEnd: number | string) => css`
+  grid-row-end: ${gridRowEnd};
+`
 
 type GapProp =
   // @ts-ignore
@@ -134,38 +140,38 @@ type GapProp =
 export interface GridProps extends BoxProps {
   readonly display?: undefined
   /** justify-items */
-  readonly alignX?: MediaQueryProp<'start' | 'center' | 'end' | 'stretch'>
+  readonly alignX?: MqProp<'start' | 'center' | 'end' | 'stretch'>
   /** align-items */
-  readonly alignY?: MediaQueryProp<'start' | 'center' | 'end' | 'stretch'>
+  readonly alignY?: MqProp<'start' | 'center' | 'end' | 'stretch'>
   /** grid-template-columns */
-  readonly cols?: MediaQueryProp<number | (number | string)[]>
+  readonly cols?: MqProp<number | (number | string)[]>
   /** justify-content */
-  readonly distributeX?: MediaQueryProp<
+  readonly distributeX?: MqProp<
     'start' | 'center' | 'end' | 'stretch' | 'around' | 'between' | 'evenly'
   >
   /** align-content */
-  readonly distributeY?: MediaQueryProp<
+  readonly distributeY?: MqProp<
     'start' | 'center' | 'end' | 'stretch' | 'around' | 'between' | 'evenly'
   >
   /** grid-gap, row-gap, column-gap */
-  readonly gap?: MediaQueryProp<GapProp>
+  readonly gap?: MqProp<GapProp>
   /** display: inline-grid */
-  readonly inline?: MediaQueryProp<boolean>
+  readonly inline?: MqProp<boolean>
   /** grid-template-rows */
-  readonly rows?: MediaQueryProp<number | (number | string)[]>
+  readonly rows?: MqProp<number | (number | string)[]>
 }
 
 export interface GridItemProps extends BoxProps {
   /** justify-self */
-  readonly alignX?: MediaQueryProp<'start' | 'center' | 'end' | 'stretch'>
+  readonly alignX?: MqProp<'start' | 'center' | 'end' | 'stretch'>
   /** align-self */
-  readonly alignY?: MediaQueryProp<'start' | 'center' | 'end' | 'stretch'>
+  readonly alignY?: MqProp<'start' | 'center' | 'end' | 'stretch'>
   /** grid-column-start */
-  readonly colStart?: MediaQueryProp<number | string>
+  readonly colStart?: MqProp<number | string>
   /** grid-column-end */
-  readonly colEnd?: MediaQueryProp<number | string>
+  readonly colEnd?: MqProp<number | string>
   /** grid-row-start */
-  readonly rowStart?: MediaQueryProp<number | string>
+  readonly rowStart?: MqProp<number | string>
   /** grid-row-end */
-  readonly rowEnd?: MediaQueryProp<number | string>
+  readonly rowEnd?: MqProp<number | string>
 }

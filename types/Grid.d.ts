@@ -1,7 +1,7 @@
 import * as React from 'react'
-import type {DashVariables} from '@dash-ui/react'
+import type {DashVariables} from '@dash-ui/styles'
 import type {BoxProps} from './Box'
-import type {MediaQueryProp} from './Layout'
+import type {MqProp} from './Layout'
 export declare const Grid: React.ForwardRefExoticComponent<
   GridProps & React.RefAttributes<any>
 >
@@ -14,38 +14,38 @@ declare type GapProp =
 export interface GridProps extends BoxProps {
   readonly display?: undefined
   /** justify-items */
-  readonly alignX?: MediaQueryProp<'start' | 'center' | 'end' | 'stretch'>
+  readonly alignX?: MqProp<'start' | 'center' | 'end' | 'stretch'>
   /** align-items */
-  readonly alignY?: MediaQueryProp<'start' | 'center' | 'end' | 'stretch'>
+  readonly alignY?: MqProp<'start' | 'center' | 'end' | 'stretch'>
   /** grid-template-columns */
-  readonly cols?: MediaQueryProp<number | (number | string)[]>
+  readonly cols?: MqProp<number | (number | string)[]>
   /** justify-content */
-  readonly distributeX?: MediaQueryProp<
+  readonly distributeX?: MqProp<
     'start' | 'center' | 'end' | 'stretch' | 'around' | 'between' | 'evenly'
   >
   /** align-content */
-  readonly distributeY?: MediaQueryProp<
+  readonly distributeY?: MqProp<
     'start' | 'center' | 'end' | 'stretch' | 'around' | 'between' | 'evenly'
   >
   /** grid-gap, row-gap, column-gap */
-  readonly gap?: MediaQueryProp<GapProp>
+  readonly gap?: MqProp<GapProp>
   /** display: inline-grid */
-  readonly inline?: MediaQueryProp<boolean>
+  readonly inline?: MqProp<boolean>
   /** grid-template-rows */
-  readonly rows?: MediaQueryProp<number | (number | string)[]>
+  readonly rows?: MqProp<number | (number | string)[]>
 }
 export interface GridItemProps extends BoxProps {
   /** justify-self */
-  readonly alignX?: MediaQueryProp<'start' | 'center' | 'end' | 'stretch'>
+  readonly alignX?: MqProp<'start' | 'center' | 'end' | 'stretch'>
   /** align-self */
-  readonly alignY?: MediaQueryProp<'start' | 'center' | 'end' | 'stretch'>
+  readonly alignY?: MqProp<'start' | 'center' | 'end' | 'stretch'>
   /** grid-column-start */
-  readonly colStart?: MediaQueryProp<number | string>
+  readonly colStart?: MqProp<number | string>
   /** grid-column-end */
-  readonly colEnd?: MediaQueryProp<number | string>
+  readonly colEnd?: MqProp<number | string>
   /** grid-row-start */
-  readonly rowStart?: MediaQueryProp<number | string>
+  readonly rowStart?: MqProp<number | string>
   /** grid-row-end */
-  readonly rowEnd?: MediaQueryProp<number | string>
+  readonly rowEnd?: MqProp<number | string>
 }
 export {}

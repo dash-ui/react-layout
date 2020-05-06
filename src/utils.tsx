@@ -1,2 +1,2 @@
-export const unit = (key: string, value: any): string =>
-  typeof !isNaN(value) && value !== 0 ? `${value}px` : value
+export const unit = (value: any): string =>
+  !isNaN(value) && value !== 0 ? `${value}px` : value

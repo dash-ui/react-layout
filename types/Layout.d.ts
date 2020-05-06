@@ -4,41 +4,34 @@ import type {
   Styles,
   DashVariables,
   StyleMap,
-  StyleObject,
-  StyleCallback,
-} from '@dash-ui/react'
+  StyleValue,
+  StylesOne,
+} from '@dash-ui/styles'
 export declare const useLayout: () => LayoutContextType
 export declare const LayoutProvider: React.FC<LayoutProviderProps>
 export interface LayoutContextType {
   styles: Styles
   mediaQueries: MediaQueries
+  oneStyle: (style: StyleValue) => StylesOne
   mq: Mq
 }
-export declare type Mq = MediaQueryCallback<
+declare type Mq = MediaQueryCallback<
   Extract<keyof MediaQueries, string>,
   DashVariables
 > & {
-  prop: MqProp
+  prop: MqContextProp
 }
-export interface MqProp<Names extends string = string> {
-  (
-    styleGetter: (
-      value: any,
-      queryName: string
-    ) => string | StyleObject | StyleCallback,
-    value: undefined | MediaQueryProp<string | number | any[]>,
-    context?: any
-  ): string | undefined
+interface MqContextProp<V = any> {
+  (style: MqPropCallback<V>, value: V): string | undefined
 }
-export interface MqProp<Names extends string = string> {
-  (
-    styleGetter: StyleMap<Names>,
-    value: undefined | MediaQueryProp<string | number>,
-    context?: any
-  ): string | undefined
+interface MqContextProp<V = any, Names extends string = string> {
+  (style: StyleMap<Names>, value: V): string | undefined
 }
-export interface MediaQueries {}
-export declare type MediaQueryProp<ValueType> =
+export declare type MqPropCallback<V = any> = (
+  queryValue: V,
+  queryName: keyof MediaQueries
+) => StyleValue<DashVariables>
+export declare type MqProp<ValueType> =
   | ValueType
   | {
       [key in Extract<keyof MediaQueries, string>]?: ValueType
@@ -46,3 +39,5 @@ export declare type MediaQueryProp<ValueType> =
 export interface LayoutProviderProps {
   mediaQueries?: MediaQueries
 }
+export interface MediaQueries {}
+export {}

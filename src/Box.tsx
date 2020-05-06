@@ -2,8 +2,9 @@ import * as React from 'react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
 import {useLayout} from './Layout'
-import type {DashVariables} from '@dash-ui/react'
-import type {MediaQueryProp} from './Layout'
+import {unit} from './utils'
+import type {DashVariables} from '@dash-ui/styles'
+import type {MqProp, MqPropCallback} from './Layout'
 import type {LayoutAttributes} from './types'
 
 export const Box = React.forwardRef<any, BoxProps>(
@@ -57,7 +58,7 @@ const frameStyle = {
     ${d}: inline-flex;
   `,
   block: css`
-    display: block;
+    ${d}: block;
   `,
   inlineBlock: css`
     ${d}: inline-block;
@@ -82,63 +83,76 @@ const frameStyle = {
   `,
 }
 
-const widthStyle = (width: number | string) => ({width})
-const heightStyle = (height: number | string) => ({height})
-const sizeStyle = (size: number | string) => ({
-  width: size,
-  height: size,
-})
+const widthStyle = (width: number | string) => css`
+  width: ${unit(width)};
+`
+const heightStyle = (height: number | string) => css`
+  height: ${unit(height)};
+`
 
-const padStyle = (
+const sizeStyle = (size: number | string) => {
+  size = unit(size)
+  return css`
+    width: ${size};
+    height: ${size};
+  `
+}
+
+const padStyle: MqPropCallback<
   // @ts-ignore
-  padProp: keyof DashVariables['pad'] | (keyof DashVariables['pad'])[]
-) => ({pad}) =>
-  Array.isArray(padProp)
-    ? {padding: padProp.map((k) => pad[k]).join(' ')}
-    : css`
-        padding: ${pad[padProp]};
-      `
+  keyof DashVariables['pad'] | (keyof DashVariables['pad'])[]
+  // @ts-ignore
+> = (padProp) => ({pad}) =>
+  css`
+    padding: ${Array.isArray(padProp)
+      ? padProp.map((k) => pad[k]).join(' ')
+      : pad[padProp]};
+  `
 
 // @ts-ignore
-const bgStyle = (bg: keyof DashVariables['color']) => ({color}) => css`
+const bgStyle: MqPropCallback<keyof DashVariables['color']> = (bg) => ({
+  // @ts-ignore
+  color,
+}) => css`
   background: ${color[bg]};
 `
-
 // @ts-ignore
-const elevationStyle = (elevationProp: keyof DashVariables['elevation']) => ({
-  elevation,
-}) => css`
+const elevationStyle: MqPropCallback<keyof DashVariables['elevation']> = (
+  elevationProp
+  // @ts-ignore
+) => ({elevation}) => css`
   box-shadow: ${elevation[elevationProp]};
 `
-// @ts-ignore
-const radiusStyle = (radiusProp: keyof DashVariables['radius']) => ({radius}) =>
-  Array.isArray(radiusProp)
-    ? {borderRadius: radiusProp.map((k) => radius[k]).join(' ')}
-    : css`
-        border-radius: ${radius[radiusProp]};
-      `
+const radiusStyle: MqPropCallback<
+  // @ts-ignore
+  keyof DashVariables['radius'] | (keyof DashVariables['radius'])[]
+  // @ts-ignore
+> = (radiusProp) => ({radius}) =>
+  css`
+    border-radius: ${Array.isArray(radiusProp)
+      ? radiusProp.map((k) => radius[k]).join(' ')
+      : radius[radiusProp]};
+  `
 
 export interface BoxProps extends LayoutAttributes {
   readonly as?: keyof JSX.IntrinsicElements | React.ComponentType<any>
   readonly className?: string | string[]
-  readonly display?: MediaQueryProp<
+  readonly display?: MqProp<
     'flex' | 'inlineFlex' | 'block' | 'inlineBlock' | 'inline'
   >
-  readonly position?: MediaQueryProp<
-    'relative' | 'absolute' | 'sticky' | 'fixed'
-  >
-  readonly width?: MediaQueryProp<number | string>
-  readonly height?: MediaQueryProp<number | string>
-  readonly size?: MediaQueryProp<number | string>
-  readonly pad?: MediaQueryProp<
+  readonly position?: MqProp<'relative' | 'absolute' | 'sticky' | 'fixed'>
+  readonly width?: MqProp<number | string>
+  readonly height?: MqProp<number | string>
+  readonly size?: MqProp<number | string>
+  readonly pad?: MqProp<
     // @ts-ignore
     keyof DashVariables['pad'] | (keyof DashVariables['pad'])[]
   >
   // @ts-ignore
-  readonly bg?: MediaQueryProp<keyof DashVariables['color']>
+  readonly bg?: MqProp<keyof DashVariables['color']>
   // @ts-ignore
-  readonly elevation?: MediaQueryProp<keyof DashVariables['elevation']>
-  readonly radius?: MediaQueryProp<
+  readonly elevation?: MqProp<keyof DashVariables['elevation']>
+  readonly radius?: MqProp<
     // @ts-ignore
     keyof DashVariables['radius'] | (keyof DashVariables['radius'])[]
   >

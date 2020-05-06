@@ -4,9 +4,9 @@ import clsx from 'clsx'
 import {Box} from './Box'
 import {useLayout} from './Layout'
 import {justifyContent, flexDirection} from './styles'
-import type {DashVariables} from '@dash-ui/react'
+import type {DashVariables} from '@dash-ui/styles'
 import type {BoxProps} from './Box'
-import type {MediaQueryProp, MediaQueries} from './Layout'
+import type {MqProp, MqPropCallback} from './Layout'
 
 /**
  * A row directional component that distributes its items in a cluster like so:
@@ -28,7 +28,7 @@ import type {MediaQueryProp, MediaQueries} from './Layout'
 export const Cluster = React.forwardRef<any, ClusterProps>(
   ({className, gap, reverse = false, ...props}, ref) => {
     const {
-      styles,
+      oneStyle,
       mq: {prop},
     } = useLayout()
 
@@ -37,7 +37,7 @@ export const Cluster = React.forwardRef<any, ClusterProps>(
         ref={ref}
         className={clsx(
           className,
-          styles.one(css`
+          oneStyle(css`
             display: flex;
             flex-wrap: wrap;
           `)(),
@@ -53,15 +53,14 @@ export const Cluster = React.forwardRef<any, ClusterProps>(
 const reverseStyle = (reverse: boolean) =>
   flexDirection[reverse ? 'reversedRow' : 'row'] + justifyContent.start
 
-const gapStyle = (reverse: ClusterProps['reverse']) => (
+const gapStyle = (
+  reverse: ClusterProps['reverse']
   // @ts-ignore
-  gapProp: keyof DashVariables['gap'],
-  queryName: keyof MediaQueries
-) => {
+): MqPropCallback<keyof DashVariables['gap']> => (gapProp, queryName) => {
   const reversed =
     !reverse || typeof reverse === 'boolean' ? reverse : reverse[queryName]
   const marginDirection = reversed ? 'right' : 'left'
-
+  // @ts-ignore
   return ({gap}) => css`
     margin-top: calc(-1 * ${gap[gapProp]})!important;
     margin-${marginDirection}: calc(-1 * ${gap[gapProp]})!important;
@@ -75,7 +74,7 @@ const gapStyle = (reverse: ClusterProps['reverse']) => (
 
 export interface ClusterProps extends BoxProps {
   readonly display?: undefined
-  readonly reverse?: MediaQueryProp<boolean>
+  readonly reverse?: MqProp<boolean>
   // @ts-ignore
-  readonly gap?: MediaQueryProp<keyof DashVariables['gap']>
+  readonly gap?: MqProp<keyof DashVariables['gap']>
 }

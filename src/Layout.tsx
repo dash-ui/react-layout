@@ -58,34 +58,34 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
   const styles = useDash()
   const context = React.useMemo(() => {
     const oneStyle = getOneStyleCache(styles)
+    // @ts-ignore
+    const mediaQueryKeys: Extract<keyof MediaQueries, string>[] = Object.keys(
+      mediaQueries
+    )
     const mq = dashMq(mediaQueries) as Mq
     mq.prop = (style: any, value: any) => {
       if (value === void 0) return
 
       if (typeof value === 'object' && !Array.isArray(value)) {
         // Media queries
-        const mqObj = mq(
-          Object.keys(mediaQueries).reduce(
-            (stylesWithMq: any, queryName: any) => {
-              const queryValue = value[queryName as keyof MediaQueries]
+        const mqs: Record<
+          keyof MediaQueries,
+          string | StyleObject | StyleCallback<DashVariables>
+        > = {}
+        for (let i = 0; i < mediaQueryKeys.length; i++) {
+          const queryName = mediaQueryKeys[i]
+          const queryValue = value[queryName]
 
-              if (value[queryName as keyof MediaQueries] !== void 0) {
-                stylesWithMq[queryName] =
-                  typeof style === 'function'
-                    ? style(queryValue, queryName)
-                    : style[queryValue]
-              }
+          if (queryValue !== void 0) {
+            // @ts-ignore
+            mqs[queryName] =
+              typeof style === 'function'
+                ? style(queryValue, queryName)
+                : style[queryValue]
+          }
+        }
 
-              return stylesWithMq
-            },
-            {} as Record<
-              keyof MediaQueries,
-              string | StyleObject | StyleCallback<DashVariables>
-            >
-          )
-        )
-
-        return styles.one(mqObj)()
+        return oneStyle(mq(mqs))()
       }
       // Single style
       return oneStyle(
@@ -103,7 +103,8 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
 }
 
 // This puts string styles w/o media queries on a hot path that makes their
-// class name retrieval 10x faster
+// class name retrieval 10x faster. Also puts simple objects and media queries
+// on a hot path for about a 3x gain.
 function getOneStyleCache(styles: Styles) {
   let cache: Record<string, StylesOne> = oneCache.get(styles)
 
@@ -113,9 +114,29 @@ function getOneStyleCache(styles: Styles) {
   }
 
   return (style: StyleValue) => {
-    if (typeof style !== 'string') return styles.one(style)
-    if (cache[style] === void 0) cache[style] = styles.one(style)
-    return cache[style]
+    let key: StyleValue = style
+    // Caching simple media query/object styles is about 3x faster
+    // than not caching
+    if (typeof key === 'object') {
+      const values = Object.values(style)
+      // Please don't devsplain me about Array.every(). What's the point in
+      // memoization if we don't maximize for performance?
+      let every = true
+      const len = values.length
+      let i = 0
+
+      for (; i < len; i++)
+        if (typeof values[i] !== 'string') {
+          every = false
+          break
+        }
+
+      if (every) key = JSON.stringify(style)
+    }
+
+    if (typeof key !== 'string') return styles.one(style)
+    if (cache[key] === void 0) cache[key] = styles.one(style)
+    return cache[key]
   }
 }
 

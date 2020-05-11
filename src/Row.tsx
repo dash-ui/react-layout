@@ -31,7 +31,7 @@ export const Row = React.forwardRef<any, RowProps>(
             & > * {
               flex-shrink: 0;
             }
-          `),
+          `)(),
           prop(alignItems, align),
           prop(justifyContent, distribute),
           prop(gapStyle(reverse), gap),

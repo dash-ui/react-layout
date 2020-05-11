@@ -16,7 +16,10 @@ import type {MqProp, MqPropCallback} from './Layout'
  */
 export const Row = React.forwardRef<any, RowProps>(
   ({className, align, distribute, gap, reverse = false, ...props}, ref) => {
-    const prop = useLayout().mq.prop
+    const {
+      mq: {prop},
+      oneStyle,
+    } = useLayout()
 
     return (
       <Box
@@ -24,6 +27,11 @@ export const Row = React.forwardRef<any, RowProps>(
         display="flex"
         className={clsx(
           className,
+          oneStyle(css`
+            & > * {
+              flex-shrink: 0;
+            }
+          `),
           prop(alignItems, align),
           prop(justifyContent, distribute),
           prop(gapStyle(reverse), gap),

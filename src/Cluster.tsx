@@ -40,6 +40,9 @@ export const Cluster = React.forwardRef<any, ClusterProps>(
           oneStyle(css`
             display: flex;
             flex-wrap: wrap;
+            & > * {
+              flex-shrink: 0;
+            }
           `)(),
           prop(gapStyle(reverse), gap),
           prop(reverseStyle, reverse)

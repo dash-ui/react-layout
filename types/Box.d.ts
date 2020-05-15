@@ -9,7 +9,7 @@ export interface BoxProps extends LayoutAttributes {
   readonly as?: keyof JSX.IntrinsicElements | React.ComponentType<any>
   readonly className?: string | string[]
   readonly display?: MqProp<
-    'flex' | 'inlineFlex' | 'block' | 'inlineBlock' | 'inline'
+    'flex' | 'inlineFlex' | 'block' | 'inlineBlock' | 'inline' | 'none'
   >
   readonly position?: MqProp<'relative' | 'absolute' | 'sticky' | 'fixed'>
   readonly width?: MqProp<number | string>

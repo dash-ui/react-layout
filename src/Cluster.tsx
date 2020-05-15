@@ -27,25 +27,22 @@ import type {MqProp, MqPropCallback} from './Layout'
  */
 export const Cluster = React.forwardRef<any, ClusterProps>(
   ({className, gap, reverse = false, ...props}, ref) => {
-    const {
-      oneStyle,
-      mq: {prop},
-    } = useLayout()
+    const {one, mq} = useLayout()
 
     return (
       <Box
         ref={ref}
         className={clsx(
           className,
-          oneStyle(css`
+          one(css`
             display: flex;
             flex-wrap: wrap;
             & > * {
               flex-shrink: 0;
             }
           `)(),
-          prop(gapStyle(reverse), gap),
-          prop(reverseStyle, reverse)
+          mq(gapStyle(reverse), gap),
+          mq(reverseStyle, reverse)
         )}
         {...props}
       />

@@ -1,7 +1,7 @@
 import * as React from 'react'
-import defaultStyles, {useDash} from '@dash-ui/react'
+import defaultStyles from '@dash-ui/styles'
+import {useDash} from '@dash-ui/react'
 import dashMq from '@dash-ui/mq'
-import type {MediaQueryCallback} from '@dash-ui/mq'
 import type {
   Styles,
   DashVariables,
@@ -15,9 +15,8 @@ import type {
 declare const __DEV__: boolean
 
 const oneCache = new Map()
-const defaultOneStyle = getOneStyleCache(defaultStyles)
-const defaultMq = dashMq({}) as Mq
-defaultMq.prop = function <V = any, Names extends string = string>(
+const defaultOne = getOneCache(defaultStyles)
+const defaultMq = function <V = any, Names extends string = string>(
   style: any,
   value: any
 ) {
@@ -31,7 +30,7 @@ defaultMq.prop = function <V = any, Names extends string = string>(
     }
   }
 
-  return defaultOneStyle(
+  return defaultOne(
     typeof style === 'function'
       ? style(value as V)
       : typeof value === 'string'
@@ -42,7 +41,7 @@ defaultMq.prop = function <V = any, Names extends string = string>(
 
 const LayoutContext = React.createContext<LayoutContextType>({
   styles: defaultStyles,
-  oneStyle: defaultOneStyle,
+  one: defaultOne,
   // @ts-ignore
   mediaQueries: {},
   mq: defaultMq,
@@ -57,47 +56,50 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
 }) => {
   const styles = useDash()
   const context = React.useMemo(() => {
-    const oneStyle = getOneStyleCache(styles)
+    const one = getOneCache(styles)
     // @ts-ignore
     const mediaQueryKeys: Extract<keyof MediaQueries, string>[] = Object.keys(
       mediaQueries
     )
-    const mq = dashMq(mediaQueries) as Mq
-    mq.prop = (style: any, value: any) => {
-      if (value === void 0) return
+    const mq = dashMq(mediaQueries)
+    return {
+      styles,
+      one,
+      mediaQueries,
+      mq: (style: any, value: any) => {
+        if (value === void 0) return
 
-      if (typeof value === 'object' && !Array.isArray(value)) {
-        // Media queries
-        const mqs: Record<
-          keyof MediaQueries,
-          string | StyleObject | StyleCallback<DashVariables>
-        > = {}
-        for (let i = 0; i < mediaQueryKeys.length; i++) {
-          const queryName = mediaQueryKeys[i]
-          const queryValue = value[queryName]
+        if (typeof value === 'object' && !Array.isArray(value)) {
+          // Media queries
+          const mqs: Record<
+            keyof MediaQueries,
+            string | StyleObject | StyleCallback<DashVariables>
+          > = {}
+          for (let i = 0; i < mediaQueryKeys.length; i++) {
+            const queryName = mediaQueryKeys[i]
+            const queryValue = value[queryName]
 
-          if (queryValue !== void 0) {
-            // @ts-ignore
-            mqs[queryName] =
-              typeof style === 'function'
-                ? style(queryValue, queryName)
-                : style[queryValue]
+            if (queryValue !== void 0) {
+              // @ts-ignore
+              mqs[queryName] =
+                typeof style === 'function'
+                  ? style(queryValue, queryName)
+                  : style[queryValue]
+            }
           }
+
+          return one(mq(mqs))()
         }
-
-        return oneStyle(mq(mqs))()
-      }
-      // Single style
-      return oneStyle(
-        typeof style === 'function'
-          ? style(value)
-          : typeof value === 'string'
-          ? style[value]
-          : ''
-      )()
+        // Single style
+        return one(
+          typeof style === 'function'
+            ? style(value)
+            : typeof value === 'string'
+            ? style[value]
+            : ''
+        )()
+      },
     }
-
-    return {styles, oneStyle, mediaQueries, mq}
   }, [styles, mediaQueries])
   return <LayoutContext.Provider value={context} children={children} />
 }
@@ -105,7 +107,7 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
 // This puts string styles w/o media queries on a hot path that makes their
 // class name retrieval 10x faster. Also puts simple objects and media queries
 // on a hot path for about a 3x gain.
-function getOneStyleCache(styles: Styles) {
+function getOneCache(styles: Styles) {
   let cache: Record<string, StylesOne> = oneCache.get(styles)
 
   if (!cache) {
@@ -143,23 +145,16 @@ function getOneStyleCache(styles: Styles) {
 export interface LayoutContextType {
   styles: Styles
   mediaQueries: MediaQueries
-  oneStyle: (style: StyleValue) => StylesOne
+  one: (style: StyleValue) => StylesOne
   mq: Mq
 }
 
-type Mq = MediaQueryCallback<
-  Extract<keyof MediaQueries, string>,
-  DashVariables
-> & {
-  prop: MqContextProp
-}
-
-interface MqContextProp<V = any> {
+interface Mq<V = any> {
   (style: MqPropCallback<V>, value: V): string | undefined
 }
 
-interface MqContextProp<V = any, Names extends string = string> {
-  (style: StyleMap<Names>, value: V): string | undefined
+interface Mq<V = any, Names extends string = string> {
+  (style: StyleMap<Names, DashVariables>, value: V): string | undefined
 }
 
 export type MqPropCallback<V = any> = (

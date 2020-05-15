@@ -25,22 +25,22 @@ export const Box = React.forwardRef<any, BoxProps>(
     },
     ref
   ) => {
-    const prop = useLayout().mq.prop
+    const {mq} = useLayout()
 
     return (
       <As
         ref={ref}
         className={clsx(
           className,
-          prop(frameStyle, display),
-          prop(frameStyle, position),
-          prop(widthStyle, width),
-          prop(heightStyle, height),
-          prop(sizeStyle, size),
-          prop(padStyle, pad),
-          prop(bgStyle, bg),
-          prop(elevationStyle, elevation),
-          prop(radiusStyle, radius)
+          mq(frameStyle, display),
+          mq(frameStyle, position),
+          mq(widthStyle, width),
+          mq(heightStyle, height),
+          mq(sizeStyle, size),
+          mq(padStyle, pad),
+          mq(bgStyle, bg),
+          mq(elevationStyle, elevation),
+          mq(radiusStyle, radius)
         )}
         {...props}
       />
@@ -138,7 +138,7 @@ export interface BoxProps extends LayoutAttributes {
   readonly as?: keyof JSX.IntrinsicElements | React.ComponentType<any>
   readonly className?: string | string[]
   readonly display?: MqProp<
-    'flex' | 'inlineFlex' | 'block' | 'inlineBlock' | 'inline'
+    'flex' | 'inlineFlex' | 'block' | 'inlineBlock' | 'inline' | 'none'
   >
   readonly position?: MqProp<'relative' | 'absolute' | 'sticky' | 'fixed'>
   readonly width?: MqProp<number | string>

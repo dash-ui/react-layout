@@ -1,4 +1,4 @@
-import styles from '@dash-ui/react'
+import styles from '@dash-ui/styles'
 import {matchers} from '@dash-ui/jest'
 
 // Add the custom matchers provided by '@dash-ui/jest'

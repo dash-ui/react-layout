@@ -19,7 +19,7 @@ export const Layer = React.forwardRef<any, LayerProps>((props, ref) => (
 
 export const LayerItem = React.forwardRef<any, LayerItemProps>(
   ({className, offset, placement, z, ...props}, ref) => {
-    const prop = useLayout().mq.prop
+    const {mq} = useLayout()
 
     return (
       <Box
@@ -27,8 +27,8 @@ export const LayerItem = React.forwardRef<any, LayerItemProps>(
         position="absolute"
         className={clsx(
           className,
-          prop(placementStyle(offset), placement),
-          prop(zStyle, z)
+          mq(placementStyle(offset), placement),
+          mq(zStyle, z)
         )}
         {...props}
       />

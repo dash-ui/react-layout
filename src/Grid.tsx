@@ -32,21 +32,21 @@ export const Grid = React.forwardRef<any, GridProps>(
     },
     ref
   ) => {
-    const prop = useLayout().mq.prop
+    const {mq} = useLayout()
 
     return (
       <Box
         ref={ref}
         className={clsx(
           className,
-          prop(justifyItems, alignX),
-          prop(alignItems, alignY),
-          prop(justifyContent, distributeX),
-          prop(alignContent, distributeY),
-          prop(colsStyle, cols),
-          prop(rowsStyle, rows),
-          prop(gridStyle, inline || false),
-          prop(gapStyle, gap)
+          mq(justifyItems, alignX),
+          mq(alignItems, alignY),
+          mq(justifyContent, distributeX),
+          mq(alignContent, distributeY),
+          mq(colsStyle, cols),
+          mq(rowsStyle, rows),
+          mq(gridStyle, inline || false),
+          mq(gapStyle, gap)
         )}
         {...props}
       />
@@ -59,19 +59,19 @@ export const GridItem = React.forwardRef<any, GridItemProps>(
     {className, alignX, alignY, colStart, colEnd, rowStart, rowEnd, ...props},
     ref
   ) => {
-    const prop = useLayout().mq.prop
+    const {mq} = useLayout()
 
     return (
       <Box
         ref={ref}
         className={clsx(
           className,
-          prop(justifySelf, alignX),
-          prop(alignSelf, alignY),
-          prop(colStartStyle, colStart),
-          prop(colEndStyle, colEnd),
-          prop(rowStartStyle, rowStart),
-          prop(rowEndStyle, rowEnd)
+          mq(justifySelf, alignX),
+          mq(alignSelf, alignY),
+          mq(colStartStyle, colStart),
+          mq(colEndStyle, colEnd),
+          mq(rowStartStyle, rowStart),
+          mq(rowEndStyle, rowEnd)
         )}
         {...props}
       />

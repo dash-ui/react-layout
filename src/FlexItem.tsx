@@ -23,20 +23,20 @@ export const FlexItem = React.forwardRef<any, FlexItemProps>(
     },
     ref
   ) => {
-    const prop = useLayout().mq.prop
+    const {mq} = useLayout()
 
     return (
       <Box
         ref={ref}
         className={clsx(
           className,
-          prop(maxWidthStyle, maxWidth),
-          prop(maxHeightStyle, maxHeight),
-          prop(basisStyle, basis),
-          prop(orderStyle, order),
-          prop(growStyle, grow),
-          prop(shrinkStyle, shrink),
-          prop(alignSelf, align)
+          mq(maxWidthStyle, maxWidth),
+          mq(maxHeightStyle, maxHeight),
+          mq(basisStyle, basis),
+          mq(orderStyle, order),
+          mq(growStyle, grow),
+          mq(shrinkStyle, shrink),
+          mq(alignSelf, align)
         )}
         {...props}
       />

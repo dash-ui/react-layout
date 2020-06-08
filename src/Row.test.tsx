@@ -1,18 +1,18 @@
 /* jest */
 import * as React from 'react'
-import {render} from '@testing-library/react'
-import {Row} from './Row'
+import {render, screen} from '@testing-library/react'
 import {renderMq, mediaQueries} from 'test-utils'
+import {Row} from './Row'
 
 describe('<Row> without media queries', () => {
   it('applies default styles', () => {
-    const {getByTestId} = render(<Row data-testid="el" />)
-    expect(getByTestId('el')).toHaveStyleRule('display', 'flex')
+    render(<Row data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule('display', 'flex')
   })
 
   it('applies the "gap" prop', () => {
-    const {getByTestId} = render(<Row gap={1} data-testid="el" />)
-    expect(getByTestId('el')).toHaveStyleRule(
+    render(<Row gap={1} data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule(
       'margin-left',
       'var(--gap-1)!important',
       {
@@ -22,8 +22,8 @@ describe('<Row> without media queries', () => {
   })
 
   it('applies the "gap" prop w/ "reverse"', () => {
-    const {getByTestId} = render(<Row gap={1} reverse data-testid="el" />)
-    expect(getByTestId('el')).toHaveStyleRule(
+    render(<Row gap={1} reverse data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule(
       'margin-right',
       'var(--gap-1)!important',
       {
@@ -33,25 +33,31 @@ describe('<Row> without media queries', () => {
   })
 
   it('applies the "reverse" prop', () => {
-    const {getByTestId} = render(<Row reverse data-testid="el" />)
-    expect(getByTestId('el')).toHaveStyleRule('flex-direction', 'row-reverse')
+    render(<Row reverse data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule(
+      'flex-direction',
+      'row-reverse'
+    )
   })
 
   it('applies the "align" prop', () => {
-    const {getByTestId} = render(<Row align="center" data-testid="el" />)
-    expect(getByTestId('el')).toHaveStyleRule('align-items', 'center')
+    render(<Row align='center' data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule('align-items', 'center')
   })
 
   it('applies the "distribute" prop', () => {
-    const {getByTestId} = render(<Row distribute="center" data-testid="el" />)
-    expect(getByTestId('el')).toHaveStyleRule('justify-content', 'center')
+    render(<Row distribute='center' data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule(
+      'justify-content',
+      'center'
+    )
   })
 })
 
 describe('<Row> with media queries', () => {
   it('applies the "gap" prop', () => {
-    const {getByTestId} = renderMq(<Row gap={{phone: 1}} data-testid="el" />)
-    expect(getByTestId('el')).toHaveStyleRule(
+    renderMq(<Row gap={{phone: 1}} data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule(
       'margin-left',
       'var(--gap-1)!important',
       {
@@ -62,10 +68,8 @@ describe('<Row> with media queries', () => {
   })
 
   it('applies the "gap" prop w/ "reverse"', () => {
-    const {getByTestId} = renderMq(
-      <Row gap={{phone: 1}} reverse data-testid="el" />
-    )
-    expect(getByTestId('el')).toHaveStyleRule(
+    renderMq(<Row gap={{phone: 1}} reverse data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule(
       'margin-right',
       'var(--gap-1)!important',
       {
@@ -76,29 +80,31 @@ describe('<Row> with media queries', () => {
   })
 
   it('applies the "reverse" prop', () => {
-    const {getByTestId} = renderMq(
-      <Row reverse={{phone: true}} data-testid="el" />
+    renderMq(<Row reverse={{phone: true}} data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule(
+      'flex-direction',
+      'row-reverse',
+      {
+        media: mediaQueries.phone,
+      }
     )
-    expect(getByTestId('el')).toHaveStyleRule('flex-direction', 'row-reverse', {
-      media: mediaQueries.phone,
-    })
   })
 
   it('applies the "align" prop', () => {
-    const {getByTestId} = renderMq(
-      <Row align={{phone: 'center'}} data-testid="el" />
-    )
-    expect(getByTestId('el')).toHaveStyleRule('align-items', 'center', {
+    renderMq(<Row align={{phone: 'center'}} data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule('align-items', 'center', {
       media: mediaQueries.phone,
     })
   })
 
   it('applies the "distribute" prop', () => {
-    const {getByTestId} = renderMq(
-      <Row distribute={{phone: 'center'}} data-testid="el" />
+    renderMq(<Row distribute={{phone: 'center'}} data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule(
+      'justify-content',
+      'center',
+      {
+        media: mediaQueries.phone,
+      }
     )
-    expect(getByTestId('el')).toHaveStyleRule('justify-content', 'center', {
-      media: mediaQueries.phone,
-    })
   })
 })

@@ -14,7 +14,7 @@ import type {MqProp, MqPropCallback} from './Layout'
  *   ‾‾‾
  */
 export const Layer = React.forwardRef<any, LayerProps>((props, ref) => (
-  <Box ref={ref} position="relative" {...props} />
+  <Box ref={ref} position='relative' {...props} />
 ))
 
 export const LayerItem = React.forwardRef<any, LayerItemProps>(
@@ -24,7 +24,7 @@ export const LayerItem = React.forwardRef<any, LayerItemProps>(
     return (
       <Box
         ref={ref}
-        position="absolute"
+        position='absolute'
         className={clsx(
           className,
           mq(placementStyle(offset), placement),

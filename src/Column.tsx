@@ -1,10 +1,10 @@
 import * as React from 'react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
+import type {DashVariables} from '@dash-ui/styles'
 import {Box} from './Box'
 import {useLayout} from './Layout'
 import {flexDirection, alignItems, justifyContent} from './styles'
-import type {DashVariables} from '@dash-ui/styles'
 import type {BoxProps} from './Box'
 import type {MqProp, MqPropCallback} from './Layout'
 
@@ -24,7 +24,7 @@ export const Column = React.forwardRef<any, ColumnProps>(
     return (
       <Box
         ref={ref}
-        display="flex"
+        display='flex'
         className={clsx(
           className,
           one(css`

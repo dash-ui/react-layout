@@ -1,10 +1,10 @@
 import * as React from 'react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
+import type {DashVariables} from '@dash-ui/styles'
 import {Box} from './Box'
 import {useLayout} from './Layout'
 import {justifyContent, flexDirection} from './styles'
-import type {DashVariables} from '@dash-ui/styles'
 import type {BoxProps} from './Box'
 import type {MqProp, MqPropCallback} from './Layout'
 

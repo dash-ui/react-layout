@@ -1,9 +1,9 @@
 import * as React from 'react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
+import type {DashVariables} from '@dash-ui/styles'
 import {useLayout} from './Layout'
 import {unit} from './utils'
-import type {DashVariables} from '@dash-ui/styles'
 import type {MqProp, MqPropCallback} from './Layout'
 import type {LayoutAttributes} from './types'
 

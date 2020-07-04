@@ -2,7 +2,7 @@ import '@dash-ui/jest'
 import React from 'react'
 import {render as renderTest} from '@testing-library/react'
 import styles from '@dash-ui/styles'
-import {LayoutProvider} from '../src/Layout'
+import {LayoutProvider} from '../src/layout'
 import type {RenderResult, RenderOptions} from '@testing-library/react'
 
 const theme = {

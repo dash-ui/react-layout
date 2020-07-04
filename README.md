@@ -62,20 +62,6 @@ import _ from '@dash-ui/react-layout'
 | ----------------------- | ----------------------------------------------------------- |
 | [useLayout](#uselayout) | Consumes the context from [LayoutProvider](#layoutprovider) |
 
-### Styles
-
-These are useful objects for using quick flex styles in media query props
-
-| Component                         | Description |
-| --------------------------------- | ----------- |
-| [alignContent](#aligncontent)     |             |
-| [alignItems](#alignitems)         |             |
-| [alignSelf](#alignself)           |             |
-| [flexDirection](#flexdirection)   |             |
-| [justifyContent](#justifycontent) |             |
-| [justifyItems](#justifyitems)     |             |
-| [justifySelf](#justifyself)       |             |
-
 ---
 
 ## Components
@@ -91,12 +77,6 @@ These are useful objects for using quick flex styles in media query props
 ### useLayout()
 
 Consumes the context from [LayoutProvider](#layoutprovider)
-
-## Styles
-
-### alignItems
-
-An object containing a property map for `align-items` styles
 
 ## LICENSE
 

@@ -2,11 +2,11 @@ import * as React from 'react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
 import type {DashVariables} from '@dash-ui/styles'
-import {Box} from './Box'
-import {useLayout} from './Layout'
+import {Box} from './box'
+import {useLayout} from './layout'
 import {flexDirection, justifyContent, alignItems} from './styles'
-import type {BoxProps} from './Box'
-import type {MqProp, MqPropCallback} from './Layout'
+import type {BoxProps} from './box'
+import type {MqProp, MqPropCallback} from './layout'
 
 /**
  * A component that distributes its items in a row without wrapping like so:

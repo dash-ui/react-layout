@@ -2,7 +2,7 @@
 import * as React from 'react'
 import {render, screen} from '@testing-library/react'
 import {renderMq, mediaQueries} from 'test-utils'
-import {Layer, LayerItem} from './Layer'
+import {Layer, LayerItem} from './layer'
 
 describe('<Layer>', () => {
   it('should apply default styles', () => {

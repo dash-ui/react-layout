@@ -1156,10 +1156,10 @@
   resolved "https://registry.yarnpkg.com/@commitlint/types/-/types-9.0.1.tgz#df281f0f3d8f3adb10c95e4dd72b16acf41b5400"
   integrity sha512-wo2rHprtDzTHf4tiSxavktJ52ntiwmg7eHNGFLH38G1of8OfGVwOc1sVbpM4jN/HK/rCMhYOi6xzoPqsv0537A==
 
-"@dash-ui/jest@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@dash-ui/jest/-/jest-1.1.0.tgz#89b691936e5393a2bea78c9e601174ece0a14941"
-  integrity sha512-WODbL0cvHM7pJO8Mh34QvsQHFzRfVvfh1zStH1GCX934gLqgjpY7YiTgUOKkh7jfBtp6CuYdF+psb3JYCvqGVw==
+"@dash-ui/jest@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@dash-ui/jest/-/jest-2.0.0.tgz#b279ac15089b0cc0d35c48dbf419d6594e023669"
+  integrity sha512-zB+2PbSCuSZeXqWVqfLFdyqAA6q5RgmQp0pk0Xcifk8kckjs6nDKwElU0apLNAnwLxVRNNQ8/sFZJWPv62QhrQ==
   dependencies:
     chalk "^4.0.0"
     css "^2.2.4"

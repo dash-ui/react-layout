@@ -2,8 +2,8 @@ import * as React from 'react'
 import clsx from 'clsx'
 import css from 'minify-css.macro'
 import type {DashVariables} from '@dash-ui/styles'
-import {Box} from './Box'
-import {useLayout} from './Layout'
+import {Box} from './box'
+import {useLayout} from './layout'
 import {
   alignSelf,
   justifySelf,
@@ -13,8 +13,8 @@ import {
   alignContent,
 } from './styles'
 import {unit} from './utils'
-import type {BoxProps} from './Box'
-import type {MqProp, MqPropCallback} from './Layout'
+import type {BoxProps} from './box'
+import type {MqProp, MqPropCallback} from './layout'
 
 export const Grid = React.forwardRef<any, GridProps>(
   (

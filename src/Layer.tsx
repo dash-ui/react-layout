@@ -1,11 +1,11 @@
 import * as React from 'react'
 import clsx from 'clsx'
 import css from 'minify-css.macro'
-import {Box} from './Box'
-import {useLayout} from './Layout'
+import {Box} from './box'
+import {useLayout} from './layout'
 import {unit} from './utils'
-import type {BoxProps} from './Box'
-import type {MqProp, MqPropCallback} from './Layout'
+import type {BoxProps} from './box'
+import type {MqProp, MqPropCallback} from './layout'
 
 /**
  * A component that makes its items layer on top of each other:

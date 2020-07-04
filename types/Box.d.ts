@@ -1,6 +1,6 @@
 import * as React from 'react'
 import type {DashVariables} from '@dash-ui/styles'
-import type {MqProp} from './Layout'
+import type {MqProp} from './layout'
 import type {LayoutAttributes} from './types'
 export declare const Box: React.ForwardRefExoticComponent<
   BoxProps & React.RefAttributes<any>

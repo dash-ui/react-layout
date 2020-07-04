@@ -2,33 +2,33 @@
 
 exports[`<Box> without media queries applies several props 1`] = `
 <DocumentFragment>
-  .-ui-0 {
+  .dash-ui-0 {
   display: block;
 }
 
-.-ui-1 {
+.dash-ui-1 {
   position: absolute;
 }
 
-.-ui-2 {
+.dash-ui-2 {
   width: 200px;
   height: 200px;
 }
 
-.-ui-3 {
+.dash-ui-3 {
   padding: var(--pad-3);
 }
 
-.-ui-4 {
+.dash-ui-4 {
   background: var(--color-blue);
 }
 
-.-ui-5 {
+.dash-ui-5 {
   box-shadow: var(--elevation-high);
 }
 
 <div
-    class="-ui-0 -ui-1 -ui-2 -ui-3 -ui-4 -ui-5"
+    class="dash-ui-0 dash-ui-1 dash-ui-2 dash-ui-3 dash-ui-4 dash-ui-5"
     data-testid="el"
   />
 </DocumentFragment>

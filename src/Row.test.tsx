@@ -2,7 +2,7 @@
 import * as React from 'react'
 import {render, screen} from '@testing-library/react'
 import {renderMq, mediaQueries} from 'test-utils'
-import {Row} from './Row'
+import {Row} from './row'
 
 describe('<Row> without media queries', () => {
   it('applies default styles', () => {

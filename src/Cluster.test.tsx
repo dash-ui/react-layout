@@ -2,7 +2,7 @@
 import * as React from 'react'
 import {render, screen} from '@testing-library/react'
 import {renderMq, mediaQueries} from 'test-utils'
-import {Cluster} from './Cluster'
+import {Cluster} from './cluster'
 
 describe('<Cluster> without media queries', () => {
   it('applies default styles', () => {

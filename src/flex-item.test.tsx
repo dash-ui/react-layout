@@ -2,7 +2,7 @@
 import * as React from 'react'
 import {render, screen} from '@testing-library/react'
 import {renderMq, mediaQueries} from 'test-utils'
-import {FlexItem} from './FlexItem'
+import {FlexItem} from './flex-item'
 
 describe('<FlexItem> without media queries', () => {
   it('applies the "align" prop', () => {

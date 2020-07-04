@@ -2,7 +2,7 @@
 import * as React from 'react'
 import {render, screen} from '@testing-library/react'
 import {renderMq, mediaQueries} from 'test-utils'
-import {Grid, GridItem} from './Grid'
+import {Grid, GridItem} from './grid'
 
 describe('<Grid> without media queries', () => {
   it('applies default styles', () => {

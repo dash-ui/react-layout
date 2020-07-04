@@ -1,6 +1,6 @@
 import * as React from 'react'
-import type {BoxProps} from './Box'
-import type {MqProp} from './Layout'
+import type {BoxProps} from './box'
+import type {MqProp} from './layout'
 /**
  * A component that makes its items layer on top of each other:
  *   ___

@@ -154,7 +154,7 @@
   "devDependencies": {
     "@commitlint/cli": "^9.0.1",
     "@commitlint/config-conventional": "^9.0.1",
-    "@dash-ui/jest": "^1.1.0",
+    "@dash-ui/jest": "^2.0.0",
     "@dash-ui/react": "^0.5.0",
     "@dash-ui/styles": "^0.5.0",
     "@testing-library/jest-dom": "latest",

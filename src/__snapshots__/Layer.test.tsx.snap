@@ -2,12 +2,12 @@
 
 exports[`<LayerItem> with media queries applies default styles for each position: bottom 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
 @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     bottom: 0;
     left: 50%;
     -webkit-transform: translateX(-50%);
@@ -17,45 +17,45 @@ exports[`<LayerItem> with media queries applies default styles for each position
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> with media queries applies default styles for each position: bottomLeft 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
 @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     bottom: 0;
     left: 0;
   }
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> with media queries applies default styles for each position: bottomRight 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
 @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     bottom: 0;
     right: 0;
   }
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
@@ -63,7 +63,7 @@ exports[`<LayerItem> with media queries applies default styles for each position
 exports[`<LayerItem> with media queries applies default styles for each position: center 1`] = `
 <DocumentFragment>
   @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%,-50%);
@@ -72,24 +72,24 @@ exports[`<LayerItem> with media queries applies default styles for each position
   }
 }
 
-.-ui-1 {
+.dash-ui-1 {
   position: absolute;
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> with media queries applies default styles for each position: left 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
 @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     left: 0;
     top: 50%;
     -webkit-transform: translateY(-50%);
@@ -99,19 +99,19 @@ exports[`<LayerItem> with media queries applies default styles for each position
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> with media queries applies default styles for each position: right 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
 @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     right: 0;
     top: 50%;
     -webkit-transform: translateY(-50%);
@@ -121,19 +121,19 @@ exports[`<LayerItem> with media queries applies default styles for each position
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> with media queries applies default styles for each position: top 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
 @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     top: 0;
     left: 50%;
     -webkit-transform: translateX(-50%);
@@ -143,57 +143,57 @@ exports[`<LayerItem> with media queries applies default styles for each position
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> with media queries applies default styles for each position: topLeft 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
 @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     top: 0;
     left: 0;
   }
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> with media queries applies default styles for each position: topRight 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
 @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     top: 0;
     right: 0;
   }
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> with media queries applies styles with offsets for each position: bottom 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
 @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     bottom: 10px;
     left: 50%;
     -webkit-transform: translateX(-50%);
@@ -203,57 +203,57 @@ exports[`<LayerItem> with media queries applies styles with offsets for each pos
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> with media queries applies styles with offsets for each position: bottomLeft 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
 @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     bottom: 10px;
     left: 10px;
   }
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> with media queries applies styles with offsets for each position: bottomRight 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
 @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     bottom: 10px;
     right: 10px;
   }
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> with media queries applies styles with offsets for each position: left 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
 @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     left: 10px;
     top: 50%;
     -webkit-transform: translateY(-50%);
@@ -263,19 +263,19 @@ exports[`<LayerItem> with media queries applies styles with offsets for each pos
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> with media queries applies styles with offsets for each position: right 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
 @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     right: 10px;
     top: 50%;
     -webkit-transform: translateY(-50%);
@@ -285,19 +285,19 @@ exports[`<LayerItem> with media queries applies styles with offsets for each pos
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> with media queries applies styles with offsets for each position: top 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
 @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     top: 10px;
     left: 50%;
     -webkit-transform: translateX(-50%);
@@ -307,7 +307,7 @@ exports[`<LayerItem> with media queries applies styles with offsets for each pos
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
@@ -315,48 +315,48 @@ exports[`<LayerItem> with media queries applies styles with offsets for each pos
 exports[`<LayerItem> with media queries applies styles with offsets for each position: topLeft 1`] = `
 <DocumentFragment>
   @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     top: 10px;
     left: 10px;
   }
 }
 
-.-ui-1 {
+.dash-ui-1 {
   position: absolute;
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> with media queries applies styles with offsets for each position: topRight 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
 @media only screen and (min-width:0em) {
-  .-ui-0 {
+  .dash-ui-0 {
     top: 10px;
     right: 10px;
   }
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies default styles for each position: bottom 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   bottom: 0;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -365,48 +365,48 @@ exports[`<LayerItem> without media queries applies default styles for each posit
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies default styles for each position: bottomLeft 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   bottom: 0;
   left: 0;
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies default styles for each position: bottomRight 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   bottom: 0;
   right: 0;
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies default styles for each position: center 1`] = `
 <DocumentFragment>
-  .-ui-0 {
+  .dash-ui-0 {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%,-50%);
@@ -414,23 +414,23 @@ exports[`<LayerItem> without media queries applies default styles for each posit
   transform: translate(-50%,-50%);
 }
 
-.-ui-1 {
+.dash-ui-1 {
   position: absolute;
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies default styles for each position: left 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   left: 0;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -439,18 +439,18 @@ exports[`<LayerItem> without media queries applies default styles for each posit
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies default styles for each position: right 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   right: 0;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -459,18 +459,18 @@ exports[`<LayerItem> without media queries applies default styles for each posit
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies default styles for each position: top 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   top: 0;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -479,52 +479,52 @@ exports[`<LayerItem> without media queries applies default styles for each posit
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies default styles for each position: topLeft 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   top: 0;
   left: 0;
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies default styles for each position: topRight 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   top: 0;
   right: 0;
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies styles with offsets for each position: bottom 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   bottom: 10px;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -533,52 +533,52 @@ exports[`<LayerItem> without media queries applies styles with offsets for each 
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies styles with offsets for each position: bottomLeft 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   bottom: 10px;
   left: 10px;
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies styles with offsets for each position: bottomRight 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   bottom: 10px;
   right: 10px;
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies styles with offsets for each position: left 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   left: 10px;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -587,18 +587,18 @@ exports[`<LayerItem> without media queries applies styles with offsets for each 
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies styles with offsets for each position: right 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   right: 10px;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -607,18 +607,18 @@ exports[`<LayerItem> without media queries applies styles with offsets for each 
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies styles with offsets for each position: top 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   top: 10px;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -627,41 +627,41 @@ exports[`<LayerItem> without media queries applies styles with offsets for each 
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies styles with offsets for each position: topLeft 1`] = `
 <DocumentFragment>
-  .-ui-0 {
+  .dash-ui-0 {
   top: 10px;
   left: 10px;
 }
 
-.-ui-1 {
+.dash-ui-1 {
   position: absolute;
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;
 
 exports[`<LayerItem> without media queries applies styles with offsets for each position: topRight 1`] = `
 <DocumentFragment>
-  .-ui-1 {
+  .dash-ui-1 {
   position: absolute;
 }
 
-.-ui-0 {
+.dash-ui-0 {
   top: 10px;
   right: 10px;
 }
 
 <div
-    class="-ui-0 -ui-1"
+    class="dash-ui-0 dash-ui-1"
   />
 </DocumentFragment>
 `;

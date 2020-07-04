@@ -1,12 +1,12 @@
 import * as React from 'react'
 import clsx from 'clsx'
 import css from 'minify-css.macro'
-import {Box} from './Box'
-import {useLayout} from './Layout'
+import {Box} from './box'
+import {useLayout} from './layout'
 import {alignSelf} from './styles'
 import {unit} from './utils'
-import type {BoxProps} from './Box'
-import type {MqProp} from './Layout'
+import type {BoxProps} from './box'
+import type {MqProp} from './layout'
 
 export const FlexItem = React.forwardRef<any, FlexItemProps>(
   (

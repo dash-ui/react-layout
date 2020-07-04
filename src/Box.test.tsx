@@ -2,7 +2,7 @@
 import * as React from 'react'
 import {render, screen} from '@testing-library/react'
 import {silenceErrors, renderMq, mediaQueries} from 'test-utils'
-import {Box} from './Box'
+import {Box} from './box'
 
 describe('<Box> without media queries', () => {
   it(

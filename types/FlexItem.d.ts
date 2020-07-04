@@ -1,6 +1,6 @@
 import * as React from 'react'
-import type {BoxProps} from './Box'
-import type {MqProp} from './Layout'
+import type {BoxProps} from './box'
+import type {MqProp} from './layout'
 export declare const FlexItem: React.ForwardRefExoticComponent<
   FlexItemProps & React.RefAttributes<any>
 >

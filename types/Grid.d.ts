@@ -1,7 +1,7 @@
 import * as React from 'react'
 import type {DashVariables} from '@dash-ui/styles'
-import type {BoxProps} from './Box'
-import type {MqProp} from './Layout'
+import type {BoxProps} from './box'
+import type {MqProp} from './layout'
 export declare const Grid: React.ForwardRefExoticComponent<
   GridProps & React.RefAttributes<any>
 >

@@ -2,9 +2,9 @@ import * as React from 'react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
 import type {DashVariables} from '@dash-ui/styles'
-import {useLayout} from './Layout'
+import {useLayout} from './layout'
 import {unit} from './utils'
-import type {MqProp, MqPropCallback} from './Layout'
+import type {MqProp, MqPropCallback} from './layout'
 import type {LayoutAttributes} from './types'
 
 export const Box = React.forwardRef<any, BoxProps>(

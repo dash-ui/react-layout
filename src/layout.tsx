@@ -1,5 +1,5 @@
 import * as React from 'react'
-import defaultStyles from '@dash-ui/styles'
+import {styles as defaultStyles} from '@dash-ui/styles'
 import {useDash} from '@dash-ui/react'
 import dashMq from '@dash-ui/mq'
 import type {

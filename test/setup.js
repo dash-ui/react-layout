@@ -1,4 +1,4 @@
-import styles from '@dash-ui/styles'
+import {styles} from '@dash-ui/styles'
 import {matchers} from '@dash-ui/jest'
 
 // Add the custom matchers provided by '@dash-ui/jest'
@@ -7,5 +7,5 @@ expect.extend(matchers)
 afterEach(() => {
   jest.clearAllMocks()
   styles.dash.sheet.flush()
-  styles.dash.clear()
+  styles.dash.inserted.clear()
 })

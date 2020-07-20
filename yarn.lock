@@ -1176,10 +1176,10 @@
   dependencies:
     "@react-hook/passive-layout-effect" "^1.2.0"
 
-"@dash-ui/styles@^0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@dash-ui/styles/-/styles-0.6.1.tgz#4ccc4024e77d841029a91844d862e398c6eff6e6"
-  integrity sha512-0nwOmGplE0pPeZqUYEWAE9vJ1G19j393q2ixvtqbzQPt+fB2jfgUfuxYfR/fkmC1pHBer3EwsPo/ctIb6uEAsA==
+"@dash-ui/styles@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@dash-ui/styles/-/styles-0.7.0.tgz#a1801c4639e205fb83e95dfed9ba0e2dcba29b62"
+  integrity sha512-M8ZA4xiack4p+2n18W+xP+LNXVOvhv/5MOhte3pYkTvzuPlmiLm6RDUkkSUEfJ+FdPfJbOqDriHhOwpBqU9FQg==
   dependencies:
     "@dash-ui/stylis" "^1.0.5"
     "@dash-ui/unitless" "^2.0.0"

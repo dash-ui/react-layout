@@ -1,6 +1,5 @@
 import * as React from 'react'
 import {styles as defaultStyles} from '@dash-ui/styles'
-import {useDash} from '@dash-ui/react'
 import dashMq from '@dash-ui/mq'
 import type {
   Styles,
@@ -12,17 +11,12 @@ import type {
   StylesOne,
 } from '@dash-ui/styles'
 
-declare const __DEV__: boolean
-
 const oneCache = new Map()
 const defaultOne = getOneCache(defaultStyles)
-const defaultMq = function <V = any, Names extends string = string>(
-  style: any,
-  value: any
-) {
+const defaultMq = function <V>(style: any, value: unknown) {
   if (value === void 0) return
   /* istanbul ignore next */
-  if (__DEV__) {
+  if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'production') {
     if (typeof value === 'object' && !Array.isArray(value)) {
       throw new Error(
         '@dash-ui/layout is attempting to use media queries without a <LayoutProvider> component. This is not allowed.'
@@ -47,14 +41,17 @@ const LayoutContext = React.createContext<LayoutContextType>({
   mq: defaultMq,
 })
 
-export const useLayout = () => React.useContext(LayoutContext)
+export function useLayout() {
+  return React.useContext(LayoutContext)
+}
+
 const emptyObj = {}
 
-export const LayoutProvider: React.FC<LayoutProviderProps> = ({
+export function LayoutProvider({
+  styles = defaultStyles,
   mediaQueries = emptyObj,
   children,
-}) => {
-  const styles = useDash()
+}: LayoutProviderProps) {
   const context = React.useMemo(() => {
     const one = getOneCache(styles)
     // @ts-ignore
@@ -62,6 +59,7 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
       mediaQueries
     )
     const mq = dashMq(mediaQueries)
+
     return {
       styles,
       one,
@@ -90,6 +88,7 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
 
           return one(mq(mqs))()
         }
+
         // Single style
         return one(
           typeof style === 'function'
@@ -101,6 +100,7 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
       },
     }
   }, [styles, mediaQueries])
+
   return <LayoutContext.Provider value={context} children={children} />
 }
 
@@ -149,15 +149,18 @@ export interface LayoutContextType {
   mq: Mq
 }
 
-interface Mq<V = any> {
-  (style: MqPropCallback<V>, value: V): string | undefined
+interface Mq {
+  <T, V>(style: MqPropCallback<T>, value: V): string | undefined
 }
 
-interface Mq<V = any, Names extends string = string> {
-  (style: StyleMap<Names, DashVariables>, value: V): string | undefined
+interface Mq {
+  <V, Names extends string = string>(
+    style: StyleMap<Names, DashVariables>,
+    value: V
+  ): string | undefined
 }
 
-export type MqPropCallback<V = any> = (
+export type MqPropCallback<V> = (
   queryValue: V,
   queryName: keyof MediaQueries
 ) => StyleValue<DashVariables>
@@ -169,7 +172,9 @@ export type MqProp<ValueType> =
     }
 
 export interface LayoutProviderProps {
+  styles?: Styles
   mediaQueries?: MediaQueries
+  children?: React.ReactNode
 }
 
 export interface MediaQueries {}

@@ -37,24 +37,24 @@ import _ from '@dash-ui/react-layout'
 
 ### Components
 
-| Component                         | Description                                                                                                                                                        |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [LayoutProvider](#layoutprovider) | A context provider which is only required if you intend on using media query props or a custom `styles` object created by `@dash-ui/react` using `styles.create()` |
-| [Cluster](#cluster)               |                                                                                                                                                                    |
-| [Column](#column)                 |                                                                                                                                                                    |
-| [FlexItem](#flexitem)             |                                                                                                                                                                    |
-| [Box](#frame)                     |                                                                                                                                                                    |
-| [Grid](#grid)                     |                                                                                                                                                                    |
-| [GridItem](#griditem)             |                                                                                                                                                                    |
-| [Layer](#layer)                   |                                                                                                                                                                    |
-| [LayerItem](#layeritem)           |                                                                                                                                                                    |
-| [Row](#row)                       |                                                                                                                                                                    |
+| Component                             | Description                                                                                                                                                        |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`<LayoutProvider>`](#layoutprovider) | A context provider which is only required if you intend on using media query props or a custom `styles` object created by `@dash-ui/react` using `styles.create()` |
+| [`<Cluster>`](#cluster)               |                                                                                                                                                                    |
+| [`<Column>`](#column)                 |                                                                                                                                                                    |
+| [`<FlexItem>`](#flexitem)             |                                                                                                                                                                    |
+| [`<Box>`](#frame)                     |                                                                                                                                                                    |
+| [`<Grid>`](#grid)                     |                                                                                                                                                                    |
+| [`<GridItem>`](#griditem)             |                                                                                                                                                                    |
+| [`<Layer>`](#layer)                   |                                                                                                                                                                    |
+| [`<LayerItem>`](#layeritem)           |                                                                                                                                                                    |
+| [`<Row>`](#row)                       |                                                                                                                                                                    |
 
 ### Hooks
 
-| Component               | Description                                                 |
-| ----------------------- | ----------------------------------------------------------- |
-| [useLayout](#uselayout) | Consumes the context from [LayoutProvider](#layoutprovider) |
+| Component                   | Description                                                 |
+| --------------------------- | ----------------------------------------------------------- |
+| [`useLayout()`](#uselayout) | Consumes the context from [LayoutProvider](#layoutprovider) |
 
 ---
 

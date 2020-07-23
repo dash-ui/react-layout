@@ -135,7 +135,7 @@
       "**/src/**/*.{ts,tsx}"
     ],
     "setupFilesAfterEnv": [
-      "./test/setup.js"
+      "./test/setup.ts"
     ],
     "snapshotResolver": "./test/resolve-snapshot.js",
     "snapshotSerializers": [
@@ -155,8 +155,7 @@
     "@commitlint/cli": "^9.0.1",
     "@commitlint/config-conventional": "^9.0.1",
     "@dash-ui/jest": "^2.0.0",
-    "@dash-ui/react": "^0.6.0",
-    "@dash-ui/styles": "^0.7.0",
+    "@dash-ui/styles": "^0.7.3",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/react-hooks": "latest",
@@ -181,11 +180,10 @@
     "typescript": "latest"
   },
   "dependencies": {
-    "@dash-ui/mq": "^0.2.0",
+    "@dash-ui/mq": "^0.3.0",
     "clsx": "^1.1.1"
   },
   "peerDependencies": {
-    "@dash-ui/react": ">=0.6.1",
     "@dash-ui/styles": ">=0.6.1",
     "react": ">=16.8"
   }

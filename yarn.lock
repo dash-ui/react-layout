@@ -1164,22 +1164,15 @@
     chalk "^4.0.0"
     css "^2.2.4"
 
-"@dash-ui/mq@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@dash-ui/mq/-/mq-0.2.0.tgz#f494da73288b16fb744dd587c988f0914b420db2"
-  integrity sha512-cDuwFElmZi748GhfdH7o0ldfcP9wz8fkkepTS6YWGGQY7wsam4hpVh2lZbu16bs3grifkGxOhKdv701hKg8rwg==
+"@dash-ui/mq@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@dash-ui/mq/-/mq-0.3.0.tgz#8cfa47cfabf3b7c47c4bdf576c4228d7f0d73ed3"
+  integrity sha512-+OXIIPIpj+T9ilJrZqtVMUwwiWey40GL+JzITbuAjZhLSraihqvFVSRU3ssoC7iavqAP0PfHpWv7DKtiiWLXNA==
 
-"@dash-ui/react@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@dash-ui/react/-/react-0.6.0.tgz#ccd4e91ee31b810f54f7fb75dc0a7759a8f4fabb"
-  integrity sha512-tVMKXf823YE8NrbShSGrxPc9R/u7CzGlZRk+Eu/wklSvGtGWd06ZkgabzrCvWBniXnh3OAKffgpQdxbZ5fwvQg==
-  dependencies:
-    "@react-hook/passive-layout-effect" "^1.2.0"
-
-"@dash-ui/styles@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@dash-ui/styles/-/styles-0.7.0.tgz#a1801c4639e205fb83e95dfed9ba0e2dcba29b62"
-  integrity sha512-M8ZA4xiack4p+2n18W+xP+LNXVOvhv/5MOhte3pYkTvzuPlmiLm6RDUkkSUEfJ+FdPfJbOqDriHhOwpBqU9FQg==
+"@dash-ui/styles@^0.7.3":
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@dash-ui/styles/-/styles-0.7.3.tgz#17c5597281038d5508f610453b06e425a4fb6876"
+  integrity sha512-ZCncswU/usp1Yc0s5ALEoTgAyyoMhLq60CLJkB53VZxXdveT3LrYT7v32wmIHDClDe0dpvHUDOeII69jHR5y4A==
   dependencies:
     "@dash-ui/stylis" "^1.0.5"
     "@dash-ui/unitless" "^2.0.0"
@@ -1421,11 +1414,6 @@
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@react-hook/latest/-/latest-1.0.2.tgz#767eb6974f91eef353981b8b60a87147dadecb18"
   integrity sha512-zLtOIToct1EBTbwldkMJsXC2eCsmWOOP7z6UG0M/sCgnPExtIjvVMCpPESvPnMbQzDZytXVy0nvMbUuK2gZs2A==
-
-"@react-hook/passive-layout-effect@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@react-hook/passive-layout-effect/-/passive-layout-effect-1.2.0.tgz#1232f0b08f9bfd9f87a2898a3ae50d5f7731d806"
-  integrity sha512-obGcMHoeiG/qp9djzlxwvlsAzL4a+JFaxTLvJv8GykipmS/TEkfvdcpu6orE1ZL4dAT7OpoGwHDc/LGJbkZzXQ==
 
 "@rollup/plugin-babel@^5.0.2":
   version "5.0.3"

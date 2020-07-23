@@ -9,7 +9,6 @@
   <a href="https://bundlephobia.com/result?p=@dash-ui/react-layout">
     <img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/@dash-ui/react-layout?style=for-the-badge&labelColor=24292e">
   </a>
-
   <a aria-label="Types" href="https://www.npmjs.com/package/@dash-ui/react-layout">
     <img alt="Types" src="https://img.shields.io/npm/types/@dash-ui/react-layout?style=for-the-badge&labelColor=24292e">
   </a>
@@ -26,6 +25,17 @@
     <img alt="MIT License" src="https://img.shields.io/npm/l/@dash-ui/react-layout?style=for-the-badge&labelColor=24292e">
   </a>
 <hr>
+
+## Features
+
+- [x] Includes all of the most common layout components you'll need to build your app.
+      Grids, rows, columns, and more.
+- [x] **Media query props** add breakpoint-specific styles to your layout components.
+- [x] **CSS variable themes** mean performance is never going to be an issue when
+      users switch from light to dark mode.
+- [x] **Strong types** even when you use an `as` prop. If it's a button, you're
+      going to be limited to `<button>` HTML attributes!
+- [x] **Tiny** ([<3.5kB](https://bundlephobia.com/result?p=@dash-ui/react-layout)) as layout primitive libraries go
 
 ## Quick start
 
@@ -117,9 +127,9 @@ const Component = () => (
 
 ### Hooks
 
-| Component                   | Description                                                 |
-| --------------------------- | ----------------------------------------------------------- |
-| [`useLayout()`](#uselayout) | Consumes the context from [LayoutProvider](#layoutprovider) |
+| Component                   | Description                                                             |
+| --------------------------- | ----------------------------------------------------------------------- |
+| [`useLayout()`](#uselayout) | Consumes the context from the nearest [LayoutProvider](#layoutprovider) |
 
 ### Utils
 

@@ -2,10 +2,10 @@ import * as React from 'react'
 import clsx from 'clsx'
 import css from 'minify-css.macro'
 import {Box} from './box'
-import {useLayout} from './layout'
-import {unit} from './utils'
 import type {BoxProps} from './box'
+import {useLayout} from './layout'
 import type {MqProp, MqPropCallback} from './layout'
+import {unit, forwardRefAs} from './utils'
 
 /**
  * A component that makes its items layer on top of each other:
@@ -13,28 +13,32 @@ import type {MqProp, MqPropCallback} from './layout'
  *  | ☐ |
  *   ‾‾‾
  */
-export const Layer = React.forwardRef<any, LayerProps>((props, ref) => (
-  <Box ref={ref} position='relative' {...props} />
-))
+export const Layer = forwardRefAs<LayerProps, 'div'>(function Layer(
+  props,
+  ref
+) {
+  return <Box ref={ref} position='relative' {...props} />
+})
 
-export const LayerItem = React.forwardRef<any, LayerItemProps>(
-  ({className, offset, placement, z, ...props}, ref) => {
-    const {mq} = useLayout()
+export const LayerItem = forwardRefAs<LayerItemProps, 'div'>(function LayerItem(
+  {className, offset, placement, z, ...props},
+  ref
+) {
+  const {mq} = useLayout()
 
-    return (
-      <Box
-        ref={ref}
-        position='absolute'
-        className={clsx(
-          className,
-          mq(placementStyle(offset), placement),
-          mq(zStyle, z)
-        )}
-        {...props}
-      />
-    )
-  }
-)
+  return (
+    <Box
+      ref={ref}
+      className={clsx(
+        className,
+        mq(placementStyle(offset), placement),
+        mq(zStyle, z)
+      )}
+      position='absolute'
+      {...props}
+    />
+  )
+})
 
 const placementStyle = (
   offsetProp: LayerItemProps['offset'] | undefined
@@ -117,4 +121,10 @@ export interface LayerItemProps extends BoxProps {
   offset?: MqProp<number | string>
   placement: MqProp<Placements>
   z?: MqProp<number>
+}
+
+/* istanbul ignore next */
+if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
+  Layer.displayName = 'Layer'
+  LayerItem.displayName = 'LayerItem'
 }

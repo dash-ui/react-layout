@@ -3,10 +3,11 @@ import css from 'minify-css.macro'
 import clsx from 'clsx'
 import type {DashVariables} from '@dash-ui/styles'
 import {Box} from './box'
-import {useLayout} from './layout'
-import {flexDirection, alignItems, justifyContent} from './styles'
 import type {BoxProps} from './box'
+import {useLayout} from './layout'
 import type {MqProp, MqPropCallback} from './layout'
+import {flexDirection, alignItems, justifyContent} from './styles'
+import {forwardRefAs} from './utils'
 
 /**
  * A component that distributes its items in a column without wrapping like so:
@@ -17,31 +18,32 @@ import type {MqProp, MqPropCallback} from './layout'
  * ☐
  *
  */
-export const Column = React.forwardRef<any, ColumnProps>(
-  ({className, align, distribute, gap, reverse = false, ...props}, ref) => {
-    const {mq, cls} = useLayout()
+export const Column = forwardRefAs<ColumnProps, 'div'>(function Column(
+  {className, align, distribute, gap, reverse = false, ...props},
+  ref
+) {
+  const {mq, cls} = useLayout()
 
-    return (
-      <Box
-        ref={ref}
-        display='flex'
-        className={clsx(
-          className,
-          cls(css`
-            & > * {
-              flex-shrink: 0;
-            }
-          `),
-          mq(alignItems, align),
-          mq(justifyContent, distribute),
-          mq(gapStyle(reverse), gap),
-          mq(reverseStyle, reverse)
-        )}
-        {...props}
-      />
-    )
-  }
-)
+  return (
+    <Box
+      ref={ref}
+      className={clsx(
+        className,
+        cls(css`
+          & > * {
+            flex-shrink: 0;
+          }
+        `),
+        mq(alignItems, align),
+        mq(justifyContent, distribute),
+        mq(gapStyle(reverse), gap),
+        mq(reverseStyle, reverse)
+      )}
+      display='flex'
+      {...props}
+    />
+  )
+})
 
 const reverseStyle = (reverse: boolean) =>
   flexDirection[reverse ? 'reversedColumn' : 'column'] +
@@ -77,4 +79,9 @@ export interface ColumnProps extends BoxProps {
   // @ts-expect-error
   readonly gap?: MqProp<keyof DashVariables['gap']>
   readonly reverse?: MqProp<boolean>
+}
+
+/* istanbul ignore next */
+if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
+  Column.displayName = 'Column'
 }

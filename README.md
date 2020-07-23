@@ -121,7 +121,17 @@ const Component = () => (
 | --------------------------- | ----------------------------------------------------------- |
 | [`useLayout()`](#uselayout) | Consumes the context from [LayoutProvider](#layoutprovider) |
 
+### Utils
+
+| Util                              | Description                                                                                                      |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| [`forwardRefAs()`](#forwardrefas) | A wrapper around `React.forwardRef` that allows HTML attributes and prop types to be derived from the `as` prop. |
+
 ### TypeScript support
+
+`@dash-ui/react-layout` is written in TypeScript. That said, there are some things to know
+as it relates to connecting your `DashVariables` and media query types to these layout
+components.
 
 |                                                               | Description                                  |
 | ------------------------------------------------------------- | -------------------------------------------- |

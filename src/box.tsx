@@ -3,50 +3,48 @@ import css from 'minify-css.macro'
 import clsx from 'clsx'
 import type {DashVariables} from '@dash-ui/styles'
 import {useLayout} from './layout'
-import {unit} from './utils'
 import type {MqProp, MqPropCallback} from './layout'
-import type {LayoutAttributes} from './types'
+import {unit, forwardRefAs} from './utils'
+import type {AsProp} from './types'
 
-export const Box = React.forwardRef<any, BoxProps>(
-  (
-    {
-      as: As = 'div',
-      className,
-      display,
-      position,
-      width,
-      height,
-      size,
-      pad,
-      bg,
-      elevation,
-      radius,
-      ...props
-    },
-    ref
-  ) => {
-    const {mq} = useLayout()
+export const Box = forwardRefAs<BoxProps, 'div'>(function Box(
+  {
+    as: As = 'div',
+    className,
+    display,
+    position,
+    width,
+    height,
+    size,
+    pad,
+    bg,
+    elevation,
+    radius,
+    ...props
+  },
+  ref
+) {
+  const {mq} = useLayout()
 
-    return (
-      <As
-        ref={ref}
-        className={clsx(
-          className,
-          mq(frameStyle, display),
-          mq(frameStyle, position),
-          mq(widthStyle, width),
-          mq(heightStyle, height),
-          mq(sizeStyle, size),
-          mq(padStyle, pad),
-          mq(bgStyle, bg),
-          mq(elevationStyle, elevation),
-          mq(radiusStyle, radius)
-        )}
-        {...props}
-      />
-    )
-  }
-)
+  return (
+    <As
+      ref={ref}
+      className={clsx(
+        className,
+        mq(frameStyle, display),
+        mq(frameStyle, position),
+        mq(widthStyle, width),
+        mq(heightStyle, height),
+        mq(sizeStyle, size),
+        mq(padStyle, pad),
+        mq(bgStyle, bg),
+        mq(elevationStyle, elevation),
+        mq(radiusStyle, radius)
+      )}
+      {...props}
+    />
+  )
+})
 
 const d = 'display'
 const p = 'position'
@@ -134,8 +132,8 @@ const radiusStyle: MqPropCallback<
       : radius[radiusProp]};
   `
 
-export interface BoxProps extends LayoutAttributes {
-  readonly as?: keyof JSX.IntrinsicElements | React.ComponentType<any>
+export interface BoxProps {
+  readonly as?: AsProp
   readonly className?: string | string[]
   readonly display?: MqProp<
     'flex' | 'inlineFlex' | 'block' | 'inlineBlock' | 'inline' | 'none'
@@ -156,4 +154,9 @@ export interface BoxProps extends LayoutAttributes {
     // @ts-expect-error
     keyof DashVariables['radius'] | (keyof DashVariables['radius'])[]
   >
+}
+
+/* istanbul ignore next */
+if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
+  Box.displayName = 'Box'
 }

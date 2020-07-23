@@ -3,10 +3,11 @@ import css from 'minify-css.macro'
 import clsx from 'clsx'
 import type {DashVariables} from '@dash-ui/styles'
 import {Box} from './box'
-import {useLayout} from './layout'
-import {justifyContent, flexDirection} from './styles'
 import type {BoxProps} from './box'
+import {useLayout} from './layout'
 import type {MqProp, MqPropCallback} from './layout'
+import {justifyContent, flexDirection} from './styles'
+import {forwardRefAs} from './utils'
 
 /**
  * A row directional component that distributes its items in a cluster like so:
@@ -25,30 +26,31 @@ import type {MqProp, MqPropCallback} from './layout'
  *
  * Some use cases include input chips and tags.
  */
-export const Cluster = React.forwardRef<any, ClusterProps>(
-  ({className, gap, reverse = false, ...props}, ref) => {
-    const {mq, cls} = useLayout()
+export const Cluster = forwardRefAs<ClusterProps, 'div'>(function Cluster(
+  {className, gap, reverse = false, ...props},
+  ref
+) {
+  const {mq, cls} = useLayout()
 
-    return (
-      <Box
-        ref={ref}
-        className={clsx(
-          className,
-          cls(css`
-            display: flex;
-            flex-wrap: wrap;
-            & > * {
-              flex-shrink: 0;
-            }
-          `),
-          mq(gapStyle(reverse), gap),
-          mq(reverseStyle, reverse)
-        )}
-        {...props}
-      />
-    )
-  }
-)
+  return (
+    <Box
+      ref={ref}
+      className={clsx(
+        className,
+        cls(css`
+          display: flex;
+          flex-wrap: wrap;
+          & > * {
+            flex-shrink: 0;
+          }
+        `),
+        mq(gapStyle(reverse), gap),
+        mq(reverseStyle, reverse)
+      )}
+      {...props}
+    />
+  )
+})
 
 const reverseStyle = (reverse: boolean) =>
   flexDirection[reverse ? 'reversedRow' : 'row'] + justifyContent.start
@@ -77,4 +79,9 @@ export interface ClusterProps extends BoxProps {
   readonly reverse?: MqProp<boolean>
   // @ts-expect-error
   readonly gap?: MqProp<keyof DashVariables['gap']>
+}
+
+/* istanbul ignore next */
+if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
+  Cluster.displayName = 'Cluster'
 }

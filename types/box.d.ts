@@ -1,12 +1,12 @@
-import * as React from 'react'
 import type {DashVariables} from '@dash-ui/styles'
 import type {MqProp} from './layout'
-import type {LayoutAttributes} from './types'
-export declare const Box: React.ForwardRefExoticComponent<
-  BoxProps & React.RefAttributes<any>
+import type {AsProp} from './types'
+export declare const Box: import('./utils').ForwardRefAsExoticComponent<
+  BoxProps,
+  'div'
 >
-export interface BoxProps extends LayoutAttributes {
-  readonly as?: keyof JSX.IntrinsicElements | React.ComponentType<any>
+export interface BoxProps {
+  readonly as?: AsProp
   readonly className?: string | string[]
   readonly display?: MqProp<
     'flex' | 'inlineFlex' | 'block' | 'inlineBlock' | 'inline' | 'none'

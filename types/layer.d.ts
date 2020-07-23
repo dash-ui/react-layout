@@ -1,4 +1,3 @@
-import * as React from 'react'
 import type {BoxProps} from './box'
 import type {MqProp} from './layout'
 /**
@@ -7,11 +6,13 @@ import type {MqProp} from './layout'
  *  | ☐ |
  *   ‾‾‾
  */
-export declare const Layer: React.ForwardRefExoticComponent<
-  LayerProps & React.RefAttributes<any>
+export declare const Layer: import('./utils').ForwardRefAsExoticComponent<
+  LayerProps,
+  'div'
 >
-export declare const LayerItem: React.ForwardRefExoticComponent<
-  LayerItemProps & React.RefAttributes<any>
+export declare const LayerItem: import('./utils').ForwardRefAsExoticComponent<
+  LayerItemProps,
+  'div'
 >
 export interface LayerProps extends BoxProps {}
 declare type Placements =

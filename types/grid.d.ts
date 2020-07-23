@@ -1,12 +1,13 @@
-import * as React from 'react'
 import type {DashVariables} from '@dash-ui/styles'
 import type {BoxProps} from './box'
 import type {MqProp} from './layout'
-export declare const Grid: React.ForwardRefExoticComponent<
-  GridProps & React.RefAttributes<any>
+export declare const Grid: import('./utils').ForwardRefAsExoticComponent<
+  GridProps,
+  'div'
 >
-export declare const GridItem: React.ForwardRefExoticComponent<
-  GridItemProps & React.RefAttributes<any>
+export declare const GridItem: import('./utils').ForwardRefAsExoticComponent<
+  GridItemProps,
+  'div'
 >
 declare type GapProp =
   | keyof DashVariables['gap']

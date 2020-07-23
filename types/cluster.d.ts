@@ -1,4 +1,3 @@
-import * as React from 'react'
 import type {DashVariables} from '@dash-ui/styles'
 import type {BoxProps} from './box'
 import type {MqProp} from './layout'
@@ -19,8 +18,9 @@ import type {MqProp} from './layout'
  *
  * Some use cases include input chips and tags.
  */
-export declare const Cluster: React.ForwardRefExoticComponent<
-  ClusterProps & React.RefAttributes<any>
+export declare const Cluster: import('./utils').ForwardRefAsExoticComponent<
+  ClusterProps,
+  'div'
 >
 export interface ClusterProps extends BoxProps {
   readonly display?: undefined

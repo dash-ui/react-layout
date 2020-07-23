@@ -11,9 +11,9 @@ import type {
   StylesOne,
 } from '@dash-ui/styles'
 
-const oneCache = new Map()
+const oneCache = new Map<Styles, Map<string, StylesOne>>()
 const defaultOne = getOneCache(defaultStyles)
-const defaultMq = function <V>(style: any, value: unknown) {
+function defaultMq<V>(style: any, value: V) {
   if (value === void 0) return
   /* istanbul ignore next */
   if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'production') {
@@ -26,10 +26,10 @@ const defaultMq = function <V>(style: any, value: unknown) {
 
   return defaultOne(
     typeof style === 'function'
-      ? style(value as V)
+      ? style(value)
       : typeof value === 'string'
-      ? style[value as keyof typeof style]
-      : ('' as any)
+      ? style[value]
+      : ''
   )()
 }
 
@@ -51,7 +51,6 @@ export function LayoutProvider({
 }: LayoutProviderProps) {
   const context = React.useMemo(() => {
     const one = getOneCache(styles)
-    // @ts-expect-error
     const mediaQueryKeys: Extract<keyof MediaQueries, string>[] = Object.keys(
       mediaQueries
     )
@@ -75,7 +74,6 @@ export function LayoutProvider({
             const queryValue = value[queryName]
 
             if (queryValue !== void 0) {
-              // @ts-expect-error
               mqs[queryName] =
                 typeof style === 'function'
                   ? style(queryValue, queryName)
@@ -105,11 +103,14 @@ export function LayoutProvider({
 // class name retrieval 10x faster. Also puts simple objects and media queries
 // on a hot path for about a 3x gain.
 function getOneCache(styles: Styles) {
-  let cache: Map<string, StylesOne> = oneCache.get(styles)
+  const initialCache = oneCache.get(styles)
+  let cache: Map<string, StylesOne>
 
-  if (!cache) {
-    cache = new Map()
+  if (!initialCache) {
+    cache = new Map<string, StylesOne>()
     oneCache.set(styles, cache)
+  } else {
+    cache = initialCache
   }
 
   return (style: StyleValue) => {
@@ -132,8 +133,11 @@ function getOneCache(styles: Styles) {
       if (every) key = JSON.stringify(style)
     }
 
+    // We don't even attemp to cache callbacks
     if (typeof key !== 'string') return styles.one(style)
 
+    // Get the cached "one" callback if there one, otherwise
+    // create a new one
     let value = cache.get(key)
 
     if (value === void 0) {
@@ -179,4 +183,9 @@ export interface LayoutProviderProps {
   children?: React.ReactNode
 }
 
-export interface MediaQueries {}
+export interface MediaQueries extends Record<string, string> {}
+
+/* istanbul ignore next */
+if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
+  LayoutProvider.displayName = 'LayoutProvider'
+}

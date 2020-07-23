@@ -2,47 +2,35 @@ import * as React from 'react'
 import clsx from 'clsx'
 import css from 'minify-css.macro'
 import {Box} from './box'
-import {useLayout} from './layout'
-import {alignSelf} from './styles'
-import {unit} from './utils'
 import type {BoxProps} from './box'
+import {useLayout} from './layout'
 import type {MqProp} from './layout'
+import {alignSelf} from './styles'
+import {unit, forwardRefAs} from './utils'
 
-export const FlexItem = React.forwardRef<any, FlexItemProps>(
-  (
-    {
-      className,
-      maxWidth,
-      maxHeight,
-      basis,
-      order,
-      grow,
-      shrink,
-      align,
-      ...props
-    },
-    ref
-  ) => {
-    const {mq} = useLayout()
+export const FlexItem = forwardRefAs<FlexItemProps, 'div'>(function FlexItem(
+  {className, maxWidth, maxHeight, basis, order, grow, shrink, align, ...props},
+  ref
+) {
+  const {mq} = useLayout()
 
-    return (
-      <Box
-        ref={ref}
-        className={clsx(
-          className,
-          mq(maxWidthStyle, maxWidth),
-          mq(maxHeightStyle, maxHeight),
-          mq(basisStyle, basis),
-          mq(orderStyle, order),
-          mq(growStyle, grow),
-          mq(shrinkStyle, shrink),
-          mq(alignSelf, align)
-        )}
-        {...props}
-      />
-    )
-  }
-)
+  return (
+    <Box
+      ref={ref}
+      className={clsx(
+        className,
+        mq(maxWidthStyle, maxWidth),
+        mq(maxHeightStyle, maxHeight),
+        mq(basisStyle, basis),
+        mq(orderStyle, order),
+        mq(growStyle, grow),
+        mq(shrinkStyle, shrink),
+        mq(alignSelf, align)
+      )}
+      {...props}
+    />
+  )
+})
 
 const maxWidthStyle = (maxWidth: number | string) =>
   css`
@@ -72,4 +60,9 @@ export interface FlexItemProps extends BoxProps {
   readonly maxHeight?: MqProp<number | string>
   readonly order?: MqProp<number>
   readonly shrink?: MqProp<boolean | number>
+}
+
+/* istanbul ignore next */
+if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
+  FlexItem.displayName = 'FlexItem'
 }

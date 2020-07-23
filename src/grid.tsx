@@ -3,7 +3,9 @@ import clsx from 'clsx'
 import css from 'minify-css.macro'
 import type {DashVariables} from '@dash-ui/styles'
 import {Box} from './box'
+import type {BoxProps} from './box'
 import {useLayout} from './layout'
+import type {MqProp, MqPropCallback} from './layout'
 import {
   alignSelf,
   justifySelf,
@@ -12,72 +14,66 @@ import {
   justifyContent,
   alignContent,
 } from './styles'
-import {unit} from './utils'
-import type {BoxProps} from './box'
-import type {MqProp, MqPropCallback} from './layout'
+import {unit, forwardRefAs} from './utils'
 
-export const Grid = React.forwardRef<any, GridProps>(
-  (
-    {
-      className,
-      alignX,
-      alignY,
-      distributeX,
-      distributeY,
-      cols,
-      rows,
-      inline,
-      gap,
-      ...props
-    },
-    ref
-  ) => {
-    const {mq} = useLayout()
+export const Grid = forwardRefAs<GridProps, 'div'>(function Grid(
+  {
+    className,
+    alignX,
+    alignY,
+    distributeX,
+    distributeY,
+    cols,
+    rows,
+    inline,
+    gap,
+    ...props
+  },
+  ref
+) {
+  const {mq} = useLayout()
 
-    return (
-      <Box
-        ref={ref}
-        className={clsx(
-          className,
-          mq(justifyItems, alignX),
-          mq(alignItems, alignY),
-          mq(justifyContent, distributeX),
-          mq(alignContent, distributeY),
-          mq(colsStyle, cols),
-          mq(rowsStyle, rows),
-          mq(gridStyle, inline || false),
-          mq(gapStyle, gap)
-        )}
-        {...props}
-      />
-    )
-  }
-)
+  return (
+    <Box
+      ref={ref}
+      className={clsx(
+        className,
+        mq(justifyItems, alignX),
+        mq(alignItems, alignY),
+        mq(justifyContent, distributeX),
+        mq(alignContent, distributeY),
+        mq(colsStyle, cols),
+        mq(rowsStyle, rows),
+        mq(gridStyle, inline || false),
+        mq(gapStyle, gap)
+      )}
+      {...props}
+    />
+  )
+})
 
-export const GridItem = React.forwardRef<any, GridItemProps>(
-  (
-    {className, alignX, alignY, colStart, colEnd, rowStart, rowEnd, ...props},
-    ref
-  ) => {
-    const {mq} = useLayout()
+export const GridItem = forwardRefAs<GridItemProps, 'div'>(function GridItem(
+  {className, alignX, alignY, colStart, colEnd, rowStart, rowEnd, ...props},
+  ref
+) {
+  const {mq} = useLayout()
 
-    return (
-      <Box
-        ref={ref}
-        className={clsx(
-          className,
-          mq(justifySelf, alignX),
-          mq(alignSelf, alignY),
-          mq(colStartStyle, colStart),
-          mq(colEndStyle, colEnd),
-          mq(rowStartStyle, rowStart),
-          mq(rowEndStyle, rowEnd)
-        )}
-        {...props}
-      />
-    )
-  }
-)
+  return (
+    <Box
+      ref={ref}
+      className={clsx(
+        className,
+        mq(justifySelf, alignX),
+        mq(alignSelf, alignY),
+        mq(colStartStyle, colStart),
+        mq(colEndStyle, colEnd),
+        mq(rowStartStyle, rowStart),
+        mq(rowEndStyle, rowEnd)
+      )}
+      {...props}
+    />
+  )
+})
 
 const gridStyle = (inline: boolean) => ({
   display: inline ? 'inline-grid' : 'grid',
@@ -174,4 +170,10 @@ export interface GridItemProps extends BoxProps {
   readonly rowStart?: MqProp<number | string>
   /** grid-row-end */
   readonly rowEnd?: MqProp<number | string>
+}
+
+/* istanbul ignore next */
+if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
+  Grid.displayName = 'Grid'
+  GridItem.displayName = 'GridItem'
 }

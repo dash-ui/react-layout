@@ -1,4 +1,3 @@
-import * as React from 'react'
 import type {DashVariables} from '@dash-ui/styles'
 import type {BoxProps} from './box'
 import type {MqProp} from './layout'
@@ -11,8 +10,9 @@ import type {MqProp} from './layout'
  * ☐
  *
  */
-export declare const Column: React.ForwardRefExoticComponent<
-  ColumnProps & React.RefAttributes<any>
+export declare const Column: import('./utils').ForwardRefAsExoticComponent<
+  ColumnProps,
+  'div'
 >
 export interface ColumnProps extends BoxProps {
   readonly display?: undefined

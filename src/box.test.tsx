@@ -9,7 +9,13 @@ describe('<Box> without media queries', () => {
     'should throw if media queries are used without <LayoutProvider>',
     silenceErrors(() => {
       expect(() =>
-        render(<Box display={{phone: 'block'}} />)
+        render(
+          <Box
+            as='button'
+            display={{phone: 'block'}}
+            onClick={(e) => console.log(e)}
+          />
+        )
       ).toThrowErrorMatchingSnapshot()
     })
   )

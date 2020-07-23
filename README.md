@@ -29,8 +29,73 @@
 
 ## Quick start
 
+[Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-example-3m3rg?file=/src/App.tsx)
+
 ```jsx harmony
-import _ from '@dash-ui/react-layout'
+import * as React from 'react'
+import {createStyles} from '@dash-ui/styles'
+import {LayoutProvider, Box} from '@dash-ui/react-layout'
+
+// These root variable tokens are required in order to access
+// all features of @dash-ui/react-layout
+const variables = {
+  // "color" is used for the "bg" prop on <Box>
+  color: {
+    primary: '#ee5b5f',
+  },
+  // "elevation" is used for the "elevation" prop on <Box>
+  // It adds a box shadow to components
+  elevation: {
+    sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+    md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+  },
+  // "pad" is used for the "pad" prop
+  // It adds padding to components
+  pad: {
+    sm: '0.5rem',
+    md: '1rem',
+    lg: '2rem',
+  },
+  // "gap" is used for the "gap" prop
+  // It adds margins between child components
+  gap: {
+    sm: '0.25rem',
+    md: '0.5rem',
+    lg: '1rem',
+  },
+  // "radius" is used for the "radius" prop
+  // It adds border-radius to components
+  radius: {
+    sm: '0.125rem',
+    md: '0.25rem',
+  },
+}
+
+const styles = createStyles({
+  variables,
+})
+
+const App = () => (
+  <LayoutProvider
+    styles={styles}
+    mediaQueries={{
+      sm: 'only screen and (min-width: 0em)',
+      md: 'only screen and (min-width: 35em)',
+      lg: 'only screen and (min-width: 80em)',
+    }}
+  >
+    <Component />
+  </LayoutProvider>
+)
+
+const Component = () => (
+  // Media query props are opt-in. In order to use them
+  // you have to define a "mediaQueries" prop on your
+  // <LayoutProvider>
+  <Box size={300} pad={{sm: 'md', md: 'lg'}}>
+    Hello world
+  </Box>
+)
 ```
 
 ## API docs
@@ -55,6 +120,13 @@ import _ from '@dash-ui/react-layout'
 | Component                   | Description                                                 |
 | --------------------------- | ----------------------------------------------------------- |
 | [`useLayout()`](#uselayout) | Consumes the context from [LayoutProvider](#layoutprovider) |
+
+### TypeScript support
+
+|                                                               | Description                                  |
+| ------------------------------------------------------------- | -------------------------------------------- |
+| [Strongly typed media queries](#strongly-typed-media-queries) | Learn how to add types to media query props  |
+| [Strongly typed variables](#strongly-typed-variables)         | Learn how to add types to your CSS variables |
 
 ---
 

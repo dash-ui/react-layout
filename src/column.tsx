@@ -19,7 +19,7 @@ import type {MqProp, MqPropCallback} from './layout'
  */
 export const Column = React.forwardRef<any, ColumnProps>(
   ({className, align, distribute, gap, reverse = false, ...props}, ref) => {
-    const {mq, one} = useLayout()
+    const {mq, cls} = useLayout()
 
     return (
       <Box
@@ -27,11 +27,11 @@ export const Column = React.forwardRef<any, ColumnProps>(
         display='flex'
         className={clsx(
           className,
-          one(css`
+          cls(css`
             & > * {
               flex-shrink: 0;
             }
-          `)(),
+          `),
           mq(alignItems, align),
           mq(justifyContent, distribute),
           mq(gapStyle(reverse), gap),
@@ -49,12 +49,12 @@ const reverseStyle = (reverse: boolean) =>
 
 const gapStyle = (
   reverse: ColumnProps['reverse']
-  // @ts-ignore
+  // @ts-expect-error
 ): MqPropCallback<keyof DashVariables['gap']> => (gapProp, queryName) => {
   const reversed =
     !reverse || typeof reverse === 'boolean' ? reverse : reverse[queryName]
   const marginDirection = reversed ? 'bottom' : 'top'
-  // @ts-ignore
+  // @ts-expect-error
   return ({gap}) => css`
     & > * + * {
       margin-${marginDirection}: ${gap[gapProp]}!important;
@@ -74,7 +74,7 @@ export interface ColumnProps extends BoxProps {
   readonly distribute?: MqProp<
     'start' | 'center' | 'end' | 'around' | 'between' | 'evenly' | 'stretch'
   >
-  // @ts-ignore
+  // @ts-expect-error
   readonly gap?: MqProp<keyof DashVariables['gap']>
   readonly reverse?: MqProp<boolean>
 }

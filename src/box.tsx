@@ -99,9 +99,9 @@ const sizeStyle = (size: number | string) => {
 }
 
 const padStyle: MqPropCallback<
-  // @ts-ignore
+  // @ts-expect-error
   keyof DashVariables['pad'] | (keyof DashVariables['pad'])[]
-  // @ts-ignore
+  // @ts-expect-error
 > = (padProp) => ({pad}) =>
   css`
     padding: ${Array.isArray(padProp)
@@ -109,24 +109,24 @@ const padStyle: MqPropCallback<
       : pad[padProp]};
   `
 
-// @ts-ignore
+// @ts-expect-error
 const bgStyle: MqPropCallback<keyof DashVariables['color']> = (bg) => ({
-  // @ts-ignore
+  // @ts-expect-error
   color,
 }) => css`
   background: ${color[bg]};
 `
-// @ts-ignore
+// @ts-expect-error
 const elevationStyle: MqPropCallback<keyof DashVariables['elevation']> = (
   elevationProp
-  // @ts-ignore
+  // @ts-expect-error
 ) => ({elevation}) => css`
   box-shadow: ${elevation[elevationProp]};
 `
 const radiusStyle: MqPropCallback<
-  // @ts-ignore
+  // @ts-expect-error
   keyof DashVariables['radius'] | (keyof DashVariables['radius'])[]
-  // @ts-ignore
+  // @ts-expect-error
 > = (radiusProp) => ({radius}) =>
   css`
     border-radius: ${Array.isArray(radiusProp)
@@ -145,15 +145,15 @@ export interface BoxProps extends LayoutAttributes {
   readonly height?: MqProp<number | string>
   readonly size?: MqProp<number | string>
   readonly pad?: MqProp<
-    // @ts-ignore
+    // @ts-expect-error
     keyof DashVariables['pad'] | (keyof DashVariables['pad'])[]
   >
-  // @ts-ignore
+  // @ts-expect-error
   readonly bg?: MqProp<keyof DashVariables['color']>
-  // @ts-ignore
+  // @ts-expect-error
   readonly elevation?: MqProp<keyof DashVariables['elevation']>
   readonly radius?: MqProp<
-    // @ts-ignore
+    // @ts-expect-error
     keyof DashVariables['radius'] | (keyof DashVariables['radius'])[]
   >
 }

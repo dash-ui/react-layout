@@ -104,11 +104,11 @@ const rowsStyle = (rows: number | (number | string)[]) => {
 }
 
 const gapStyle: MqPropCallback<
-  // @ts-ignore
+  // @ts-expect-error
   | keyof DashVariables['gap']
-  // @ts-ignore
+  // @ts-expect-error
   | [keyof DashVariables['gap'], keyof DashVariables['gap']]
-  // @ts-ignore
+  // @ts-expect-error
 > = (gapProp: GapProp) => ({gap}) => css`
   grid-gap: ${Array.isArray(gapProp)
     ? gapProp.map((p) => gap[p]).join(' ')
@@ -132,9 +132,9 @@ const rowEndStyle = (gridRowEnd: number | string) => css`
 `
 
 type GapProp =
-  // @ts-ignore
+  // @ts-expect-error
   | keyof DashVariables['gap']
-  // @ts-ignore
+  // @ts-expect-error
   | [keyof DashVariables['gap'], keyof DashVariables['gap']]
 
 export interface GridProps extends BoxProps {

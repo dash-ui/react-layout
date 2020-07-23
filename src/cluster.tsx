@@ -27,20 +27,20 @@ import type {MqProp, MqPropCallback} from './layout'
  */
 export const Cluster = React.forwardRef<any, ClusterProps>(
   ({className, gap, reverse = false, ...props}, ref) => {
-    const {one, mq} = useLayout()
+    const {mq, cls} = useLayout()
 
     return (
       <Box
         ref={ref}
         className={clsx(
           className,
-          one(css`
+          cls(css`
             display: flex;
             flex-wrap: wrap;
             & > * {
               flex-shrink: 0;
             }
-          `)(),
+          `),
           mq(gapStyle(reverse), gap),
           mq(reverseStyle, reverse)
         )}
@@ -55,12 +55,12 @@ const reverseStyle = (reverse: boolean) =>
 
 const gapStyle = (
   reverse: ClusterProps['reverse']
-  // @ts-ignore
+  // @ts-expect-error
 ): MqPropCallback<keyof DashVariables['gap']> => (gapProp, queryName) => {
   const reversed =
     !reverse || typeof reverse === 'boolean' ? reverse : reverse[queryName]
   const marginDirection = reversed ? 'right' : 'left'
-  // @ts-ignore
+  // @ts-expect-error
   return ({gap}) => css`
     margin-top: calc(-1 * ${gap[gapProp]})!important;
     margin-${marginDirection}: calc(-1 * ${gap[gapProp]})!important;
@@ -75,6 +75,6 @@ const gapStyle = (
 export interface ClusterProps extends BoxProps {
   readonly display?: undefined
   readonly reverse?: MqProp<boolean>
-  // @ts-ignore
+  // @ts-expect-error
   readonly gap?: MqProp<keyof DashVariables['gap']>
 }

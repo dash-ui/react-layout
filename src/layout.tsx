@@ -35,8 +35,7 @@ const defaultMq = function <V>(style: any, value: unknown) {
 
 const LayoutContext = React.createContext<LayoutContextType>({
   styles: defaultStyles,
-  one: defaultOne,
-  // @ts-ignore
+  cls: (style: StyleValue) => defaultOne(style)(),
   mediaQueries: {},
   mq: defaultMq,
 })
@@ -45,16 +44,14 @@ export function useLayout() {
   return React.useContext(LayoutContext)
 }
 
-const emptyObj = {}
-
 export function LayoutProvider({
   styles = defaultStyles,
-  mediaQueries = emptyObj,
+  mediaQueries = {},
   children,
 }: LayoutProviderProps) {
   const context = React.useMemo(() => {
     const one = getOneCache(styles)
-    // @ts-ignore
+    // @ts-expect-error
     const mediaQueryKeys: Extract<keyof MediaQueries, string>[] = Object.keys(
       mediaQueries
     )
@@ -62,7 +59,7 @@ export function LayoutProvider({
 
     return {
       styles,
-      one,
+      cls: (style: StyleValue) => one(style)(),
       mediaQueries,
       mq: (style: any, value: any) => {
         if (value === void 0) return
@@ -78,7 +75,7 @@ export function LayoutProvider({
             const queryValue = value[queryName]
 
             if (queryValue !== void 0) {
-              // @ts-ignore
+              // @ts-expect-error
               mqs[queryName] =
                 typeof style === 'function'
                   ? style(queryValue, queryName)
@@ -108,10 +105,10 @@ export function LayoutProvider({
 // class name retrieval 10x faster. Also puts simple objects and media queries
 // on a hot path for about a 3x gain.
 function getOneCache(styles: Styles) {
-  let cache: Record<string, StylesOne> = oneCache.get(styles)
+  let cache: Map<string, StylesOne> = oneCache.get(styles)
 
   if (!cache) {
-    cache = {}
+    cache = new Map()
     oneCache.set(styles, cache)
   }
 
@@ -121,8 +118,7 @@ function getOneCache(styles: Styles) {
     // than not caching
     if (typeof key === 'object') {
       const values = Object.values(style)
-      // Please don't devsplain me about Array.every(). What's the point in
-      // memoization if we don't maximize for performance?
+      // Please don't devsplain me about Array.every()
       let every = true
       const len = values.length
       let i = 0
@@ -137,15 +133,22 @@ function getOneCache(styles: Styles) {
     }
 
     if (typeof key !== 'string') return styles.one(style)
-    if (cache[key] === void 0) cache[key] = styles.one(style)
-    return cache[key]
+
+    let value = cache.get(key)
+
+    if (value === void 0) {
+      value = styles.one(style)
+      cache.set(key, value)
+    }
+
+    return value
   }
 }
 
 export interface LayoutContextType {
   styles: Styles
   mediaQueries: MediaQueries
-  one: (style: StyleValue) => StylesOne
+  cls: (style: StyleValue) => string
   mq: Mq
 }
 
@@ -154,10 +157,9 @@ interface Mq {
 }
 
 interface Mq {
-  <V, Names extends string = string>(
-    style: StyleMap<Names, DashVariables>,
-    value: V
-  ): string | undefined
+  <V, Names extends string>(style: StyleMap<Names, DashVariables>, value: V):
+    | string
+    | undefined
 }
 
 export type MqPropCallback<V> = (

@@ -1,6 +1,8 @@
 import * as React from 'react'
 
-export type LayoutAttributes = Omit<React.HTMLAttributes<any>, 'className'>
+/**
+ * Omits an props in `T` that are already present in `P`
+ */
 export type Prefer<P, T> = P & Omit<T, keyof P>
 
 /**
@@ -25,4 +27,7 @@ export type FromReactType<
     : never
   : T
 
+/**
+ * These are the types accepted by the "as" prop in layout components
+ */
 export type AsProp = React.ReactType | keyof JSX.IntrinsicElements

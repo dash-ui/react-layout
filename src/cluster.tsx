@@ -10,21 +10,31 @@ import {justifyContent, flexDirection} from './styles'
 import {forwardRefAs} from './utils'
 
 /**
- * A row directional component that distributes its items in a cluster like so:
+ * A row directional layout component that distributes its items in a cluster
+ * like so:
  *
+ * ```
  * ☐☐☐☐☐
  * ☐☐☐☐☐☐
  * ☐☐☐☐☐
  * ☐☐☐
+ * ```
  *
  * or
- *
+ * ```
  *  ☐☐☐☐☐
  * ☐☐☐☐☐☐
  *  ☐☐☐☐☐
  *    ☐☐☐
+ * ```
  *
  * Some use cases include input chips and tags.
+ *
+ * @example
+ * <Cluster gap='sm'>
+ *   <Item/>
+ *   <Item/>
+ * </Cluster>
  */
 export const Cluster = forwardRefAs<ClusterProps, 'div'>(function Cluster(
   {className, gap, reverse = false, ...props},
@@ -74,9 +84,16 @@ const gapStyle = (
   `
 }
 
-export interface ClusterProps extends BoxProps {
-  readonly display?: undefined
+export interface ClusterProps extends Omit<BoxProps, 'display'> {
+  /**
+   * Reverses the direction of your cluster so that it lays out left-to-right
+   * @default false
+   */
   readonly reverse?: MqProp<boolean>
+  /**
+   * Sets a vertical and horizontal gap between the child elements in the
+   * cluster using the "gap" token in your theme
+   */
   // @ts-expect-error
   readonly gap?: MqProp<keyof DashVariables['gap']>
 }

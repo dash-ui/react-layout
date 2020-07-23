@@ -77,7 +77,7 @@ describe('<Box> without media queries', () => {
   it('applies the "bg" prop', () => {
     render(<Box bg='green' data-testid='el' />)
     expect(screen.getByTestId('el')).toHaveStyleRule(
-      'background',
+      'background-color',
       'var(--color-green)'
     )
   })
@@ -142,7 +142,7 @@ describe('<Box> without media queries', () => {
       'var(--elevation-high)'
     )
     expect(screen.getByTestId('el')).toHaveStyleRule(
-      'background',
+      'background-color',
       'var(--color-blue)'
     )
   })
@@ -195,7 +195,7 @@ describe('<Box> with media queries', () => {
   it('applies the "bg" prop', () => {
     renderMq(<Box bg={{phone: 'green'}} data-testid='el' />)
     expect(screen.getByTestId('el')).toHaveStyleRule(
-      'background',
+      'background-color',
       'var(--color-green)',
       {
         media: mediaQueries.phone,

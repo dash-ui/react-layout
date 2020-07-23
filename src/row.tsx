@@ -10,10 +10,18 @@ import {flexDirection, justifyContent, alignItems} from './styles'
 import {forwardRefAs} from './utils'
 
 /**
- * A component that distributes its items in a row without wrapping like so:
+ * A layout component that distributes its items in a row without wrapping
+ * like so:
  *
+ * ```
  * ☐ ☐ ☐ ☐ ☐ ☐ ☐
+ * ```
  *
+ * @example
+ * <Row gap='sm'>
+ *   <Item/>
+ *   <Item/>
+ * </Row>
  */
 export const Row = forwardRefAs<RowProps, 'div'>(function Row(
   {className, align, distribute, gap, reverse = false, ...props},
@@ -72,8 +80,16 @@ export interface RowProps extends BoxProps {
   readonly distribute?: MqProp<
     'start' | 'center' | 'end' | 'around' | 'between' | 'evenly' | 'stretch'
   >
+  /**
+   * Sets a horizontal gap between the child elements in the row using the "gap"
+   * token in your theme
+   */
   // @ts-expect-error
   readonly gap?: MqProp<keyof DashVariables['gap']>
+  /**
+   * Reverses the direction of the row to left-to-right
+   * @default false
+   */
   readonly reverse?: MqProp<boolean>
 }
 

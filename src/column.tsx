@@ -12,11 +12,18 @@ import {forwardRefAs} from './utils'
 /**
  * A component that distributes its items in a column without wrapping like so:
  *
+ * ```
  * ☐
  * ☐
  * ☐
  * ☐
+ * ```
  *
+ * @example
+ * <Column gap='sm'>
+ *   <Item/>
+ *   <Item/>
+ * </Column>
  */
 export const Column = forwardRefAs<ColumnProps, 'div'>(function Column(
   {className, align, distribute, gap, reverse = false, ...props},
@@ -76,8 +83,16 @@ export interface ColumnProps extends BoxProps {
   readonly distribute?: MqProp<
     'start' | 'center' | 'end' | 'around' | 'between' | 'evenly' | 'stretch'
   >
+  /**
+   * Sets a vertical gap between the child elements in the column using the "gap"
+   * token in your theme
+   */
   // @ts-expect-error
   readonly gap?: MqProp<keyof DashVariables['gap']>
+  /**
+   * Reverses the direction of the column to bottom-to-top
+   * @default false
+   */
   readonly reverse?: MqProp<boolean>
 }
 

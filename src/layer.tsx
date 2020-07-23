@@ -8,10 +8,18 @@ import type {MqProp, MqPropCallback} from './layout'
 import {unit, forwardRefAs} from './utils'
 
 /**
- * A component that makes its items layer on top of each other:
+ * A layout component that makes its items layer on top of each other:
+ *
+ * ```
  *   ___
  *  | ☐ |
  *   ‾‾‾
+ * ```
+ *
+ * @example
+ * <Layer>
+ *   <LayerItem placement='bottomRight' z={1000}/>
+ * </Layer>
  */
 export const Layer = forwardRefAs<LayerProps, 'div'>(function Layer(
   props,
@@ -20,6 +28,13 @@ export const Layer = forwardRefAs<LayerProps, 'div'>(function Layer(
   return <Box ref={ref} position='relative' {...props} />
 })
 
+/**
+ * A layout component than positions itself absolutely inside of its
+ * container in whichever placement you decide.
+ *
+ * @example
+ * <LayerItem placement='bottomRight' offset={24}/>
+ */
 export const LayerItem = forwardRefAs<LayerItemProps, 'div'>(function LayerItem(
   {className, offset, placement, z, ...props},
   ref
@@ -116,10 +131,18 @@ type Placements =
   | 'bottomRight'
   | 'bottomLeft'
 
-export interface LayerItemProps extends BoxProps {
-  position?: undefined
+export interface LayerItemProps extends Omit<BoxProps, 'position'> {
+  /**
+   * Sets a `margin` between the edges of the layer item's container
+   */
   offset?: MqProp<number | string>
+  /**
+   * Sets the placement of your layer item relative to its container
+   */
   placement: MqProp<Placements>
+  /**
+   * Sets a `z-index` CSS property on your component
+   */
   z?: MqProp<number>
 }
 

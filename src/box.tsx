@@ -14,7 +14,7 @@ import type {AsProp} from './types'
  * @example
  * <Box size={300} bg={{sm: 'red', md: 'blue'}}/>
  */
-export const Box = forwardRefAs<BoxProps, 'div'>(function Box(
+export const Box = forwardRefAs<BoxProps, 'button'>(function Box(
   {
     as: As = 'div',
     className,

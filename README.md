@@ -379,6 +379,8 @@ types to be derived from the `as` prop.
 
 #### Example
 
+[Play with an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-forwardrefas-example-z7f6o?file=/src/App.tsx)
+
 ```tsx
 import {forwardRefAs} from '@dash-ui/react-layout'
 

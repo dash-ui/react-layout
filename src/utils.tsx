@@ -19,7 +19,9 @@ export function unit<T extends unknown>(value: T) {
  */
 export function forwardRefAs<Props, DefaultAs extends AsProp = 'div'>(
   render: React.RefForwardingComponent<
-    HTMLElement | SVGElement | React.ComponentType,
+    DefaultAs extends keyof JSX.IntrinsicElements
+      ? FromReactType<DefaultAs>
+      : DefaultAs,
     Props
   >
 ) {

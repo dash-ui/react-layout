@@ -34,7 +34,7 @@ export declare const Cluster: import('./utils').ForwardRefAsExoticComponent<
 >
 export interface ClusterProps extends Omit<BoxProps, 'display'> {
   /**
-   * Reverses the direction of your cluster so that it lays out left-to-right
+   * Reverses the direction of your cluster so that it lays out right-to-left
    * @default false
    */
   readonly reverse?: MqProp<boolean>

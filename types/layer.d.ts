@@ -1,7 +1,7 @@
 import type {BoxProps} from './box'
 import type {MqProp} from './layout'
 /**
- * A layout component that makes its items layer on top of each other:
+ * A layout component that is a container for `<LayerItem>`s:
  *
  * ```
  *   ___

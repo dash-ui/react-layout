@@ -2,7 +2,8 @@ import type {DashVariables} from '@dash-ui/styles'
 import type {BoxProps} from './box'
 import type {MqProp} from './layout'
 /**
- * A component that distributes its items in a column without wrapping like so:
+ * A layout component that distributes its items in a column without wrapping
+ * like so:
  *
  * ```
  * ☐

@@ -8,7 +8,7 @@ import type {MqProp, MqPropCallback} from './layout'
 import {unit, forwardRefAs} from './utils'
 
 /**
- * A layout component that makes its items layer on top of each other:
+ * A layout component that is a container for `<LayerItem>`s:
  *
  * ```
  *   ___

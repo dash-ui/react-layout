@@ -8,6 +8,13 @@ import type {MqProp} from './layout'
 import {alignSelf} from './styles'
 import {unit, forwardRefAs} from './utils'
 
+/**
+ * A layout component that can add positioning properties to itself inside
+ * of a flex container.
+ *
+ * @example
+ * <FlexItem align='top'/>
+ */
 export const FlexItem = forwardRefAs<FlexItemProps, 'div'>(function FlexItem(
   {className, maxWidth, maxHeight, basis, order, grow, shrink, align, ...props},
   ref

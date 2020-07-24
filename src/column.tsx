@@ -10,7 +10,8 @@ import {flexDirection, alignItems, justifyContent} from './styles'
 import {forwardRefAs} from './utils'
 
 /**
- * A component that distributes its items in a column without wrapping like so:
+ * A layout component that distributes its items in a column without wrapping
+ * like so:
  *
  * ```
  * ☐

@@ -120,7 +120,7 @@ const Component = () => (
 | [`<FlexItem>`](#flexitem)             | A layout component that can add positioning properties to itself inside of a flex container.                           |
 | [`<Grid>`](#grid)                     | A layout component that distributes its children in a grid. This an abstraction of CSS grids.                          |
 | [`<GridItem>`](#griditem)             | A layout component that can add positioning properties to itself inside of a [`<Grid>`](#grid) component.              |
-| [`<Layer>`](#layer)                   | A layout component that is a container for [`<LayerItem>s`](#layeritem).                                               |
+| [`<Layer>`](#layer)                   | A layout component that is a container for [`<LayerItem>`](#layeritem)s.                                               |
 | [`<LayerItem>`](#layeritem)           | A layout component than positions itself absolutely inside of its container in whichever placement you decide.         |
 | [`<Row>`](#row)                       | A layout component that distributes its items in a row without wrapping.                                               |
 
@@ -305,6 +305,222 @@ const Component = () => (
 | gap     | `MqProp<keyof DashVariables['gap']>` | No        | Sets a vertical gap between its child elements using the "gap" token in your theme. |
 | reverse | `MqProp<boolean>`                    | No        | Reverses the direction of the column to bottom-to-top                               |
 
+### &lt;FlexItem&gt;
+
+A layout component that can add positioning properties to itself inside of
+a flex container.
+
+#### Example
+
+[Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-flexitem-example-mbmu2?file=/src/App.tsx)
+
+```tsx
+import * as React from 'react'
+import {FlexItem, Box, Row} from '@dash-ui/react-layout'
+
+const Component = () => (
+  // Media query props are opt-in. In order to use them
+  // you have to define a "mediaQueries" prop on your
+  // <LayoutProvider>
+  <Row align='start' width='100%' gap={{sm: 'sm', md: 'md'}}>
+    {/* This item will be aligned in the center */}
+    <FlexItem
+      align='center'
+      bg='primary'
+      width={100}
+      height={120}
+      radius='md'
+    />
+    {/* These will both align at flex-start */}
+    <Box bg='primary' width={140} height={140} radius='md' />
+    <Box bg='primary' width={80} height={124} radius='md' />
+  </Row>
+)
+```
+
+#### Props
+
+> 🔆 In addition to the props below, `<FlexItem>` inherits all props from [`<Box>`](#box).
+
+| Name      | Type                                                              | Required? | Description                                          |
+| --------- | ----------------------------------------------------------------- | --------- | ---------------------------------------------------- |
+| align     | `MqProp<'start' \| 'end' \| 'center' \| 'baseline' \| 'stretch'>` | No        | Sets a `align-self` CSS property on your component.  |
+| basis     | `MqProp<number \| string>`                                        | No        | Sets a `flex-basis` CSS property on your component.  |
+| grow      | `MqProp<boolean \| number>`                                       | No        | Sets a `flex-grow` CSS property on your component.   |
+| maxWidth  | `MqProp<number \| string>`                                        | No        | Sets a `max-width` CSS property on your component.   |
+| maxHeight | `MqProp<number \| string>`                                        | No        | Sets a `max-height` CSS property on your component.  |
+| order     | `MqProp<number>`                                                  | No        | Sets a `order` CSS property on your component.       |
+| shrink    | `MqProp<boolean \| number>`                                       | No        | Sets a `flex-shrink` CSS property on your component. |
+
+### &lt;Grid&gt;
+
+A layout component that distributes its children in a grid. This an abstraction
+of CSS grids.
+
+#### Example
+
+[Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-grid-example-okqnz?file=/src/App.tsx)
+
+```tsx
+import * as React from 'react'
+import {Grid, Box} from '@dash-ui/react-layout'
+
+const Component = () => (
+  // Media query props are opt-in. In order to use them
+  // you have to define a "mediaQueries" prop on your
+  // <LayoutProvider>
+  <Grid cols={3} rows={3} gap={{sm: 'sm', md: 'md'}}>
+    <Box bg='primary' height={100} radius='md' />
+    <Box bg='primary' height={100} radius='md' />
+    <Box bg='primary' height={100} radius='md' />
+    <Box bg='primary' height={100} radius='md' />
+    <Box bg='primary' height={100} radius='md' />
+    <Box bg='primary' height={100} radius='md' />
+    <Box bg='primary' height={100} radius='md' />
+    <Box bg='primary' height={100} radius='md' />
+    <Box bg='primary' height={100} radius='md' />
+  </Grid>
+)
+```
+
+#### Props
+
+> 🔆 In addition to the props below, `<Grid>` inherits all props from [`<Box>`](#box),
+> omitting `display` which is always `"grid"`.
+
+| Name        | Type                                                                                     | Required? | Description                                                                                                   |
+| ----------- | ---------------------------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------- |
+| alignX      | `MqProp<'start' \| 'center' \| 'end' \| 'stretch'>`                                      | No        | Sets a `justify-items` CSS property on your component.                                                        |
+| alignY      | `MqProp<'start' \| 'center' \| 'end' \| 'stretch'>`                                      | No        | Sets a `align-items` CSS property on your component.                                                          |
+| cols        | `MqProp<number \| (number \| string)[]>`                                                 | No        | Sets a `grid-template-columns` CSS property on your component.                                                |
+| distributeX | `MqProp<'start' \| 'center' \| 'end' \| 'stretch' \| 'around' \| 'between' \| 'evenly'>` | No        | Sets a `justify-content` CSS property on your component.                                                      |
+| distributeY | `MqProp<'start' \| 'center' \| 'end' \| 'stretch' \| 'around' \| 'between' \| 'evenly'>` | No        | Sets a `align-content` CSS property on your component.                                                        |
+| gap         | [`MqProp<GapProp>`](#gapprop)                                                            | No        | Sets a horizontal and vertical gap between the child elements in the row using the "gap" token in your theme. |
+| inline      | `MqProp<boolean>`                                                                        | No        | Makes the component display as an `inline-grid` rather than `grid`.                                           |
+| rows        | `MqProp<number \| (number \| string)[]>`                                                 | No        | Sets a `grid-template-rows` CSS property on your component.                                                   |
+
+#### GapProp
+
+```typescript
+type GapProp =
+  | keyof DashVariables['gap']
+  | [keyof DashVariables['gap'], keyof DashVariables['gap']]
+```
+
+### &lt;GridItem&gt;
+
+A layout component that can add positioning properties to itself inside of
+a [`<Grid>`](#grid) component.
+
+#### Example
+
+[Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-griditem-example-c1tc7?file=/src/App.tsx)
+
+```tsx
+import * as React from 'react'
+import {Grid, GridItem, Box} from '@dash-ui/react-layout'
+
+const Component = () => (
+  <Grid cols={3} rows={[100, 100]} gap={{sm: 'sm', md: 'md'}}>
+    {/* This item spans 3 columns */}
+    <GridItem bg='primary' colStart={1} colEnd={4} radius='md' />
+    <Box bg='primary' radius='md' />
+    <Box bg='primary' radius='md' />
+    <Box bg='primary' radius='md' />
+  </Grid>
+)
+```
+
+#### Props
+
+> 🔆 In addition to the props below, `<GridItem>` inherits all props from [`<Box>`](#box).
+
+| Name     | Type                                                | Required? | Description                                                |
+| -------- | --------------------------------------------------- | --------- | ---------------------------------------------------------- |
+| alignX   | `MqProp<'start' \| 'center' \| 'end' \| 'stretch'>` | No        | Sets a `justify-self` CSS property on your component.      |
+| alignY   | `MqProp<'start' \| 'center' \| 'end' \| 'stretch'>` | No        | Sets a `align-self` CSS property on your component.        |
+| colStart | `MqProp<number \| string>`                          | No        | Sets a `grid-column-start` CSS property on your component. |
+| colEnd   | `MqProp<number \| string>`                          | No        | Sets a `grid-column-end` CSS property on your component.   |
+| rowStart | `MqProp<number \| string>`                          | No        | Sets a `grid-row-start` CSS property on your component.    |
+| rowEnd   | `MqProp<number \| string>`                          | No        | Sets a `grid-row-end` CSS property on your component.      |
+
+### &lt;Layer&gt;
+
+A layout component that is a container for [`<LayerItem>`](#layeritem)s.
+
+#### Example
+
+[Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-layer-and-layeritem-example-we2by?file=/src/App.tsx)
+
+```tsx
+import * as React from 'react'
+import {Layer, LayerItem} from '@dash-ui/react-layout'
+
+const Component = () => (
+  // Media query props are opt-in. In order to use them
+  // you have to define a "mediaQueries" prop on your
+  // <LayoutProvider>
+  <Layer width={600} height={600}>
+    <LayerItem placement='bottomRight' bg='primary' size={64} radius='md' />
+    <LayerItem placement='topLeft' bg='primary' size={64} radius='md' />
+  </Layer>
+)
+```
+
+#### Props
+
+> 🔆 `<Layer>` inherits all of its props from [`<Box>`](#box),
+> omitting `position` which is always `"relative"`.
+
+### &lt;LayerItem&gt;
+
+A layout component than positions itself absolutely inside of its container
+in whichever placement you decide.
+
+#### Example
+
+[Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-layer-and-layeritem-example-we2by?file=/src/App.tsx)
+
+```tsx
+import * as React from 'react'
+import {Layer, LayerItem} from '@dash-ui/react-layout'
+
+const Component = () => (
+  // Media query props are opt-in. In order to use them
+  // you have to define a "mediaQueries" prop on your
+  // <LayoutProvider>
+  <Layer width={400} height={400}>
+    <LayerItem placement='bottomRight' bg='primary' size={64} radius='md' />
+    <LayerItem placement='topLeft' bg='primary' size={64} radius='md' />
+  </Layer>
+)
+```
+
+#### Props
+
+> 🔆 In addition to the props below, `<LayerItem>` inherits all props from [`<Box>`](#box).
+
+| Name      | Type                                | Required? | Description                                                                                       |
+| --------- | ----------------------------------- | --------- | ------------------------------------------------------------------------------------------------- |
+| offset    | `MqProp<number \| string>`          | No        | Sets a `margin` between the edges of the layer item's container.                                  |
+| placement | [`MqProp<Placements>`](#placements) | Yes       | Sets the placement of your layer item relative to its container. See [`Placements`](#placements). |
+| z         | `MqProp<number>`                    | No        | Sets a `z-index` CSS property on your component.                                                  |
+
+#### Placements
+
+```typescript
+type Placements =
+  | 'top'
+  | 'right'
+  | 'bottom'
+  | 'left'
+  | 'center'
+  | 'topLeft'
+  | 'topRight'
+  | 'bottomRight'
+  | 'bottomLeft'
+```
+
 ### &lt;Row&gt;
 
 A layout component that distributes its items in a row without wrapping
@@ -407,7 +623,7 @@ const Button = forwardRefAs<ButtonProps, 'button'>(
 
 ### Strongly typed media queries
 
-To use variable types with `@dash-ui/react-layout`, you have to use the module declaration
+To use media query types with `@dash-ui/react-layout`, you have to use the module declaration
 pattern:
 
 [Play with this example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-example-3m3rg?file=/src/App.tsx)

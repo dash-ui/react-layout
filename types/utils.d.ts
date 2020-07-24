@@ -15,7 +15,9 @@ export declare function unit<T extends unknown>(value: T): string | T
  */
 export declare function forwardRefAs<Props, DefaultAs extends AsProp = 'div'>(
   render: React.RefForwardingComponent<
-    HTMLElement | SVGElement | React.ComponentType,
+    DefaultAs extends keyof JSX.IntrinsicElements
+      ? FromReactType<DefaultAs>
+      : DefaultAs,
     Props
   >
 ): ForwardRefAsExoticComponent<Props, DefaultAs>

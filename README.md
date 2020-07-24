@@ -403,6 +403,68 @@ const Button = forwardRefAs<ButtonProps, 'button'>(
 | ------ | --------------------------------------------------------------------------------------- | --------- | -------------------------------- |
 | render | `React.RefForwardingComponent<HTMLElement \| SVGElement \| React.ComponentType, Props>` | Yes       | A React ref forwarding component |
 
+## TypeScript Support
+
+### Strongly typed media queries
+
+To use variable types with `@dash-ui/react-layout`, you have to use the module declaration
+pattern:
+
+[Play with this example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-example-3m3rg?file=/src/App.tsx)
+
+```typescript
+const mediaQueries = {
+  sm: 'only screen and (min-width: 0em)',
+  md: 'only screen and (min-width: 35em)',
+  lg: 'only screen and (min-width: 80em)',
+} as const
+
+type AppMediaQueries = typeof mediaQueries
+
+declare module '@dash-ui/react-layout' {
+  export interface MediaQueries extends AppMediaQueries {}
+}
+
+// OR alternatively
+declare module '@dash-ui/react-layout' {
+  export interface MediaQueries {
+    sm: string
+    md: string
+    lg: string
+  }
+}
+```
+
+### Strongly typed variables
+
+To use variable types with `@dash-ui/react-layout`, you have to use the module declaration
+pattern:
+
+[Play with this example on **CodeSandbox**](https://codesandbox.io/s/dash-uistyles-strongly-typed-variables-example-2-yk9bc?file=/src/App.tsx)
+
+```typescript
+const variables = {
+  color: {
+    red: '#c17',
+  },
+}
+
+type AppVariables = typeof variables
+
+declare module '@dash-ui/styles' {
+  export interface DashVariables extends AppVariables {}
+}
+
+// OR alternatively
+declare module '@dash-ui/styles' {
+  export interface DashVariables {
+    color: {
+      red: string
+    }
+  }
+}
+```
+
 ## LICENSE
 
 MIT

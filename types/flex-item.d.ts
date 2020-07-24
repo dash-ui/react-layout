@@ -1,5 +1,12 @@
 import type {BoxProps} from './box'
 import type {MqProp} from './layout'
+/**
+ * A layout component that can add positioning properties to itself inside
+ * of a flex container.
+ *
+ * @example
+ * <FlexItem align='top'/>
+ */
 export declare const FlexItem: import('./utils').ForwardRefAsExoticComponent<
   FlexItemProps,
   'div'

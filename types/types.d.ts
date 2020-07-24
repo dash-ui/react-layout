@@ -1,8 +1,7 @@
 import * as React from 'react'
-export declare type LayoutAttributes = Omit<
-  React.HTMLAttributes<any>,
-  'className'
->
+/**
+ * Omits an props in `T` that are already present in `P`
+ */
 export declare type Prefer<P, T> = P & Omit<T, keyof P>
 /**
  * Maps a keyof JSX.IntrinsicElement (e.g. 'div' or 'svg') or a
@@ -25,4 +24,7 @@ export declare type FromReactType<
     ? V
     : never
   : T
+/**
+ * These are the types accepted by the "as" prop in layout components
+ */
 export declare type AsProp = React.ReactType | keyof JSX.IntrinsicElements

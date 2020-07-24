@@ -6,7 +6,7 @@
   <pre>npm i @dash-ui/react-layout</pre>
   <br/>
   
-  <a href="https://bundlephobia.com/result?p=@dash-ui/react-layout">
+  <a href="https://bundlephobia.com/result?p=@dash-ui/react-layout@latest">
     <img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/@dash-ui/react-layout?style=for-the-badge&labelColor=24292e">
   </a>
   <a aria-label="Types" href="https://www.npmjs.com/package/@dash-ui/react-layout">
@@ -28,14 +28,13 @@
 
 ## Features
 
-- [x] Includes all of the most common layout components you'll need to build your app.
-      Grids, rows, columns, and more.
+- [x] **Comprehensive** grids, rows, columns, and more.
 - [x] **Media query props** add breakpoint-specific styles to your layout components.
 - [x] **CSS variable themes** mean performance is never going to be an issue when
       users switch from light to dark mode.
 - [x] **Strong types** even when you use an `as` prop. If it's a button, you're
       going to be limited to `<button>` HTML attributes!
-- [x] **Tiny** ([<3.5kB](https://bundlephobia.com/result?p=@dash-ui/react-layout)) as layout primitive libraries go
+- [x] **Tiny** ([<3.5kB](https://bundlephobia.com/result?p=@dash-ui/react-layout@latest)) as layout primitive libraries go
 
 ## Quick start
 
@@ -115,10 +114,10 @@ const Component = () => (
 | Component                             | Description                                                                                                                                                        |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | [`<LayoutProvider>`](#layoutprovider) | A context provider which is only required if you intend on using media query props or a custom `styles` object created by `@dash-ui/react` using `styles.create()` |
+| [`<Box>`](#box)                       |                                                                                                                                                                    |
 | [`<Cluster>`](#cluster)               |                                                                                                                                                                    |
 | [`<Column>`](#column)                 |                                                                                                                                                                    |
 | [`<FlexItem>`](#flexitem)             |                                                                                                                                                                    |
-| [`<Box>`](#frame)                     |                                                                                                                                                                    |
 | [`<Grid>`](#grid)                     |                                                                                                                                                                    |
 | [`<GridItem>`](#griditem)             |                                                                                                                                                                    |
 | [`<Layer>`](#layer)                   |                                                                                                                                                                    |

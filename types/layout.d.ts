@@ -6,6 +6,9 @@ export declare function LayoutProvider({
   mediaQueries,
   children,
 }: LayoutProviderProps): JSX.Element
+export declare namespace LayoutProvider {
+  var displayName: string
+}
 export interface LayoutContextType {
   styles: Styles
   mediaQueries: MediaQueries

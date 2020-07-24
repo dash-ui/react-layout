@@ -1,41 +1,50 @@
 import * as React from 'react'
 import {FromReactType, Prefer, AsProp} from './types'
+/**
+ * Adds a `px` unit to numeric values and returns non-numeric values as
+ * they are.
+ * @param value The value you want to maybe add a unit to
+ */
 export declare function unit<T extends unknown>(value: T): string | T
-export declare function forwardRefAs<
-  TOwnProps,
-  TDefaultComponent extends AsProp = 'div'
->(
-  factory: React.RefForwardingComponent<
+/**
+ * A wrapper around `React.forwardRef` that allows HTML attributes and prop types to be derived from the `as` prop.
+ * @param render A React ref forwarding component
+ *
+ * @example
+ * forwardRefAs<ButtonProps, 'button'>(ButtonComponent)
+ */
+export declare function forwardRefAs<Props, DefaultAs extends AsProp = 'div'>(
+  render: React.RefForwardingComponent<
     HTMLElement | SVGElement | React.ComponentType,
-    TOwnProps
+    Props
   >
-): ForwardRefAsExoticComponent<TOwnProps, TDefaultComponent>
+): ForwardRefAsExoticComponent<Props, DefaultAs>
+/**
+ * This is a signature that matches `ForwardRefExoticComponent`, but allows for
+ * inheriting attributes via the "as" prop and gets rid of `propTypes` because,
+ * dang it, this is TypeScript! Get that outta here.
+ */
 export declare type ForwardRefAsExoticComponent<
-  TOwnProps,
-  TDefaultComponent extends AsProp
+  Props,
+  DefaultAs extends AsProp
 > = Pick<
-  React.ForwardRefExoticComponent<TDefaultComponent>,
-  Exclude<
-    keyof React.ForwardRefExoticComponent<TDefaultComponent>,
-    'defaultProps'
-  >
+  React.ForwardRefExoticComponent<DefaultAs>,
+  Exclude<keyof React.ForwardRefExoticComponent<DefaultAs>, 'defaultProps'>
 > & {
-  <TAsComponent extends AsProp = TDefaultComponent>(
+  <As extends AsProp = DefaultAs>(
     props: Prefer<
       {
-        as?: TAsComponent
-      } & TOwnProps,
-      React.ComponentProps<TAsComponent>
+        as?: As
+      } & Props,
+      React.ComponentProps<As>
     > &
       React.RefAttributes<
-        TAsComponent extends keyof JSX.IntrinsicElements
-          ? FromReactType<TAsComponent>
-          : TAsComponent
+        As extends keyof JSX.IntrinsicElements ? FromReactType<As> : As
       >
   ): JSX.Element | null
   defaultProps: {
     as?: AsProp
-  } & Partial<TOwnProps> &
-    Partial<React.ComponentPropsWithoutRef<TDefaultComponent>>
+  } & Partial<Props> &
+    Partial<React.ComponentPropsWithoutRef<DefaultAs>>
   displayName: string
 }

@@ -69,6 +69,8 @@ export function LayoutProvider({
     const mediaQueryKeys: Extract<keyof MediaQueries, string>[] = Object.keys(
       mediaQueries
     )
+    // We need to allow for the 'default' setting in mq() as well
+    mediaQueryKeys.push('default')
     const mq = dashMq(mediaQueries)
 
     return {

@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.1](https://github.com/dash-ui/react-layout/compare/v0.6.0...v0.6.1) (2020-07-27)
+
+### Bug Fixes
+
+- **layout:** media query props should always accept a "default" property ([6f29c2f](https://github.com/dash-ui/react-layout/commit/6f29c2f349f3ab534824b28b21908f8ab37bee92))
+
 ## [0.6.0](https://github.com/dash-ui/react-layout/compare/v0.5.2...v0.6.0) (2020-07-27)
 
 ### ⚠ BREAKING CHANGES

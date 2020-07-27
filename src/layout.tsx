@@ -70,7 +70,7 @@ export function LayoutProvider({
       mediaQueries
     )
     // We need to allow for the 'default' setting in mq() as well
-    mediaQueryKeys.push('default')
+    mediaQueryKeys.unshift('default')
     const mq = dashMq(mediaQueries)
 
     return {

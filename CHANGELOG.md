@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/dash-ui/react-layout/compare/v0.5.2...v0.6.0) (2020-07-27)
+
+### ⚠ BREAKING CHANGES
+
+- Drops support for @dash-ui/styles@<0.8.0
+
+- rename "variables" to "tokens" ([1b2c23c](https://github.com/dash-ui/react-layout/commit/1b2c23cbabf96112647ad6f78a1ead9555f27a29))
+
 ### [0.5.2](https://github.com/dash-ui/react-layout/compare/v0.5.0...v0.5.2) (2020-07-24)
 
 ### Bug Fixes

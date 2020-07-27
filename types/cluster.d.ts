@@ -1,4 +1,4 @@
-import type {DashVariables} from '@dash-ui/styles'
+import type {DashTokens} from '@dash-ui/styles'
 import type {BoxProps} from './box'
 import type {MqProp} from './layout'
 /**
@@ -42,5 +42,5 @@ export interface ClusterProps extends Omit<BoxProps, 'display'> {
    * Sets a vertical and horizontal gap between the child elements in the
    * cluster using the "gap" token in your theme
    */
-  readonly gap?: MqProp<keyof DashVariables['gap']>
+  readonly gap?: MqProp<keyof DashTokens['gap']>
 }

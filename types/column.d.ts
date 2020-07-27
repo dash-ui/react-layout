@@ -1,4 +1,4 @@
-import type {DashVariables} from '@dash-ui/styles'
+import type {DashTokens} from '@dash-ui/styles'
 import type {BoxProps} from './box'
 import type {MqProp} from './layout'
 /**
@@ -38,7 +38,7 @@ export interface ColumnProps extends BoxProps {
    * Sets a vertical gap between the child elements in the column using the "gap"
    * token in your theme
    */
-  readonly gap?: MqProp<keyof DashVariables['gap']>
+  readonly gap?: MqProp<keyof DashTokens['gap']>
   /**
    * Reverses the direction of the column to bottom-to-top
    * @default false

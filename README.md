@@ -47,7 +47,7 @@ import {LayoutProvider, Box} from '@dash-ui/react-layout'
 
 // These root variable tokens are required in order to access
 // all features of @dash-ui/react-layout
-const variables = {
+const tokens = {
   // "color" is used for the "bg" prop on <Box>
   color: {
     primary: '#ee5b5f',
@@ -81,7 +81,7 @@ const variables = {
 }
 
 const styles = createStyles({
-  variables,
+  tokens,
 })
 
 const App = () => (
@@ -139,13 +139,13 @@ const Component = () => (
 ### TypeScript support
 
 `@dash-ui/react-layout` is written in TypeScript. That said, there are some things to know
-as it relates to connecting your `DashVariables` and media query types to these layout
+as it relates to connecting your `DashTokens` and media query types to these layout
 components.
 
-|                                                               | Description                                  |
-| ------------------------------------------------------------- | -------------------------------------------- |
-| [Strongly typed media queries](#strongly-typed-media-queries) | Learn how to add types to media query props  |
-| [Strongly typed variables](#strongly-typed-variables)         | Learn how to add types to your CSS variables |
+|                                                               | Description                                 |
+| ------------------------------------------------------------- | ------------------------------------------- |
+| [Strongly typed media queries](#strongly-typed-media-queries) | Learn how to add types to media query props |
+| [Strongly typed tokens](#strongly-typed-tokens)               | Learn how to add types to your CSS tokens   |
 
 ---
 
@@ -192,10 +192,10 @@ const Component = () => (
 
 #### Props
 
-| Prop         | Type                                    | Default  | Required? | Description                                                                                                                                                            |
-| ------------ | --------------------------------------- | -------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| styles       | `Styles<DashVariables, DashThemeNames>` | `styles` | No        | The `styles()` instance you're using to create styles. By default this is the `styles()` instance exported from [`@dash-ui/styles`](https://github.com/dash-ui/styles) |
-| mediaQueries | `Record<string, string>`                |          | No        | A mapping of name/media query pairs. This is only required if youre' using media query props.                                                                          |
+| Prop         | Type                                 | Default  | Required? | Description                                                                                                                                                            |
+| ------------ | ------------------------------------ | -------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| styles       | `Styles<DashTokens, DashThemeNames>` | `styles` | No        | The `styles()` instance you're using to create styles. By default this is the `styles()` instance exported from [`@dash-ui/styles`](https://github.com/dash-ui/styles) |
+| mediaQueries | `Record<string, string>`             |          | No        | A mapping of name/media query pairs. This is only required if youre' using media query props.                                                                          |
 
 ### &lt;Box&gt;
 
@@ -229,10 +229,10 @@ const Component = () => (
 | width     | `MqProp<number \| string>`                                                         | No        | Sets a `width` CSS property on your component.                                                                                                                                                                                                                                    |
 | height    | `MqProp<number \| string>`                                                         | No        | Sets a `height` CSS property on your component.                                                                                                                                                                                                                                   |
 | size      | `MqProp<number \| string>`                                                         | No        | Sets a `size` CSS property on your component.                                                                                                                                                                                                                                     |
-| pad       | `MqProp<keyof DashVariables['pad'] \| (keyof DashVariables['pad'])[]>`             | No        | Sets a `padding` CSS property on your component using the "pad" token in your theme. When this is an array padding will be joined in the same order as the `padding` CSS property i.e. `['sm', 'md']` would be `padding: var(--pad-sm) var(--pad-md)`.                            |
-| bg        | `MqProp<keyof DashVariables['color']>`                                             | No        | Sets a `background-color` CSS property on your component using the "color" token in your theme.                                                                                                                                                                                   |
-| elevation | `MqProp<keyof DashVariables['elevation']>`                                         | No        | Sets a `box-shadow` CSS property on your component using the "elevation" token in your theme.                                                                                                                                                                                     |
-| radius    | `MqProp<keyof DashVariables['radius'] \| (keyof DashVariables['radius'])[]>`       | No        | Sets a `border-radius` CSS property on your component using the "radius" token in your theme. When this is an array padding will be joined in the same order as the `border-radius` CSS property i.e. `['sm', 'md']` would be `border-radius: var(--radius-sm) var(--radius-md)`. |
+| pad       | `MqProp<keyof DashTokens['pad'] \| (keyof DashTokens['pad'])[]>`                   | No        | Sets a `padding` CSS property on your component using the "pad" token in your theme. When this is an array padding will be joined in the same order as the `padding` CSS property i.e. `['sm', 'md']` would be `padding: var(--pad-sm) var(--pad-md)`.                            |
+| bg        | `MqProp<keyof DashTokens['color']>`                                                | No        | Sets a `background-color` CSS property on your component using the "color" token in your theme.                                                                                                                                                                                   |
+| elevation | `MqProp<keyof DashTokens['elevation']>`                                            | No        | Sets a `box-shadow` CSS property on your component using the "elevation" token in your theme.                                                                                                                                                                                     |
+| radius    | `MqProp<keyof DashTokens['radius'] \| (keyof DashTokens['radius'])[]>`             | No        | Sets a `border-radius` CSS property on your component using the "radius" token in your theme. When this is an array padding will be joined in the same order as the `border-radius` CSS property i.e. `['sm', 'md']` would be `border-radius: var(--radius-sm) var(--radius-md)`. |
 | className | `string \| string[]`                                                               | No        | Adds one or several class names to your component.                                                                                                                                                                                                                                |
 
 ### &lt;Cluster&gt;
@@ -265,10 +265,10 @@ const Component = () => (
 
 > 🔆 In addition to the props below, `<Row>` inherits all props from [`<Box>`](#box).
 
-| Name    | Type                                 | Required? | Description                                                                                                       |
-| ------- | ------------------------------------ | --------- | ----------------------------------------------------------------------------------------------------------------- |
-| gap     | `MqProp<keyof DashVariables['gap']>` | No        | Sets a vertical and horizontal gap between the child elements in the cluster using the "gap" token in your theme. |
-| reverse | `MqProp<boolean>`                    | No        | Reverses the direction of your cluster so that it lays out right-to-left.                                         |
+| Name    | Type                              | Required? | Description                                                                                                       |
+| ------- | --------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------- |
+| gap     | `MqProp<keyof DashTokens['gap']>` | No        | Sets a vertical and horizontal gap between the child elements in the cluster using the "gap" token in your theme. |
+| reverse | `MqProp<boolean>`                 | No        | Reverses the direction of your cluster so that it lays out right-to-left.                                         |
 
 ### &lt;Column&gt;
 
@@ -300,10 +300,10 @@ const Component = () => (
 
 > 🔆 In addition to the props below, `<Column>` inherits all props from [`<Box>`](#box).
 
-| Name    | Type                                 | Required? | Description                                                                         |
-| ------- | ------------------------------------ | --------- | ----------------------------------------------------------------------------------- |
-| gap     | `MqProp<keyof DashVariables['gap']>` | No        | Sets a vertical gap between its child elements using the "gap" token in your theme. |
-| reverse | `MqProp<boolean>`                    | No        | Reverses the direction of the column to bottom-to-top                               |
+| Name    | Type                              | Required? | Description                                                                         |
+| ------- | --------------------------------- | --------- | ----------------------------------------------------------------------------------- |
+| gap     | `MqProp<keyof DashTokens['gap']>` | No        | Sets a vertical gap between its child elements using the "gap" token in your theme. |
+| reverse | `MqProp<boolean>`                 | No        | Reverses the direction of the column to bottom-to-top                               |
 
 ### &lt;FlexItem&gt;
 
@@ -403,8 +403,8 @@ const Component = () => (
 
 ```typescript
 type GapProp =
-  | keyof DashVariables['gap']
-  | [keyof DashVariables['gap'], keyof DashVariables['gap']]
+  | keyof DashTokens['gap']
+  | [keyof DashTokens['gap'], keyof DashTokens['gap']]
 ```
 
 ### &lt;GridItem&gt;
@@ -551,10 +551,10 @@ const Component = () => (
 
 > 🔆 In addition to the props below, `<Row>` inherits all props from [`<Box>`](#box).
 
-| Name    | Type                                 | Required? | Description                                                                           |
-| ------- | ------------------------------------ | --------- | ------------------------------------------------------------------------------------- |
-| gap     | `MqProp<keyof DashVariables['gap']>` | No        | Sets a horizontal gap between its child elements using the "gap" token in your theme. |
-| reverse | `MqProp<boolean>`                    | No        | Reverses the direction of the column to right-to-left                                 |
+| Name    | Type                              | Required? | Description                                                                           |
+| ------- | --------------------------------- | --------- | ------------------------------------------------------------------------------------- |
+| gap     | `MqProp<keyof DashTokens['gap']>` | No        | Sets a horizontal gap between its child elements using the "gap" token in your theme. |
+| reverse | `MqProp<boolean>`                 | No        | Reverses the direction of the column to right-to-left                                 |
 
 ## Hooks
 
@@ -651,29 +651,29 @@ declare module '@dash-ui/react-layout' {
 }
 ```
 
-### Strongly typed variables
+### Strongly typed tokens
 
 To use variable types with `@dash-ui/react-layout`, you have to use the module declaration
 pattern:
 
-[Play with this example on **CodeSandbox**](https://codesandbox.io/s/dash-uistyles-strongly-typed-variables-example-2-yk9bc?file=/src/App.tsx)
+[Play with this example on **CodeSandbox**](https://codesandbox.io/s/dash-uistyles-strongly-typed-tokens-example-2-yk9bc?file=/src/App.tsx)
 
 ```typescript
-const variables = {
+const tokens = {
   color: {
     red: '#c17',
   },
 }
 
-type AppVariables = typeof variables
+type AppTokens = typeof tokens
 
 declare module '@dash-ui/styles' {
-  export interface DashVariables extends AppVariables {}
+  export interface DashTokens extends AppTokens {}
 }
 
 // OR alternatively
 declare module '@dash-ui/styles' {
-  export interface DashVariables {
+  export interface DashTokens {
     color: {
       red: string
     }

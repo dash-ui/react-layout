@@ -155,7 +155,7 @@
     "@commitlint/cli": "^9.0.1",
     "@commitlint/config-conventional": "^9.0.1",
     "@dash-ui/jest": "^2.0.0",
-    "@dash-ui/styles": "^0.7.3",
+    "@dash-ui/styles": "^0.8.0",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/react-hooks": "latest",
@@ -180,11 +180,11 @@
     "typescript": "latest"
   },
   "dependencies": {
-    "@dash-ui/mq": "^0.3.0",
+    "@dash-ui/mq": "^0.4.0",
     "clsx": "^1.1.1"
   },
   "peerDependencies": {
-    "@dash-ui/styles": ">=0.6.1",
+    "@dash-ui/styles": ">=0.8.0",
     "react": ">=16.8"
   }
 }

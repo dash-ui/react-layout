@@ -1,7 +1,7 @@
 import * as React from 'react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
-import type {DashVariables} from '@dash-ui/styles'
+import type {DashTokens} from '@dash-ui/styles'
 import {useLayout} from './layout'
 import type {MqProp, MqPropCallback} from './layout'
 import {unit, forwardRefAs} from './utils'
@@ -105,7 +105,7 @@ const sizeStyle = (size: number | string) => {
 
 const padStyle: MqPropCallback<
   // @ts-expect-error
-  keyof DashVariables['pad'] | (keyof DashVariables['pad'])[]
+  keyof DashTokens['pad'] | (keyof DashTokens['pad'])[]
   // @ts-expect-error
 > = (padProp) => ({pad}) =>
   css`
@@ -115,14 +115,14 @@ const padStyle: MqPropCallback<
   `
 
 // @ts-expect-error
-const bgStyle: MqPropCallback<keyof DashVariables['color']> = (bg) => ({
+const bgStyle: MqPropCallback<keyof DashTokens['color']> = (bg) => ({
   // @ts-expect-error
   color,
 }) => css`
   background-color: ${color[bg]};
 `
 // @ts-expect-error
-const elevationStyle: MqPropCallback<keyof DashVariables['elevation']> = (
+const elevationStyle: MqPropCallback<keyof DashTokens['elevation']> = (
   elevationProp
   // @ts-expect-error
 ) => ({elevation}) => css`
@@ -130,7 +130,7 @@ const elevationStyle: MqPropCallback<keyof DashVariables['elevation']> = (
 `
 const radiusStyle: MqPropCallback<
   // @ts-expect-error
-  keyof DashVariables['radius'] | (keyof DashVariables['radius'])[]
+  keyof DashTokens['radius'] | (keyof DashTokens['radius'])[]
   // @ts-expect-error
 > = (radiusProp) => ({radius}) =>
   css`
@@ -177,27 +177,27 @@ export interface BoxProps {
    */
   readonly pad?: MqProp<
     // @ts-expect-error
-    keyof DashVariables['pad'] | (keyof DashVariables['pad'])[]
+    keyof DashTokens['pad'] | (keyof DashTokens['pad'])[]
   >
   /**
    * Sets a `background-color` CSS property on your component using the "color"
    * token in your theme
    */
   // @ts-expect-error
-  readonly bg?: MqProp<keyof DashVariables['color']>
+  readonly bg?: MqProp<keyof DashTokens['color']>
   /**
    * Sets a `box-shadow` CSS property on your component using the "elevation"
    * token in your theme
    */
   // @ts-expect-error
-  readonly elevation?: MqProp<keyof DashVariables['elevation']>
+  readonly elevation?: MqProp<keyof DashTokens['elevation']>
   /**
    * Sets a `border-radius` CSS property on your component using the "radius"
    * token in your theme
    */
   readonly radius?: MqProp<
     // @ts-expect-error
-    keyof DashVariables['radius'] | (keyof DashVariables['radius'])[]
+    keyof DashTokens['radius'] | (keyof DashTokens['radius'])[]
   >
 }
 

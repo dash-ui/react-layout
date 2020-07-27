@@ -1,5 +1,5 @@
 import * as React from 'react'
-import type {Styles, DashVariables, StyleMap, StyleValue} from '@dash-ui/styles'
+import type {Styles, DashTokens, StyleMap, StyleValue} from '@dash-ui/styles'
 /**
  * A context consumer hook for `<LayoutProvider>`
  */
@@ -47,14 +47,14 @@ interface Mq {
   <T, V>(style: MqPropCallback<T>, value: V): string | undefined
 }
 interface Mq {
-  <V, Names extends string>(style: StyleMap<Names, DashVariables>, value: V):
+  <V, Names extends string>(style: StyleMap<Names, DashTokens>, value: V):
     | string
     | undefined
 }
 export declare type MqPropCallback<V> = (
   queryValue: V,
   queryName: keyof MediaQueries
-) => StyleValue<DashVariables>
+) => StyleValue<DashTokens>
 export declare type MqProp<ValueType> =
   | ValueType
   | {

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import clsx from 'clsx'
 import css from 'minify-css.macro'
-import type {DashVariables} from '@dash-ui/styles'
+import type {DashTokens} from '@dash-ui/styles'
 import {Box} from './box'
 import type {BoxProps} from './box'
 import {useLayout} from './layout'
@@ -130,9 +130,9 @@ const rowsStyle = (rows: number | (number | string)[]) => {
 
 const gapStyle: MqPropCallback<
   // @ts-expect-error
-  | keyof DashVariables['gap']
+  | keyof DashTokens['gap']
   // @ts-expect-error
-  | [keyof DashVariables['gap'], keyof DashVariables['gap']]
+  | [keyof DashTokens['gap'], keyof DashTokens['gap']]
   // @ts-expect-error
 > = (gapProp: GapProp) => ({gap}) => css`
   grid-gap: ${Array.isArray(gapProp)
@@ -158,9 +158,9 @@ const rowEndStyle = (gridRowEnd: number | string) => css`
 
 type GapProp =
   // @ts-expect-error
-  | keyof DashVariables['gap']
+  | keyof DashTokens['gap']
   // @ts-expect-error
-  | [keyof DashVariables['gap'], keyof DashVariables['gap']]
+  | [keyof DashTokens['gap'], keyof DashTokens['gap']]
 
 export interface GridProps extends Omit<BoxProps, 'display'> {
   /**

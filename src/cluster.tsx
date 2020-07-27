@@ -1,7 +1,7 @@
 import * as React from 'react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
-import type {DashVariables} from '@dash-ui/styles'
+import type {DashTokens} from '@dash-ui/styles'
 import {Box} from './box'
 import type {BoxProps} from './box'
 import {useLayout} from './layout'
@@ -68,7 +68,7 @@ const reverseStyle = (reverse: boolean) =>
 const gapStyle = (
   reverse: ClusterProps['reverse']
   // @ts-expect-error
-): MqPropCallback<keyof DashVariables['gap']> => (gapProp, queryName) => {
+): MqPropCallback<keyof DashTokens['gap']> => (gapProp, queryName) => {
   const reversed =
     !reverse || typeof reverse === 'boolean' ? reverse : reverse[queryName]
   const marginDirection = reversed ? 'right' : 'left'
@@ -95,7 +95,7 @@ export interface ClusterProps extends Omit<BoxProps, 'display'> {
    * cluster using the "gap" token in your theme
    */
   // @ts-expect-error
-  readonly gap?: MqProp<keyof DashVariables['gap']>
+  readonly gap?: MqProp<keyof DashTokens['gap']>
 }
 
 /* istanbul ignore next */

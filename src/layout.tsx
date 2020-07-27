@@ -3,7 +3,7 @@ import {styles as defaultStyles} from '@dash-ui/styles'
 import dashMq from '@dash-ui/mq'
 import type {
   Styles,
-  DashVariables,
+  DashTokens,
   StyleMap,
   StyleObject,
   StyleCallback,
@@ -82,7 +82,7 @@ export function LayoutProvider({
           // Media queries
           const mqs: Record<
             keyof MediaQueries,
-            string | StyleObject | StyleCallback<DashVariables>
+            string | StyleObject | StyleCallback<DashTokens>
           > = {}
           for (let i = 0; i < mediaQueryKeys.length; i++) {
             const queryName = mediaQueryKeys[i]
@@ -189,7 +189,7 @@ interface Mq {
 }
 
 interface Mq {
-  <V, Names extends string>(style: StyleMap<Names, DashVariables>, value: V):
+  <V, Names extends string>(style: StyleMap<Names, DashTokens>, value: V):
     | string
     | undefined
 }
@@ -197,7 +197,7 @@ interface Mq {
 export type MqPropCallback<V> = (
   queryValue: V,
   queryName: keyof MediaQueries
-) => StyleValue<DashVariables>
+) => StyleValue<DashTokens>
 
 export type MqProp<ValueType> =
   | ValueType

@@ -1,4 +1,4 @@
-import type {DashVariables} from '@dash-ui/styles'
+import type {DashTokens} from '@dash-ui/styles'
 import type {MqProp} from './layout'
 import type {AsProp} from './types'
 /**
@@ -48,24 +48,22 @@ export interface BoxProps {
    * Sets a `padding` CSS property on your component using the "pad"
    * token in your theme
    */
-  readonly pad?: MqProp<
-    keyof DashVariables['pad'] | (keyof DashVariables['pad'])[]
-  >
+  readonly pad?: MqProp<keyof DashTokens['pad'] | (keyof DashTokens['pad'])[]>
   /**
    * Sets a `background-color` CSS property on your component using the "color"
    * token in your theme
    */
-  readonly bg?: MqProp<keyof DashVariables['color']>
+  readonly bg?: MqProp<keyof DashTokens['color']>
   /**
    * Sets a `box-shadow` CSS property on your component using the "elevation"
    * token in your theme
    */
-  readonly elevation?: MqProp<keyof DashVariables['elevation']>
+  readonly elevation?: MqProp<keyof DashTokens['elevation']>
   /**
    * Sets a `border-radius` CSS property on your component using the "radius"
    * token in your theme
    */
   readonly radius?: MqProp<
-    keyof DashVariables['radius'] | (keyof DashVariables['radius'])[]
+    keyof DashTokens['radius'] | (keyof DashTokens['radius'])[]
   >
 }

@@ -40,7 +40,7 @@ const theme = {
 }
 
 type Theme = typeof theme
-styles.insertVariables(theme)
+styles.insertTokens(theme)
 
 export const mediaQueries = {
   phone: 'only screen and (min-width: 0em)',
@@ -51,7 +51,7 @@ export const mediaQueries = {
 type ThemeMediaQueries = typeof mediaQueries
 
 declare module '@dash-ui/styles' {
-  interface DashVariables extends Theme {}
+  interface DashTokens extends Theme {}
 }
 
 declare module '../src/Layout' {

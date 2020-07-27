@@ -1,4 +1,4 @@
-import type {DashVariables} from '@dash-ui/styles'
+import type {DashTokens} from '@dash-ui/styles'
 import type {BoxProps} from './box'
 import type {MqProp} from './layout'
 /**
@@ -39,8 +39,8 @@ export declare const GridItem: import('./utils').ForwardRefAsExoticComponent<
   'div'
 >
 declare type GapProp =
-  | keyof DashVariables['gap']
-  | [keyof DashVariables['gap'], keyof DashVariables['gap']]
+  | keyof DashTokens['gap']
+  | [keyof DashTokens['gap'], keyof DashTokens['gap']]
 export interface GridProps extends Omit<BoxProps, 'display'> {
   /**
    * Sets a `justify-items` CSS property on your component

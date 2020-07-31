@@ -1,5 +1,5 @@
 import type {BoxProps} from './box'
-import type {MqProp} from './layout'
+import type {ResponsiveProp} from './layout'
 /**
  * A layout component that is a container for `<LayerItem>`s:
  *
@@ -44,14 +44,14 @@ export interface LayerItemProps extends Omit<BoxProps, 'position'> {
   /**
    * Sets a `margin` between the edges of the layer item's container
    */
-  offset?: MqProp<number | string>
+  offset?: ResponsiveProp<number | string>
   /**
    * Sets the placement of your layer item relative to its container
    */
-  placement: MqProp<Placements>
+  placement: ResponsiveProp<Placements>
   /**
    * Sets a `z-index` CSS property on your component
    */
-  z?: MqProp<number>
+  z?: ResponsiveProp<number>
 }
 export {}

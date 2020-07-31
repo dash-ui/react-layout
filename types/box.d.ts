@@ -1,5 +1,5 @@
 import type {DashTokens} from '@dash-ui/styles'
-import type {MqProp} from './layout'
+import type {ResponsiveProp} from './layout'
 import type {AsProp} from './types'
 /**
  * A layout component for adding size, padding, position, color, and more
@@ -25,45 +25,49 @@ export interface BoxProps {
   /**
    * Sets a `display` CSS property on your component
    */
-  readonly display?: MqProp<
+  readonly display?: ResponsiveProp<
     'flex' | 'inlineFlex' | 'block' | 'inlineBlock' | 'inline' | 'none'
   >
   /**
    * Sets a `position` CSS property on your component
    */
-  readonly position?: MqProp<'relative' | 'absolute' | 'sticky' | 'fixed'>
+  readonly position?: ResponsiveProp<
+    'relative' | 'absolute' | 'sticky' | 'fixed'
+  >
   /**
    * Sets a `width` CSS property on your component
    */
-  readonly width?: MqProp<number | string>
+  readonly width?: ResponsiveProp<number | string>
   /**
    * Sets a `height` CSS property on your component
    */
-  readonly height?: MqProp<number | string>
+  readonly height?: ResponsiveProp<number | string>
   /**
    * Sets a `width` and `height` CSS property on your component
    */
-  readonly size?: MqProp<number | string>
+  readonly size?: ResponsiveProp<number | string>
   /**
    * Sets a `padding` CSS property on your component using the "pad"
    * token in your theme
    */
-  readonly pad?: MqProp<keyof DashTokens['pad'] | (keyof DashTokens['pad'])[]>
+  readonly pad?: ResponsiveProp<
+    keyof DashTokens['pad'] | (keyof DashTokens['pad'])[]
+  >
   /**
    * Sets a `background-color` CSS property on your component using the "color"
    * token in your theme
    */
-  readonly bg?: MqProp<keyof DashTokens['color']>
+  readonly bg?: ResponsiveProp<keyof DashTokens['color']>
   /**
    * Sets a `box-shadow` CSS property on your component using the "elevation"
    * token in your theme
    */
-  readonly elevation?: MqProp<keyof DashTokens['elevation']>
+  readonly elevation?: ResponsiveProp<keyof DashTokens['elevation']>
   /**
    * Sets a `border-radius` CSS property on your component using the "radius"
    * token in your theme
    */
-  readonly radius?: MqProp<
+  readonly radius?: ResponsiveProp<
     keyof DashTokens['radius'] | (keyof DashTokens['radius'])[]
   >
 }

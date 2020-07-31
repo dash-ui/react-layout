@@ -4,7 +4,7 @@ import css from 'minify-css.macro'
 import {Box} from './box'
 import type {BoxProps} from './box'
 import {useLayout} from './layout'
-import type {MqProp, MqPropCallback} from './layout'
+import type {ResponsiveProp, ResponsivePropCallback} from './layout'
 import {unit, forwardRefAs} from './utils'
 
 /**
@@ -39,15 +39,17 @@ export const LayerItem = forwardRefAs<LayerItemProps, 'div'>(function LayerItem(
   {className, offset, placement, z, ...props},
   ref
 ) {
-  const {mq} = useLayout()
+  const {responsiveStyles, styles} = useLayout()
 
   return (
     <Box
       ref={ref}
       className={clsx(
         className,
-        mq(placementStyle(offset), placement),
-        mq(zStyle, z)
+        styles.join(
+          responsiveStyles(placementStyle(offset)).css(placement),
+          responsiveStyles(zStyle).css(z)
+        )
       )}
       position='absolute'
       {...props}
@@ -57,7 +59,7 @@ export const LayerItem = forwardRefAs<LayerItemProps, 'div'>(function LayerItem(
 
 const placementStyle = (
   offsetProp: LayerItemProps['offset'] | undefined
-): MqPropCallback<Placements> => (value, queryName): string => {
+): ResponsivePropCallback<Placements> => (value, queryName): string => {
   if (value === 'center') {
     return css`
       top: 50%;
@@ -135,15 +137,15 @@ export interface LayerItemProps extends Omit<BoxProps, 'position'> {
   /**
    * Sets a `margin` between the edges of the layer item's container
    */
-  offset?: MqProp<number | string>
+  offset?: ResponsiveProp<number | string>
   /**
    * Sets the placement of your layer item relative to its container
    */
-  placement: MqProp<Placements>
+  placement: ResponsiveProp<Placements>
   /**
    * Sets a `z-index` CSS property on your component
    */
-  z?: MqProp<number>
+  z?: ResponsiveProp<number>
 }
 
 /* istanbul ignore next */

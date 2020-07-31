@@ -1,6 +1,6 @@
 import type {DashTokens} from '@dash-ui/styles'
 import type {BoxProps} from './box'
-import type {MqProp} from './layout'
+import type {ResponsiveProp} from './layout'
 /**
  * A layout component that distributes its items in a column without wrapping
  * like so:
@@ -27,21 +27,23 @@ export interface ColumnProps extends BoxProps {
   /**
    * Positional alignment for its child items on the x-axis using `align-items`
    */
-  readonly align?: MqProp<'start' | 'center' | 'end' | 'baseline' | 'stretch'>
+  readonly align?: ResponsiveProp<
+    'start' | 'center' | 'end' | 'baseline' | 'stretch'
+  >
   /**
    * Distributed alignment properties on the y-axis using `justify-content`
    */
-  readonly distribute?: MqProp<
+  readonly distribute?: ResponsiveProp<
     'start' | 'center' | 'end' | 'around' | 'between' | 'evenly' | 'stretch'
   >
   /**
    * Sets a vertical gap between the child elements in the column using the "gap"
    * token in your theme
    */
-  readonly gap?: MqProp<keyof DashTokens['gap']>
+  readonly gap?: ResponsiveProp<keyof DashTokens['gap']>
   /**
    * Reverses the direction of the column to bottom-to-top
    * @default false
    */
-  readonly reverse?: MqProp<boolean>
+  readonly reverse?: ResponsiveProp<boolean>
 }

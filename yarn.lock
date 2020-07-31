@@ -1164,15 +1164,22 @@
     chalk "^4.0.0"
     css "^2.2.4"
 
-"@dash-ui/mq@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@dash-ui/mq/-/mq-0.3.0.tgz#8cfa47cfabf3b7c47c4bdf576c4228d7f0d73ed3"
-  integrity sha512-+OXIIPIpj+T9ilJrZqtVMUwwiWey40GL+JzITbuAjZhLSraihqvFVSRU3ssoC7iavqAP0PfHpWv7DKtiiWLXNA==
+"@dash-ui/mq@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@dash-ui/mq/-/mq-0.4.0.tgz#85e4e734bb9c0e686a8a36633ef2e93219e72aad"
+  integrity sha512-6fJu+7rrmS+KxdkZlhggM0p8HEiwBlnnxpGTZH+aOqmbuqqcc26fwqRZc2CS/wf5bUqSV9mBFniMN8suGPiLlg==
 
-"@dash-ui/styles@^0.7.3":
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/@dash-ui/styles/-/styles-0.7.3.tgz#17c5597281038d5508f610453b06e425a4fb6876"
-  integrity sha512-ZCncswU/usp1Yc0s5ALEoTgAyyoMhLq60CLJkB53VZxXdveT3LrYT7v32wmIHDClDe0dpvHUDOeII69jHR5y4A==
+"@dash-ui/responsive@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@dash-ui/responsive/-/responsive-0.1.2.tgz#7591db7905e350d41e4f6cd875470d7f9891907e"
+  integrity sha512-lz+X1FLmN8vWHx7z7jrFE/ReMQVv36pe3D64jDlYEynXxWjVs5+8iLiY27Yc8RQZC0rMoTBx5z8cOeYbWlBguQ==
+  dependencies:
+    "@dash-ui/mq" "^0.4.0"
+
+"@dash-ui/styles@^0.8.0":
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/@dash-ui/styles/-/styles-0.8.1.tgz#f19439e206bd8cbd9e21d5af79797c1f7b1b9d37"
+  integrity sha512-BFYOWhrZ8YySpNvlEza5ZJMvlHpze3cbdQmoh+EQBqm0qX7oB3YMsS8BL6bYJqpDBjKW9Vam6F7EznmDd1UjDQ==
   dependencies:
     "@dash-ui/stylis" "^1.0.5"
     "@dash-ui/unitless" "^2.0.0"

@@ -5,7 +5,7 @@ import type {DashTokens} from '@dash-ui/styles'
 import {Box} from './box'
 import type {BoxProps} from './box'
 import {useLayout} from './layout'
-import type {MqProp, MqPropCallback} from './layout'
+import type {ResponsiveProp, ResponsivePropCallback} from './layout'
 import {flexDirection, justifyContent, alignItems} from './styles'
 import {forwardRefAs} from './utils'
 
@@ -27,22 +27,24 @@ export const Row = forwardRefAs<RowProps, 'div'>(function Row(
   {className, align, distribute, gap, reverse = false, ...props},
   ref
 ) {
-  const {mq, cls} = useLayout()
+  const {responsiveStyles, styles} = useLayout()
 
   return (
     <Box
       ref={ref}
       className={clsx(
         className,
-        cls(css`
-          & > * {
-            flex-shrink: 0;
-          }
-        `),
-        mq(alignItems, align),
-        mq(justifyContent, distribute),
-        mq(gapStyle(reverse), gap),
-        mq(reverseStyle, reverse)
+        styles.join(
+          css`
+            & > * {
+              flex-shrink: 0;
+            }
+          `,
+          responsiveStyles(alignItems).css(align),
+          responsiveStyles(justifyContent).css(distribute),
+          responsiveStyles(gapStyle(reverse)).css(gap),
+          responsiveStyles(reverseStyle).css(reverse)
+        )
       )}
       display='flex'
       {...props}
@@ -56,7 +58,7 @@ const reverseStyle = (reverse: boolean) =>
 const gapStyle = (
   reverse: RowProps['reverse']
   // @ts-expect-error
-): MqPropCallback<keyof DashTokens['gap']> => (gapProp, queryName) => {
+): ResponsivePropCallback<keyof DashTokens['gap']> => (gapProp, queryName) => {
   const reversed =
     !reverse || typeof reverse === 'boolean' ? reverse : reverse[queryName]
   const marginDirection = reversed ? 'right' : 'left'
@@ -73,11 +75,13 @@ export interface RowProps extends BoxProps {
   /**
    * Positional alignment for its child items on the y-axis using `align-items`
    */
-  readonly align?: MqProp<'start' | 'center' | 'end' | 'baseline' | 'stretch'>
+  readonly align?: ResponsiveProp<
+    'start' | 'center' | 'end' | 'baseline' | 'stretch'
+  >
   /**
    * Distributed alignment properties on the x-axis using `justify-content`
    */
-  readonly distribute?: MqProp<
+  readonly distribute?: ResponsiveProp<
     'start' | 'center' | 'end' | 'around' | 'between' | 'evenly' | 'stretch'
   >
   /**
@@ -85,12 +89,12 @@ export interface RowProps extends BoxProps {
    * token in your theme
    */
   // @ts-expect-error
-  readonly gap?: MqProp<keyof DashTokens['gap']>
+  readonly gap?: ResponsiveProp<keyof DashTokens['gap']>
   /**
    * Reverses the direction of the row to left-to-right
    * @default false
    */
-  readonly reverse?: MqProp<boolean>
+  readonly reverse?: ResponsiveProp<boolean>
 }
 
 /* istanbul ignore next */

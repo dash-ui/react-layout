@@ -5,7 +5,7 @@ import type {DashTokens} from '@dash-ui/styles'
 import {Box} from './box'
 import type {BoxProps} from './box'
 import {useLayout} from './layout'
-import type {MqProp, MqPropCallback} from './layout'
+import type {ResponsiveProp, ResponsivePropCallback} from './layout'
 import {justifyContent, flexDirection} from './styles'
 import {forwardRefAs} from './utils'
 
@@ -40,22 +40,24 @@ export const Cluster = forwardRefAs<ClusterProps, 'div'>(function Cluster(
   {className, gap, reverse = false, ...props},
   ref
 ) {
-  const {mq, cls} = useLayout()
+  const {responsiveStyles, styles} = useLayout()
 
   return (
     <Box
       ref={ref}
       className={clsx(
         className,
-        cls(css`
-          display: flex;
-          flex-wrap: wrap;
-          & > * {
-            flex-shrink: 0;
-          }
-        `),
-        mq(gapStyle(reverse), gap),
-        mq(reverseStyle, reverse)
+        styles.join(
+          css`
+            display: flex;
+            flex-wrap: wrap;
+            & > * {
+              flex-shrink: 0;
+            }
+          `,
+          responsiveStyles(gapStyle(reverse)).css(gap),
+          responsiveStyles(reverseStyle).css(reverse)
+        )
       )}
       {...props}
     />
@@ -68,7 +70,7 @@ const reverseStyle = (reverse: boolean) =>
 const gapStyle = (
   reverse: ClusterProps['reverse']
   // @ts-expect-error
-): MqPropCallback<keyof DashTokens['gap']> => (gapProp, queryName) => {
+): ResponsivePropCallback<keyof DashTokens['gap']> => (gapProp, queryName) => {
   const reversed =
     !reverse || typeof reverse === 'boolean' ? reverse : reverse[queryName]
   const marginDirection = reversed ? 'right' : 'left'
@@ -89,13 +91,13 @@ export interface ClusterProps extends Omit<BoxProps, 'display'> {
    * Reverses the direction of your cluster so that it lays out right-to-left
    * @default false
    */
-  readonly reverse?: MqProp<boolean>
+  readonly reverse?: ResponsiveProp<boolean>
   /**
    * Sets a vertical and horizontal gap between the child elements in the
    * cluster using the "gap" token in your theme
    */
   // @ts-expect-error
-  readonly gap?: MqProp<keyof DashTokens['gap']>
+  readonly gap?: ResponsiveProp<keyof DashTokens['gap']>
 }
 
 /* istanbul ignore next */

@@ -4,7 +4,7 @@ import css from 'minify-css.macro'
 import {Box} from './box'
 import type {BoxProps} from './box'
 import {useLayout} from './layout'
-import type {MqProp} from './layout'
+import type {ResponsiveProp} from './layout'
 import {alignSelf} from './styles'
 import {unit, forwardRefAs} from './utils'
 
@@ -19,20 +19,22 @@ export const FlexItem = forwardRefAs<FlexItemProps, 'div'>(function FlexItem(
   {className, maxWidth, maxHeight, basis, order, grow, shrink, align, ...props},
   ref
 ) {
-  const {mq} = useLayout()
+  const {responsiveStyles, styles} = useLayout()
 
   return (
     <Box
       ref={ref}
       className={clsx(
         className,
-        mq(maxWidthStyle, maxWidth),
-        mq(maxHeightStyle, maxHeight),
-        mq(basisStyle, basis),
-        mq(orderStyle, order),
-        mq(growStyle, grow),
-        mq(shrinkStyle, shrink),
-        mq(alignSelf, align)
+        styles.join(
+          responsiveStyles(maxWidthStyle).css(maxWidth),
+          responsiveStyles(maxHeightStyle).css(maxHeight),
+          responsiveStyles(basisStyle).css(basis),
+          responsiveStyles(orderStyle).css(order),
+          responsiveStyles(growStyle).css(grow),
+          responsiveStyles(shrinkStyle).css(shrink),
+          responsiveStyles(alignSelf).css(align)
+        )
       )}
       {...props}
     />
@@ -63,31 +65,33 @@ export interface FlexItemProps extends BoxProps {
   /**
    * Sets a `align-self` CSS property on your component
    */
-  readonly align?: MqProp<'start' | 'end' | 'center' | 'baseline' | 'stretch'>
+  readonly align?: ResponsiveProp<
+    'start' | 'end' | 'center' | 'baseline' | 'stretch'
+  >
   /**
    * Sets a `flex-basis` CSS property on your component
    */
-  readonly basis?: MqProp<number | string>
+  readonly basis?: ResponsiveProp<number | string>
   /**
    * Sets a `flex-grow` CSS property on your component
    */
-  readonly grow?: MqProp<boolean | number>
+  readonly grow?: ResponsiveProp<boolean | number>
   /**
    * Sets a `max-width` CSS property on your component
    */
-  readonly maxWidth?: MqProp<number | string>
+  readonly maxWidth?: ResponsiveProp<number | string>
   /**
    * Sets a `max-height` CSS property on your component
    */
-  readonly maxHeight?: MqProp<number | string>
+  readonly maxHeight?: ResponsiveProp<number | string>
   /**
    * Sets a `order` CSS property on your component
    */
-  readonly order?: MqProp<number>
+  readonly order?: ResponsiveProp<number>
   /**
    * Sets a `flex-shrink` CSS property on your component
    */
-  readonly shrink?: MqProp<boolean | number>
+  readonly shrink?: ResponsiveProp<boolean | number>
 }
 
 /* istanbul ignore next */

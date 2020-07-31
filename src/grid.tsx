@@ -5,7 +5,7 @@ import type {DashTokens} from '@dash-ui/styles'
 import {Box} from './box'
 import type {BoxProps} from './box'
 import {useLayout} from './layout'
-import type {MqProp, MqPropCallback} from './layout'
+import type {ResponsiveProp, ResponsivePropCallback} from './layout'
 import {
   alignSelf,
   justifySelf,
@@ -48,21 +48,23 @@ export const Grid = forwardRefAs<GridProps, 'div'>(function Grid(
   },
   ref
 ) {
-  const {mq} = useLayout()
+  const {responsiveStyles, styles} = useLayout()
 
   return (
     <Box
       ref={ref}
       className={clsx(
         className,
-        mq(justifyItems, alignX),
-        mq(alignItems, alignY),
-        mq(justifyContent, distributeX),
-        mq(alignContent, distributeY),
-        mq(colsStyle, cols),
-        mq(rowsStyle, rows),
-        mq(gridStyle, inline || false),
-        mq(gapStyle, gap)
+        styles.join(
+          responsiveStyles(justifyItems).css(alignX),
+          responsiveStyles(alignItems).css(alignY),
+          responsiveStyles(justifyContent).css(distributeX),
+          responsiveStyles(alignContent).css(distributeY),
+          responsiveStyles(colsStyle).css(cols),
+          responsiveStyles(rowsStyle).css(rows),
+          responsiveStyles(gridStyle).css(inline || false),
+          responsiveStyles(gapStyle).css(gap)
+        )
       )}
       {...props}
     />
@@ -85,19 +87,21 @@ export const GridItem = forwardRefAs<GridItemProps, 'div'>(function GridItem(
   {className, alignX, alignY, colStart, colEnd, rowStart, rowEnd, ...props},
   ref
 ) {
-  const {mq} = useLayout()
+  const {responsiveStyles, styles} = useLayout()
 
   return (
     <Box
       ref={ref}
       className={clsx(
         className,
-        mq(justifySelf, alignX),
-        mq(alignSelf, alignY),
-        mq(colStartStyle, colStart),
-        mq(colEndStyle, colEnd),
-        mq(rowStartStyle, rowStart),
-        mq(rowEndStyle, rowEnd)
+        styles.join(
+          responsiveStyles(justifySelf).css(alignX),
+          responsiveStyles(alignSelf).css(alignY),
+          responsiveStyles(colStartStyle).css(colStart),
+          responsiveStyles(colEndStyle).css(colEnd),
+          responsiveStyles(rowStartStyle).css(rowStart),
+          responsiveStyles(rowEndStyle).css(rowEnd)
+        )
       )}
       {...props}
     />
@@ -128,7 +132,7 @@ const rowsStyle = (rows: number | (number | string)[]) => {
   `
 }
 
-const gapStyle: MqPropCallback<
+const gapStyle: ResponsivePropCallback<
   // @ts-expect-error
   | keyof DashTokens['gap']
   // @ts-expect-error
@@ -166,67 +170,67 @@ export interface GridProps extends Omit<BoxProps, 'display'> {
   /**
    * Sets a `justify-items` CSS property on your component
    */
-  readonly alignX?: MqProp<'start' | 'center' | 'end' | 'stretch'>
+  readonly alignX?: ResponsiveProp<'start' | 'center' | 'end' | 'stretch'>
   /**
    * Sets an `align-items` CSS property on your component
    */
-  readonly alignY?: MqProp<'start' | 'center' | 'end' | 'stretch'>
+  readonly alignY?: ResponsiveProp<'start' | 'center' | 'end' | 'stretch'>
   /**
    * Sets a `grid-template-columns` CSS property on your component
    */
-  readonly cols?: MqProp<number | (number | string)[]>
+  readonly cols?: ResponsiveProp<number | (number | string)[]>
   /**
    * Sets a `justify-content` CSS property on your component
    */
-  readonly distributeX?: MqProp<
+  readonly distributeX?: ResponsiveProp<
     'start' | 'center' | 'end' | 'stretch' | 'around' | 'between' | 'evenly'
   >
   /**
    * Sets an `align-content` CSS property on your component
    */
-  readonly distributeY?: MqProp<
+  readonly distributeY?: ResponsiveProp<
     'start' | 'center' | 'end' | 'stretch' | 'around' | 'between' | 'evenly'
   >
   /**
    * Sets a horizontal and vertical gap between the child elements in the row
    * using the "gap" token in your theme
    */
-  readonly gap?: MqProp<GapProp>
+  readonly gap?: ResponsiveProp<GapProp>
   /**
    * Makes the component display as an `inline-grid` rather than `grid`
    */
-  readonly inline?: MqProp<boolean>
+  readonly inline?: ResponsiveProp<boolean>
   /**
    * Sets a `grid-template-rows` CSS property on your component
    */
-  readonly rows?: MqProp<number | (number | string)[]>
+  readonly rows?: ResponsiveProp<number | (number | string)[]>
 }
 
 export interface GridItemProps extends BoxProps {
   /**
    * Sets a `justify-self` CSS property on your component
    */
-  readonly alignX?: MqProp<'start' | 'center' | 'end' | 'stretch'>
+  readonly alignX?: ResponsiveProp<'start' | 'center' | 'end' | 'stretch'>
   /**
    * Sets an `align-self` CSS property on your component
    */
-  readonly alignY?: MqProp<'start' | 'center' | 'end' | 'stretch'>
+  readonly alignY?: ResponsiveProp<'start' | 'center' | 'end' | 'stretch'>
   /**
    * Sets a `grid-column-start` CSS property on your component
    */
-  readonly colStart?: MqProp<number | string>
+  readonly colStart?: ResponsiveProp<number | string>
   /**
    * Sets a `grid-column-end` CSS property on your component
    */
-  readonly colEnd?: MqProp<number | string>
+  readonly colEnd?: ResponsiveProp<number | string>
   /**
    * Sets a `grid-row-start` CSS property on your component
    */
-  readonly rowStart?: MqProp<number | string>
+  readonly rowStart?: ResponsiveProp<number | string>
   /**
    * Sets a `grid-row-end` CSS property on your component
    */
-  readonly rowEnd?: MqProp<number | string>
+  readonly rowEnd?: ResponsiveProp<number | string>
 }
 
 /* istanbul ignore next */

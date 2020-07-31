@@ -222,18 +222,18 @@ const Component = () => (
 
 #### Props
 
-| Name      | Type                                                                               | Required? | Description                                                                                                                                                                                                                                                                       |
-| --------- | ---------------------------------------------------------------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| display   | `MqProp<'flex' \| 'inlineFlex' \| 'block' \| 'inlineBlock' \| 'inline' \| 'none'>` | No        | Sets a `display` CSS property on your component.                                                                                                                                                                                                                                  |
-| position  | `MqProp<'relative' \| 'absolute' \| 'sticky' \| 'fixed'>`                          | No        | Sets a `position` CSS property on your component.                                                                                                                                                                                                                                 |
-| width     | `MqProp<number \| string>`                                                         | No        | Sets a `width` CSS property on your component.                                                                                                                                                                                                                                    |
-| height    | `MqProp<number \| string>`                                                         | No        | Sets a `height` CSS property on your component.                                                                                                                                                                                                                                   |
-| size      | `MqProp<number \| string>`                                                         | No        | Sets a `size` CSS property on your component.                                                                                                                                                                                                                                     |
-| pad       | `MqProp<keyof DashTokens['pad'] \| (keyof DashTokens['pad'])[]>`                   | No        | Sets a `padding` CSS property on your component using the "pad" token in your theme. When this is an array padding will be joined in the same order as the `padding` CSS property i.e. `['sm', 'md']` would be `padding: var(--pad-sm) var(--pad-md)`.                            |
-| bg        | `MqProp<keyof DashTokens['color']>`                                                | No        | Sets a `background-color` CSS property on your component using the "color" token in your theme.                                                                                                                                                                                   |
-| elevation | `MqProp<keyof DashTokens['elevation']>`                                            | No        | Sets a `box-shadow` CSS property on your component using the "elevation" token in your theme.                                                                                                                                                                                     |
-| radius    | `MqProp<keyof DashTokens['radius'] \| (keyof DashTokens['radius'])[]>`             | No        | Sets a `border-radius` CSS property on your component using the "radius" token in your theme. When this is an array padding will be joined in the same order as the `border-radius` CSS property i.e. `['sm', 'md']` would be `border-radius: var(--radius-sm) var(--radius-md)`. |
-| className | `string \| string[]`                                                               | No        | Adds one or several class names to your component.                                                                                                                                                                                                                                |
+| Name      | Type                                                                                       | Required? | Description                                                                                                                                                                                                                                                                       |
+| --------- | ------------------------------------------------------------------------------------------ | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| display   | `ResponsiveProp<'flex' \| 'inlineFlex' \| 'block' \| 'inlineBlock' \| 'inline' \| 'none'>` | No        | Sets a `display` CSS property on your component.                                                                                                                                                                                                                                  |
+| position  | `ResponsiveProp<'relative' \| 'absolute' \| 'sticky' \| 'fixed'>`                          | No        | Sets a `position` CSS property on your component.                                                                                                                                                                                                                                 |
+| width     | `ResponsiveProp<number \| string>`                                                         | No        | Sets a `width` CSS property on your component.                                                                                                                                                                                                                                    |
+| height    | `ResponsiveProp<number \| string>`                                                         | No        | Sets a `height` CSS property on your component.                                                                                                                                                                                                                                   |
+| size      | `ResponsiveProp<number \| string>`                                                         | No        | Sets a `size` CSS property on your component.                                                                                                                                                                                                                                     |
+| pad       | `ResponsiveProp<keyof DashTokens['pad'] \| (keyof DashTokens['pad'])[]>`                   | No        | Sets a `padding` CSS property on your component using the "pad" token in your theme. When this is an array padding will be joined in the same order as the `padding` CSS property i.e. `['sm', 'md']` would be `padding: var(--pad-sm) var(--pad-md)`.                            |
+| bg        | `ResponsiveProp<keyof DashTokens['color']>`                                                | No        | Sets a `background-color` CSS property on your component using the "color" token in your theme.                                                                                                                                                                                   |
+| elevation | `ResponsiveProp<keyof DashTokens['elevation']>`                                            | No        | Sets a `box-shadow` CSS property on your component using the "elevation" token in your theme.                                                                                                                                                                                     |
+| radius    | `ResponsiveProp<keyof DashTokens['radius'] \| (keyof DashTokens['radius'])[]>`             | No        | Sets a `border-radius` CSS property on your component using the "radius" token in your theme. When this is an array padding will be joined in the same order as the `border-radius` CSS property i.e. `['sm', 'md']` would be `border-radius: var(--radius-sm) var(--radius-md)`. |
+| className | `string \| string[]`                                                                       | No        | Adds one or several class names to your component.                                                                                                                                                                                                                                |
 
 ### &lt;Cluster&gt;
 
@@ -265,10 +265,10 @@ const Component = () => (
 
 > 🔆 In addition to the props below, `<Row>` inherits all props from [`<Box>`](#box).
 
-| Name    | Type                              | Required? | Description                                                                                                       |
-| ------- | --------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------- |
-| gap     | `MqProp<keyof DashTokens['gap']>` | No        | Sets a vertical and horizontal gap between the child elements in the cluster using the "gap" token in your theme. |
-| reverse | `MqProp<boolean>`                 | No        | Reverses the direction of your cluster so that it lays out right-to-left.                                         |
+| Name    | Type                                      | Required? | Description                                                                                                       |
+| ------- | ----------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------- |
+| gap     | `ResponsiveProp<keyof DashTokens['gap']>` | No        | Sets a vertical and horizontal gap between the child elements in the cluster using the "gap" token in your theme. |
+| reverse | `ResponsiveProp<boolean>`                 | No        | Reverses the direction of your cluster so that it lays out right-to-left.                                         |
 
 ### &lt;Column&gt;
 
@@ -300,10 +300,10 @@ const Component = () => (
 
 > 🔆 In addition to the props below, `<Column>` inherits all props from [`<Box>`](#box).
 
-| Name    | Type                              | Required? | Description                                                                         |
-| ------- | --------------------------------- | --------- | ----------------------------------------------------------------------------------- |
-| gap     | `MqProp<keyof DashTokens['gap']>` | No        | Sets a vertical gap between its child elements using the "gap" token in your theme. |
-| reverse | `MqProp<boolean>`                 | No        | Reverses the direction of the column to bottom-to-top                               |
+| Name    | Type                                      | Required? | Description                                                                         |
+| ------- | ----------------------------------------- | --------- | ----------------------------------------------------------------------------------- |
+| gap     | `ResponsiveProp<keyof DashTokens['gap']>` | No        | Sets a vertical gap between its child elements using the "gap" token in your theme. |
+| reverse | `ResponsiveProp<boolean>`                 | No        | Reverses the direction of the column to bottom-to-top                               |
 
 ### &lt;FlexItem&gt;
 
@@ -342,15 +342,15 @@ const Component = () => (
 
 > 🔆 In addition to the props below, `<FlexItem>` inherits all props from [`<Box>`](#box).
 
-| Name      | Type                                                              | Required? | Description                                          |
-| --------- | ----------------------------------------------------------------- | --------- | ---------------------------------------------------- |
-| align     | `MqProp<'start' \| 'end' \| 'center' \| 'baseline' \| 'stretch'>` | No        | Sets a `align-self` CSS property on your component.  |
-| basis     | `MqProp<number \| string>`                                        | No        | Sets a `flex-basis` CSS property on your component.  |
-| grow      | `MqProp<boolean \| number>`                                       | No        | Sets a `flex-grow` CSS property on your component.   |
-| maxWidth  | `MqProp<number \| string>`                                        | No        | Sets a `max-width` CSS property on your component.   |
-| maxHeight | `MqProp<number \| string>`                                        | No        | Sets a `max-height` CSS property on your component.  |
-| order     | `MqProp<number>`                                                  | No        | Sets a `order` CSS property on your component.       |
-| shrink    | `MqProp<boolean \| number>`                                       | No        | Sets a `flex-shrink` CSS property on your component. |
+| Name      | Type                                                                      | Required? | Description                                          |
+| --------- | ------------------------------------------------------------------------- | --------- | ---------------------------------------------------- |
+| align     | `ResponsiveProp<'start' \| 'end' \| 'center' \| 'baseline' \| 'stretch'>` | No        | Sets a `align-self` CSS property on your component.  |
+| basis     | `ResponsiveProp<number \| string>`                                        | No        | Sets a `flex-basis` CSS property on your component.  |
+| grow      | `ResponsiveProp<boolean \| number>`                                       | No        | Sets a `flex-grow` CSS property on your component.   |
+| maxWidth  | `ResponsiveProp<number \| string>`                                        | No        | Sets a `max-width` CSS property on your component.   |
+| maxHeight | `ResponsiveProp<number \| string>`                                        | No        | Sets a `max-height` CSS property on your component.  |
+| order     | `ResponsiveProp<number>`                                                  | No        | Sets a `order` CSS property on your component.       |
+| shrink    | `ResponsiveProp<boolean \| number>`                                       | No        | Sets a `flex-shrink` CSS property on your component. |
 
 ### &lt;Grid&gt;
 
@@ -388,16 +388,16 @@ const Component = () => (
 > 🔆 In addition to the props below, `<Grid>` inherits all props from [`<Box>`](#box),
 > omitting `display` which is always `"grid"`.
 
-| Name        | Type                                                                                     | Required? | Description                                                                                                   |
-| ----------- | ---------------------------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------- |
-| alignX      | `MqProp<'start' \| 'center' \| 'end' \| 'stretch'>`                                      | No        | Sets a `justify-items` CSS property on your component.                                                        |
-| alignY      | `MqProp<'start' \| 'center' \| 'end' \| 'stretch'>`                                      | No        | Sets a `align-items` CSS property on your component.                                                          |
-| cols        | `MqProp<number \| (number \| string)[]>`                                                 | No        | Sets a `grid-template-columns` CSS property on your component.                                                |
-| distributeX | `MqProp<'start' \| 'center' \| 'end' \| 'stretch' \| 'around' \| 'between' \| 'evenly'>` | No        | Sets a `justify-content` CSS property on your component.                                                      |
-| distributeY | `MqProp<'start' \| 'center' \| 'end' \| 'stretch' \| 'around' \| 'between' \| 'evenly'>` | No        | Sets a `align-content` CSS property on your component.                                                        |
-| gap         | [`MqProp<GapProp>`](#gapprop)                                                            | No        | Sets a horizontal and vertical gap between the child elements in the row using the "gap" token in your theme. |
-| inline      | `MqProp<boolean>`                                                                        | No        | Makes the component display as an `inline-grid` rather than `grid`.                                           |
-| rows        | `MqProp<number \| (number \| string)[]>`                                                 | No        | Sets a `grid-template-rows` CSS property on your component.                                                   |
+| Name        | Type                                                                                             | Required? | Description                                                                                                   |
+| ----------- | ------------------------------------------------------------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------------------- |
+| alignX      | `ResponsiveProp<'start' \| 'center' \| 'end' \| 'stretch'>`                                      | No        | Sets a `justify-items` CSS property on your component.                                                        |
+| alignY      | `ResponsiveProp<'start' \| 'center' \| 'end' \| 'stretch'>`                                      | No        | Sets a `align-items` CSS property on your component.                                                          |
+| cols        | `ResponsiveProp<number \| (number \| string)[]>`                                                 | No        | Sets a `grid-template-columns` CSS property on your component.                                                |
+| distributeX | `ResponsiveProp<'start' \| 'center' \| 'end' \| 'stretch' \| 'around' \| 'between' \| 'evenly'>` | No        | Sets a `justify-content` CSS property on your component.                                                      |
+| distributeY | `ResponsiveProp<'start' \| 'center' \| 'end' \| 'stretch' \| 'around' \| 'between' \| 'evenly'>` | No        | Sets a `align-content` CSS property on your component.                                                        |
+| gap         | [`ResponsiveProp<GapProp>`](#gapprop)                                                            | No        | Sets a horizontal and vertical gap between the child elements in the row using the "gap" token in your theme. |
+| inline      | `ResponsiveProp<boolean>`                                                                        | No        | Makes the component display as an `inline-grid` rather than `grid`.                                           |
+| rows        | `ResponsiveProp<number \| (number \| string)[]>`                                                 | No        | Sets a `grid-template-rows` CSS property on your component.                                                   |
 
 #### GapProp
 
@@ -435,14 +435,14 @@ const Component = () => (
 
 > 🔆 In addition to the props below, `<GridItem>` inherits all props from [`<Box>`](#box).
 
-| Name     | Type                                                | Required? | Description                                                |
-| -------- | --------------------------------------------------- | --------- | ---------------------------------------------------------- |
-| alignX   | `MqProp<'start' \| 'center' \| 'end' \| 'stretch'>` | No        | Sets a `justify-self` CSS property on your component.      |
-| alignY   | `MqProp<'start' \| 'center' \| 'end' \| 'stretch'>` | No        | Sets a `align-self` CSS property on your component.        |
-| colStart | `MqProp<number \| string>`                          | No        | Sets a `grid-column-start` CSS property on your component. |
-| colEnd   | `MqProp<number \| string>`                          | No        | Sets a `grid-column-end` CSS property on your component.   |
-| rowStart | `MqProp<number \| string>`                          | No        | Sets a `grid-row-start` CSS property on your component.    |
-| rowEnd   | `MqProp<number \| string>`                          | No        | Sets a `grid-row-end` CSS property on your component.      |
+| Name     | Type                                                        | Required? | Description                                                |
+| -------- | ----------------------------------------------------------- | --------- | ---------------------------------------------------------- |
+| alignX   | `ResponsiveProp<'start' \| 'center' \| 'end' \| 'stretch'>` | No        | Sets a `justify-self` CSS property on your component.      |
+| alignY   | `ResponsiveProp<'start' \| 'center' \| 'end' \| 'stretch'>` | No        | Sets a `align-self` CSS property on your component.        |
+| colStart | `ResponsiveProp<number \| string>`                          | No        | Sets a `grid-column-start` CSS property on your component. |
+| colEnd   | `ResponsiveProp<number \| string>`                          | No        | Sets a `grid-column-end` CSS property on your component.   |
+| rowStart | `ResponsiveProp<number \| string>`                          | No        | Sets a `grid-row-start` CSS property on your component.    |
+| rowEnd   | `ResponsiveProp<number \| string>`                          | No        | Sets a `grid-row-end` CSS property on your component.      |
 
 ### &lt;Layer&gt;
 
@@ -500,11 +500,11 @@ const Component = () => (
 
 > 🔆 In addition to the props below, `<LayerItem>` inherits all props from [`<Box>`](#box).
 
-| Name      | Type                                | Required? | Description                                                                                       |
-| --------- | ----------------------------------- | --------- | ------------------------------------------------------------------------------------------------- |
-| offset    | `MqProp<number \| string>`          | No        | Sets a `margin` between the edges of the layer item's container.                                  |
-| placement | [`MqProp<Placements>`](#placements) | Yes       | Sets the placement of your layer item relative to its container. See [`Placements`](#placements). |
-| z         | `MqProp<number>`                    | No        | Sets a `z-index` CSS property on your component.                                                  |
+| Name      | Type                                        | Required? | Description                                                                                       |
+| --------- | ------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------- |
+| offset    | `ResponsiveProp<number \| string>`          | No        | Sets a `margin` between the edges of the layer item's container.                                  |
+| placement | [`ResponsiveProp<Placements>`](#placements) | Yes       | Sets the placement of your layer item relative to its container. See [`Placements`](#placements). |
+| z         | `ResponsiveProp<number>`                    | No        | Sets a `z-index` CSS property on your component.                                                  |
 
 #### Placements
 
@@ -551,10 +551,10 @@ const Component = () => (
 
 > 🔆 In addition to the props below, `<Row>` inherits all props from [`<Box>`](#box).
 
-| Name    | Type                              | Required? | Description                                                                           |
-| ------- | --------------------------------- | --------- | ------------------------------------------------------------------------------------- |
-| gap     | `MqProp<keyof DashTokens['gap']>` | No        | Sets a horizontal gap between its child elements using the "gap" token in your theme. |
-| reverse | `MqProp<boolean>`                 | No        | Reverses the direction of the column to right-to-left                                 |
+| Name    | Type                                      | Required? | Description                                                                           |
+| ------- | ----------------------------------------- | --------- | ------------------------------------------------------------------------------------- |
+| gap     | `ResponsiveProp<keyof DashTokens['gap']>` | No        | Sets a horizontal gap between its child elements using the "gap" token in your theme. |
+| reverse | `ResponsiveProp<boolean>`                 | No        | Reverses the direction of the column to right-to-left                                 |
 
 ## Hooks
 
@@ -571,18 +571,9 @@ Consumes the context from [LayoutProvider](#layoutprovider) and returns it.
    */
   styles: Styles
   /**
-   * The media queries being used by this provider
+   * A function for adding responsive props to components
    */
-  mediaQueries: MediaQueries
-  /**
-   * A function that accepts a style value and returns a
-   * class name
-   */
-  cls: (style: StyleValue) => string
-  /**
-   * A function for adding media query props to components
-   */
-  mq: Mq
+  responsiveStyles: ReturnType<typeof memoResponsive>
 }
 ```
 

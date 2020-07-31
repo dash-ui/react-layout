@@ -1,5 +1,5 @@
 import type {BoxProps} from './box'
-import type {MqProp} from './layout'
+import type {ResponsiveProp} from './layout'
 /**
  * A layout component that can add positioning properties to itself inside
  * of a flex container.
@@ -15,29 +15,31 @@ export interface FlexItemProps extends BoxProps {
   /**
    * Sets a `align-self` CSS property on your component
    */
-  readonly align?: MqProp<'start' | 'end' | 'center' | 'baseline' | 'stretch'>
+  readonly align?: ResponsiveProp<
+    'start' | 'end' | 'center' | 'baseline' | 'stretch'
+  >
   /**
    * Sets a `flex-basis` CSS property on your component
    */
-  readonly basis?: MqProp<number | string>
+  readonly basis?: ResponsiveProp<number | string>
   /**
    * Sets a `flex-grow` CSS property on your component
    */
-  readonly grow?: MqProp<boolean | number>
+  readonly grow?: ResponsiveProp<boolean | number>
   /**
    * Sets a `max-width` CSS property on your component
    */
-  readonly maxWidth?: MqProp<number | string>
+  readonly maxWidth?: ResponsiveProp<number | string>
   /**
    * Sets a `max-height` CSS property on your component
    */
-  readonly maxHeight?: MqProp<number | string>
+  readonly maxHeight?: ResponsiveProp<number | string>
   /**
    * Sets a `order` CSS property on your component
    */
-  readonly order?: MqProp<number>
+  readonly order?: ResponsiveProp<number>
   /**
    * Sets a `flex-shrink` CSS property on your component
    */
-  readonly shrink?: MqProp<boolean | number>
+  readonly shrink?: ResponsiveProp<boolean | number>
 }

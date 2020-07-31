@@ -44,18 +44,18 @@ export interface LayoutContextType {
   mq: Mq
 }
 interface Mq {
-  <T, V>(style: MqPropCallback<T>, value: V): string | undefined
+  <T, V>(style: ResponsiveCallback<T>, value: V): string | undefined
 }
 interface Mq {
   <V, Names extends string>(style: StyleMap<Names, DashTokens>, value: V):
     | string
     | undefined
 }
-export declare type MqPropCallback<V> = (
+export declare type ResponsiveCallback<V> = (
   queryValue: V,
   queryName: keyof MediaQueries
 ) => StyleValue<DashTokens>
-export declare type MqProp<ValueType> =
+export declare type ResponsiveProp<ValueType> =
   | ValueType
   | {
       [key in Extract<keyof MediaQueries, string>]?: ValueType

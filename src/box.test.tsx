@@ -1,25 +1,10 @@
 /* jest */
 import * as React from 'react'
 import {render, screen} from '@testing-library/react'
-import {silenceErrors, renderMq, mediaQueries} from 'test-utils'
+import {renderMq, mediaQueries} from 'test-utils'
 import {Box} from './box'
 
 describe('<Box> without media queries', () => {
-  it(
-    'should throw if media queries are used without <LayoutProvider>',
-    silenceErrors(() => {
-      expect(() =>
-        render(
-          <Box
-            as='button'
-            display={{phone: 'block'}}
-            onClick={(e) => console.log(e)}
-          />
-        )
-      ).toThrowErrorMatchingSnapshot()
-    })
-  )
-
   it('applies the "display" prop', () => {
     render(<Box display='block' data-testid='el' />)
     expect(screen.getByTestId('el')).toHaveStyleRule('display', 'block')

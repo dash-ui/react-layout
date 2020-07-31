@@ -3,7 +3,7 @@ import css from 'minify-css.macro'
 import clsx from 'clsx'
 import type {DashTokens} from '@dash-ui/styles'
 import {useLayout} from './layout'
-import type {MqProp, MqPropCallback} from './layout'
+import type {ResponsiveProp, ResponsivePropCallback} from './layout'
 import {unit, forwardRefAs} from './utils'
 import type {AsProp} from './types'
 
@@ -31,22 +31,24 @@ export const Box = forwardRefAs<BoxProps, 'button'>(function Box(
   },
   ref
 ) {
-  const {mq} = useLayout()
+  const {responsiveStyles, styles} = useLayout()
 
   return (
     <As
       ref={ref}
       className={clsx(
         className,
-        mq(frameStyle, display),
-        mq(frameStyle, position),
-        mq(widthStyle, width),
-        mq(heightStyle, height),
-        mq(sizeStyle, size),
-        mq(padStyle, pad),
-        mq(bgStyle, bg),
-        mq(elevationStyle, elevation),
-        mq(radiusStyle, radius)
+        styles.join(
+          responsiveStyles(frameStyle).css(display),
+          responsiveStyles(frameStyle).css(position),
+          responsiveStyles(widthStyle).css(width),
+          responsiveStyles(heightStyle).css(height),
+          responsiveStyles(sizeStyle).css(size),
+          responsiveStyles(padStyle).css(pad),
+          responsiveStyles(bgStyle).css(bg),
+          responsiveStyles(elevationStyle).css(elevation),
+          responsiveStyles(radiusStyle).css(radius)
+        )
       )}
       {...props}
     />
@@ -103,7 +105,7 @@ const sizeStyle = (size: number | string) => {
   `
 }
 
-const padStyle: MqPropCallback<
+const padStyle: ResponsivePropCallback<
   // @ts-expect-error
   keyof DashTokens['pad'] | (keyof DashTokens['pad'])[]
   // @ts-expect-error
@@ -115,20 +117,20 @@ const padStyle: MqPropCallback<
   `
 
 // @ts-expect-error
-const bgStyle: MqPropCallback<keyof DashTokens['color']> = (bg) => ({
+const bgStyle: ResponsivePropCallback<keyof DashTokens['color']> = (bg) => ({
   // @ts-expect-error
   color,
 }) => css`
   background-color: ${color[bg]};
 `
 // @ts-expect-error
-const elevationStyle: MqPropCallback<keyof DashTokens['elevation']> = (
+const elevationStyle: ResponsivePropCallback<keyof DashTokens['elevation']> = (
   elevationProp
   // @ts-expect-error
 ) => ({elevation}) => css`
   box-shadow: ${elevation[elevationProp]};
 `
-const radiusStyle: MqPropCallback<
+const radiusStyle: ResponsivePropCallback<
   // @ts-expect-error
   keyof DashTokens['radius'] | (keyof DashTokens['radius'])[]
   // @ts-expect-error
@@ -152,30 +154,32 @@ export interface BoxProps {
   /**
    * Sets a `display` CSS property on your component
    */
-  readonly display?: MqProp<
+  readonly display?: ResponsiveProp<
     'flex' | 'inlineFlex' | 'block' | 'inlineBlock' | 'inline' | 'none'
   >
   /**
    * Sets a `position` CSS property on your component
    */
-  readonly position?: MqProp<'relative' | 'absolute' | 'sticky' | 'fixed'>
+  readonly position?: ResponsiveProp<
+    'relative' | 'absolute' | 'sticky' | 'fixed'
+  >
   /**
    * Sets a `width` CSS property on your component
    */
-  readonly width?: MqProp<number | string>
+  readonly width?: ResponsiveProp<number | string>
   /**
    * Sets a `height` CSS property on your component
    */
-  readonly height?: MqProp<number | string>
+  readonly height?: ResponsiveProp<number | string>
   /**
    * Sets a `width` and `height` CSS property on your component
    */
-  readonly size?: MqProp<number | string>
+  readonly size?: ResponsiveProp<number | string>
   /**
    * Sets a `padding` CSS property on your component using the "pad"
    * token in your theme
    */
-  readonly pad?: MqProp<
+  readonly pad?: ResponsiveProp<
     // @ts-expect-error
     keyof DashTokens['pad'] | (keyof DashTokens['pad'])[]
   >
@@ -184,18 +188,18 @@ export interface BoxProps {
    * token in your theme
    */
   // @ts-expect-error
-  readonly bg?: MqProp<keyof DashTokens['color']>
+  readonly bg?: ResponsiveProp<keyof DashTokens['color']>
   /**
    * Sets a `box-shadow` CSS property on your component using the "elevation"
    * token in your theme
    */
   // @ts-expect-error
-  readonly elevation?: MqProp<keyof DashTokens['elevation']>
+  readonly elevation?: ResponsiveProp<keyof DashTokens['elevation']>
   /**
    * Sets a `border-radius` CSS property on your component using the "radius"
    * token in your theme
    */
-  readonly radius?: MqProp<
+  readonly radius?: ResponsiveProp<
     // @ts-expect-error
     keyof DashTokens['radius'] | (keyof DashTokens['radius'])[]
   >

@@ -1,5 +1,12 @@
 import * as React from 'react'
-import type {Styles, DashTokens, StyleMap, StyleValue} from '@dash-ui/styles'
+import responsive from '@dash-ui/responsive'
+import type {
+  Responsive,
+  ResponsiveStyle,
+  ResponsiveCallback,
+  ResponsiveStyleWithCallback,
+} from '@dash-ui/responsive'
+import type {Styles, Style, DashTokens, StyleMap} from '@dash-ui/styles'
 /**
  * A context consumer hook for `<LayoutProvider>`
  */
@@ -24,42 +31,38 @@ export declare function LayoutProvider({
 export declare namespace LayoutProvider {
   var displayName: string
 }
+declare function memoResponsive(
+  r: ReturnType<typeof responsive>
+): {
+  <Variant extends string>(
+    style: StyleMap<Variant, DashTokens>
+  ): ResponsiveStyle<Variant, DashTokens, MediaQueries>
+  <Variant_1 extends string>(
+    style: Style<Variant_1, DashTokens>
+  ): ResponsiveStyle<Variant_1, DashTokens, MediaQueries>
+  <Variant_2 extends unknown>(
+    style: ResponsiveCallback<Variant_2, DashTokens, MediaQueries>
+  ): ResponsiveStyleWithCallback<Variant_2, DashTokens, MediaQueries>
+}
 export interface LayoutContextType {
   /**
    * The `styles()` instance being used by this provider
    */
   styles: Styles
   /**
-   * The media queries being used by this provider
+   * A function for adding responsive props to components
    */
-  mediaQueries: MediaQueries
-  /**
-   * A function that accepts a style value and returns a
-   * class name
-   */
-  cls: (style: StyleValue) => string
-  /**
-   * A function for adding media query props to components
-   */
-  mq: Mq
+  responsiveStyles: ReturnType<typeof memoResponsive>
 }
-interface Mq {
-  <T, V>(style: ResponsiveCallback<T>, value: V): string | undefined
-}
-interface Mq {
-  <V, Names extends string>(style: StyleMap<Names, DashTokens>, value: V):
-    | string
-    | undefined
-}
-export declare type ResponsiveCallback<V> = (
-  queryValue: V,
-  queryName: keyof MediaQueries
-) => StyleValue<DashTokens>
-export declare type ResponsiveProp<ValueType> =
-  | ValueType
-  | {
-      [key in Extract<keyof MediaQueries, string>]?: ValueType
-    }
+export declare type ResponsiveProp<ValueType> = Responsive<
+  ValueType,
+  MediaQueries
+>
+export declare type ResponsivePropCallback<Variant> = ResponsiveCallback<
+  Variant,
+  DashTokens,
+  MediaQueries
+>
 export interface LayoutProviderProps {
   /**
    * The `styles()` instance you're using to create styles. By default this is the `styles()` instance

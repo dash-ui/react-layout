@@ -3929,6 +3929,11 @@ form-data@~2.3.2:
     combined-stream "^1.0.6"
     mime-types "^2.1.12"
 
+forward-ref-as@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/forward-ref-as/-/forward-ref-as-1.0.1.tgz#80177620abf4fa070abbf6d3e067374e8cb7c451"
+  integrity sha512-6FUoUqHzsPkPbil2h1HbLjv8G6k1rJjYU/7LKjj63F8ufkQNmprH8WbQPvV3nOeeTNzk5I08GmMETCKiAMilFQ==
+
 fragment-cache@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/fragment-cache/-/fragment-cache-0.2.1.tgz#4290fad27f13e89be7f33799c6bc5a0abfff0d19"

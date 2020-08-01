@@ -14,7 +14,7 @@ import type {ResponsiveProp} from './layout'
  *   <LayerItem placement='bottomRight' z={1000}/>
  * </Layer>
  */
-export declare const Layer: import('./utils').ForwardRefAsExoticComponent<
+export declare const Layer: import('forward-ref-as').ForwardRefAsExoticComponent<
   LayerProps,
   'div'
 >
@@ -25,7 +25,7 @@ export declare const Layer: import('./utils').ForwardRefAsExoticComponent<
  * @example
  * <LayerItem placement='bottomRight' offset={24}/>
  */
-export declare const LayerItem: import('./utils').ForwardRefAsExoticComponent<
+export declare const LayerItem: import('forward-ref-as').ForwardRefAsExoticComponent<
   LayerItemProps,
   'div'
 >

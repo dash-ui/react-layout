@@ -8,7 +8,7 @@ import type {AsProp} from './types'
  * @example
  * <Box size={300} bg={{sm: 'red', md: 'blue'}}/>
  */
-export declare const Box: import('./utils').ForwardRefAsExoticComponent<
+export declare const Box: import('forward-ref-as').ForwardRefAsExoticComponent<
   BoxProps,
   'button'
 >

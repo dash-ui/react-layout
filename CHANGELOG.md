@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.1](https://github.com/dash-ui/react-layout/compare/v0.8.0...v0.8.1) (2020-08-09)
+
+### Bug Fixes
+
+- fix memoization for lazy styles ([b081446](https://github.com/dash-ui/react-layout/commit/b08144648725c093f19b154a6ee161b38d01be41))
+
 ## [0.8.0](https://github.com/dash-ui/react-layout/compare/v0.7.1...v0.8.0) (2020-08-09)
 
 ### ⚠ BREAKING CHANGES

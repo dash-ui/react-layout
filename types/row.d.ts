@@ -37,7 +37,9 @@ export interface RowProps extends BoxProps {
    * Sets a horizontal gap between the child elements in the row using the "gap"
    * token in your theme
    */
-  readonly gap?: ResponsiveProp<keyof DashTokens['gap']>
+  readonly gap?: ResponsiveProp<
+    Extract<keyof DashTokens['gap'], number | string>
+  >
   /**
    * Reverses the direction of the row to left-to-right
    * @default false

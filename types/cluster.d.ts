@@ -42,5 +42,7 @@ export interface ClusterProps extends Omit<BoxProps, 'display'> {
    * Sets a vertical and horizontal gap between the child elements in the
    * cluster using the "gap" token in your theme
    */
-  readonly gap?: ResponsiveProp<keyof DashTokens['gap']>
+  readonly gap?: ResponsiveProp<
+    Extract<keyof DashTokens['gap'], string | number>
+  >
 }

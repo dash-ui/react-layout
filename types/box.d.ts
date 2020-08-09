@@ -51,23 +51,29 @@ export interface BoxProps {
    * token in your theme
    */
   readonly pad?: ResponsiveProp<
-    keyof DashTokens['pad'] | (keyof DashTokens['pad'])[]
+    | Extract<keyof DashTokens['pad'], string | number>
+    | Extract<keyof DashTokens['pad'], string | number>[]
   >
   /**
    * Sets a `background-color` CSS property on your component using the "color"
    * token in your theme
    */
-  readonly bg?: ResponsiveProp<keyof DashTokens['color']>
+  readonly bg?: ResponsiveProp<
+    Extract<keyof DashTokens['color'], string | number>
+  >
   /**
    * Sets a `box-shadow` CSS property on your component using the "elevation"
    * token in your theme
    */
-  readonly elevation?: ResponsiveProp<keyof DashTokens['elevation']>
+  readonly elevation?: ResponsiveProp<
+    Extract<keyof DashTokens['elevation'], string | number>
+  >
   /**
    * Sets a `border-radius` CSS property on your component using the "radius"
    * token in your theme
    */
   readonly radius?: ResponsiveProp<
-    keyof DashTokens['radius'] | (keyof DashTokens['radius'])[]
+    | Extract<keyof DashTokens['radius'], string | number>
+    | Extract<keyof DashTokens['radius'], string | number>[]
   >
 }

@@ -39,8 +39,11 @@ export declare const GridItem: import('forward-ref-as').ForwardRefAsExoticCompon
   'div'
 >
 declare type GapProp =
-  | keyof DashTokens['gap']
-  | [keyof DashTokens['gap'], keyof DashTokens['gap']]
+  | Extract<keyof DashTokens['gap'], number | string>
+  | [
+      Extract<keyof DashTokens['gap'], number | string>,
+      Extract<keyof DashTokens['gap'], number | string>
+    ]
 export interface GridProps extends Omit<BoxProps, 'display'> {
   /**
    * Sets a `justify-items` CSS property on your component

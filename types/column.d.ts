@@ -40,7 +40,9 @@ export interface ColumnProps extends BoxProps {
    * Sets a vertical gap between the child elements in the column using the "gap"
    * token in your theme
    */
-  readonly gap?: ResponsiveProp<keyof DashTokens['gap']>
+  readonly gap?: ResponsiveProp<
+    Extract<keyof DashTokens['gap'], number | string>
+  >
   /**
    * Reverses the direction of the column to bottom-to-top
    * @default false

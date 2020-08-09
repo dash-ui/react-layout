@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/dash-ui/react-layout/compare/v0.7.1...v0.8.0) (2020-08-09)
+
+### ⚠ BREAKING CHANGES
+
+- `useLayout()` has been removed and `useResponsiveStyles()` has been added
+
+- update @dash-ui/responsive ([fd68ff6](https://github.com/dash-ui/react-layout/commit/fd68ff620189dfc4f456676a3b429b43153095e5))
+
 ### [0.7.1](https://github.com/dash-ui/react-layout/compare/v0.7.0...v0.7.1) (2020-08-01)
 
 ## [0.7.0](https://github.com/dash-ui/react-layout/compare/v0.6.0...v0.7.0) (2020-07-31)

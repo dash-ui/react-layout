@@ -59,10 +59,10 @@ export const Grid = forwardRefAs<GridProps, 'div'>(function Grid(
           css`
             display: grid;
           `,
-          !alignX ? '' : styles(justifyItems).css(alignX),
-          !alignY ? '' : styles(alignItems).css(alignY),
-          !distributeX ? '' : styles(justifyContent).css(distributeX),
-          !distributeY ? '' : styles(alignContent).css(distributeY),
+          styles(justifyItems).css(alignX),
+          styles(alignItems).css(alignY),
+          styles(justifyContent).css(distributeX),
+          styles(alignContent).css(distributeY),
           inline === void 0 ? '' : styles.lazy(gridStyle).css(inline || false),
           gap === void 0 ? '' : styles.lazy(gapStyle).css(gap)
         ),

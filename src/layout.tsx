@@ -71,20 +71,15 @@ function memo<Value, ReturnValue>(
 
   return function (value: Value): ReturnValue {
     let returnValue: ReturnValue | undefined
-    if (typeof value === 'object' && value !== null) {
-      returnValue = weakCache.get(value)
-    } else {
-      returnValue = mapCache.get(value)
-    }
+    const isWeak =
+      typeof value === 'function' ||
+      (typeof value === 'object' && value !== null)
+
+    returnValue = (isWeak ? weakCache : mapCache).get(value)
 
     if (returnValue === void 0) {
       returnValue = fn(value)
-
-      if (typeof value === 'object' && value !== null) {
-        weakCache.set(value, returnValue)
-      } else {
-        mapCache.set(value, returnValue)
-      }
+      ;(isWeak ? weakCache : mapCache).set(value, returnValue)
     }
 
     return returnValue

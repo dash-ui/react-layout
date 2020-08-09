@@ -3,8 +3,8 @@ import clsx from 'clsx'
 import css from 'minify-css.macro'
 import {Box} from './box'
 import type {BoxProps} from './box'
-import {useLayout} from './layout'
-import type {ResponsiveProp, ResponsivePropCallback} from './layout'
+import {useResponsiveStyles} from './layout'
+import type {ResponsiveProp, ResponsiveLazyProp} from './layout'
 import {unit, forwardRefAs} from './utils'
 
 /**
@@ -39,7 +39,7 @@ export const LayerItem = forwardRefAs<LayerItemProps, 'div'>(function LayerItem(
   {className, offset, placement, z, ...props},
   ref
 ) {
-  const {responsiveStyles, styles} = useLayout()
+  const styles = useResponsiveStyles()
 
   return (
     <Box
@@ -47,8 +47,8 @@ export const LayerItem = forwardRefAs<LayerItemProps, 'div'>(function LayerItem(
       className={clsx(
         className,
         styles.join(
-          responsiveStyles(placementStyle(offset)).css(placement),
-          responsiveStyles(zStyle).css(z)
+          styles.lazy(placementStyle(offset)).css(placement),
+          z === void 0 ? '' : styles.lazy(zStyle).css(z)
         )
       )}
       position='absolute'
@@ -59,7 +59,7 @@ export const LayerItem = forwardRefAs<LayerItemProps, 'div'>(function LayerItem(
 
 const placementStyle = (
   offsetProp: LayerItemProps['offset'] | undefined
-): ResponsivePropCallback<Placements> => (value, queryName): string => {
+): ResponsiveLazyProp<Placements> => (value, queryName): string => {
   if (value === 'center') {
     return css`
       top: 50%;

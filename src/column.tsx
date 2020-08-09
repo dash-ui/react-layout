@@ -4,8 +4,8 @@ import clsx from 'clsx'
 import type {DashTokens} from '@dash-ui/styles'
 import {Box} from './box'
 import type {BoxProps} from './box'
-import {useLayout} from './layout'
-import type {ResponsiveProp, ResponsivePropCallback} from './layout'
+import {useResponsiveStyles} from './layout'
+import type {ResponsiveProp, ResponsiveLazyProp} from './layout'
 import {flexDirection, alignItems, justifyContent} from './styles'
 import {forwardRefAs} from './utils'
 
@@ -30,7 +30,7 @@ export const Column = forwardRefAs<ColumnProps, 'div'>(function Column(
   {className, align, distribute, gap, reverse = false, ...props},
   ref
 ) {
-  const {responsiveStyles, styles} = useLayout()
+  const styles = useResponsiveStyles()
 
   return (
     <Box
@@ -43,10 +43,10 @@ export const Column = forwardRefAs<ColumnProps, 'div'>(function Column(
               flex-shrink: 0;
             }
           `,
-          responsiveStyles(alignItems).css(align),
-          responsiveStyles(justifyContent).css(distribute),
-          responsiveStyles(gapStyle(reverse)).css(gap),
-          responsiveStyles(reverseStyle).css(reverse)
+          styles(alignItems).css(align),
+          styles(justifyContent).css(distribute),
+          gap === void 0 ? '' : styles.lazy(gapStyle(reverse)).css(gap),
+          reverse === void 0 ? '' : styles.lazy(reverseStyle).css(reverse)
         )
       )}
       display='flex'
@@ -62,7 +62,10 @@ const reverseStyle = (reverse: boolean) =>
 const gapStyle = (
   reverse: ColumnProps['reverse']
   // @ts-expect-error
-): ResponsivePropCallback<keyof DashTokens['gap']> => (gapProp, queryName) => {
+): ResponsiveLazyProp<Extract<keyof DashTokens['gap'], number | string>> => (
+  gapProp,
+  queryName
+) => {
   const reversed =
     !reverse || typeof reverse === 'boolean' ? reverse : reverse[queryName]
   const marginDirection = reversed ? 'bottom' : 'top'
@@ -92,8 +95,10 @@ export interface ColumnProps extends BoxProps {
    * Sets a vertical gap between the child elements in the column using the "gap"
    * token in your theme
    */
-  // @ts-expect-error
-  readonly gap?: ResponsiveProp<keyof DashTokens['gap']>
+  readonly gap?: ResponsiveProp<
+    // @ts-expect-error
+    Extract<keyof DashTokens['gap'], number | string>
+  >
   /**
    * Reverses the direction of the column to bottom-to-top
    * @default false

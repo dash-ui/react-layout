@@ -4,8 +4,8 @@ import css from 'minify-css.macro'
 import type {DashTokens} from '@dash-ui/styles'
 import {Box} from './box'
 import type {BoxProps} from './box'
-import {useLayout} from './layout'
-import type {ResponsiveProp, ResponsivePropCallback} from './layout'
+import {useResponsiveStyles} from './layout'
+import type {ResponsiveProp, ResponsiveLazyProp} from './layout'
 import {
   alignSelf,
   justifySelf,
@@ -48,7 +48,7 @@ export const Grid = forwardRefAs<GridProps, 'div'>(function Grid(
   },
   ref
 ) {
-  const {responsiveStyles, styles} = useLayout()
+  const styles = useResponsiveStyles()
 
   return (
     <Box
@@ -56,15 +56,18 @@ export const Grid = forwardRefAs<GridProps, 'div'>(function Grid(
       className={clsx(
         className,
         styles.join(
-          responsiveStyles(justifyItems).css(alignX),
-          responsiveStyles(alignItems).css(alignY),
-          responsiveStyles(justifyContent).css(distributeX),
-          responsiveStyles(alignContent).css(distributeY),
-          responsiveStyles(colsStyle).css(cols),
-          responsiveStyles(rowsStyle).css(rows),
-          responsiveStyles(gridStyle).css(inline || false),
-          responsiveStyles(gapStyle).css(gap)
-        )
+          css`
+            display: grid;
+          `,
+          !alignX ? '' : styles(justifyItems).css(alignX),
+          !alignY ? '' : styles(alignItems).css(alignY),
+          !distributeX ? '' : styles(justifyContent).css(distributeX),
+          !distributeY ? '' : styles(alignContent).css(distributeY),
+          inline === void 0 ? '' : styles.lazy(gridStyle).css(inline || false),
+          gap === void 0 ? '' : styles.lazy(gapStyle).css(gap)
+        ),
+        cols === void 0 ? '' : styles.lazy(colsStyle)(cols),
+        rows === void 0 ? '' : styles.lazy(rowsStyle)(rows)
       )}
       {...props}
     />
@@ -87,7 +90,7 @@ export const GridItem = forwardRefAs<GridItemProps, 'div'>(function GridItem(
   {className, alignX, alignY, colStart, colEnd, rowStart, rowEnd, ...props},
   ref
 ) {
-  const {responsiveStyles, styles} = useLayout()
+  const styles = useResponsiveStyles()
 
   return (
     <Box
@@ -95,12 +98,12 @@ export const GridItem = forwardRefAs<GridItemProps, 'div'>(function GridItem(
       className={clsx(
         className,
         styles.join(
-          responsiveStyles(justifySelf).css(alignX),
-          responsiveStyles(alignSelf).css(alignY),
-          responsiveStyles(colStartStyle).css(colStart),
-          responsiveStyles(colEndStyle).css(colEnd),
-          responsiveStyles(rowStartStyle).css(rowStart),
-          responsiveStyles(rowEndStyle).css(rowEnd)
+          styles(justifySelf).css(alignX),
+          styles(alignSelf).css(alignY),
+          colStart === void 0 ? '' : styles.lazy(colStartStyle).css(colStart),
+          colEnd === void 0 ? '' : styles.lazy(colEndStyle).css(colEnd),
+          rowStart === void 0 ? '' : styles.lazy(rowStartStyle).css(rowStart),
+          rowEnd === void 0 ? '' : styles.lazy(rowEndStyle).css(rowEnd)
         )
       )}
       {...props}
@@ -132,11 +135,15 @@ const rowsStyle = (rows: number | (number | string)[]) => {
   `
 }
 
-const gapStyle: ResponsivePropCallback<
+const gapStyle: ResponsiveLazyProp<
   // @ts-expect-error
-  | keyof DashTokens['gap']
-  // @ts-expect-error
-  | [keyof DashTokens['gap'], keyof DashTokens['gap']]
+  | Extract<keyof DashTokens['gap'], number | string>
+  | [
+      // @ts-expect-error
+      Extract<keyof DashTokens['gap'], number | string>,
+      // @ts-expect-error
+      Extract<keyof DashTokens['gap'], number | string>
+    ]
   // @ts-expect-error
 > = (gapProp: GapProp) => ({gap}) => css`
   grid-gap: ${Array.isArray(gapProp)
@@ -162,9 +169,13 @@ const rowEndStyle = (gridRowEnd: number | string) => css`
 
 type GapProp =
   // @ts-expect-error
-  | keyof DashTokens['gap']
-  // @ts-expect-error
-  | [keyof DashTokens['gap'], keyof DashTokens['gap']]
+  | Extract<keyof DashTokens['gap'], number | string>
+  | [
+      // @ts-expect-error
+      Extract<keyof DashTokens['gap'], number | string>,
+      // @ts-expect-error
+      Extract<keyof DashTokens['gap'], number | string>
+    ]
 
 export interface GridProps extends Omit<BoxProps, 'display'> {
   /**

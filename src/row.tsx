@@ -4,8 +4,8 @@ import clsx from 'clsx'
 import type {DashTokens} from '@dash-ui/styles'
 import {Box} from './box'
 import type {BoxProps} from './box'
-import {useLayout} from './layout'
-import type {ResponsiveProp, ResponsivePropCallback} from './layout'
+import {useResponsiveStyles} from './layout'
+import type {ResponsiveProp, ResponsiveLazyProp} from './layout'
 import {flexDirection, justifyContent, alignItems} from './styles'
 import {forwardRefAs} from './utils'
 
@@ -27,7 +27,7 @@ export const Row = forwardRefAs<RowProps, 'div'>(function Row(
   {className, align, distribute, gap, reverse = false, ...props},
   ref
 ) {
-  const {responsiveStyles, styles} = useLayout()
+  const styles = useResponsiveStyles()
 
   return (
     <Box
@@ -40,10 +40,10 @@ export const Row = forwardRefAs<RowProps, 'div'>(function Row(
               flex-shrink: 0;
             }
           `,
-          responsiveStyles(alignItems).css(align),
-          responsiveStyles(justifyContent).css(distribute),
-          responsiveStyles(gapStyle(reverse)).css(gap),
-          responsiveStyles(reverseStyle).css(reverse)
+          styles(alignItems).css(align),
+          styles(justifyContent).css(distribute),
+          gap === void 0 ? '' : styles.lazy(gapStyle(reverse)).css(gap),
+          reverse === void 0 ? '' : styles.lazy(reverseStyle).css(reverse)
         )
       )}
       display='flex'
@@ -58,7 +58,10 @@ const reverseStyle = (reverse: boolean) =>
 const gapStyle = (
   reverse: RowProps['reverse']
   // @ts-expect-error
-): ResponsivePropCallback<keyof DashTokens['gap']> => (gapProp, queryName) => {
+): ResponsiveLazyProp<Extract<keyof DashTokens['gap'], number | string>> => (
+  gapProp,
+  queryName
+) => {
   const reversed =
     !reverse || typeof reverse === 'boolean' ? reverse : reverse[queryName]
   const marginDirection = reversed ? 'right' : 'left'
@@ -88,8 +91,10 @@ export interface RowProps extends BoxProps {
    * Sets a horizontal gap between the child elements in the row using the "gap"
    * token in your theme
    */
-  // @ts-expect-error
-  readonly gap?: ResponsiveProp<keyof DashTokens['gap']>
+  readonly gap?: ResponsiveProp<
+    // @ts-expect-error
+    Extract<keyof DashTokens['gap'], number | string>
+  >
   /**
    * Reverses the direction of the row to left-to-right
    * @default false

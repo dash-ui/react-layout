@@ -1169,20 +1169,21 @@
   resolved "https://registry.yarnpkg.com/@dash-ui/mq/-/mq-0.4.0.tgz#85e4e734bb9c0e686a8a36633ef2e93219e72aad"
   integrity sha512-6fJu+7rrmS+KxdkZlhggM0p8HEiwBlnnxpGTZH+aOqmbuqqcc26fwqRZc2CS/wf5bUqSV9mBFniMN8suGPiLlg==
 
-"@dash-ui/responsive@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@dash-ui/responsive/-/responsive-0.1.2.tgz#7591db7905e350d41e4f6cd875470d7f9891907e"
-  integrity sha512-lz+X1FLmN8vWHx7z7jrFE/ReMQVv36pe3D64jDlYEynXxWjVs5+8iLiY27Yc8RQZC0rMoTBx5z8cOeYbWlBguQ==
+"@dash-ui/responsive@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@dash-ui/responsive/-/responsive-0.2.3.tgz#c7427bdf14d1ab430568bf1eef9cca4b42c9a8f4"
+  integrity sha512-YPRjgmkZAB4bp3GO2HHIayDjr5JrRMc8oXDoudX+rDbWmOjiJ+4m09o+A7N+a6oSKo6sCQN4CaroqrVViNM3CQ==
   dependencies:
     "@dash-ui/mq" "^0.4.0"
 
-"@dash-ui/styles@^0.8.0":
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/@dash-ui/styles/-/styles-0.8.1.tgz#f19439e206bd8cbd9e21d5af79797c1f7b1b9d37"
-  integrity sha512-BFYOWhrZ8YySpNvlEza5ZJMvlHpze3cbdQmoh+EQBqm0qX7oB3YMsS8BL6bYJqpDBjKW9Vam6F7EznmDd1UjDQ==
+"@dash-ui/styles@^0.8.6":
+  version "0.8.6"
+  resolved "https://registry.yarnpkg.com/@dash-ui/styles/-/styles-0.8.6.tgz#6567d4e70ca535552b5d03873678a81435f2c82c"
+  integrity sha512-qTWrx46uH2hVga+lY+HV8tQBk1+IHgNaD8a9EOCBa51t0Y0LXK4n4ffFpkGAw7rJmcHvoFwxrCcEz6V8V0xP1w==
   dependencies:
     "@dash-ui/stylis" "^1.0.5"
     "@dash-ui/unitless" "^2.0.0"
+    csstype "^3.0.2"
 
 "@dash-ui/stylis@^1.0.5":
   version "1.0.5"
@@ -3064,6 +3065,11 @@ csstype@^2.2.0:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.10.tgz#e63af50e66d7c266edb6b32909cfd0aabe03928b"
   integrity sha512-D34BqZU4cIlMCY93rZHbrq9pjTAQJ3U8S8rfBqjwHxkGPThWFjzZDQpgMJY0QViLxth6ZKYiwFBo14RdN44U/w==
+
+csstype@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.2.tgz#ee5ff8f208c8cd613b389f7b222c9801ca62b3f7"
+  integrity sha512-ofovWglpqoqbfLNOTBNZLSbMuGrblAf1efvvArGKOZMBrIoJeu5UsAipQolkijtyQx5MtAzT/J9IHj/CEY1mJw==
 
 currently-unhandled@^0.4.1:
   version "0.4.1"

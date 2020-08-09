@@ -3,27 +3,31 @@ import {styles as defaultStyles} from '@dash-ui/styles'
 import responsive from '@dash-ui/responsive'
 import type {
   Responsive,
-  ResponsiveStyle,
-  ResponsiveCallback,
-  ResponsiveStyleWithCallback,
+  ResponsiveStyles,
+  ResponsiveLazyCallback,
 } from '@dash-ui/responsive'
-import type {Styles, Style, DashTokens, StyleMap} from '@dash-ui/styles'
+import type {
+  Styles,
+  DashTokens,
+  DashThemeNames,
+  LazyValue,
+} from '@dash-ui/styles'
 
-const LayoutContext = React.createContext<LayoutContextType>({
-  styles: defaultStyles,
-  responsiveStyles: memoResponsive(responsive(defaultStyles, {})),
-})
+const LayoutContext = React.createContext<
+  ResponsiveStyles<DashTokens, MediaQueries, DashThemeNames>
+>(memoResponsive(responsive(defaultStyles, {})))
 
 /**
- * A context consumer hook for `<LayoutProvider>`
+ * Returns the [responsive `styles()`](https://github.com/dash-ui/responsive)
+ * used for creating responsive layout props.
  */
-export function useLayout() {
+export function useResponsiveStyles() {
   return React.useContext(LayoutContext)
 }
 
 /**
  * A context provider which is only required if you intend on using
- * media query props or a custom `styles()` instance.
+ * responsive props or a custom `styles()` instance.
  *
  * @example
  * <LayoutProvider
@@ -38,69 +42,59 @@ export function LayoutProvider({
   mediaQueries = {},
   children,
 }: LayoutProviderProps) {
-  const context = React.useMemo(
-    () => ({
-      styles,
-      responsiveStyles: memoResponsive(responsive(styles, mediaQueries)),
-    }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [styles, JSON.stringify(mediaQueries)]
+  return (
+    <LayoutContext.Provider
+      value={React.useMemo(
+        () => memoResponsive(responsive(styles, mediaQueries)),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [styles, JSON.stringify(mediaQueries)]
+      )}
+      children={children}
+    />
   )
-
-  return <LayoutContext.Provider value={context} children={children} />
 }
 
-function memoResponsive(r: ReturnType<typeof responsive>) {
-  const cache = new Map<
-    any,
-    | ResponsiveStyle<any, DashTokens, MediaQueries>
-    | ResponsiveStyleWithCallback<any, DashTokens, MediaQueries>
-  >()
+function memoResponsive(
+  responsiveStyles: ResponsiveStyles<DashTokens, MediaQueries, DashThemeNames>
+): ResponsiveStyles<DashTokens, MediaQueries, DashThemeNames> {
+  const memoStyles = Object.assign(memo(responsiveStyles), responsiveStyles)
+  memoStyles.lazy = memo(memoStyles.lazy)
+  memoStyles.one = memo(memoStyles.one)
+  return memoStyles
+}
 
-  function memo<Variant extends string>(
-    style: StyleMap<Variant, DashTokens>
-  ): ResponsiveStyle<Variant, DashTokens, MediaQueries>
-  function memo<Variant extends string>(
-    style: Style<Variant, DashTokens>
-  ): ResponsiveStyle<Variant, DashTokens, MediaQueries>
-  function memo<Variant extends unknown>(
-    style: ResponsiveCallback<Variant, DashTokens, MediaQueries>
-  ): ResponsiveStyleWithCallback<Variant, DashTokens, MediaQueries>
-  function memo<Variant extends string>(
-    styleMap:
-      | StyleMap<Variant, DashTokens>
-      | Style<Variant, DashTokens>
-      | ResponsiveCallback<Variant, DashTokens, MediaQueries>
-  ):
-    | ResponsiveStyle<Variant, DashTokens, MediaQueries>
-    | ResponsiveStyleWithCallback<Variant, DashTokens, MediaQueries> {
-    const rs = cache.get(styleMap)
-    if (rs) return rs
-    const nextRs = r(styleMap as any)
-    cache.set(styleMap, nextRs)
-    return nextRs
+function memo<Value, ReturnValue>(
+  fn: (value: Value) => ReturnValue
+): (value: Value) => ReturnValue {
+  const weakCache = new WeakMap<any, ReturnValue>()
+  const mapCache = new Map<any, ReturnValue>()
+
+  return function (value: Value): ReturnValue {
+    let returnValue: ReturnValue | undefined
+    if (typeof value === 'object' && value !== null) {
+      returnValue = weakCache.get(value)
+    } else {
+      returnValue = mapCache.get(value)
+    }
+
+    if (returnValue === void 0) {
+      returnValue = fn(value)
+
+      if (typeof value === 'object' && value !== null) {
+        weakCache.set(value, returnValue)
+      } else {
+        mapCache.set(value, returnValue)
+      }
+    }
+
+    return returnValue
   }
-
-  return memo
 }
 
-export interface LayoutContextType {
-  /**
-   * The `styles()` instance being used by this provider
-   */
-  styles: Styles
-  /**
-   * A function for adding responsive props to components
-   */
-  responsiveStyles: ReturnType<typeof memoResponsive>
-}
-
-export type ResponsiveProp<ValueType> = Responsive<ValueType, MediaQueries>
-export type ResponsivePropCallback<Variant> = ResponsiveCallback<
-  Variant,
-  DashTokens,
-  MediaQueries
->
+export type ResponsiveProp<Value> = Value | Responsive<Value, MediaQueries>
+export type ResponsiveLazyProp<
+  Variant extends LazyValue
+> = ResponsiveLazyCallback<Variant, DashTokens, MediaQueries>
 
 export interface LayoutProviderProps {
   /**

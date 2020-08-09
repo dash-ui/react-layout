@@ -29,7 +29,7 @@
 ## Features
 
 - [x] **Comprehensive** grids, rows, columns, and more.
-- [x] **Media query props** add breakpoint-specific styles to your layout components.
+- [x] **Responsive props** add breakpoint-specific styles to your layout components.
 - [x] **CSS variable themes** mean performance is never going to be an issue when
       users switch from light to dark mode.
 - [x] **Strong types** even when you use an `as` prop. If it's a button, you're
@@ -98,7 +98,7 @@ const App = () => (
 )
 
 const Component = () => (
-  // Media query props are opt-in. In order to use them
+  // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
   <Box size={300} pad={{sm: 'md', md: 'lg'}}>
@@ -113,7 +113,7 @@ const Component = () => (
 
 | Component                             | Description                                                                                                            |
 | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| [`<LayoutProvider>`](#layoutprovider) | A context provider which is only required if you intend on using media query props or a custom `styles()` instance.    |
+| [`<LayoutProvider>`](#layoutprovider) | A context provider which is only required if you intend on using responsive props or a custom `styles()` instance.     |
 | [`<Box>`](#box)                       | A layout component for adding size, padding, position, color, and more using tokens from your CSS variable theme.      |
 | [`<Cluster>`](#cluster)               | A row directional layout component that distributes its items in a cluster. Common use cases are tags and input chips. |
 | [`<Column>`](#column)                 | A layout component that distributes its items in a column without wrapping or shrinking.                               |
@@ -126,9 +126,9 @@ const Component = () => (
 
 ### Hooks
 
-| Component                   | Description                                                                                 |
-| --------------------------- | ------------------------------------------------------------------------------------------- |
-| [`useLayout()`](#uselayout) | Consumes the context from the nearest [`<LayoutProvider>`](#layoutprovider) and returns it. |
+| Component                                       | Description                                                                                                           |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| [`useResponsiveStyles()`](#useresponsivestyles) | Returns the [responsive `styles()`](https://github.com/dash-ui/responsive) used for creating responsive layout props. |
 
 ### Utils
 
@@ -142,10 +142,10 @@ const Component = () => (
 as it relates to connecting your `DashTokens` and media query types to these layout
 components.
 
-|                                                               | Description                                 |
-| ------------------------------------------------------------- | ------------------------------------------- |
-| [Strongly typed media queries](#strongly-typed-media-queries) | Learn how to add types to media query props |
-| [Strongly typed tokens](#strongly-typed-tokens)               | Learn how to add types to your CSS tokens   |
+|                                                               | Description                                |
+| ------------------------------------------------------------- | ------------------------------------------ |
+| [Strongly typed media queries](#strongly-typed-media-queries) | Learn how to add types to responsive props |
+| [Strongly typed tokens](#strongly-typed-tokens)               | Learn how to add types to your CSS tokens  |
 
 ---
 
@@ -181,7 +181,7 @@ const App = () => (
 )
 
 const Component = () => (
-  // Media query props are opt-in. In order to use them
+  // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
   <Box size={300} pad={{sm: 'md', md: 'lg'}}>
@@ -195,7 +195,7 @@ const Component = () => (
 | Prop         | Type                                 | Default  | Required? | Description                                                                                                                                                            |
 | ------------ | ------------------------------------ | -------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | styles       | `Styles<DashTokens, DashThemeNames>` | `styles` | No        | The `styles()` instance you're using to create styles. By default this is the `styles()` instance exported from [`@dash-ui/styles`](https://github.com/dash-ui/styles) |
-| mediaQueries | `Record<string, string>`             |          | No        | A mapping of name/media query pairs. This is only required if youre' using media query props.                                                                          |
+| mediaQueries | `Record<string, string>`             |          | No        | A mapping of name/media query pairs. This is only required if youre' using responsive props.                                                                           |
 
 ### &lt;Box&gt;
 
@@ -211,7 +211,7 @@ import * as React from 'react'
 import {Box} from '@dash-ui/react-layout'
 
 const Component = () => (
-  // Media query props are opt-in. In order to use them
+  // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
   <Box size={300} pad={{sm: 'md', md: 'lg'}}>
@@ -249,7 +249,7 @@ import * as React from 'react'
 import {Cluster, Box} from '@dash-ui/react-layout'
 
 const Component = () => (
-  // Media query props are opt-in. In order to use them
+  // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
   <Cluster width={{sm: '100%', md: 400}} gap={{sm: 'sm', md: 'md'}}>
@@ -284,7 +284,7 @@ import * as React from 'react'
 import {Column, Box} from '@dash-ui/react-layout'
 
 const Component = () => (
-  // Media query props are opt-in. In order to use them
+  // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
   <Column width='100%' gap={{sm: 'sm', md: 'md'}}>
@@ -319,7 +319,7 @@ import * as React from 'react'
 import {FlexItem, Box, Row} from '@dash-ui/react-layout'
 
 const Component = () => (
-  // Media query props are opt-in. In order to use them
+  // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
   <Row align='start' width='100%' gap={{sm: 'sm', md: 'md'}}>
@@ -366,7 +366,7 @@ import * as React from 'react'
 import {Grid, Box} from '@dash-ui/react-layout'
 
 const Component = () => (
-  // Media query props are opt-in. In order to use them
+  // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
   <Grid cols={3} rows={3} gap={{sm: 'sm', md: 'md'}}>
@@ -457,7 +457,7 @@ import * as React from 'react'
 import {Layer, LayerItem} from '@dash-ui/react-layout'
 
 const Component = () => (
-  // Media query props are opt-in. In order to use them
+  // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
   <Layer width={600} height={600}>
@@ -486,7 +486,7 @@ import * as React from 'react'
 import {Layer, LayerItem} from '@dash-ui/react-layout'
 
 const Component = () => (
-  // Media query props are opt-in. In order to use them
+  // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
   <Layer width={400} height={400}>
@@ -535,7 +535,7 @@ import * as React from 'react'
 import {Row, Box} from '@dash-ui/react-layout'
 
 const Component = () => (
-  // Media query props are opt-in. In order to use them
+  // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
   <Row width='100%' gap={{sm: 'sm', md: 'md'}}>
@@ -558,23 +558,16 @@ const Component = () => (
 
 ## Hooks
 
-### useLayout()
+### useResponsiveStyles()
 
-Consumes the context from [LayoutProvider](#layoutprovider) and returns it.
+Returns the [responsive `styles()`](https://github.com/dash-ui/responsive)
+used for creating responsive layout props.
 
 #### Returns
 
 ```typescript
-{
-  /**
-   * The `styles()` instance being used by this provider
-   */
-  styles: Styles
-  /**
-   * A function for adding responsive props to components
-   */
-  responsiveStyles: ReturnType<typeof memoResponsive>
-}
+// See https://github.com/dash-ui/responsive
+ResponsiveStyles<DashTokens, MediaQueries, DashThemeNames>
 ```
 
 ## Utils

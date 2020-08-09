@@ -5,15 +5,18 @@ exports[`<Box> without media queries applies several props 1`] = `
   .dash-ui-0 {
   display: block;
   position: absolute;
-  width: 200px;
-  height: 200px;
   padding: var(--pad-3);
   background-color: var(--color-blue);
   box-shadow: var(--elevation-high);
 }
 
+.dash-ui-1 {
+  width: 200px;
+  height: 200px;
+}
+
 <div
-    class="dash-ui-0"
+    class="dash-ui-0 dash-ui-1"
     data-testid="el"
   />
 </DocumentFragment>

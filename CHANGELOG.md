@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-- **layout:** media query props should always accept a "default" property ([6f29c2f](https://github.com/dash-ui/react-layout/commit/6f29c2f349f3ab534824b28b21908f8ab37bee92))
+- **layout:** responsive props should always accept a "default" property ([6f29c2f](https://github.com/dash-ui/react-layout/commit/6f29c2f349f3ab534824b28b21908f8ab37bee92))
 
 * replace mq() with @dash-ui/responsive ([cb6d3e8](https://github.com/dash-ui/react-layout/commit/cb6d3e8c6629bbb5666374cd0497e88813861966))
 
@@ -20,7 +20,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-- **layout:** media query props should always accept a "default" property ([6f29c2f](https://github.com/dash-ui/react-layout/commit/6f29c2f349f3ab534824b28b21908f8ab37bee92))
+- **layout:** responsive props should always accept a "default" property ([6f29c2f](https://github.com/dash-ui/react-layout/commit/6f29c2f349f3ab534824b28b21908f8ab37bee92))
 
 ## [0.6.0](https://github.com/dash-ui/react-layout/compare/v0.5.2...v0.6.0) (2020-07-27)
 

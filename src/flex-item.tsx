@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import css from 'minify-css.macro'
 import {Box} from './box'
 import type {BoxProps} from './box'
-import {useLayout} from './layout'
+import {useResponsiveStyles} from './layout'
 import type {ResponsiveProp} from './layout'
 import {alignSelf} from './styles'
 import {unit, forwardRefAs} from './utils'
@@ -19,7 +19,7 @@ export const FlexItem = forwardRefAs<FlexItemProps, 'div'>(function FlexItem(
   {className, maxWidth, maxHeight, basis, order, grow, shrink, align, ...props},
   ref
 ) {
-  const {responsiveStyles, styles} = useLayout()
+  const styles = useResponsiveStyles()
 
   return (
     <Box
@@ -27,14 +27,14 @@ export const FlexItem = forwardRefAs<FlexItemProps, 'div'>(function FlexItem(
       className={clsx(
         className,
         styles.join(
-          responsiveStyles(maxWidthStyle).css(maxWidth),
-          responsiveStyles(maxHeightStyle).css(maxHeight),
-          responsiveStyles(basisStyle).css(basis),
-          responsiveStyles(orderStyle).css(order),
-          responsiveStyles(growStyle).css(grow),
-          responsiveStyles(shrinkStyle).css(shrink),
-          responsiveStyles(alignSelf).css(align)
-        )
+          basis === void 0 ? '' : styles.lazy(basisStyle).css(basis),
+          order === void 0 ? '' : styles.lazy(orderStyle).css(order),
+          grow === void 0 ? '' : styles.lazy(growStyle).css(grow),
+          shrink === void 0 ? '' : styles.lazy(shrinkStyle).css(shrink),
+          styles(alignSelf).css(align)
+        ),
+        maxWidth === void 0 ? '' : styles.lazy(maxWidthStyle)(maxWidth),
+        maxHeight === void 0 ? '' : styles.lazy(maxHeightStyle)(maxHeight)
       )}
       {...props}
     />

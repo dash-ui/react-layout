@@ -2,8 +2,8 @@ import * as React from 'react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
 import type {DashTokens} from '@dash-ui/styles'
-import {useLayout} from './layout'
-import type {ResponsiveProp, ResponsivePropCallback} from './layout'
+import {useResponsiveStyles} from './layout'
+import type {ResponsiveProp, ResponsiveLazyProp} from './layout'
 import {unit, forwardRefAs} from './utils'
 import type {AsProp} from './types'
 
@@ -31,7 +31,7 @@ export const Box = forwardRefAs<BoxProps, 'button'>(function Box(
   },
   ref
 ) {
-  const {responsiveStyles, styles} = useLayout()
+  const styles = useResponsiveStyles()
 
   return (
     <As
@@ -39,16 +39,19 @@ export const Box = forwardRefAs<BoxProps, 'button'>(function Box(
       className={clsx(
         className,
         styles.join(
-          responsiveStyles(frameStyle).css(display),
-          responsiveStyles(frameStyle).css(position),
-          responsiveStyles(widthStyle).css(width),
-          responsiveStyles(heightStyle).css(height),
-          responsiveStyles(sizeStyle).css(size),
-          responsiveStyles(padStyle).css(pad),
-          responsiveStyles(bgStyle).css(bg),
-          responsiveStyles(elevationStyle).css(elevation),
-          responsiveStyles(radiusStyle).css(radius)
-        )
+          styles(frameStyle).css(display),
+          styles(frameStyle).css(position),
+          !pad ? '' : styles.lazy(padStyle).css(pad),
+          !bg ? '' : styles.lazy(bgStyle).css(bg),
+          !elevation ? '' : styles.lazy(elevationStyle).css(elevation),
+          !radius ? '' : styles.lazy(radiusStyle).css(radius)
+        ),
+        // These dynamic styles aren't joined because they're the
+        // most likely to be unique. Leaving these types of styles
+        // as atomic improves their performance.
+        width !== void 0 && styles.lazy(widthStyle)(width),
+        height !== void 0 && styles.lazy(heightStyle)(height),
+        size !== void 0 && styles.lazy(sizeStyle)(size)
       )}
       {...props}
     />
@@ -105,9 +108,11 @@ const sizeStyle = (size: number | string) => {
   `
 }
 
-const padStyle: ResponsivePropCallback<
+const padStyle: ResponsiveLazyProp<
   // @ts-expect-error
-  keyof DashTokens['pad'] | (keyof DashTokens['pad'])[]
+  | Extract<keyof DashTokens['pad'], string | number>
+  // @ts-expect-error
+  | Extract<keyof DashTokens['pad'], string | number>[]
   // @ts-expect-error
 > = (padProp) => ({pad}) =>
   css`
@@ -116,23 +121,32 @@ const padStyle: ResponsivePropCallback<
       : pad[padProp]};
   `
 
-// @ts-expect-error
-const bgStyle: ResponsivePropCallback<keyof DashTokens['color']> = (bg) => ({
+const bgStyle: ResponsiveLazyProp<Extract<
+  // @ts-expect-error
+  keyof DashTokens['color'],
+  string | number
+>> = (bg) => ({
   // @ts-expect-error
   color,
 }) => css`
   background-color: ${color[bg]};
 `
-// @ts-expect-error
-const elevationStyle: ResponsivePropCallback<keyof DashTokens['elevation']> = (
+
+const elevationStyle: ResponsiveLazyProp<Extract<
+  // @ts-expect-error
+  keyof DashTokens['elevation'],
+  string | number
+>> = (
   elevationProp
   // @ts-expect-error
 ) => ({elevation}) => css`
   box-shadow: ${elevation[elevationProp]};
 `
-const radiusStyle: ResponsivePropCallback<
+const radiusStyle: ResponsiveLazyProp<
   // @ts-expect-error
-  keyof DashTokens['radius'] | (keyof DashTokens['radius'])[]
+  | Extract<keyof DashTokens['radius'], string | number>
+  // @ts-expect-error
+  | Extract<keyof DashTokens['radius'], string | number>[]
   // @ts-expect-error
 > = (radiusProp) => ({radius}) =>
   css`
@@ -181,27 +195,35 @@ export interface BoxProps {
    */
   readonly pad?: ResponsiveProp<
     // @ts-expect-error
-    keyof DashTokens['pad'] | (keyof DashTokens['pad'])[]
+    | Extract<keyof DashTokens['pad'], string | number>
+    // @ts-expect-error
+    | Extract<keyof DashTokens['pad'], string | number>[]
   >
   /**
    * Sets a `background-color` CSS property on your component using the "color"
    * token in your theme
    */
-  // @ts-expect-error
-  readonly bg?: ResponsiveProp<keyof DashTokens['color']>
+  readonly bg?: ResponsiveProp<
+    // @ts-expect-error
+    Extract<keyof DashTokens['color'], string | number>
+  >
   /**
    * Sets a `box-shadow` CSS property on your component using the "elevation"
    * token in your theme
    */
-  // @ts-expect-error
-  readonly elevation?: ResponsiveProp<keyof DashTokens['elevation']>
+  readonly elevation?: ResponsiveProp<
+    // @ts-expect-error
+    Extract<keyof DashTokens['elevation'], string | number>
+  >
   /**
    * Sets a `border-radius` CSS property on your component using the "radius"
    * token in your theme
    */
   readonly radius?: ResponsiveProp<
     // @ts-expect-error
-    keyof DashTokens['radius'] | (keyof DashTokens['radius'])[]
+    | Extract<keyof DashTokens['radius'], string | number>
+    // @ts-expect-error
+    | Extract<keyof DashTokens['radius'], string | number>[]
   >
 }
 

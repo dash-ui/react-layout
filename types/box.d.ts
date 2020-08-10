@@ -10,7 +10,7 @@ import type {AsProp} from './types'
  */
 export declare const Box: import('forward-ref-as').ForwardRefAsExoticComponent<
   BoxProps,
-  'button'
+  'div'
 >
 export interface BoxProps {
   /**

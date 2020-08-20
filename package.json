@@ -182,7 +182,7 @@
   "dependencies": {
     "@dash-ui/responsive": "^0.2.3",
     "clsx": "^1.1.1",
-    "forward-ref-as": "^1.0.1"
+    "forward-ref-as": "^1.0.4"
   },
   "peerDependencies": {
     "@dash-ui/styles": ">=0.8.4",

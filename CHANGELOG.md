@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.4](https://github.com/dash-ui/react-layout/compare/v0.8.3...v0.8.4) (2020-08-20)
+
+### Bug Fixes
+
+- **deps:** upgrade forward-ref-as ([f007b65](https://github.com/dash-ui/react-layout/commit/f007b65df6f63410fbdb43947bd854fa18bf849f))
+
 ### [0.8.3](https://github.com/dash-ui/react-layout/compare/v0.8.2...v0.8.3) (2020-08-10)
 
 ### Bug Fixes

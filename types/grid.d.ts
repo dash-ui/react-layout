@@ -18,7 +18,7 @@ import type {ResponsiveProp} from './layout'
  *   <GridItem/>
  * </Grid>
  */
-export declare const Grid: import('@radix-ui/react-polymorphic').ForwardRefExoticComponentWithAs<
+export declare const Grid: import('forward-ref-as').ComponentWithAs<
   'div',
   GridProps
 >
@@ -34,7 +34,7 @@ export declare const Grid: import('@radix-ui/react-polymorphic').ForwardRefExoti
  *   <GridItem/>
  * </Grid>
  */
-export declare const GridItem: import('@radix-ui/react-polymorphic').ForwardRefExoticComponentWithAs<
+export declare const GridItem: import('forward-ref-as').ComponentWithAs<
   'div',
   GridItemProps
 >

@@ -7,7 +7,7 @@ import type {ResponsiveProp} from './layout'
  * @example
  * <FlexItem align='top'/>
  */
-export declare const FlexItem: import('@radix-ui/react-polymorphic').ForwardRefExoticComponentWithAs<
+export declare const FlexItem: import('forward-ref-as').ComponentWithAs<
   'div',
   FlexItemProps
 >

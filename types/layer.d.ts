@@ -14,7 +14,7 @@ import type {ResponsiveProp} from './layout'
  *   <LayerItem placement='bottomRight' z={1000}/>
  * </Layer>
  */
-export declare const Layer: import('@radix-ui/react-polymorphic').ForwardRefExoticComponentWithAs<
+export declare const Layer: import('forward-ref-as').ComponentWithAs<
   'div',
   LayerProps
 >
@@ -25,7 +25,7 @@ export declare const Layer: import('@radix-ui/react-polymorphic').ForwardRefExot
  * @example
  * <LayerItem placement='bottomRight' offset={24}/>
  */
-export declare const LayerItem: import('@radix-ui/react-polymorphic').ForwardRefExoticComponentWithAs<
+export declare const LayerItem: import('forward-ref-as').ComponentWithAs<
   'div',
   LayerItemProps
 >

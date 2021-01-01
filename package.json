@@ -181,8 +181,9 @@
   },
   "dependencies": {
     "@dash-ui/responsive": "^0.2.3",
+    "@radix-ui/react-polymorphic": "^0.0.1",
     "clsx": "^1.1.1",
-    "forward-ref-as": "^1.0.4"
+    "forward-ref-as": "^1.0.7"
   },
   "peerDependencies": {
     "@dash-ui/styles": ">=0.8.4",

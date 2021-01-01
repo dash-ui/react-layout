@@ -15,9 +15,9 @@ import type {ResponsiveProp} from './layout'
  *   <Item/>
  * </Row>
  */
-export declare const Row: import('forward-ref-as').ForwardRefAsExoticComponent<
-  RowProps,
-  'div'
+export declare const Row: import('@radix-ui/react-polymorphic').ForwardRefExoticComponentWithAs<
+  'div',
+  RowProps
 >
 export interface RowProps extends BoxProps {
   readonly display?: undefined

@@ -18,9 +18,9 @@ import type {ResponsiveProp} from './layout'
  *   <Item/>
  * </Column>
  */
-export declare const Column: import('forward-ref-as').ForwardRefAsExoticComponent<
-  ColumnProps,
-  'div'
+export declare const Column: import('@radix-ui/react-polymorphic').ForwardRefExoticComponentWithAs<
+  'div',
+  ColumnProps
 >
 export interface ColumnProps extends BoxProps {
   readonly display?: undefined

@@ -14,9 +14,9 @@ import type {ResponsiveProp} from './layout'
  *   <LayerItem placement='bottomRight' z={1000}/>
  * </Layer>
  */
-export declare const Layer: import('forward-ref-as').ForwardRefAsExoticComponent<
-  LayerProps,
-  'div'
+export declare const Layer: import('@radix-ui/react-polymorphic').ForwardRefExoticComponentWithAs<
+  'div',
+  LayerProps
 >
 /**
  * A layout component than positions itself absolutely inside of its
@@ -25,9 +25,9 @@ export declare const Layer: import('forward-ref-as').ForwardRefAsExoticComponent
  * @example
  * <LayerItem placement='bottomRight' offset={24}/>
  */
-export declare const LayerItem: import('forward-ref-as').ForwardRefAsExoticComponent<
-  LayerItemProps,
-  'div'
+export declare const LayerItem: import('@radix-ui/react-polymorphic').ForwardRefExoticComponentWithAs<
+  'div',
+  LayerItemProps
 >
 export interface LayerProps extends BoxProps {}
 declare type Placements =

@@ -8,9 +8,9 @@ import type {AsProp} from './types'
  * @example
  * <Box size={300} bg={{sm: 'red', md: 'blue'}}/>
  */
-export declare const Box: import('forward-ref-as').ForwardRefAsExoticComponent<
-  BoxProps,
-  'div'
+export declare const Box: import('@radix-ui/react-polymorphic').ForwardRefExoticComponentWithAs<
+  'div',
+  BoxProps
 >
 export interface BoxProps {
   /**

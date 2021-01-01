@@ -18,9 +18,9 @@ import type {ResponsiveProp} from './layout'
  *   <GridItem/>
  * </Grid>
  */
-export declare const Grid: import('forward-ref-as').ForwardRefAsExoticComponent<
-  GridProps,
-  'div'
+export declare const Grid: import('@radix-ui/react-polymorphic').ForwardRefExoticComponentWithAs<
+  'div',
+  GridProps
 >
 /**
  * A layout component that can add positioning properties to itself inside
@@ -34,9 +34,9 @@ export declare const Grid: import('forward-ref-as').ForwardRefAsExoticComponent<
  *   <GridItem/>
  * </Grid>
  */
-export declare const GridItem: import('forward-ref-as').ForwardRefAsExoticComponent<
-  GridItemProps,
-  'div'
+export declare const GridItem: import('@radix-ui/react-polymorphic').ForwardRefExoticComponentWithAs<
+  'div',
+  GridItemProps
 >
 declare type GapProp =
   | Extract<keyof DashTokens['gap'], number | string>

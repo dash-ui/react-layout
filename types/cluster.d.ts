@@ -28,9 +28,9 @@ import type {ResponsiveProp} from './layout'
  *   <Item/>
  * </Cluster>
  */
-export declare const Cluster: import('forward-ref-as').ForwardRefAsExoticComponent<
-  ClusterProps,
-  'div'
+export declare const Cluster: import('@radix-ui/react-polymorphic').ForwardRefExoticComponentWithAs<
+  'div',
+  ClusterProps
 >
 export interface ClusterProps extends Omit<BoxProps, 'display'> {
   /**

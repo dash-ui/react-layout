@@ -6,5 +6,3 @@
 export function unit<T extends unknown>(value: T) {
   return !isNaN(value as any) && value !== 0 ? `${value}px` : value
 }
-
-export {default as forwardRefAs} from 'forward-ref-as'

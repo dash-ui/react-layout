@@ -1,13 +1,13 @@
 import * as React from 'react'
-import css from 'minify-css.macro'
 import clsx from 'clsx'
+import forwardRefAs from 'forward-ref-as'
+import css from 'minify-css.macro'
 import type {DashTokens} from '@dash-ui/styles'
 import {Box} from './box'
 import type {BoxProps} from './box'
 import {useResponsiveStyles} from './layout'
 import type {ResponsiveProp, ResponsiveLazyProp} from './layout'
 import {flexDirection, justifyContent, alignItems} from './styles'
-import {forwardRefAs} from './utils'
 
 /**
  * A layout component that distributes its items in a row without wrapping
@@ -23,7 +23,7 @@ import {forwardRefAs} from './utils'
  *   <Item/>
  * </Row>
  */
-export const Row = forwardRefAs<RowProps, 'div'>(function Row(
+export const Row = forwardRefAs<'div', RowProps>(function Row(
   {className, align, distribute, gap, reverse = false, ...props},
   ref
 ) {

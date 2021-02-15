@@ -130,12 +130,6 @@ const Component = () => (
 | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | [`useResponsiveStyles()`](#useresponsivestyles) | Returns the [responsive `styles()`](https://github.com/dash-ui/responsive) used for creating responsive layout props. |
 
-### Utils
-
-| Util                              | Description                                                                                                      |
-| --------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [`forwardRefAs()`](#forwardrefas) | A wrapper around `React.forwardRef` that allows HTML attributes and prop types to be derived from the `as` prop. |
-
 ### TypeScript support
 
 `@dash-ui/react-layout` is written in TypeScript. That said, there are some things to know
@@ -569,39 +563,6 @@ used for creating responsive layout props.
 // See https://github.com/dash-ui/responsive
 ResponsiveStyles<DashTokens, MediaQueries, DashThemeNames>
 ```
-
-## Utils
-
-### forwardRefAs()
-
-A wrapper around `React.forwardRef` that allows HTML attributes and prop
-types to be derived from the `as` prop.
-
-#### Example
-
-[Play with an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-forwardrefas-example-z7f6o?file=/src/App.tsx)
-
-```tsx
-import {forwardRefAs} from '@dash-ui/react-layout'
-
-// Forwards `ref` to the underlying button and adds strong
-// types for the `as` prop.
-const Button = forwardRefAs<ButtonProps, 'button'>(
-  ({as: As = 'button', ...props}, ref) => <As ref={ref} {...props} />
-)
-
-// ✅ Will pass type checking and autocomplete correctly
-<Button as='a' href='https://jaredLunde.com'/>
-
-// ❌ Will fail type checking and not autocomplete "href"
-<Button href='#'>
-```
-
-#### Arguments
-
-| Name   | Type                                                                                    | Required? | Description                      |
-| ------ | --------------------------------------------------------------------------------------- | --------- | -------------------------------- |
-| render | `React.RefForwardingComponent<HTMLElement \| SVGElement \| React.ComponentType, Props>` | Yes       | A React ref forwarding component |
 
 ## TypeScript Support
 

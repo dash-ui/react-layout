@@ -154,7 +154,7 @@
   "devDependencies": {
     "@commitlint/cli": "^9.0.1",
     "@commitlint/config-conventional": "^9.0.1",
-    "@dash-ui/jest": "^2.0.0",
+    "@dash-ui/jest": "^2.0.1",
     "@dash-ui/styles": "^0.8.6",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
@@ -170,7 +170,7 @@
     "husky": "latest",
     "jest": "latest",
     "lint-staged": "latest",
-    "lundle": "^0.4.9",
+    "lundle": "^0.4.11",
     "minify-css.macro": "^1.0.6",
     "prettier": "latest",
     "react": "latest",
@@ -181,9 +181,8 @@
   },
   "dependencies": {
     "@dash-ui/responsive": "^0.2.3",
-    "@radix-ui/react-polymorphic": "^0.0.1",
     "clsx": "^1.1.1",
-    "forward-ref-as": "^1.0.7"
+    "forward-ref-as": "^2.0.0"
   },
   "peerDependencies": {
     "@dash-ui/styles": ">=0.8.4",

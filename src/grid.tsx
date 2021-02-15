@@ -1,5 +1,6 @@
 import * as React from 'react'
 import clsx from 'clsx'
+import forwardRefAs from 'forward-ref-as'
 import css from 'minify-css.macro'
 import type {DashTokens} from '@dash-ui/styles'
 import {Box} from './box'
@@ -14,7 +15,7 @@ import {
   justifyContent,
   alignContent,
 } from './styles'
-import {unit, forwardRefAs} from './utils'
+import {unit} from './utils'
 
 /**
  * A layout component that distributes its children in a grid like so:
@@ -33,7 +34,7 @@ import {unit, forwardRefAs} from './utils'
  *   <GridItem/>
  * </Grid>
  */
-export const Grid = forwardRefAs<GridProps, 'div'>(function Grid(
+export const Grid = forwardRefAs<'div', GridProps>(function Grid(
   {
     className,
     alignX,
@@ -86,7 +87,7 @@ export const Grid = forwardRefAs<GridProps, 'div'>(function Grid(
  *   <GridItem/>
  * </Grid>
  */
-export const GridItem = forwardRefAs<GridItemProps, 'div'>(function GridItem(
+export const GridItem = forwardRefAs<'div', GridItemProps>(function GridItem(
   {className, alignX, alignY, colStart, colEnd, rowStart, rowEnd, ...props},
   ref
 ) {

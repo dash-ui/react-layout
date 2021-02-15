@@ -1,11 +1,12 @@
 import * as React from 'react'
 import clsx from 'clsx'
+import forwardRefAs from 'forward-ref-as'
 import css from 'minify-css.macro'
 import {Box} from './box'
 import type {BoxProps} from './box'
 import {useResponsiveStyles} from './layout'
 import type {ResponsiveProp, ResponsiveLazyProp} from './layout'
-import {unit, forwardRefAs} from './utils'
+import {unit} from './utils'
 
 /**
  * A layout component that is a container for `<LayerItem>`s:
@@ -21,7 +22,7 @@ import {unit, forwardRefAs} from './utils'
  *   <LayerItem placement='bottomRight' z={1000}/>
  * </Layer>
  */
-export const Layer = forwardRefAs<LayerProps, 'div'>(function Layer(
+export const Layer = forwardRefAs<'div', LayerProps>(function Layer(
   props,
   ref
 ) {
@@ -35,7 +36,7 @@ export const Layer = forwardRefAs<LayerProps, 'div'>(function Layer(
  * @example
  * <LayerItem placement='bottomRight' offset={24}/>
  */
-export const LayerItem = forwardRefAs<LayerItemProps, 'div'>(function LayerItem(
+export const LayerItem = forwardRefAs<'div', LayerItemProps>(function LayerItem(
   {className, offset, placement, z, ...props},
   ref
 ) {

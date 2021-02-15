@@ -1,13 +1,13 @@
 import * as React from 'react'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
+import forwardRefAs from 'forward-ref-as'
 import type {DashTokens} from '@dash-ui/styles'
 import {Box} from './box'
 import type {BoxProps} from './box'
 import {useResponsiveStyles} from './layout'
 import type {ResponsiveProp, ResponsiveLazyProp} from './layout'
 import {justifyContent, flexDirection} from './styles'
-import {forwardRefAs} from './utils'
 
 /**
  * A row directional layout component that distributes its items in a cluster
@@ -36,7 +36,7 @@ import {forwardRefAs} from './utils'
  *   <Item/>
  * </Cluster>
  */
-export const Cluster = forwardRefAs<ClusterProps, 'div'>(function Cluster(
+export const Cluster = forwardRefAs<'div', ClusterProps>(function Cluster(
   {className, gap, reverse = false, ...props},
   ref
 ) {

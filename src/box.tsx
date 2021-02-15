@@ -1,11 +1,11 @@
 import * as React from 'react'
+import forwardRefAs from 'forward-ref-as'
 import css from 'minify-css.macro'
 import clsx from 'clsx'
 import type {DashTokens} from '@dash-ui/styles'
 import {useResponsiveStyles} from './layout'
 import type {ResponsiveProp, ResponsiveLazyProp} from './layout'
-import {unit, forwardRefAs} from './utils'
-import type {AsProp} from './types'
+import {unit} from './utils'
 
 /**
  * A layout component for adding size, padding, position, color, and more
@@ -14,7 +14,7 @@ import type {AsProp} from './types'
  * @example
  * <Box size={300} bg={{sm: 'red', md: 'blue'}}/>
  */
-export const Box = forwardRefAs<BoxProps, 'div'>(function Box(
+export const Box = forwardRefAs<'div', BoxProps>(function Box(
   {
     as: As = 'div',
     className,
@@ -156,11 +156,6 @@ const radiusStyle: ResponsiveLazyProp<
   `
 
 export interface BoxProps {
-  /**
-   * Renders your component "as" this component
-   * @default "div"
-   */
-  readonly as?: AsProp
   /**
    * Adds one or several class names to your component
    */

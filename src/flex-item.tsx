@@ -1,12 +1,13 @@
 import * as React from 'react'
 import clsx from 'clsx'
+import forwardRefAs from 'forward-ref-as'
 import css from 'minify-css.macro'
 import {Box} from './box'
 import type {BoxProps} from './box'
 import {useResponsiveStyles} from './layout'
 import type {ResponsiveProp} from './layout'
 import {alignSelf} from './styles'
-import {unit, forwardRefAs} from './utils'
+import {unit} from './utils'
 
 /**
  * A layout component that can add positioning properties to itself inside
@@ -15,7 +16,7 @@ import {unit, forwardRefAs} from './utils'
  * @example
  * <FlexItem align='top'/>
  */
-export const FlexItem = forwardRefAs<FlexItemProps, 'div'>(function FlexItem(
+export const FlexItem = forwardRefAs<'div', FlexItemProps>(function FlexItem(
   {className, maxWidth, maxHeight, basis, order, grow, shrink, align, ...props},
   ref
 ) {

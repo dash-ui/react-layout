@@ -1,6 +1,5 @@
 import type {DashTokens} from '@dash-ui/styles'
 import type {ResponsiveProp} from './layout'
-import type {AsProp} from './types'
 /**
  * A layout component for adding size, padding, position, color, and more
  * using tokens from your CSS variable theme.
@@ -8,16 +7,11 @@ import type {AsProp} from './types'
  * @example
  * <Box size={300} bg={{sm: 'red', md: 'blue'}}/>
  */
-export declare const Box: import('forward-ref-as').ComponentWithAs<
+export declare const Box: import('forward-ref-as').ForwardRefExoticComponentWithAs<
   'div',
   BoxProps
 >
 export interface BoxProps {
-  /**
-   * Renders your component "as" this component
-   * @default "div"
-   */
-  readonly as?: AsProp
   /**
    * Adds one or several class names to your component
    */

@@ -18,7 +18,7 @@ import type {ResponsiveProp} from './layout'
  *   <GridItem/>
  * </Grid>
  */
-export declare const Grid: import('forward-ref-as').ComponentWithAs<
+export declare const Grid: import('forward-ref-as').ForwardRefExoticComponentWithAs<
   'div',
   GridProps
 >
@@ -34,7 +34,7 @@ export declare const Grid: import('forward-ref-as').ComponentWithAs<
  *   <GridItem/>
  * </Grid>
  */
-export declare const GridItem: import('forward-ref-as').ComponentWithAs<
+export declare const GridItem: import('forward-ref-as').ForwardRefExoticComponentWithAs<
   'div',
   GridItemProps
 >

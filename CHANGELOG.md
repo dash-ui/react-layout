@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/dash-ui/react-layout/compare/v0.8.5...v0.9.0) (2021-02-15)
+
+### ⚠ BREAKING CHANGES
+
+- Removes `forwardRefAs` util and `AsProp` type
+
+### Features
+
+- upgrade forward-ref-as ([5a9ceab](https://github.com/dash-ui/react-layout/commit/5a9ceab26937dea3ff150da33e07ae1fba618ea0))
+
 ### [0.8.5](https://github.com/dash-ui/react-layout/compare/v0.8.4...v0.8.5) (2021-01-01)
 
 ### [0.8.4](https://github.com/dash-ui/react-layout/compare/v0.8.3...v0.8.4) (2020-08-20)

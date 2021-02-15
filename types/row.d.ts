@@ -15,7 +15,7 @@ import type {ResponsiveProp} from './layout'
  *   <Item/>
  * </Row>
  */
-export declare const Row: import('forward-ref-as').ComponentWithAs<
+export declare const Row: import('forward-ref-as').ForwardRefExoticComponentWithAs<
   'div',
   RowProps
 >

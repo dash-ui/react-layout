@@ -28,7 +28,7 @@ import type {ResponsiveProp} from './layout'
  *   <Item/>
  * </Cluster>
  */
-export declare const Cluster: import('forward-ref-as').ComponentWithAs<
+export declare const Cluster: import('forward-ref-as').ForwardRefExoticComponentWithAs<
   'div',
   ClusterProps
 >

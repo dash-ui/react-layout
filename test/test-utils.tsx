@@ -40,6 +40,9 @@ const theme = {
   borderWidth: {
     hairline: '0.5px',
   },
+  zIndexes: {
+    min: -1,
+  },
 }
 
 type Theme = typeof theme

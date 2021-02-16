@@ -113,6 +113,59 @@ describe('<Box> without media queries', () => {
     )
   })
 
+  it('applies the "z" prop w/ number', () => {
+    render(<Box z={1} data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule('z-index', '1')
+  })
+
+  it('applies the "z" prop w/ token', () => {
+    render(<Box z='min' data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule(
+      'z-index',
+      'var(--z-indexes-min)'
+    )
+  })
+
+  it('applies the "inset" prop w/ number', () => {
+    render(<Box inset={1} data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule('top', '1px')
+    expect(screen.getByTestId('el')).toHaveStyleRule('right', '1px')
+    expect(screen.getByTestId('el')).toHaveStyleRule('bottom', '1px')
+    expect(screen.getByTestId('el')).toHaveStyleRule('left', '1px')
+  })
+
+  it('applies the "inset" prop w/ array', () => {
+    render(<Box inset={[1]} data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule('top', '1px')
+    expect(screen.getByTestId('el')).toHaveStyleRule('right', '1px')
+    expect(screen.getByTestId('el')).toHaveStyleRule('bottom', '1px')
+    expect(screen.getByTestId('el')).toHaveStyleRule('left', '1px')
+  })
+
+  it('applies the "inset" prop w/ array len 2', () => {
+    render(<Box inset={[1, 2]} data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule('top', '1px')
+    expect(screen.getByTestId('el')).toHaveStyleRule('right', '2px')
+    expect(screen.getByTestId('el')).toHaveStyleRule('bottom', '1px')
+    expect(screen.getByTestId('el')).toHaveStyleRule('left', '2px')
+  })
+
+  it('applies the "inset" prop w/ array len 3', () => {
+    render(<Box inset={[1, 2, 3]} data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule('top', '1px')
+    expect(screen.getByTestId('el')).toHaveStyleRule('right', '2px')
+    expect(screen.getByTestId('el')).toHaveStyleRule('bottom', '3px')
+    expect(screen.getByTestId('el')).toHaveStyleRule('left', '2px')
+  })
+
+  it('applies the "inset" prop w/ array len 4', () => {
+    render(<Box inset={[1, 2, 3, 4]} data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule('top', '1px')
+    expect(screen.getByTestId('el')).toHaveStyleRule('right', '2px')
+    expect(screen.getByTestId('el')).toHaveStyleRule('bottom', '3px')
+    expect(screen.getByTestId('el')).toHaveStyleRule('left', '4px')
+  })
+
   it('applies the "radius" prop', () => {
     render(<Box radius='sm' data-testid='el' />)
     expect(screen.getByTestId('el')).toHaveStyleRule(

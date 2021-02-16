@@ -37,7 +37,7 @@ export const Layer = forwardRefAs<'div', LayerProps>(function Layer(
  * <LayerItem placement='bottomRight' offset={24}/>
  */
 export const LayerItem = forwardRefAs<'div', LayerItemProps>(function LayerItem(
-  {className, offset, placement, z, ...props},
+  {className, offset, placement, ...props},
   ref
 ) {
   const styles = useResponsiveStyles()
@@ -47,10 +47,7 @@ export const LayerItem = forwardRefAs<'div', LayerItemProps>(function LayerItem(
       ref={ref}
       className={clsx(
         className,
-        styles.join(
-          styles.lazy(placementStyle(offset)).css(placement),
-          z === void 0 ? '' : styles.lazy(zStyle).css(z)
-        )
+        styles.join(styles.lazy(placementStyle(offset)).css(placement))
       )}
       position='absolute'
       {...props}
@@ -117,10 +114,6 @@ const placementStyle = (
   return styles
 }
 
-const zStyle = (value: number) => css`
-  z-index: ${value};
-`
-
 export interface LayerProps extends BoxProps {}
 
 type Placements =
@@ -143,10 +136,6 @@ export interface LayerItemProps extends Omit<BoxProps, 'position'> {
    * Sets the placement of your layer item relative to its container
    */
   placement: ResponsiveProp<Placements>
-  /**
-   * Sets a `z-index` CSS property on your component
-   */
-  z?: ResponsiveProp<number>
 }
 
 /* istanbul ignore next */

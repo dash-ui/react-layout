@@ -30,6 +30,8 @@ export const Box = forwardRefAs<'div', BoxProps>(function Box(
     border,
     elevation,
     radius,
+    inset,
+    z,
     ...props
   },
   ref
@@ -48,7 +50,9 @@ export const Box = forwardRefAs<'div', BoxProps>(function Box(
           !bg ? '' : styles.lazy(bgStyle).css(bg),
           !border ? '' : styles.lazy(borderStyle).css(border),
           !elevation ? '' : styles.lazy(elevationStyle).css(elevation),
-          !radius ? '' : styles.lazy(radiusStyle).css(radius)
+          !radius ? '' : styles.lazy(radiusStyle).css(radius),
+          inset === void 0 ? '' : styles.lazy(insetStyle).css(inset),
+          z === void 0 ? '' : styles.lazy(zStyle).css(z)
         ),
         // These dynamic styles aren't joined because they're the
         // most likely to be unique. Leaving these types of styles
@@ -183,6 +187,30 @@ const radiusStyle: ResponsiveLazyProp<
       : radius[radiusProp]};
   `
 
+const insetStyle: ResponsiveLazyProp<string | number | (string | number)[]> = (
+  value
+) => {
+  if (Array.isArray(value)) {
+    return {
+      top: value[0],
+      right: value[1] ?? value[0],
+      bottom: value[2] ?? value[0],
+      left: value[3] ?? value[1] ?? value[0],
+    }
+  }
+
+  return {top: value, right: value, bottom: value, left: value}
+}
+
+const zStyle: ResponsiveLazyProp<
+  // @ts-expect-error
+  number | Extract<keyof DashTokens['zIndexes'], string | number>
+> = (value) =>
+  // @ts-expect-error
+  ({zIndexes}) => css`
+    z-index: ${typeof value === 'number' ? value : zIndexes[value]};
+  `
+
 export interface BoxProps {
   /**
    * Adds one or several class names to your component
@@ -267,6 +295,17 @@ export interface BoxProps {
     | Extract<keyof DashTokens['radius'], string | number>
     // @ts-expect-error
     | Extract<keyof DashTokens['radius'], string | number>[]
+  >
+  /**
+   * Sets the top, right, bottom, left position of the element
+   */
+  inset?: ResponsiveProp<string | number | (string | number)[]>
+  /**
+   * Sets a `z-index` CSS property on your component
+   */
+  z?: ResponsiveProp<
+    // @ts-expect-error
+    number | Extract<keyof DashTokens['zIndexes'], string | number>
   >
 }
 

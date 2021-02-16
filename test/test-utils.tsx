@@ -37,6 +37,9 @@ const theme = {
     sm: '0.125rem',
     md: '0.25rem',
   },
+  borderWidth: {
+    hairline: '0.5px',
+  },
 }
 
 type Theme = typeof theme

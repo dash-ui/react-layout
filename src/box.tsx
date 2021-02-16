@@ -21,10 +21,13 @@ export const Box = forwardRefAs<'div', BoxProps>(function Box(
     display,
     position,
     width,
+    maxWidth,
     height,
+    maxHeight,
     size,
     pad,
     bg,
+    border,
     elevation,
     radius,
     ...props
@@ -43,6 +46,7 @@ export const Box = forwardRefAs<'div', BoxProps>(function Box(
           styles(frameStyle).css(position),
           !pad ? '' : styles.lazy(padStyle).css(pad),
           !bg ? '' : styles.lazy(bgStyle).css(bg),
+          !border ? '' : styles.lazy(borderStyle).css(border),
           !elevation ? '' : styles.lazy(elevationStyle).css(elevation),
           !radius ? '' : styles.lazy(radiusStyle).css(radius)
         ),
@@ -50,7 +54,9 @@ export const Box = forwardRefAs<'div', BoxProps>(function Box(
         // most likely to be unique. Leaving these types of styles
         // as atomic improves their performance.
         width !== void 0 && styles.lazy(widthStyle)(width),
+        maxWidth !== void 0 && styles.lazy(maxWidthStyle)(maxWidth),
         height !== void 0 && styles.lazy(heightStyle)(height),
+        maxHeight !== void 0 && styles.lazy(maxHeightStyle)(maxHeight),
         size !== void 0 && styles.lazy(sizeStyle)(size)
       )}
       {...props}
@@ -100,6 +106,12 @@ const heightStyle = (height: number | string) => css`
   height: ${unit(height)};
 `
 
+const maxWidthStyle = (maxWidth: number | string) => css`
+  max-width: ${unit(maxWidth)};
+`
+const maxHeightStyle = (maxHeight: number | string) => css`
+  max-height: ${unit(maxHeight)};
+`
 const sizeStyle = (size: number | string) => {
   size = unit(size)
   return css`
@@ -130,6 +142,22 @@ const bgStyle: ResponsiveLazyProp<Extract<
   color,
 }) => css`
   background-color: ${color[bg]};
+`
+
+const borderStyle: ResponsiveLazyProp<[
+  // @ts-expect-error
+  Extract<keyof DashTokens['borderWidths'], string | number>,
+  // @ts-expect-error
+  Extract<keyof DashTokens['color'], string | number>
+]> = ([width, borderColor]) => ({
+  // @ts-expect-error
+  borderWidth,
+  // @ts-expect-error
+  color,
+}) => css`
+  border-width: ${borderWidth[width]};
+  border-style: solid;
+  border-color: ${color[borderColor]};
 `
 
 const elevationStyle: ResponsiveLazyProp<Extract<
@@ -181,6 +209,14 @@ export interface BoxProps {
    */
   readonly height?: ResponsiveProp<number | string>
   /**
+   * Sets a `max-width` CSS property on your component
+   */
+  readonly maxWidth?: ResponsiveProp<number | string>
+  /**
+   * Sets a `max-height` CSS property on your component
+   */
+  readonly maxHeight?: ResponsiveProp<number | string>
+  /**
    * Sets a `width` and `height` CSS property on your component
    */
   readonly size?: ResponsiveProp<number | string>
@@ -193,6 +229,18 @@ export interface BoxProps {
     | Extract<keyof DashTokens['pad'], string | number>
     // @ts-expect-error
     | Extract<keyof DashTokens['pad'], string | number>[]
+  >
+  /**
+   * Sets a `background-color` CSS property on your component using the "color"
+   * token in your theme
+   */
+  readonly border?: ResponsiveProp<
+    [
+      // @ts-expect-error
+      Extract<keyof DashTokens['borderWidth'], string | number>,
+      // @ts-expect-error
+      Extract<keyof DashTokens['color'], string | number>
+    ]
   >
   /**
    * Sets a `background-color` CSS property on your component using the "color"

@@ -59,6 +59,39 @@ describe('<Box> without media queries', () => {
     expect(screen.getByTestId('el')).toHaveStyleRule('height', '50%')
   })
 
+  it('applies the "max-width" prop', () => {
+    render(<Box maxWidth='100%' data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule('max-width', '100%')
+  })
+
+  it('applies the "max-width" prop w/ px default', () => {
+    render(<Box maxWidth={100} data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule('max-width', '100px')
+  })
+
+  it('applies the "max-height" prop', () => {
+    render(<Box maxHeight='100%' data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule('max-height', '100%')
+  })
+
+  it('applies the "max-height" prop w/ px default', () => {
+    render(<Box maxHeight={100} data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule('max-height', '100px')
+  })
+
+  it('applies the "border" prop w/ px default', () => {
+    render(<Box border={['hairline', 'green']} data-testid='el' />)
+    expect(screen.getByTestId('el')).toHaveStyleRule(
+      'border-width',
+      'var(--border-width-hairline)'
+    )
+    expect(screen.getByTestId('el')).toHaveStyleRule('border-style', 'solid')
+    expect(screen.getByTestId('el')).toHaveStyleRule(
+      'border-color',
+      'var(--color-green)'
+    )
+  })
+
   it('applies the "bg" prop', () => {
     render(<Box bg='green' data-testid='el' />)
     expect(screen.getByTestId('el')).toHaveStyleRule(

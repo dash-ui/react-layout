@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.1](https://github.com/dash-ui/react-layout/compare/v0.9.0...v0.9.1) (2021-02-16)
+
+### Features
+
+- add more box properties ([0610c90](https://github.com/dash-ui/react-layout/commit/0610c9005ad26a6d533a22d8aa10229ecf6a2040))
+
 ## [0.9.0](https://github.com/dash-ui/react-layout/compare/v0.8.5...v0.9.0) (2021-02-15)
 
 ### ⚠ BREAKING CHANGES

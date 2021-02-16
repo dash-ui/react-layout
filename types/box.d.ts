@@ -37,6 +37,14 @@ export interface BoxProps {
    */
   readonly height?: ResponsiveProp<number | string>
   /**
+   * Sets a `max-width` CSS property on your component
+   */
+  readonly maxWidth?: ResponsiveProp<number | string>
+  /**
+   * Sets a `max-height` CSS property on your component
+   */
+  readonly maxHeight?: ResponsiveProp<number | string>
+  /**
    * Sets a `width` and `height` CSS property on your component
    */
   readonly size?: ResponsiveProp<number | string>
@@ -47,6 +55,16 @@ export interface BoxProps {
   readonly pad?: ResponsiveProp<
     | Extract<keyof DashTokens['pad'], string | number>
     | Extract<keyof DashTokens['pad'], string | number>[]
+  >
+  /**
+   * Sets a `background-color` CSS property on your component using the "color"
+   * token in your theme
+   */
+  readonly border?: ResponsiveProp<
+    [
+      Extract<keyof DashTokens['borderWidth'], string | number>,
+      Extract<keyof DashTokens['color'], string | number>
+    ]
   >
   /**
    * Sets a `background-color` CSS property on your component using the "color"

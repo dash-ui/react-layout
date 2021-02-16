@@ -49,9 +49,5 @@ export interface LayerItemProps extends Omit<BoxProps, 'position'> {
    * Sets the placement of your layer item relative to its container
    */
   placement: ResponsiveProp<Placements>
-  /**
-   * Sets a `z-index` CSS property on your component
-   */
-  z?: ResponsiveProp<number>
 }
 export {}

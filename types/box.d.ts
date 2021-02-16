@@ -88,4 +88,14 @@ export interface BoxProps {
     | Extract<keyof DashTokens['radius'], string | number>
     | Extract<keyof DashTokens['radius'], string | number>[]
   >
+  /**
+   * Sets the top, right, bottom, left position of the element
+   */
+  inset?: ResponsiveProp<string | number | (string | number)[]>
+  /**
+   * Sets a `z-index` CSS property on your component
+   */
+  z?: ResponsiveProp<
+    number | Extract<keyof DashTokens['zIndexes'], string | number>
+  >
 }

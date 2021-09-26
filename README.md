@@ -1,12 +1,15 @@
-<hr>
-  <br/>
-  <img src='https://github.com/dash-ui/styles/raw/master/assets/logo.png'/>
-  <blockquote>Awesome layout primitives for React and <a href="https://github.com/dash-ui/styles">dash-ui</a></blockquote>
-  
-  <pre>npm i @dash-ui/react-layout</pre>
-  <br/>
-  
-  <a href="https://bundlephobia.com/result?p=@dash-ui/react-layout@latest">
+<hr/>
+
+<img src='https://github.com/dash-ui/styles/raw/main/assets/logo.png'/>
+
+>
+
+```sh
+npm i @dash-ui/react-layout
+```
+
+<p>
+  <a href="https://bundlephobia.com/result?p=@dash-ui/react-layout">
     <img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/@dash-ui/react-layout?style=for-the-badge&labelColor=24292e">
   </a>
   <a aria-label="Types" href="https://www.npmjs.com/package/@dash-ui/react-layout">
@@ -15,8 +18,8 @@
   <a aria-label="Code coverage report" href="https://codecov.io/gh/dash-ui/react-layout">
     <img alt="Code coverage" src="https://img.shields.io/codecov/c/gh/dash-ui/react-layout?style=for-the-badge&labelColor=24292e">
   </a>
-  <a aria-label="Build status" href="https://travis-ci.com/dash-ui/react-layout">
-    <img alt="Build status" src="https://img.shields.io/travis/com/dash-ui/react-layout?style=for-the-badge&labelColor=24292e">
+  <a aria-label="Build status" href="https://github.com/dash-ui/react-layout/actions/workflows/release.yml">
+    <img alt="Build status" src="https://img.shields.io/github/workflow/status/dash-ui/react-layout/release/main?style=for-the-badge&labelColor=24292e">
   </a>
   <a aria-label="NPM version" href="https://www.npmjs.com/package/@dash-ui/react-layout">
     <img alt="NPM Version" src="https://img.shields.io/npm/v/@dash-ui/react-layout?style=for-the-badge&labelColor=24292e">
@@ -24,7 +27,9 @@
   <a aria-label="License" href="https://jaredlunde.mit-license.org/">
     <img alt="MIT License" src="https://img.shields.io/npm/l/@dash-ui/react-layout?style=for-the-badge&labelColor=24292e">
   </a>
-<hr>
+</p>
+
+---
 
 ## Features
 
@@ -41,70 +46,70 @@
 [Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-example-3m3rg?file=/src/App.tsx)
 
 ```jsx harmony
-import * as React from 'react'
-import {createStyles} from '@dash-ui/styles'
-import {LayoutProvider, Box} from '@dash-ui/react-layout'
+import * as React from "react";
+import { createStyles } from "@dash-ui/styles";
+import { LayoutProvider, Box } from "@dash-ui/react-layout";
 
 // These root variable tokens are required in order to access
 // all features of @dash-ui/react-layout
 const tokens = {
   // "color" is used for the "bg" prop on <Box>
   color: {
-    primary: '#ee5b5f',
+    primary: "#ee5b5f",
   },
   // "elevation" is used for the "elevation" prop on <Box>
   // It adds a box shadow to components
   elevation: {
-    sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-    md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    sm: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+    md: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
   },
   // "pad" is used for the "pad" prop
   // It adds padding to components
   pad: {
-    sm: '0.5rem',
-    md: '1rem',
-    lg: '2rem',
+    sm: "0.5rem",
+    md: "1rem",
+    lg: "2rem",
   },
   // "gap" is used for the "gap" prop
   // It adds margins between child components
   gap: {
-    sm: '0.25rem',
-    md: '0.5rem',
-    lg: '1rem',
+    sm: "0.25rem",
+    md: "0.5rem",
+    lg: "1rem",
   },
   // "radius" is used for the "radius" prop
   // It adds border-radius to components
   radius: {
-    sm: '0.125rem',
-    md: '0.25rem',
+    sm: "0.125rem",
+    md: "0.25rem",
   },
-}
+};
 
 const styles = createStyles({
   tokens,
-})
+});
 
 const App = () => (
   <LayoutProvider
     styles={styles}
     mediaQueries={{
-      sm: 'only screen and (min-width: 0em)',
-      md: 'only screen and (min-width: 35em)',
-      lg: 'only screen and (min-width: 80em)',
+      sm: "only screen and (min-width: 0em)",
+      md: "only screen and (min-width: 35em)",
+      lg: "only screen and (min-width: 80em)",
     }}
   >
     <Component />
   </LayoutProvider>
-)
+);
 
 const Component = () => (
   // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
-  <Box size={300} pad={{sm: 'md', md: 'lg'}}>
+  <Box size={300} pad={{ sm: "md", md: "lg" }}>
     Hello world
   </Box>
-)
+);
 ```
 
 ## API docs
@@ -155,33 +160,33 @@ props or a custom `styles()` instance.
 [Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-example-3m3rg?file=/src/App.tsx)
 
 ```tsx
-import * as React from 'react'
-import {styles} from '@dash-ui/styles'
-import {LayoutProvider, Box} from '@dash-ui/react-layout'
+import * as React from "react";
+import { styles } from "@dash-ui/styles";
+import { LayoutProvider, Box } from "@dash-ui/react-layout";
 
-const styles = createStyles()
+const styles = createStyles();
 
 const App = () => (
   <LayoutProvider
     styles={styles}
     mediaQueries={{
-      sm: 'only screen and (min-width: 0em)',
-      md: 'only screen and (min-width: 35em)',
-      lg: 'only screen and (min-width: 80em)',
+      sm: "only screen and (min-width: 0em)",
+      md: "only screen and (min-width: 35em)",
+      lg: "only screen and (min-width: 80em)",
     }}
   >
     <Component />
   </LayoutProvider>
-)
+);
 
 const Component = () => (
   // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
-  <Box size={300} pad={{sm: 'md', md: 'lg'}}>
+  <Box size={300} pad={{ sm: "md", md: "lg" }}>
     Hello world
   </Box>
-)
+);
 ```
 
 #### Props
@@ -201,17 +206,17 @@ from your CSS variable theme.
 [Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-box-example-tpsky?file=/src/App.tsx)
 
 ```tsx
-import * as React from 'react'
-import {Box} from '@dash-ui/react-layout'
+import * as React from "react";
+import { Box } from "@dash-ui/react-layout";
 
 const Component = () => (
   // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
-  <Box size={300} pad={{sm: 'md', md: 'lg'}}>
+  <Box size={300} pad={{ sm: "md", md: "lg" }}>
     Hello world
   </Box>
-)
+);
 ```
 
 #### Props
@@ -239,20 +244,20 @@ a cluster. Common use cases are tags and input chips.
 [Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-cluster-example-y0p5c?file=/src/App.tsx)
 
 ```tsx
-import * as React from 'react'
-import {Cluster, Box} from '@dash-ui/react-layout'
+import * as React from "react";
+import { Cluster, Box } from "@dash-ui/react-layout";
 
 const Component = () => (
   // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
-  <Cluster width={{sm: '100%', md: 400}} gap={{sm: 'sm', md: 'md'}}>
-    <Box bg='primary' width={100} height={24} radius='md' />
-    <Box bg='primary' width={140} height={24} radius='md' />
-    <Box bg='primary' width={80} height={24} radius='md' />
-    <Box bg='primary' width={90} height={24} radius='md' />
+  <Cluster width={{ sm: "100%", md: 400 }} gap={{ sm: "sm", md: "md" }}>
+    <Box bg="primary" width={100} height={24} radius="md" />
+    <Box bg="primary" width={140} height={24} radius="md" />
+    <Box bg="primary" width={80} height={24} radius="md" />
+    <Box bg="primary" width={90} height={24} radius="md" />
   </Cluster>
-)
+);
 ```
 
 #### Props
@@ -274,20 +279,20 @@ or shrinking.
 [Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-column-example-e81yl?file=/src/App.tsx)
 
 ```tsx
-import * as React from 'react'
-import {Column, Box} from '@dash-ui/react-layout'
+import * as React from "react";
+import { Column, Box } from "@dash-ui/react-layout";
 
 const Component = () => (
   // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
-  <Column width='100%' gap={{sm: 'sm', md: 'md'}}>
-    <Box bg='primary' height={100} width='100%' radius='md' />
-    <Box bg='primary' height={140} width='100%' radius='md' />
-    <Box bg='primary' height={80} width='100%' radius='md' />
-    <Box bg='primary' height={90} width='100%' radius='md' />
+  <Column width="100%" gap={{ sm: "sm", md: "md" }}>
+    <Box bg="primary" height={100} width="100%" radius="md" />
+    <Box bg="primary" height={140} width="100%" radius="md" />
+    <Box bg="primary" height={80} width="100%" radius="md" />
+    <Box bg="primary" height={90} width="100%" radius="md" />
   </Column>
-)
+);
 ```
 
 #### Props
@@ -309,27 +314,27 @@ a flex container.
 [Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-flexitem-example-mbmu2?file=/src/App.tsx)
 
 ```tsx
-import * as React from 'react'
-import {FlexItem, Box, Row} from '@dash-ui/react-layout'
+import * as React from "react";
+import { FlexItem, Box, Row } from "@dash-ui/react-layout";
 
 const Component = () => (
   // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
-  <Row align='start' width='100%' gap={{sm: 'sm', md: 'md'}}>
+  <Row align="start" width="100%" gap={{ sm: "sm", md: "md" }}>
     {/* This item will be aligned in the center */}
     <FlexItem
-      align='center'
-      bg='primary'
+      align="center"
+      bg="primary"
       width={100}
       height={120}
-      radius='md'
+      radius="md"
     />
     {/* These will both align at flex-start */}
-    <Box bg='primary' width={140} height={140} radius='md' />
-    <Box bg='primary' width={80} height={124} radius='md' />
+    <Box bg="primary" width={140} height={140} radius="md" />
+    <Box bg="primary" width={80} height={124} radius="md" />
   </Row>
-)
+);
 ```
 
 #### Props
@@ -356,25 +361,25 @@ of CSS grids.
 [Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-grid-example-okqnz?file=/src/App.tsx)
 
 ```tsx
-import * as React from 'react'
-import {Grid, Box} from '@dash-ui/react-layout'
+import * as React from "react";
+import { Grid, Box } from "@dash-ui/react-layout";
 
 const Component = () => (
   // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
-  <Grid cols={3} rows={3} gap={{sm: 'sm', md: 'md'}}>
-    <Box bg='primary' height={100} radius='md' />
-    <Box bg='primary' height={100} radius='md' />
-    <Box bg='primary' height={100} radius='md' />
-    <Box bg='primary' height={100} radius='md' />
-    <Box bg='primary' height={100} radius='md' />
-    <Box bg='primary' height={100} radius='md' />
-    <Box bg='primary' height={100} radius='md' />
-    <Box bg='primary' height={100} radius='md' />
-    <Box bg='primary' height={100} radius='md' />
+  <Grid cols={3} rows={3} gap={{ sm: "sm", md: "md" }}>
+    <Box bg="primary" height={100} radius="md" />
+    <Box bg="primary" height={100} radius="md" />
+    <Box bg="primary" height={100} radius="md" />
+    <Box bg="primary" height={100} radius="md" />
+    <Box bg="primary" height={100} radius="md" />
+    <Box bg="primary" height={100} radius="md" />
+    <Box bg="primary" height={100} radius="md" />
+    <Box bg="primary" height={100} radius="md" />
+    <Box bg="primary" height={100} radius="md" />
   </Grid>
-)
+);
 ```
 
 #### Props
@@ -397,8 +402,8 @@ const Component = () => (
 
 ```typescript
 type GapProp =
-  | keyof DashTokens['gap']
-  | [keyof DashTokens['gap'], keyof DashTokens['gap']]
+  | keyof DashTokens["gap"]
+  | [keyof DashTokens["gap"], keyof DashTokens["gap"]];
 ```
 
 ### &lt;GridItem&gt;
@@ -411,18 +416,18 @@ a [`<Grid>`](#grid) component.
 [Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-griditem-example-c1tc7?file=/src/App.tsx)
 
 ```tsx
-import * as React from 'react'
-import {Grid, GridItem, Box} from '@dash-ui/react-layout'
+import * as React from "react";
+import { Grid, GridItem, Box } from "@dash-ui/react-layout";
 
 const Component = () => (
-  <Grid cols={3} rows={[100, 100]} gap={{sm: 'sm', md: 'md'}}>
+  <Grid cols={3} rows={[100, 100]} gap={{ sm: "sm", md: "md" }}>
     {/* This item spans 3 columns */}
-    <GridItem bg='primary' colStart={1} colEnd={4} radius='md' />
-    <Box bg='primary' radius='md' />
-    <Box bg='primary' radius='md' />
-    <Box bg='primary' radius='md' />
+    <GridItem bg="primary" colStart={1} colEnd={4} radius="md" />
+    <Box bg="primary" radius="md" />
+    <Box bg="primary" radius="md" />
+    <Box bg="primary" radius="md" />
   </Grid>
-)
+);
 ```
 
 #### Props
@@ -447,18 +452,18 @@ A layout component that is a container for [`<LayerItem>`](#layeritem)s.
 [Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-layer-and-layeritem-example-we2by?file=/src/App.tsx)
 
 ```tsx
-import * as React from 'react'
-import {Layer, LayerItem} from '@dash-ui/react-layout'
+import * as React from "react";
+import { Layer, LayerItem } from "@dash-ui/react-layout";
 
 const Component = () => (
   // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
   <Layer width={600} height={600}>
-    <LayerItem placement='bottomRight' bg='primary' size={64} radius='md' />
-    <LayerItem placement='topLeft' bg='primary' size={64} radius='md' />
+    <LayerItem placement="bottomRight" bg="primary" size={64} radius="md" />
+    <LayerItem placement="topLeft" bg="primary" size={64} radius="md" />
   </Layer>
-)
+);
 ```
 
 #### Props
@@ -476,18 +481,18 @@ in whichever placement you decide.
 [Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-layer-and-layeritem-example-we2by?file=/src/App.tsx)
 
 ```tsx
-import * as React from 'react'
-import {Layer, LayerItem} from '@dash-ui/react-layout'
+import * as React from "react";
+import { Layer, LayerItem } from "@dash-ui/react-layout";
 
 const Component = () => (
   // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
   <Layer width={400} height={400}>
-    <LayerItem placement='bottomRight' bg='primary' size={64} radius='md' />
-    <LayerItem placement='topLeft' bg='primary' size={64} radius='md' />
+    <LayerItem placement="bottomRight" bg="primary" size={64} radius="md" />
+    <LayerItem placement="topLeft" bg="primary" size={64} radius="md" />
   </Layer>
-)
+);
 ```
 
 #### Props
@@ -504,15 +509,15 @@ const Component = () => (
 
 ```typescript
 type Placements =
-  | 'top'
-  | 'right'
-  | 'bottom'
-  | 'left'
-  | 'center'
-  | 'topLeft'
-  | 'topRight'
-  | 'bottomRight'
-  | 'bottomLeft'
+  | "top"
+  | "right"
+  | "bottom"
+  | "left"
+  | "center"
+  | "topLeft"
+  | "topRight"
+  | "bottomRight"
+  | "bottomLeft";
 ```
 
 ### &lt;Row&gt;
@@ -525,20 +530,20 @@ or shrinking.
 [Check out an example on **CodeSandbox**](https://codesandbox.io/s/dash-uireact-layout-row-example-ysvex?file=/src/App.tsx)
 
 ```tsx
-import * as React from 'react'
-import {Row, Box} from '@dash-ui/react-layout'
+import * as React from "react";
+import { Row, Box } from "@dash-ui/react-layout";
 
 const Component = () => (
   // Responsive props are opt-in. In order to use them
   // you have to define a "mediaQueries" prop on your
   // <LayoutProvider>
-  <Row width='100%' gap={{sm: 'sm', md: 'md'}}>
-    <Box bg='primary' width={100} height={120} radius='md' />
-    <Box bg='primary' width={140} height={140} radius='md' />
-    <Box bg='primary' width={80} height={124} radius='md' />
-    <Box bg='primary' width={90} height={96} radius='md' />
+  <Row width="100%" gap={{ sm: "sm", md: "md" }}>
+    <Box bg="primary" width={100} height={120} radius="md" />
+    <Box bg="primary" width={140} height={140} radius="md" />
+    <Box bg="primary" width={80} height={124} radius="md" />
+    <Box bg="primary" width={90} height={96} radius="md" />
   </Row>
-)
+);
 ```
 
 #### Props
@@ -575,23 +580,23 @@ pattern:
 
 ```typescript
 const mediaQueries = {
-  sm: 'only screen and (min-width: 0em)',
-  md: 'only screen and (min-width: 35em)',
-  lg: 'only screen and (min-width: 80em)',
-} as const
+  sm: "only screen and (min-width: 0em)",
+  md: "only screen and (min-width: 35em)",
+  lg: "only screen and (min-width: 80em)",
+} as const;
 
-type AppMediaQueries = typeof mediaQueries
+type AppMediaQueries = typeof mediaQueries;
 
-declare module '@dash-ui/react-layout' {
+declare module "@dash-ui/react-layout" {
   export interface MediaQueries extends AppMediaQueries {}
 }
 
 // OR alternatively
-declare module '@dash-ui/react-layout' {
+declare module "@dash-ui/react-layout" {
   export interface MediaQueries {
-    sm: string
-    md: string
-    lg: string
+    sm: string;
+    md: string;
+    lg: string;
   }
 }
 ```
@@ -606,22 +611,22 @@ pattern:
 ```typescript
 const tokens = {
   color: {
-    red: '#c17',
+    red: "#c17",
   },
-}
+};
 
-type AppTokens = typeof tokens
+type AppTokens = typeof tokens;
 
-declare module '@dash-ui/styles' {
+declare module "@dash-ui/styles" {
   export interface DashTokens extends AppTokens {}
 }
 
 // OR alternatively
-declare module '@dash-ui/styles' {
+declare module "@dash-ui/styles" {
   export interface DashTokens {
     color: {
-      red: string
-    }
+      red: string;
+    };
   }
 }
 ```

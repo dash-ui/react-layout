@@ -1,6 +1,6 @@
-import css from 'minify-css.macro'
+import css from "minify-css.macro";
 
-const ai = 'align-items'
+const ai = "align-items";
 export const alignItems = {
   start: css`
     ${ai}: flex-start;
@@ -17,34 +17,36 @@ export const alignItems = {
   stretch: css`
     ${ai}: stretch;
   `,
-}
+};
 
-const aiEntries = Object.entries(alignItems)
-type AlignItems = Record<keyof typeof alignItems, string>
+const aiEntries = Object.entries(alignItems);
+type AlignItems = Record<keyof typeof alignItems, string>;
 
-const replaceReducer = <Key extends string, Value extends string = string>(
-  from: string,
-  to: string
-) => (current: Record<Key, string>, [key, value]: [Key, Value]) => {
-  current[key] = value.replace(from, to)
-  return current
-}
+const replaceReducer =
+  <ReturnType, Key extends string = string, Value extends string = string>(
+    from: string,
+    to: string
+  ) =>
+  (current: ReturnType, [key, value]: [Key, Value]): ReturnType => {
+    (current as any)[key] = value.replace(from, to);
+    return current;
+  };
 export const alignSelf: AlignItems = aiEntries.reduce<AlignItems>(
-  replaceReducer<string>('items', 'self'),
+  replaceReducer<AlignItems>("items", "self"),
   {} as AlignItems
-)
+);
 
 export const justifySelf: AlignItems = aiEntries.reduce<AlignItems>(
-  replaceReducer<string>(ai, 'justify-self'),
+  replaceReducer<AlignItems>(ai, "justify-self"),
   {} as AlignItems
-)
+);
 
 export const justifyItems: AlignItems = aiEntries.reduce<AlignItems>(
-  replaceReducer<string>('align', 'justify'),
+  replaceReducer<AlignItems>("align", "justify"),
   {} as AlignItems
-)
+);
 
-const jc = 'justify-content'
+const jc = "justify-content";
 export const justifyContent = {
   start: css`
     ${jc}: flex-start;
@@ -67,18 +69,18 @@ export const justifyContent = {
   stretch: css`
     ${jc}: stretch;
   `,
-}
+};
 
-type JustifyContent = Record<keyof typeof justifyContent, string>
+type JustifyContent = Record<keyof typeof justifyContent, string>;
 
 export const alignContent: JustifyContent = Object.entries(
   justifyContent
 ).reduce<JustifyContent>(
-  replaceReducer<string>('justify', 'align'),
+  replaceReducer<JustifyContent>("justify", "align"),
   {} as JustifyContent
-)
+);
 
-const fd = 'flex-direction'
+const fd = "flex-direction";
 export const flexDirection = {
   row: css`
     ${fd}: row;
@@ -92,4 +94,4 @@ export const flexDirection = {
   reversedColumn: css`
     ${fd}: column-reverse;
   `,
-}
+};

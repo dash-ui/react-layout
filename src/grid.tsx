@@ -1,21 +1,21 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import forwardRefAs from 'forward-ref-as'
-import css from 'minify-css.macro'
-import type {DashTokens} from '@dash-ui/styles'
-import {Box} from './box'
-import type {BoxProps} from './box'
-import {useResponsiveStyles} from './layout'
-import type {ResponsiveProp, ResponsiveLazyProp} from './layout'
+import type { DashTokens } from "@dash-ui/styles";
+import clsx from "clsx";
+import forwardRefAs from "forward-ref-as";
+import css from "minify-css.macro";
+import * as React from "react";
+import { Box } from "./box";
+import type { BoxProps } from "./box";
+import { useResponsiveStyles } from "./layout";
+import type { ResponsiveLazyProp, ResponsiveProp } from "./layout";
 import {
-  alignSelf,
-  justifySelf,
-  alignItems,
-  justifyItems,
-  justifyContent,
   alignContent,
-} from './styles'
-import {unit} from './utils'
+  alignItems,
+  alignSelf,
+  justifyContent,
+  justifyItems,
+  justifySelf,
+} from "./styles";
+import { unit } from "./utils";
 
 /**
  * A layout component that distributes its children in a grid like so:
@@ -34,7 +34,7 @@ import {unit} from './utils'
  *   <GridItem/>
  * </Grid>
  */
-export const Grid = forwardRefAs<'div', GridProps>(function Grid(
+export const Grid = forwardRefAs<"div", GridProps>(function Grid(
   {
     className,
     alignX,
@@ -49,7 +49,7 @@ export const Grid = forwardRefAs<'div', GridProps>(function Grid(
   },
   ref
 ) {
-  const styles = useResponsiveStyles()
+  const styles = useResponsiveStyles();
 
   return (
     <Box
@@ -64,16 +64,16 @@ export const Grid = forwardRefAs<'div', GridProps>(function Grid(
           styles(alignItems).css(alignY),
           styles(justifyContent).css(distributeX),
           styles(alignContent).css(distributeY),
-          inline === void 0 ? '' : styles.lazy(gridStyle).css(inline || false),
-          gap === void 0 ? '' : styles.lazy(gapStyle).css(gap)
+          inline === void 0 ? "" : styles.lazy(gridStyle).css(inline || false),
+          gap === void 0 ? "" : styles.lazy(gapStyle).css(gap)
         ),
-        cols === void 0 ? '' : styles.lazy(colsStyle)(cols),
-        rows === void 0 ? '' : styles.lazy(rowsStyle)(rows)
+        cols === void 0 ? "" : styles.lazy(colsStyle)(cols),
+        rows === void 0 ? "" : styles.lazy(rowsStyle)(rows)
       )}
       {...props}
     />
-  )
-})
+  );
+});
 
 /**
  * A layout component that can add positioning properties to itself inside
@@ -87,11 +87,11 @@ export const Grid = forwardRefAs<'div', GridProps>(function Grid(
  *   <GridItem/>
  * </Grid>
  */
-export const GridItem = forwardRefAs<'div', GridItemProps>(function GridItem(
-  {className, alignX, alignY, colStart, colEnd, rowStart, rowEnd, ...props},
+export const GridItem = forwardRefAs<"div", GridItemProps>(function GridItem(
+  { className, alignX, alignY, colStart, colEnd, rowStart, rowEnd, ...props },
   ref
 ) {
-  const styles = useResponsiveStyles()
+  const styles = useResponsiveStyles();
 
   return (
     <Box
@@ -101,152 +101,155 @@ export const GridItem = forwardRefAs<'div', GridItemProps>(function GridItem(
         styles.join(
           styles(justifySelf).css(alignX),
           styles(alignSelf).css(alignY),
-          colStart === void 0 ? '' : styles.lazy(colStartStyle).css(colStart),
-          colEnd === void 0 ? '' : styles.lazy(colEndStyle).css(colEnd),
-          rowStart === void 0 ? '' : styles.lazy(rowStartStyle).css(rowStart),
-          rowEnd === void 0 ? '' : styles.lazy(rowEndStyle).css(rowEnd)
+          colStart === void 0 ? "" : styles.lazy(colStartStyle).css(colStart),
+          colEnd === void 0 ? "" : styles.lazy(colEndStyle).css(colEnd),
+          rowStart === void 0 ? "" : styles.lazy(rowStartStyle).css(rowStart),
+          rowEnd === void 0 ? "" : styles.lazy(rowEndStyle).css(rowEnd)
         )
       )}
       {...props}
     />
-  )
-})
+  );
+});
 
 const gridStyle = (inline: boolean) => ({
-  display: inline ? 'inline-grid' : 'grid',
-})
+  display: inline ? "inline-grid" : "grid",
+});
 
 const colsStyle = (cols: number | (number | string)[]) => {
-  let value: (number | string)[]
-  if (Array.isArray(cols)) value = cols
+  let value: (number | string)[];
+  if (Array.isArray(cols)) value = cols;
   // ie doesn't have repeat
-  else value = new Array(cols).fill('1fr')
+  else value = new Array(cols).fill("1fr");
   return css`
-    grid-template-columns: ${value.map((col) => unit(col)).join(' ')};
-  `
-}
+    grid-template-columns: ${value.map((col) => unit(col)).join(" ")};
+  `;
+};
 
 const rowsStyle = (rows: number | (number | string)[]) => {
-  let value: (number | string)[]
-  if (Array.isArray(rows)) value = rows
+  let value: (number | string)[];
+  if (Array.isArray(rows)) value = rows;
   // ie doesn't have repeat
-  else value = new Array(rows).fill('1fr')
+  else value = new Array(rows).fill("1fr");
   return css`
-    grid-template-rows: ${value.map((row) => unit(row)).join(' ')};
-  `
-}
+    grid-template-rows: ${value.map((row) => unit(row)).join(" ")};
+  `;
+};
 
 const gapStyle: ResponsiveLazyProp<
   // @ts-expect-error
-  | Extract<keyof DashTokens['gap'], number | string>
+  | Extract<keyof DashTokens["gap"], number | string>
   | [
       // @ts-expect-error
-      Extract<keyof DashTokens['gap'], number | string>,
+      Extract<keyof DashTokens["gap"], number | string>,
       // @ts-expect-error
-      Extract<keyof DashTokens['gap'], number | string>
+      Extract<keyof DashTokens["gap"], number | string>
     ]
   // @ts-expect-error
-> = (gapProp: GapProp) => ({gap}) => css`
-  grid-gap: ${Array.isArray(gapProp)
-    ? gapProp.map((p) => gap[p]).join(' ')
-    : gap[gapProp] + ' ' + gap[gapProp]};
-`
+> =
+  (gapProp: GapProp) =>
+  ({ gap }) =>
+    css`
+      grid-gap: ${Array.isArray(gapProp)
+        ? gapProp.map((p) => gap[p]).join(" ")
+        : gap[gapProp] + " " + gap[gapProp]};
+    `;
 
 const colStartStyle = (gridColumnStart: number | string) => css`
   grid-column-start: ${gridColumnStart};
-`
+`;
 
 const colEndStyle = (gridColumnEnd: number | string) => css`
   grid-column-end: ${gridColumnEnd};
-`
+`;
 
 const rowStartStyle = (gridRowStart: number | string) => css`
   grid-row-start: ${gridRowStart};
-`
+`;
 
 const rowEndStyle = (gridRowEnd: number | string) => css`
   grid-row-end: ${gridRowEnd};
-`
+`;
 
 type GapProp =
   // @ts-expect-error
-  | Extract<keyof DashTokens['gap'], number | string>
+  | Extract<keyof DashTokens["gap"], number | string>
   | [
       // @ts-expect-error
-      Extract<keyof DashTokens['gap'], number | string>,
+      Extract<keyof DashTokens["gap"], number | string>,
       // @ts-expect-error
-      Extract<keyof DashTokens['gap'], number | string>
-    ]
+      Extract<keyof DashTokens["gap"], number | string>
+    ];
 
-export interface GridProps extends Omit<BoxProps, 'display'> {
+export interface GridProps extends Omit<BoxProps, "display"> {
   /**
    * Sets a `justify-items` CSS property on your component
    */
-  readonly alignX?: ResponsiveProp<'start' | 'center' | 'end' | 'stretch'>
+  readonly alignX?: ResponsiveProp<"start" | "center" | "end" | "stretch">;
   /**
    * Sets an `align-items` CSS property on your component
    */
-  readonly alignY?: ResponsiveProp<'start' | 'center' | 'end' | 'stretch'>
+  readonly alignY?: ResponsiveProp<"start" | "center" | "end" | "stretch">;
   /**
    * Sets a `grid-template-columns` CSS property on your component
    */
-  readonly cols?: ResponsiveProp<number | (number | string)[]>
+  readonly cols?: ResponsiveProp<number | (number | string)[]>;
   /**
    * Sets a `justify-content` CSS property on your component
    */
   readonly distributeX?: ResponsiveProp<
-    'start' | 'center' | 'end' | 'stretch' | 'around' | 'between' | 'evenly'
-  >
+    "start" | "center" | "end" | "stretch" | "around" | "between" | "evenly"
+  >;
   /**
    * Sets an `align-content` CSS property on your component
    */
   readonly distributeY?: ResponsiveProp<
-    'start' | 'center' | 'end' | 'stretch' | 'around' | 'between' | 'evenly'
-  >
+    "start" | "center" | "end" | "stretch" | "around" | "between" | "evenly"
+  >;
   /**
    * Sets a horizontal and vertical gap between the child elements in the row
    * using the "gap" token in your theme
    */
-  readonly gap?: ResponsiveProp<GapProp>
+  readonly gap?: ResponsiveProp<GapProp>;
   /**
    * Makes the component display as an `inline-grid` rather than `grid`
    */
-  readonly inline?: ResponsiveProp<boolean>
+  readonly inline?: ResponsiveProp<boolean>;
   /**
    * Sets a `grid-template-rows` CSS property on your component
    */
-  readonly rows?: ResponsiveProp<number | (number | string)[]>
+  readonly rows?: ResponsiveProp<number | (number | string)[]>;
 }
 
 export interface GridItemProps extends BoxProps {
   /**
    * Sets a `justify-self` CSS property on your component
    */
-  readonly alignX?: ResponsiveProp<'start' | 'center' | 'end' | 'stretch'>
+  readonly alignX?: ResponsiveProp<"start" | "center" | "end" | "stretch">;
   /**
    * Sets an `align-self` CSS property on your component
    */
-  readonly alignY?: ResponsiveProp<'start' | 'center' | 'end' | 'stretch'>
+  readonly alignY?: ResponsiveProp<"start" | "center" | "end" | "stretch">;
   /**
    * Sets a `grid-column-start` CSS property on your component
    */
-  readonly colStart?: ResponsiveProp<number | string>
+  readonly colStart?: ResponsiveProp<number | string>;
   /**
    * Sets a `grid-column-end` CSS property on your component
    */
-  readonly colEnd?: ResponsiveProp<number | string>
+  readonly colEnd?: ResponsiveProp<number | string>;
   /**
    * Sets a `grid-row-start` CSS property on your component
    */
-  readonly rowStart?: ResponsiveProp<number | string>
+  readonly rowStart?: ResponsiveProp<number | string>;
   /**
    * Sets a `grid-row-end` CSS property on your component
    */
-  readonly rowEnd?: ResponsiveProp<number | string>
+  readonly rowEnd?: ResponsiveProp<number | string>;
 }
 
 /* istanbul ignore next */
-if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
-  Grid.displayName = 'Grid'
-  GridItem.displayName = 'GridItem'
+if (typeof process !== "undefined" && process.env.NODE_ENV === "development") {
+  Grid.displayName = "Grid";
+  GridItem.displayName = "GridItem";
 }

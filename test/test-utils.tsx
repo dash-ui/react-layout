@@ -1,72 +1,74 @@
-import '@dash-ui/jest'
-import * as React from 'react'
-import {render as renderTest} from '@testing-library/react'
-import {styles} from '@dash-ui/styles'
-import {LayoutProvider} from '../src/layout'
-import type {RenderResult, RenderOptions} from '@testing-library/react'
+import "@dash-ui/jest";
+import * as React from "react";
+import { render as renderTest } from "@testing-library/react";
+import { styles } from "@dash-ui/styles";
+import { LayoutProvider } from "../src/layout";
+import type { RenderResult, RenderOptions } from "@testing-library/react";
 
 const theme = {
   gap: {
-    auto: 'auto',
+    auto: "auto",
     0: 0,
-    1: '0.25rem',
-    2: '0.5rem',
-    3: '1rem',
-    4: '2rem',
-    5: '4rem',
+    1: "0.25rem",
+    2: "0.5rem",
+    3: "1rem",
+    4: "2rem",
+    5: "4rem",
   },
   pad: {
-    auto: 'auto',
+    auto: "auto",
     0: 0,
-    1: '0.125rem',
-    2: '0.25rem',
-    3: '0.5rem',
-    4: '1rem',
-    5: '2rem',
-    6: '4rem',
+    1: "0.125rem",
+    2: "0.25rem",
+    3: "0.5rem",
+    4: "1rem",
+    5: "2rem",
+    6: "4rem",
   },
   color: {
-    blue: 'blue',
-    green: 'green',
+    blue: "blue",
+    green: "green",
   },
   elevation: {
-    low: 'low',
-    high: 'high',
+    low: "low",
+    high: "high",
   },
   radius: {
-    sm: '0.125rem',
-    md: '0.25rem',
+    sm: "0.125rem",
+    md: "0.25rem",
   },
   borderWidth: {
-    hairline: '0.5px',
+    hairline: "0.5px",
   },
   zIndexes: {
     min: -1,
   },
-}
+};
 
-type Theme = typeof theme
-styles.insertTokens(theme)
+type Theme = typeof theme;
+styles.insertTokens(theme);
 
 export const mediaQueries = {
-  phone: 'only screen and (min-width: 0em)',
-  tablet: 'only screen and (min-width: 35em)',
-  desktop: 'only screen and (min-width: 80em)',
-}
+  phone: "only screen and (min-width: 0em)",
+  tablet: "only screen and (min-width: 35em)",
+  desktop: "only screen and (min-width: 80em)",
+};
 
-type ThemeMediaQueries = typeof mediaQueries
+type ThemeMediaQueries = typeof mediaQueries;
 
-declare module '@dash-ui/styles' {
+declare module "@dash-ui/styles" {
   interface DashTokens extends Theme {}
 }
 
-declare module '../src/Layout' {
+declare module "../src/Layout" {
   interface MediaQueries extends ThemeMediaQueries {}
 }
 
 export const renderMq = (
   ui: React.ReactElement,
-  options?: Omit<RenderOptions, 'queries'> & {layoutProps: Record<string, any>}
+  options?: Omit<RenderOptions, "queries"> & {
+    layoutProps: Record<string, any>;
+  }
 ): RenderResult => {
   return renderTest(ui, {
     ...options,
@@ -79,15 +81,17 @@ export const renderMq = (
         {...props}
       />
     ),
-  })
-}
+  });
+};
 
 // Silences React errors when we test exceptions
-export const silenceErrors = (test: jest.ProvidesCallback) => (
-  ...args: Parameters<jest.ProvidesCallback>
-): ReturnType<jest.ProvidesCallback> => {
-  const originalError = console.error
-  console.error = jest.fn()
-  test(...args)
-  console.error = originalError
-}
+export const silenceErrors =
+  (test: jest.ProvidesCallback) =>
+  (
+    ...args: Parameters<jest.ProvidesCallback>
+  ): ReturnType<jest.ProvidesCallback> => {
+    const originalError = console.error;
+    console.error = jest.fn();
+    test(...args);
+    console.error = originalError;
+  };

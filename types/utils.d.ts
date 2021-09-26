@@ -3,4 +3,4 @@
  * they are.
  * @param value The value you want to maybe add a unit to
  */
-export declare function unit<T extends unknown>(value: T): string | T
+export declare function unit<T extends unknown>(value: T): string | T;

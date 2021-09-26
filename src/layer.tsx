@@ -1,12 +1,12 @@
-import * as React from 'react'
-import clsx from 'clsx'
-import forwardRefAs from 'forward-ref-as'
-import css from 'minify-css.macro'
-import {Box} from './box'
-import type {BoxProps} from './box'
-import {useResponsiveStyles} from './layout'
-import type {ResponsiveProp, ResponsiveLazyProp} from './layout'
-import {unit} from './utils'
+import clsx from "clsx";
+import forwardRefAs from "forward-ref-as";
+import css from "minify-css.macro";
+import * as React from "react";
+import { Box } from "./box";
+import type { BoxProps } from "./box";
+import { useResponsiveStyles } from "./layout";
+import type { ResponsiveLazyProp, ResponsiveProp } from "./layout";
+import { unit } from "./utils";
 
 /**
  * A layout component that is a container for `<LayerItem>`s:
@@ -22,12 +22,12 @@ import {unit} from './utils'
  *   <LayerItem placement='bottomRight' z={1000}/>
  * </Layer>
  */
-export const Layer = forwardRefAs<'div', LayerProps>(function Layer(
+export const Layer = forwardRefAs<"div", LayerProps>(function Layer(
   props,
   ref
 ) {
-  return <Box ref={ref} position='relative' {...props} />
-})
+  return <Box ref={ref} position="relative" {...props} />;
+});
 
 /**
  * A layout component than positions itself absolutely inside of its
@@ -36,11 +36,11 @@ export const Layer = forwardRefAs<'div', LayerProps>(function Layer(
  * @example
  * <LayerItem placement='bottomRight' offset={24}/>
  */
-export const LayerItem = forwardRefAs<'div', LayerItemProps>(function LayerItem(
-  {className, offset, placement, ...props},
+export const LayerItem = forwardRefAs<"div", LayerItemProps>(function LayerItem(
+  { className, offset, placement, ...props },
   ref
 ) {
-  const styles = useResponsiveStyles()
+  const styles = useResponsiveStyles();
 
   return (
     <Box
@@ -49,97 +49,99 @@ export const LayerItem = forwardRefAs<'div', LayerItemProps>(function LayerItem(
         className,
         styles.join(styles.lazy(placementStyle(offset)).css(placement))
       )}
-      position='absolute'
+      position="absolute"
       {...props}
     />
-  )
-})
+  );
+});
 
-const placementStyle = (
-  offsetProp: LayerItemProps['offset'] | undefined
-): ResponsiveLazyProp<Placements> => (value, queryName): string => {
-  if (value === 'center') {
-    return css`
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    `
-  }
+const placementStyle =
+  (
+    offsetProp: LayerItemProps["offset"] | undefined
+  ): ResponsiveLazyProp<Placements> =>
+  (value, queryName): string => {
+    if (value === "center") {
+      return css`
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      `;
+    }
 
-  const offset = unit(
-    !offsetProp
-      ? 0
-      : typeof offsetProp === 'object'
-      ? offsetProp[queryName]
-      : offsetProp
-  )
-  const lValue = value.toLowerCase()
-  const yProp =
-    lValue.indexOf('top') > -1
-      ? 'top'
-      : lValue.indexOf('bottom') > -1
-      ? 'bottom'
-      : void 0
-  const xProp =
-    lValue.indexOf('left') > -1
-      ? 'left'
-      : lValue.indexOf('right') > -1
-      ? 'right'
-      : void 0
+    const offset = unit(
+      !offsetProp
+        ? 0
+        : typeof offsetProp === "object"
+        ? offsetProp[queryName]
+        : offsetProp
+    );
+    const lValue = value.toLowerCase();
+    const yProp =
+      lValue.indexOf("top") > -1
+        ? "top"
+        : lValue.indexOf("bottom") > -1
+        ? "bottom"
+        : void 0;
+    const xProp =
+      lValue.indexOf("left") > -1
+        ? "left"
+        : lValue.indexOf("right") > -1
+        ? "right"
+        : void 0;
 
-  let styles = ''
+    let styles = "";
 
-  if (yProp && offset !== void 0)
-    styles += css`
-      ${yProp}: ${offset};
-    `
+    if (yProp && offset !== void 0)
+      styles += css`
+        ${yProp}: ${offset};
+      `;
 
-  if (xProp && offset !== void 0)
-    styles += css`
-      ${xProp}: ${offset};
-    `
+    if (xProp && offset !== void 0)
+      styles += css`
+        ${xProp}: ${offset};
+      `;
 
-  if (value === 'left' || value === 'right')
-    styles += css`
-      top: 50%;
-      transform: translateY(-50%);
-    `
+    if (value === "left" || value === "right")
+      styles += css`
+        top: 50%;
+        transform: translateY(-50%);
+      `;
 
-  if (value === 'bottom' || value === 'top')
-    styles += css`
-      left: 50%;
-      transform: translateX(-50%);
-    `
+    if (value === "bottom" || value === "top")
+      styles += css`
+        left: 50%;
+        transform: translateX(-50%);
+      `;
 
-  return styles
-}
+    return styles;
+  };
 
 export interface LayerProps extends BoxProps {}
 
 type Placements =
-  | 'top'
-  | 'right'
-  | 'bottom'
-  | 'left'
-  | 'center'
-  | 'topLeft'
-  | 'topRight'
-  | 'bottomRight'
-  | 'bottomLeft'
+  | "top"
+  | "right"
+  | "bottom"
+  | "left"
+  | "center"
+  | "topLeft"
+  | "topRight"
+  | "bottomRight"
+  | "bottomLeft";
 
-export interface LayerItemProps extends Omit<BoxProps, 'position'> {
+export interface LayerItemProps extends Omit<BoxProps, "position"> {
   /**
    * Sets a `margin` between the edges of the layer item's container
    */
-  offset?: ResponsiveProp<number | string>
+  offset?: ResponsiveProp<number | string>;
   /**
    * Sets the placement of your layer item relative to its container
    */
-  placement: ResponsiveProp<Placements>
+  placement: ResponsiveProp<Placements>;
 }
 
 /* istanbul ignore next */
-if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
-  Layer.displayName = 'Layer'
-  LayerItem.displayName = 'LayerItem'
+if (typeof process !== "undefined" && process.env.NODE_ENV === "development") {
+  Layer.displayName = "Layer";
+  LayerItem.displayName = "LayerItem";
 }

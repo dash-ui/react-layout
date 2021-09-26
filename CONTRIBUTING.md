@@ -1,19 +1,15 @@
-# Contributing to Dash
+# Contributing to @dash-ui/react-layout
 
 To contribute to this project, first:
 
 1. [Fork this repo to your account](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo)
-2. ```sh
-   # Create a directory for Dash if you don't already have one
-   mkdir dash-ui
-   cd dash-ui
-   # Clone your forked repo
-   git clone https://github.com/[your-username]/react-layout.git
-   # Install the repo using Yarn
-   cd react-layout
-   yarn install
+2. [Clone this repo](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) to your local machine
+3. ```sh
+   # Install the repo using pnpm
+   cd [repo-name]
+   pnpm install
    # Start dev mode
-   yarn dev
+   pnpm dev
    ```
 
 ## Before you contribute
@@ -29,7 +25,7 @@ Before your PR will be considered I will look for:
 
 - **Documentation** Please submit updates to the docs when public-facing APIs are changed.
 - **Tests** Your PR will not be accepted if it doesn't have well-designed tests. Additionally, make sure
-  that you run `yarn validate` before you submit your PR and make sure your PR passes the linting rules,
+  that you run `pnpm validate` before you submit your PR and make sure your PR passes the linting rules,
   type checking, and tests that already exist.
 - **Types** Your types should be as strong as possible.
 - **Comments** If your PR implements non-obvious logic, I fully expect you to explain the rationale in
@@ -38,7 +34,7 @@ Before your PR will be considered I will look for:
 
 ## Development
 
-Here's what you need to know to start developing Dash.
+Here's what you need to know to start developing `@dash-ui/react-layout`.
 
 ### Package scripts
 
@@ -62,22 +58,13 @@ Formats all of the applicable source files with prettier
 
 Runs `eslint` on the package source
 
-#### `prerelease`
-
-Runs before the package is published. This calls `validate` and `build` scripts.
-
-#### `release`
-
-Starts a release using `standard-version`. This must be run before `npm publish`.
-
 #### `test`
 
 Tests the package with `jest`
 
 #### `validate`
 
-Runs `check-types`, `lint`, and `test` scripts. This is used in CI and
-in `prerelease`.
+Runs `check-types`, `lint`, and `test` scripts.
 
 ---
 
@@ -85,7 +72,7 @@ in `prerelease`.
 
 #### `pre-commit`
 
-Runs `lint-staged` and the `build-types` script
+Runs `lint-staged` script
 
 #### `commit-msg`
 

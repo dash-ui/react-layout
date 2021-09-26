@@ -1,12 +1,7 @@
 {
   "name": "@dash-ui/react-layout",
   "version": "0.9.2",
-  "homepage": "https://github.com/dash-ui/react-layout#readme",
-  "repository": "github:dash-ui/react-layout",
-  "bugs": "https://github.com/dash-ui/react-layout/issues",
-  "author": "Jared Lunde <jared.lunde@gmail.com> (https://jaredLunde.com)",
-  "license": "MIT",
-  "description": "Awesome layout primitives for React using dash-ui",
+  "description": "Awesome layout primitives for React using @dash-ui",
   "keywords": [
     "react",
     "react component",
@@ -28,11 +23,12 @@
     "react spacing component",
     "css-in-react layout"
   ],
-  "main": "dist/main/index.js",
-  "module": "dist/module/index.js",
-  "unpkg": "dist/umd/dash-react-layout.js",
-  "source": "src/index.tsx",
-  "types": "types/index.d.ts",
+  "homepage": "https://github.com/dash-ui/react-layout#readme",
+  "bugs": "https://github.com/dash-ui/react-layout/issues",
+  "repository": "github:dash-ui/react-layout",
+  "license": "MIT",
+  "author": "Jared Lunde <jared.lunde@gmail.com> (https://jaredlunde.com/)",
+  "sideEffects": false,
   "exports": {
     ".": {
       "browser": "./dist/module/index.js",
@@ -46,41 +42,38 @@
     "./package.json": "./package.json",
     "./": "./"
   },
+  "main": "dist/main/index.js",
+  "unpkg": "dist/umd/dash-react-layout.js",
+  "module": "dist/module/index.js",
+  "source": "src/index.tsx",
+  "types": "types/index.d.ts",
   "files": [
     "/dist",
     "/src",
     "/types"
   ],
-  "sideEffects": false,
   "scripts": {
     "build": "lundle build",
     "check-types": "lundle check-types",
     "dev": "lundle build -f module,cjs -w",
     "format": "prettier --write \"{,!(node_modules|dist|coverage)/**/}*.{ts,tsx,js,jsx,md,yml,json}\"",
     "lint": "eslint . --ext .ts,.tsx",
-    "prerelease": "npm run validate && npm run build",
-    "release": "git add . && standard-version -a",
+    "prepare": "husky install",
     "test": "jest",
-    "validate": "lundle check-types && npm run lint && jest --coverage"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lundle check-types && lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "lint-staged": {
-    "**/*.{ts,tsx,js,jsx}": [
-      "eslint",
-      "prettier --write"
-    ],
-    "**/*.{md,yml,json}": [
-      "prettier --write"
-    ]
+    "validate": "lundle check-types && pnpm run lint && jest --coverage"
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.{md,yml,json}": [
+      "prettier --write"
     ]
   },
   "config": {
@@ -123,6 +116,12 @@
     "*.config.js"
   ],
   "jest": {
+    "collectCoverageFrom": [
+      "**/src/**/*.{ts,tsx}"
+    ],
+    "globals": {
+      "__DEV__": true
+    },
     "moduleDirectories": [
       "node_modules",
       "src",
@@ -131,9 +130,6 @@
     "moduleNameMapper": {
       "^test-utils$": "<rootDir>/test/test-utils.tsx"
     },
-    "collectCoverageFrom": [
-      "**/src/**/*.{ts,tsx}"
-    ],
     "setupFilesAfterEnv": [
       "./test/setup.ts"
     ],
@@ -141,21 +137,18 @@
     "snapshotSerializers": [
       "@dash-ui/jest"
     ],
-    "globals": {
-      "__DEV__": true
-    }
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "jsxSingleQuote": true,
-    "bracketSpacing": false
+    "testEnvironment": "jsdom",
+    "testMatch": [
+      "<rootDir>/src/**/?(*.)test.{ts,tsx}"
+    ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^9.0.1",
-    "@commitlint/config-conventional": "^9.0.1",
-    "@dash-ui/jest": "^2.0.1",
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "@dash-ui/jest": "^2.1.2",
     "@dash-ui/styles": "^0.8.6",
+    "@semantic-release/changelog": "^6.0.0",
+    "@semantic-release/git": "^10.0.0",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/react-hooks": "latest",
@@ -163,20 +156,18 @@
     "@types/jest": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "babel-jest": "latest",
-    "cz-conventional-changelog": "^3.2.0",
+    "cz-conventional-changelog": "latest",
     "eslint": "latest",
     "eslint-config-lunde": "latest",
     "husky": "latest",
     "jest": "latest",
     "lint-staged": "latest",
-    "lundle": "^0.4.11",
+    "lundle": "latest",
     "minify-css.macro": "^1.0.6",
     "prettier": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-test-renderer": "latest",
-    "standard-version": "^8.0.2",
     "typescript": "latest"
   },
   "dependencies": {
@@ -187,5 +178,30 @@
   "peerDependencies": {
     "@dash-ui/styles": ">=0.8.4",
     "react": ">=16.8"
+  },
+  "release": {
+    "branches": [
+      "main",
+      "next",
+      "alpha"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "types",
+            "CHANGELOG.md",
+            "package.json"
+          ],
+          "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
+        }
+      ],
+      "@semantic-release/github"
+    ]
   }
 }

@@ -145,9 +145,9 @@ const gapStyle: ResponsiveLazyProp<
       // @ts-expect-error
       Extract<keyof DashTokens["gap"], number | string>
     ]
-  // @ts-expect-error
 > =
   (gapProp: GapProp) =>
+  // @ts-expect-error
   ({ gap }) =>
     css`
       grid-gap: ${Array.isArray(gapProp)

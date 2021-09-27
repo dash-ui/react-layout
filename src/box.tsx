@@ -129,9 +129,9 @@ const padStyle: ResponsiveLazyProp<
   | Extract<keyof DashTokens["pad"], string | number>
   // @ts-expect-error
   | Extract<keyof DashTokens["pad"], string | number>[]
-  // @ts-expect-error
 > =
   (padProp) =>
+  // @ts-expect-error
   ({ pad }) =>
     css`
       padding: ${Array.isArray(padProp)
@@ -183,10 +183,8 @@ const elevationStyle: ResponsiveLazyProp<
     string | number
   >
 > =
-  (
-    elevationProp
-    // @ts-expect-error
-  ) =>
+  (elevationProp) =>
+  // @ts-expect-error
   ({ elevation }) =>
     css`
       box-shadow: ${elevation[elevationProp]};
@@ -196,9 +194,9 @@ const radiusStyle: ResponsiveLazyProp<
   | Extract<keyof DashTokens["radius"], string | number>
   // @ts-expect-error
   | Extract<keyof DashTokens["radius"], string | number>[]
-  // @ts-expect-error
 > =
   (radiusProp) =>
+  // @ts-expect-error
   ({ radius }) =>
     css`
       border-radius: ${Array.isArray(radiusProp)

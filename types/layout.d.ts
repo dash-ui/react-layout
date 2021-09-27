@@ -1,10 +1,10 @@
-import * as React from "react";
 import type {
   Responsive,
-  ResponsiveStyles,
   ResponsiveLazyCallback,
+  ResponsiveStyles,
 } from "@dash-ui/responsive";
-import type { Styles, DashTokens, LazyValue } from "@dash-ui/styles";
+import type { DashTokens, LazyValue, Styles } from "@dash-ui/styles";
+import * as React from "react";
 /**
  * Returns the [responsive `styles()`](https://github.com/dash-ui/responsive)
  * used for creating responsive layout props.
@@ -18,6 +18,10 @@ export declare function useResponsiveStyles(): ResponsiveStyles<
  * A context provider which is only required if you intend on using
  * responsive props or a custom `styles()` instance.
  *
+ * @param root0
+ * @param root0.styles
+ * @param root0.mediaQueries
+ * @param root0.children
  * @example
  * <LayoutProvider
  *   styles={styles}

@@ -45,6 +45,7 @@ export interface ColumnProps extends BoxProps {
   >;
   /**
    * Reverses the direction of the column to bottom-to-top
+   *
    * @default false
    */
   readonly reverse?: ResponsiveProp<boolean>;

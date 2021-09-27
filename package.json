@@ -162,7 +162,7 @@
     "husky": "latest",
     "jest": "latest",
     "lint-staged": "latest",
-    "lundle": "latest",
+    "lundle": "^0.4.13",
     "minify-css.macro": "^1.0.6",
     "prettier": "latest",
     "react": "latest",

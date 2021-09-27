@@ -42,6 +42,7 @@ export interface RowProps extends BoxProps {
   >;
   /**
    * Reverses the direction of the row to left-to-right
+   *
    * @default false
    */
   readonly reverse?: ResponsiveProp<boolean>;

@@ -1,3 +1,9 @@
+## [0.9.3](https://github.com/dash-ui/react-layout/compare/v0.9.2...v0.9.3) (2021-10-03)
+
+### Bug Fixes
+
+- fix type errors ([4926481](https://github.com/dash-ui/react-layout/commit/4926481fef8abc81c34f58589b6b9628ed34b544))
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.

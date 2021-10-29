@@ -47,7 +47,12 @@ export declare type ResponsiveProp<Value> =
   | Value
   | Responsive<Value, MediaQueries>;
 export declare type ResponsiveLazyProp<Variant extends LazyValue> =
-  ResponsiveLazyCallback<Variant, DashTokens, DashThemes, MediaQueries>;
+  ResponsiveLazyCallback<
+    Variant,
+    Record<string, any>,
+    Record<string, any>,
+    MediaQueries
+  >;
 export interface LayoutProviderProps {
   /**
    * The `styles()` instance you're using to create styles. By default this is the `styles()` instance

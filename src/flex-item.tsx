@@ -42,7 +42,7 @@ export const FlexItem = forwardRefAs<"div", FlexItemProps>(function FlexItem(
           order === void 0 ? "" : styles.lazy(orderStyle).css(order),
           grow === void 0 ? "" : styles.lazy(growStyle).css(grow),
           shrink === void 0 ? "" : styles.lazy(shrinkStyle).css(shrink),
-          styles(alignSelf).css(align)
+          styles.variants(alignSelf).css(align)
         ),
         maxWidth === void 0 ? "" : styles.lazy(maxWidthStyle)(maxWidth),
         maxHeight === void 0 ? "" : styles.lazy(maxHeightStyle)(maxHeight)

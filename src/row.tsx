@@ -40,8 +40,8 @@ export const Row = forwardRefAs<"div", RowProps>(function Row(
               flex-shrink: 0;
             }
           `,
-          styles(alignItems).css(align),
-          styles(justifyContent).css(distribute),
+          styles.variants(alignItems).css(align),
+          styles.variants(justifyContent).css(distribute),
           gap === void 0 ? "" : styles.lazy(gapStyle(reverse)).css(gap),
           reverse === void 0 ? "" : styles.lazy(reverseStyle).css(reverse)
         )
@@ -58,13 +58,12 @@ const reverseStyle = (reverse: boolean) =>
 const gapStyle =
   (
     reverse: RowProps["reverse"]
-    // @ts-expect-error
   ): ResponsiveLazyProp<Extract<keyof DashTokens["gap"], number | string>> =>
   (gapProp, queryName) => {
     const reversed =
       !reverse || typeof reverse === "boolean" ? reverse : reverse[queryName];
     const marginDirection = reversed ? "right" : "left";
-    // @ts-expect-error
+
     return ({ gap }) => css`
     & > * + * {
       margin-${marginDirection}: ${gap[gapProp]}!important;
@@ -91,7 +90,6 @@ export interface RowProps extends BoxProps {
    * token in your theme
    */
   readonly gap?: ResponsiveProp<
-    // @ts-expect-error
     Extract<keyof DashTokens["gap"], number | string>
   >;
   /**

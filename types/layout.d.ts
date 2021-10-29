@@ -3,7 +3,12 @@ import type {
   ResponsiveLazyCallback,
   ResponsiveStyles,
 } from "@dash-ui/responsive";
-import type { DashTokens, LazyValue, Styles } from "@dash-ui/styles";
+import type {
+  DashThemes,
+  DashTokens,
+  LazyValue,
+  Styles,
+} from "@dash-ui/styles";
 import * as React from "react";
 /**
  * Returns the [responsive `styles()`](https://github.com/dash-ui/responsive)
@@ -11,8 +16,8 @@ import * as React from "react";
  */
 export declare function useResponsiveStyles(): ResponsiveStyles<
   DashTokens,
-  MediaQueries,
-  never
+  DashThemes,
+  MediaQueries
 >;
 /**
  * A context provider which is only required if you intend on using
@@ -42,7 +47,7 @@ export declare type ResponsiveProp<Value> =
   | Value
   | Responsive<Value, MediaQueries>;
 export declare type ResponsiveLazyProp<Variant extends LazyValue> =
-  ResponsiveLazyCallback<Variant, DashTokens, MediaQueries>;
+  ResponsiveLazyCallback<Variant, DashTokens, DashThemes, MediaQueries>;
 export interface LayoutProviderProps {
   /**
    * The `styles()` instance you're using to create styles. By default this is the `styles()` instance

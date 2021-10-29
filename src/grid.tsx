@@ -60,10 +60,10 @@ export const Grid = forwardRefAs<"div", GridProps>(function Grid(
           css`
             display: grid;
           `,
-          styles(justifyItems).css(alignX),
-          styles(alignItems).css(alignY),
-          styles(justifyContent).css(distributeX),
-          styles(alignContent).css(distributeY),
+          styles.variants(justifyItems).css(alignX),
+          styles.variants(alignItems).css(alignY),
+          styles.variants(justifyContent).css(distributeX),
+          styles.variants(alignContent).css(distributeY),
           inline === void 0 ? "" : styles.lazy(gridStyle).css(inline || false),
           gap === void 0 ? "" : styles.lazy(gapStyle).css(gap)
         ),
@@ -99,8 +99,8 @@ export const GridItem = forwardRefAs<"div", GridItemProps>(function GridItem(
       className={clsx(
         className,
         styles.join(
-          styles(justifySelf).css(alignX),
-          styles(alignSelf).css(alignY),
+          styles.variants(justifySelf).css(alignX),
+          styles.variants(alignSelf).css(alignY),
           colStart === void 0 ? "" : styles.lazy(colStartStyle).css(colStart),
           colEnd === void 0 ? "" : styles.lazy(colEndStyle).css(colEnd),
           rowStart === void 0 ? "" : styles.lazy(rowStartStyle).css(rowStart),
@@ -137,17 +137,14 @@ const rowsStyle = (rows: number | (number | string)[]) => {
 };
 
 const gapStyle: ResponsiveLazyProp<
-  // @ts-expect-error
   | Extract<keyof DashTokens["gap"], number | string>
   | [
-      // @ts-expect-error
       Extract<keyof DashTokens["gap"], number | string>,
-      // @ts-expect-error
+
       Extract<keyof DashTokens["gap"], number | string>
     ]
 > =
   (gapProp: GapProp) =>
-  // @ts-expect-error
   ({ gap }) =>
     css`
       grid-gap: ${Array.isArray(gapProp)
@@ -172,12 +169,10 @@ const rowEndStyle = (gridRowEnd: number | string) => css`
 `;
 
 type GapProp =
-  // @ts-expect-error
   | Extract<keyof DashTokens["gap"], number | string>
   | [
-      // @ts-expect-error
       Extract<keyof DashTokens["gap"], number | string>,
-      // @ts-expect-error
+
       Extract<keyof DashTokens["gap"], number | string>
     ];
 

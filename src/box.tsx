@@ -44,8 +44,8 @@ export const Box = forwardRefAs<"div", BoxProps>(function Box(
       className={clsx(
         className,
         styles.join(
-          styles(frameStyle).css(display),
-          styles(frameStyle).css(position),
+          styles.variants(frameStyle).css(display),
+          styles.variants(frameStyle).css(position),
           !pad ? "" : styles.lazy(padStyle).css(pad),
           !bg ? "" : styles.lazy(bgStyle).css(bg),
           !border ? "" : styles.lazy(borderStyle).css(border),
@@ -125,13 +125,10 @@ const sizeStyle = (size: number | string) => {
 };
 
 const padStyle: ResponsiveLazyProp<
-  // @ts-expect-error
   | Extract<keyof DashTokens["pad"], string | number>
-  // @ts-expect-error
   | Extract<keyof DashTokens["pad"], string | number>[]
 > =
   (padProp) =>
-  // @ts-expect-error
   ({ pad }) =>
     css`
       padding: ${Array.isArray(padProp)
@@ -140,36 +137,23 @@ const padStyle: ResponsiveLazyProp<
     `;
 
 const bgStyle: ResponsiveLazyProp<
-  Extract<
-    // @ts-expect-error
-    keyof DashTokens["color"],
-    string | number
-  >
+  Extract<keyof DashTokens["color"], string | number>
 > =
   (bg) =>
-  ({
-    // @ts-expect-error
-    color,
-  }) =>
+  ({ color }) =>
     css`
       background-color: ${color[bg]};
     `;
 
 const borderStyle: ResponsiveLazyProp<
   [
-    // @ts-expect-error
-    Extract<keyof DashTokens["borderWidths"], string | number>,
-    // @ts-expect-error
+    Extract<keyof DashTokens["borderWidth"], string | number>,
+
     Extract<keyof DashTokens["color"], string | number>
   ]
 > =
   ([width, borderColor]) =>
-  ({
-    // @ts-expect-error
-    borderWidth,
-    // @ts-expect-error
-    color,
-  }) =>
+  ({ borderWidth, color }) =>
     css`
       border-width: ${borderWidth[width]};
       border-style: solid;
@@ -177,26 +161,18 @@ const borderStyle: ResponsiveLazyProp<
     `;
 
 const elevationStyle: ResponsiveLazyProp<
-  Extract<
-    // @ts-expect-error
-    keyof DashTokens["elevation"],
-    string | number
-  >
+  Extract<keyof DashTokens["elevation"], string | number>
 > =
   (elevationProp) =>
-  // @ts-expect-error
   ({ elevation }) =>
     css`
       box-shadow: ${elevation[elevationProp]};
     `;
 const radiusStyle: ResponsiveLazyProp<
-  // @ts-expect-error
   | Extract<keyof DashTokens["radius"], string | number>
-  // @ts-expect-error
   | Extract<keyof DashTokens["radius"], string | number>[]
 > =
   (radiusProp) =>
-  // @ts-expect-error
   ({ radius }) =>
     css`
       border-radius: ${Array.isArray(radiusProp)
@@ -220,11 +196,9 @@ const insetStyle: ResponsiveLazyProp<string | number | (string | number)[]> = (
 };
 
 const zStyle: ResponsiveLazyProp<
-  // @ts-expect-error
   number | Extract<keyof DashTokens["zIndexes"], string | number>
 > =
   (value) =>
-  // @ts-expect-error
   ({ zIndexes }) =>
     css`
       z-index: ${typeof value === "number" ? value : zIndexes[value]};
@@ -272,9 +246,7 @@ export interface BoxProps {
    * token in your theme
    */
   readonly pad?: ResponsiveProp<
-    // @ts-expect-error
     | Extract<keyof DashTokens["pad"], string | number>
-    // @ts-expect-error
     | Extract<keyof DashTokens["pad"], string | number>[]
   >;
   /**
@@ -283,9 +255,8 @@ export interface BoxProps {
    */
   readonly border?: ResponsiveProp<
     [
-      // @ts-expect-error
       Extract<keyof DashTokens["borderWidth"], string | number>,
-      // @ts-expect-error
+
       Extract<keyof DashTokens["color"], string | number>
     ]
   >;
@@ -294,7 +265,6 @@ export interface BoxProps {
    * token in your theme
    */
   readonly bg?: ResponsiveProp<
-    // @ts-expect-error
     Extract<keyof DashTokens["color"], string | number>
   >;
   /**
@@ -302,7 +272,6 @@ export interface BoxProps {
    * token in your theme
    */
   readonly elevation?: ResponsiveProp<
-    // @ts-expect-error
     Extract<keyof DashTokens["elevation"], string | number>
   >;
   /**
@@ -310,9 +279,7 @@ export interface BoxProps {
    * token in your theme
    */
   readonly radius?: ResponsiveProp<
-    // @ts-expect-error
     | Extract<keyof DashTokens["radius"], string | number>
-    // @ts-expect-error
     | Extract<keyof DashTokens["radius"], string | number>[]
   >;
   /**
@@ -323,7 +290,6 @@ export interface BoxProps {
    * Sets a `z-index` CSS property on your component
    */
   z?: ResponsiveProp<
-    // @ts-expect-error
     number | Extract<keyof DashTokens["zIndexes"], string | number>
   >;
 }

@@ -70,13 +70,12 @@ const reverseStyle = (reverse: boolean) =>
 const gapStyle =
   (
     reverse: ClusterProps["reverse"]
-    // @ts-expect-error
   ): ResponsiveLazyProp<Extract<keyof DashTokens["gap"], string | number>> =>
   (gapProp, queryName) => {
     const reversed =
       !reverse || typeof reverse === "boolean" ? reverse : reverse[queryName];
     const marginDirection = reversed ? "right" : "left";
-    // @ts-expect-error
+
     return ({ gap }) => css`
     margin-top: calc(-1 * ${gap[gapProp]})!important;
     margin-${marginDirection}: calc(-1 * ${gap[gapProp]})!important;
@@ -100,7 +99,6 @@ export interface ClusterProps extends Omit<BoxProps, "display"> {
    * cluster using the "gap" token in your theme
    */
   readonly gap?: ResponsiveProp<
-    // @ts-expect-error
     Extract<keyof DashTokens["gap"], string | number>
   >;
 }

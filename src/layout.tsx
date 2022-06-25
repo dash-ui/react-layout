@@ -6,7 +6,7 @@ import type {
 } from "@dash-ui/responsive";
 import { styles as defaultStyles } from "@dash-ui/styles";
 import type {
-  DashThemeNames,
+  DashThemes,
   DashTokens,
   LazyValue,
   Styles,
@@ -14,7 +14,7 @@ import type {
 import * as React from "react";
 
 const LayoutContext = React.createContext<
-  ResponsiveStyles<DashTokens, MediaQueries, DashThemeNames>
+  ResponsiveStyles<DashTokens, DashThemes, MediaQueries>
 >(memoResponsive(responsive(defaultStyles, {})));
 
 /**
@@ -59,9 +59,12 @@ export function LayoutProvider({
 }
 
 function memoResponsive(
-  responsiveStyles: ResponsiveStyles<DashTokens, MediaQueries, DashThemeNames>
-): ResponsiveStyles<DashTokens, MediaQueries, DashThemeNames> {
-  const memoStyles = Object.assign(memo(responsiveStyles), responsiveStyles);
+  responsiveStyles: ResponsiveStyles<DashTokens, DashThemes, MediaQueries>
+): ResponsiveStyles<DashTokens, DashThemes, MediaQueries> {
+  const memoStyles = Object.assign(
+    memo(responsiveStyles as any),
+    responsiveStyles
+  );
   memoStyles.lazy = memo(memoStyles.lazy);
   memoStyles.one = memo(memoStyles.one);
   return memoStyles;
@@ -92,7 +95,12 @@ function memo<Value, ReturnValue>(
 
 export type ResponsiveProp<Value> = Value | Responsive<Value, MediaQueries>;
 export type ResponsiveLazyProp<Variant extends LazyValue> =
-  ResponsiveLazyCallback<Variant, DashTokens, MediaQueries>;
+  ResponsiveLazyCallback<
+    Variant,
+    Record<string, any>,
+    Record<string, any>,
+    MediaQueries
+  >;
 
 export interface LayoutProviderProps {
   /**

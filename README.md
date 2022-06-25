@@ -118,7 +118,7 @@ const Component = () => (
 
 | Component                             | Description                                                                                                            |
 | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| [`<LayoutProvider>`](#layoutprovider) | A context provider which is only required if you intend on using responsive props or a custom `styles()` instance.     |
+| [`<LayoutProvider>`](#layoutprovider) | A context provider which is only required if you intend on using responsive props or a custom `styles` instance.       |
 | [`<Box>`](#box)                       | A layout component for adding size, padding, position, color, and more using tokens from your CSS variable theme.      |
 | [`<Cluster>`](#cluster)               | A row directional layout component that distributes its items in a cluster. Common use cases are tags and input chips. |
 | [`<Column>`](#column)                 | A layout component that distributes its items in a column without wrapping or shrinking.                               |
@@ -131,9 +131,9 @@ const Component = () => (
 
 ### Hooks
 
-| Component                                       | Description                                                                                                           |
-| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| [`useResponsiveStyles()`](#useresponsivestyles) | Returns the [responsive `styles()`](https://github.com/dash-ui/responsive) used for creating responsive layout props. |
+| Component                                       | Description                                                                                                         |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| [`useResponsiveStyles()`](#useresponsivestyles) | Returns the [responsive `styles`](https://github.com/dash-ui/responsive) used for creating responsive layout props. |
 
 ### TypeScript support
 
@@ -153,7 +153,7 @@ components.
 ### &lt;LayoutProvider&gt;
 
 A context provider which is only required if you intend on using media query
-props or a custom `styles()` instance.
+props or a custom `styles` instance.
 
 #### Example
 
@@ -191,10 +191,10 @@ const Component = () => (
 
 #### Props
 
-| Prop         | Type                                 | Default  | Required? | Description                                                                                                                                                            |
-| ------------ | ------------------------------------ | -------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| styles       | `Styles<DashTokens, DashThemeNames>` | `styles` | No        | The `styles()` instance you're using to create styles. By default this is the `styles()` instance exported from [`@dash-ui/styles`](https://github.com/dash-ui/styles) |
-| mediaQueries | `Record<string, string>`             |          | No        | A mapping of name/media query pairs. This is only required if youre' using responsive props.                                                                           |
+| Prop         | Type                             | Default  | Required? | Description                                                                                                                                                        |
+| ------------ | -------------------------------- | -------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| styles       | `Styles<DashTokens, DashThemes>` | `styles` | No        | The `styles` instance you're using to create styles. By default this is the `styles` instance exported from [`@dash-ui/styles`](https://github.com/dash-ui/styles) |
+| mediaQueries | `Record<string, string>`         |          | No        | A mapping of name/media query pairs. This is only required if youre' using responsive props.                                                                       |
 
 ### &lt;Box&gt;
 
@@ -559,7 +559,7 @@ const Component = () => (
 
 ### useResponsiveStyles()
 
-Returns the [responsive `styles()`](https://github.com/dash-ui/responsive)
+Returns the [responsive `styles`](https://github.com/dash-ui/responsive)
 used for creating responsive layout props.
 
 #### Returns

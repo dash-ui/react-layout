@@ -37,14 +37,14 @@
     "forward-ref-as": "^2.0.0"
   },
   "peerDependencies": {
-    "@dash-ui/styles": ">=1.0.0-alpha.1",
+    "@dash-ui/styles": ">=1.0.1",
     "react": ">=16.8"
   },
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@dash-ui/jest": "^2.1.2",
-    "@dash-ui/styles": "^1.0.0-alpha.2",
+    "@dash-ui/styles": "^1.0.1",
     "@semantic-release/changelog": "^6.0.0",
     "@semantic-release/git": "^10.0.0",
     "@testing-library/jest-dom": "latest",
@@ -52,13 +52,14 @@
     "@testing-library/react-hooks": "latest",
     "@testing-library/user-event": "latest",
     "@types/jest": "latest",
+    "@types/node": "^18.0.0",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "cz-conventional-changelog": "latest",
     "eslint": "^7.32.0",
     "eslint-config-lunde": "latest",
     "husky": "latest",
-    "jest": "latest",
+    "jest": "27",
     "lint-staged": "latest",
     "lundle": "^0.4.13",
     "minify-css.macro": "^1.0.6",
@@ -170,7 +171,7 @@
   },
   "lint-staged": {
     "package.json": [
-      "pnpx -y prettier-package-json --write"
+      "pnpm dlx prettier-package-json --write"
     ],
     "**/*.{ts,tsx,js,jsx}": [
       "eslint --ext .ts,.tsx,.js,.jsx --fix",

@@ -1,3 +1,15 @@
+# [1.0.0](https://github.com/dash-ui/react-layout/compare/v0.9.3...v1.0.0) (2022-06-25)
+
+### Features
+
+- release v1 ([3c3e40a](https://github.com/dash-ui/react-layout/commit/3c3e40aadbf7fb361d079527e209abd5700177a3))
+- remove alpha peers ([b5e8dd5](https://github.com/dash-ui/react-layout/commit/b5e8dd5697f23887cc66cc6b9cfd16ea284aa2da))
+- update types and apis to support latest dash alpha ([a75301d](https://github.com/dash-ui/react-layout/commit/a75301d9047ba79ec7b9a46e30848717055581e8))
+
+### BREAKING CHANGES
+
+- Types and expected input styles instance are updated to the latest alpha
+
 # [1.0.0-alpha.2](https://github.com/dash-ui/react-layout/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2022-06-25)
 
 ### Features

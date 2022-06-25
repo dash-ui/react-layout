@@ -1,3 +1,9 @@
+# [1.0.0-alpha.2](https://github.com/dash-ui/react-layout/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2022-06-25)
+
+### Features
+
+- remove alpha peers ([b5e8dd5](https://github.com/dash-ui/react-layout/commit/b5e8dd5697f23887cc66cc6b9cfd16ea284aa2da))
+
 # [1.0.0-alpha.1](https://github.com/dash-ui/react-layout/compare/v0.9.3...v1.0.0-alpha.1) (2021-10-29)
 
 ### Features
